@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Phase I - Business and data understanding - CodiMD
+    </title>
+    <link rel="icon" type="image/png" href="http://localhost:3000/favicon.png">
+    <link rel="apple-touch-icon" href="http://localhost:3000/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha256-H0KfTigpUV+0/5tn2HXC0CPwhhDhWgSawJdnFd0CGCo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,300italic,300|Source+Serif+Pro|Source+Code+Pro:400,300,500&subset=latin,latin-ext);.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{padding:0 1em;color:#777;border-left:.25em solid #ddd}.night .markdown-body blockquote{color:#bcbcbc}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.night .markdown-body h1,.night .markdown-body h2,.night .markdown-body h3,.night .markdown-body h4,.night .markdown-body h5,.night .markdown-body h6{color:#ddd}.markdown-body h1 .fa-link,.markdown-body h2 .fa-link,.markdown-body h3 .fa-link,.markdown-body h4 .fa-link,.markdown-body h5 .fa-link,.markdown-body h6 .fa-link{color:#000;vertical-align:middle;visibility:hidden;font-size:16px}.night .markdown-body h1 .fa-link,.night .markdown-body h2 .fa-link,.night .markdown-body h3 .fa-link,.night .markdown-body h4 .fa-link,.night .markdown-body h5 .fa-link,.night .markdown-body h6 .fa-link{color:#fff}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .fa-link,.markdown-body h2:hover .anchor .fa-link,.markdown-body h3:hover .anchor .fa-link,.markdown-body h4:hover .anchor .fa-link,.markdown-body h5:hover .anchor .fa-link,.markdown-body h6:hover .anchor .fa-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.night .markdown-body table tr{background-color:#5f5f5f}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.night .markdown-body table tr:nth-child(2n){background-color:#4f4f4f}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.night .markdown-body code,.night .markdown-body tt{color:#eee;background-color:hsla(0,0%,90.2%,.36)}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\A0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.markdown-body kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important}.markdown-body pre{border:inherit!important}.night .markdown-body pre{filter:invert(100%)}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.night .markdown-body .gist table tr:nth-child(2n){background-color:#ddd}.markdown-body code[data-gist-id]{background:none;padding:0;filter:invert(100%)}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.geo,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit}.night .markdown-body pre.graphviz .graph>polygon{fill:#333}.night .markdown-body pre.mermaid .sectionTitle,.night .markdown-body pre.mermaid .titleText,.night .markdown-body pre.mermaid text{fill:#fff}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.night .markdown-body .abc path{fill:#eee}.night .markdown-body .abc path.note_selected{fill:##4DD0E1}.night tspan{fill:#fefefe}.night pre rect{fill:transparent}.night pre.flow-chart path,.night pre.flow-chart rect{stroke:#fff}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body img{background-color:transparent}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;-webkit-transition:opacity .2s;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;-webkit-transition:opacity .2s;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.geo-map{width:100%;height:250px}.markmap-container{height:300px}.markmap-container>svg{width:100%;height:100%}.MJX_Assistive_MathML{display:none}.ui-infobar{position:relative;z-index:2;max-width:758px;margin-top:25px;margin-bottom:-25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:10000}.ui-toc-label{opacity:.9;background-color:#ccc;border:none}.ui-toc-label,.ui-toc .open .ui-toc-label{-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#5f5f5f}.ui-toc-label:focus{opacity:1;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc-dropdown{margin-top:23px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.night .ui-toc-dropdown .nav>li>a:focus,.night .ui-toc-dropdown .nav>li>a:hover{color:#fff;border-left-color:#fff}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.night .ui-toc-dropdown .nav>.active:focus>a,.night .ui-toc-dropdown .nav>.active:hover>a,.night .ui-toc-dropdown .nav>.active>a{color:#fff;border-left:2px solid #fff}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.night .ui-toc-dropdown .nav>li>a{color:#aaa}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:50px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a{padding-right:50px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:60px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a{padding-right:60px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a:hover{padding-left:49px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a:hover{padding-right:49px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a:hover{padding-left:59px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a:hover{padding-right:59px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>a{padding-left:48px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.active>.nav>.nav>.active>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active:hover>a{padding-right:48px}.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active>a{padding-left:58px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.active>.nav>.nav>.active>.nav>.active>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:hover>a{padding-right:58px}.markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,"\30D2\30E9\30AE\30CE\89D2\30B4   Pro W3",Osaka,Meiryo,"\30E1\30A4\30EA\30AA",MS Gothic,"\FF2D\FF33   \30B4\30B7\30C3\30AF",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,"\FF2D\FF33   \FF30\30B4\30B7\30C3\30AF",sans-serif}.markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang TC,Microsoft JhengHei,"\5FAE\8EDF\6B63\9ED1",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,"\5FAE\8EDF\6B63\9ED1UI",sans-serif}.markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang SC,Microsoft YaHei,"\5FAE\8F6F\96C5\9ED1",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,"\5FAE\8F6F\96C5\9ED1UI",sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:rgba(0,0,0,.85)}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:3px;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:contain}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}small span{line-height:22px}small .dropdown{display:inline-block}small .dropdown a:focus,small .dropdown a:hover{text-decoration:none}.unselectable{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-o-user-select:none;user-select:none}.night .navbar{background:#333;border-bottom-color:#333;color:#eee}.night .navbar a{color:#eee}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}.focus,:focus{outline:none!important}::-moz-focus-inner{border:0!important}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid" lang="en"><h1 id="Phase-I---Business-and-data-understanding"><a class="anchor hidden-xs" href="#Phase-I---Business-and-data-understanding" title="Phase-I---Business-and-data-understanding"><i class="fa fa-link"></i></a>Phase I - Business and data understanding</h1><p>Course: <strong>MLOps engineering</strong><br>
+Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor hidden-xs" href="#Colab-notebook" title="Colab-notebook"><i class="fa fa-link"></i></a>Colab notebook</h1><ul>
+<li><a href="" target="_blank" rel="noopener">business and data understanding notebook</a></li>
+</ul><h1 id="Agenda"><a class="anchor hidden-xs" href="#Agenda" title="Agenda"><i class="fa fa-link"></i></a>Agenda</h1><p></p><div class="toc"><ul>
+<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul>
+<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul>
+<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul>
+<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+</ul>
+</li>
+<li><a href="#Business-understanding" title="Business understanding">Business understanding</a><ul>
+<li><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+</ul>
+</li>
+<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a><ul>
+<li><a href="#Business-and-Data-understanding" title="Business and Data understanding">Business and Data understanding</a></li>
+</ul>
+</li>
+<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul>
+<li><a href="#Demo" title="Demo">Demo</a><ul>
+<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</div><p></p><h1 id="Intro-to-MLOps"><a class="anchor hidden-xs" href="#Intro-to-MLOps" title="Intro-to-MLOps"><i class="fa fa-link"></i></a>Intro to MLOps</h1><p>Machine learning models are complicated. Every use case has a long list of challenges at every stage, from concept to training to deployment.</p><p>Existing <em>DevOps</em> strategies, which help businesses streamline software development do not always apply. Machine learning operations, or <strong>MLOps</strong>, follows the spirit of DevOps. It helps businesses use ML efficiently and reliably.</p><p>If you are already familiar with the concept of DevOps, you may think that <em>MLOps is just DevOps for machine learning</em>. While the concept and goals are similar, the details are significantly different.</p><blockquote>
+<p>If DevOps is a set of practices for building a traditional house, MLOps is the process for building a house on Mars. The builders still need to plan the basics: architecture, utilities, and labor. However, they also need critical input and feedback from experts in space logistics and the Martian environment. They need to get the right materials to Mars, plus they must ensure that the house can withstand the harsh Martian conditions.</p>
+</blockquote><p>While MLOps and DevOps both care about scalability and reproducibility, their scale, complexity, and methods can be significantly different.</p><h2 id="Machine-Learning-The-Short-Version"><a class="anchor hidden-xs" href="#Machine-Learning-The-Short-Version" title="Machine-Learning-The-Short-Version"><i class="fa fa-link"></i></a>Machine Learning: The Short Version</h2><p>Imagine a pizza restaurant franchise that wants to use ML to sell more pizza. The team responsible for this project might follow these steps:</p><ol>
+<li>Gather data that they think will help the model learn</li>
+<li>Study the data to understand how the model should use it</li>
+<li>Prepare the data so that a computer can read it all easily</li>
+<li>Create the model, giving it a goal and telling it how to use the datasets</li>
+<li>Train the model by giving it test data and letting it run</li>
+<li>Evaluate the model to find errors and optimize model performance</li>
+<li>Deploy the model to active use</li>
+<li>Monitor the model to make sure it continues to work as expected</li>
+</ol><p><strong>Example:</strong> Imagine a pizza restaurant franchise that wants to use ML to sell more pizza. The team followed the steps shown above. The team wants to make an ML model that suggests discounts, coupons, and other promotions. The team names it “Pizzatron”. Pizzatron runs on current sales data and sends promotion recommendations to store owners. It is simple, isn’t it?</p><h2 id="Machine-Learning-is-Not-Simple"><a class="anchor hidden-xs" href="#Machine-Learning-is-Not-Simple" title="Machine-Learning-is-Not-Simple"><i class="fa fa-link"></i></a>Machine Learning is Not Simple</h2><p>With our simlified Pizzatron example, there are complexities at every phase in the machine learning development chain. To begin with, in practice, the “team” in the example usually consists of three or more teams. To do an analysis this well, you need data scientists. Experts in building and deploying ML systems are known as ML engineers. Teams of software engineers work together to prepare data and construct models.</p><p>Even if we assume that everyone involved does their job well, there are bound to be mistakes.</p><ol>
+<li>What if the initial metrics had a flaw that made Pizzatron “learn” that pineapple pizza is a big seller at Christmas?</li>
+<li>What if the designers did not account for available materials, so Pizzatron often promotes out-of-stock ingredients?</li>
+<li>If Pizzatron was developed using data from the United States, will it know how to behave for franchises in Italy and Japan?</li>
+</ol><p>Pizzatron requires constant validation. Any problems send Pizzatron right back to the development teams, who must go through the development steps, again. ML models can come back, again and again, to cause trouble for their creators.</p><h2 id="MLOps-Makes-it-Better"><a class="anchor hidden-xs" href="#MLOps-Makes-it-Better" title="MLOps-Makes-it-Better"><i class="fa fa-link"></i></a>MLOps Makes it Better</h2><p>If these teams are going to do complicated work together on a regular basis, they need a <strong>process</strong>. They need automation, defined stages, and workflows. This is exactly the structure that MLOps aims to provide. As explained by the authors of <a href="https://ml-ops.org" target="_blank" rel="noopener">ml-ops.org</a>:</p><blockquote>
+<p>“With [MLOps], we want to provide an end-to-end machine learning development process to design, build, and manage reproducible, testable, and evolvable ML-powered software.”</p>
+</blockquote><p>MLOps is a set of processes and automation for managing models, data and code to improve performance stability and long-term efficiency in ML systems.</p><p><span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><mi>M</mi><mi>L</mi><mi>O</mi><mi>p</mi><mi>s</mi><mo>=</mo><mi>M</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>l</mi><mi>O</mi><mi>p</mi><mi>s</mi><mo>+</mo><mi>D</mi><mi>a</mi><mi>t</mi><mi>a</mi><mi>O</mi><mi>p</mi><mi>s</mi><mo>+</mo><mi>D</mi><mi>e</mi><mi>v</mi><mi>O</mi><mi>p</mi><mi>s</mi></math>" role="presentation" style="text-align: center; position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 22.47em; display: inline-block;"><span style="display: inline-block; position: relative; width: 19.345em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1019.29em, 2.751em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">M<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.11em;"></span></span><span class="mi" id="MathJax-Span-4" style="font-family: MathJax_Math-italic;">L</span><span class="mi" id="MathJax-Span-5" style="font-family: MathJax_Math-italic;">O</span><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-7" style="font-family: MathJax_Math-italic;">s</span><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mi" id="MathJax-Span-9" style="font-family: MathJax_Math-italic; padding-left: 0.272em;">M<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.11em;"></span></span><span class="mi" id="MathJax-Span-10" style="font-family: MathJax_Math-italic;">o</span><span class="mi" id="MathJax-Span-11" style="font-family: MathJax_Math-italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-12" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-13" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-14" style="font-family: MathJax_Math-italic;">O</span><span class="mi" id="MathJax-Span-15" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math-italic;">s</span><span class="mo" id="MathJax-Span-17" style="font-family: MathJax_Main; padding-left: 0.218em;">+</span><span class="mi" id="MathJax-Span-18" style="font-family: MathJax_Math-italic; padding-left: 0.218em;">D</span><span class="mi" id="MathJax-Span-19" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math-italic;">t</span><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math-italic;">a</span><span class="mi" id="MathJax-Span-22" style="font-family: MathJax_Math-italic;">O</span><span class="mi" id="MathJax-Span-23" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-24" style="font-family: MathJax_Math-italic;">s</span><span class="mo" id="MathJax-Span-25" style="font-family: MathJax_Main; padding-left: 0.218em;">+</span><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Math-italic; padding-left: 0.218em;">D</span><span class="mi" id="MathJax-Span-27" style="font-family: MathJax_Math-italic;">e</span><span class="mi" id="MathJax-Span-28" style="font-family: MathJax_Math-italic;">v</span><span class="mi" id="MathJax-Span-29" style="font-family: MathJax_Math-italic;">O</span><span class="mi" id="MathJax-Span-30" style="font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-31" style="font-family: MathJax_Math-italic;">s</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.309em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>M</mi><mi>L</mi><mi>O</mi><mi>p</mi><mi>s</mi><mo>=</mo><mi>M</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>l</mi><mi>O</mi><mi>p</mi><mi>s</mi><mo>+</mo><mi>D</mi><mi>a</mi><mi>t</mi><mi>a</mi><mi>O</mi><mi>p</mi><mi>s</mi><mo>+</mo><mi>D</mi><mi>e</mi><mi>v</mi><mi>O</mi><mi>p</mi><mi>s</mi></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-1">
+MLOps = ModelOps + DataOps + DevOps
+</script></span></p><h2 id="People-and-personas"><a class="anchor hidden-xs" href="#People-and-personas" title="People-and-personas"><i class="fa fa-link"></i></a>People and personas</h2><p><img src="https://i.imgur.com/VDBHm7h.png" alt="" class="md-image md-image"></p><h2 id="MLOps-principles"><a class="anchor hidden-xs" href="#MLOps-principles" title="MLOps-principles"><i class="fa fa-link"></i></a>MLOps principles</h2><p>An <strong>optimal MLOps experience</strong> [as] one where Machine Learning assets are treated consistently with all other software assets within a CI/CD environment. Machine Learning models can be deployed alongside the services that wrap them and the services that consume them as part of a unified release process.  In the following, we describe a set of important concepts in MLOps such as Iterative-Incremental Development, Automation, Continuous Deployment, Versioning, Testing, Reproducibility, and Monitoring.</p><h3 id="1-Iterative-Incremental-Process"><a class="anchor hidden-xs" href="#1-Iterative-Incremental-Process" title="1-Iterative-Incremental-Process"><i class="fa fa-link"></i></a>1. Iterative-Incremental Process</h3><p>The fastest way to build an ML product is to rapidly build, evaluate, and iterate on models. This includes three core phases:</p><p><img src="https://ml-ops.org/img/mlops-loop-en.jpg" alt="" class="md-image md-image"></p><ul>
+<li>Design
+<ul>
+<li>business understanding</li>
+<li>data understanding</li>
+<li>Design a plan to solve the business problem</li>
+</ul>
+</li>
+<li>ML Experimentation and Development
+<ul>
+<li>Start with a Proof-of-Concept ML Model</li>
+<li>Optimize it and select the best one</li>
+<li>Deliver a stable quality ML model that we will run in production</li>
+</ul>
+</li>
+<li>ML Operations
+<ul>
+<li>Deliver the previously developed ML model in production</li>
+<li>Testing, versioning, continuous delivery, and monitoring</li>
+</ul>
+</li>
+</ul><h3 id="2-Automation"><a class="anchor hidden-xs" href="#2-Automation" title="2-Automation"><i class="fa fa-link"></i></a>2. Automation</h3><div class="alert alert-danger">
+<p><strong>The level of automation of the Data, ML Model, and Code pipelines determines the maturity of the ML process.</strong></p>
+</div><p>How do you know?</p><ul>
+<li>With increased maturity:
+<ul>
+<li>the velocity for the training of new models is also increased.</li>
+<li>The complete ML-workflow steps are automated without any manual intervention.</li>
+<li>Triggers for automated model training and deployment can be calendar events (Apache Airflow).</li>
+<li>Automated testing helps discovering problems quickly and in early stages.</li>
+</ul>
+</li>
+</ul><p>To adopt MLOps, there is <em>three</em> levels of automation, starting from the initial level with manual model training and deployment, up to running both ML and CI/CD pipelines automatically.</p><ol>
+<li><strong>Manual process</strong>
+<ul>
+<li>This level has an experimental and iterative nature.</li>
+<li>Every step in each pipeline, such as data preparation and validation, model training and testing, are executed <strong>manually</strong>.</li>
+</ul>
+</li>
+<li><strong>ML pipeline automation</strong>
+<ul>
+<li>The next level includes the execution of model training automatically.</li>
+<li>We have here the continuous training of the model.</li>
+<li>Whenever new data is available, the process of model retraining is triggered.</li>
+<li>This level of automation also includes data and model validation steps.</li>
+</ul>
+</li>
+<li><strong>CI/CD pipeline automation</strong>
+<ul>
+<li>We introduce a CI/CD system to perform fast and reliable ML model deployments in production.</li>
+<li>The core difference from the previous step is that we now <strong>automatically build, test, and deploy</strong> the Data, ML Model, and the ML training pipeline components (code).</li>
+</ul>
+</li>
+</ol><h3 id="3-Continuous-X"><a class="anchor hidden-xs" href="#3-Continuous-X" title="3-Continuous-X"><i class="fa fa-link"></i></a>3. Continuous X</h3><ul>
+<li><em>Continuous Integration (CI)</em> extends the testing and validating code and components by adding testing and validating data and models.</li>
+<li><em>Continuous Delivery (CD)</em> concerns with delivery of an ML training pipeline that automatically deploys another ML model prediction service.</li>
+<li><em>Continuous Training (CT)</em> is unique to ML systems property, which automatically retrains ML models for re-deployment.</li>
+<li><em>Continuous Monitoring (CM)</em> concerns with monitoring production data and model performance metrics, which are bound to business metrics.</li>
+</ul><h3 id="4-Versioning"><a class="anchor hidden-xs" href="#4-Versioning" title="4-Versioning"><i class="fa fa-link"></i></a>4. Versioning</h3><p>The goal of the versioning is to treat ML training scrips, ML models and data sets for model training as first-class citizens in DevOps processes by tracking ML models and data sets with version control systems.</p><ul>
+<li>ML models can be retrained based upon new training data.</li>
+<li>Models may be retrained based upon new training approaches.</li>
+<li>Models may degrade over time.</li>
+<li>Models may be deployed in new applications.</li>
+<li>Models may be subject to attack and require revision.</li>
+<li>Models can be quickly rolled back to a previous serving version.</li>
+<li>Corporate or government compliance may require audit or investigation on both ML model or data, hence we need access to all versions of the productionized ML model.</li>
+<li>Data may reside across multiple systems.</li>
+<li>Data may only be able to reside in restricted jurisdictions.</li>
+<li>Data storage may not be immutable.</li>
+<li>Data ownership may be a factor.</li>
+</ul><h3 id="5-Experiments-Tracking"><a class="anchor hidden-xs" href="#5-Experiments-Tracking" title="5-Experiments-Tracking"><i class="fa fa-link"></i></a>5. Experiments Tracking</h3><p>In contrast to the traditional software development process, in ML development, multiple experiments on model training can be executed in parallel before making the decision what model will be promoted to production.</p><h3 id="6-Testing"><a class="anchor hidden-xs" href="#6-Testing" title="6-Testing"><i class="fa fa-link"></i></a>6. Testing</h3><p>The complete development pipeline includes three essential components, data pipeline, ML model pipeline, and application pipeline. In accordance with this separation we distinguish three scopes for testing in ML systems: tests for features and data, tests for model development, and tests for ML infrastructure.</p><h3 id="7-Monitoring"><a class="anchor hidden-xs" href="#7-Monitoring" title="7-Monitoring"><i class="fa fa-link"></i></a>7. Monitoring</h3><p>The picture below shows that the model monitoring can be implemented by tracking the precision, recall, and F1-score of the model prediction along with the time. The decrease of the precision, recall, and F1-score triggers the model retraining, which leads to model recovery.<br>
+<img src="https://ml-ops.org/img/model-decay-monitoring.jpg" alt="" class="md-image md-image"></p><h3 id="8-“ML-Test-Score”-System"><a class="anchor hidden-xs" href="#8-“ML-Test-Score”-System" title="8-“ML-Test-Score”-System"><i class="fa fa-link"></i></a>8. “ML Test Score” System</h3><p>The “ML Test Score” measures the overall readiness of the ML system for production. The final ML Test Score is computed as follows:</p><ul>
+<li>For each test, half a point is awarded for executing the test manually, with the results documented and distributed.</li>
+<li>A <strong>full point</strong> is awarded if the there is a system in place to run that test automatically on a repeated basis.</li>
+<li>Sum the score of each of the four sections individually: Data Tests, Model Tests, ML Infrastructure Tests, and Monitoring.</li>
+<li>The final <strong>ML Test Score</strong> is computed by taking the minimum of the scores aggregated for each of the sections: Data Tests, Model Tests, ML Infrastructure Tests, and Monitoring.<br>
+After computing the ML Test Score, we can reason about the readiness of the ML system for production. The following table provides the interpretation ranges:</li>
+</ul><table>
+<thead>
+<tr>
+<th>Points</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>More of the research project than a productionized system.</td>
+</tr>
+<tr>
+<td>(0,1]</td>
+<td>Not totally untested, but it is worth considering the possibility of serious holes in reliability.</td>
+</tr>
+<tr>
+<td>(1,2]</td>
+<td>There has been first pass at basic productionization, but additional investment may be needed.</td>
+</tr>
+<tr>
+<td>(2,3]</td>
+<td>Reasonably tested, but it is possible that more of those tests and procedures may be automated.</td>
+</tr>
+<tr>
+<td>(3,5]</td>
+<td>Strong level of automated testing and monitoring.</td>
+</tr>
+<tr>
+<td>&gt;5</td>
+<td>Exceptional level of automated testing and monitoring.</td>
+</tr>
+</tbody>
+</table><h3 id="9-Reproducibility"><a class="anchor hidden-xs" href="#9-Reproducibility" title="9-Reproducibility"><i class="fa fa-link"></i></a>9. Reproducibility</h3><p>Reproducibility in a machine learning workflow means that every phase of either data processing, ML model training, and ML model deployment should produce identical results given the same input.</p><h3 id="10-Loosely-Coupled-Architecture-Modularity"><a class="anchor hidden-xs" href="#10-Loosely-Coupled-Architecture-Modularity" title="10-Loosely-Coupled-Architecture-Modularity"><i class="fa fa-link"></i></a>10. Loosely Coupled Architecture (Modularity)</h3><p><img src="https://i.imgur.com/N3sU71P.png" alt="" class="md-image md-image"></p><h3 id="11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”"><a class="anchor hidden-xs" href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”"><i class="fa fa-link"></i></a>11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</h3><p>These metrcs are:</p><ol>
+<li>Deployment Frequency</li>
+</ol><blockquote>
+<p>How often does your organization deploy code to production or release it to end-users?</p>
+</blockquote><ol start="2">
+<li>Lead Time for Changes</li>
+</ol><blockquote>
+<p>How long does it take to go from code committed to code successfully running in production?</p>
+</blockquote><ol start="3">
+<li>Mean Time To Restore</li>
+</ol><blockquote>
+<p>How long does it generally take to restore service when a service incident or a defect that impacts users occurs (e.g., unplanned outage or service impairment)?</p>
+</blockquote><ol start="4">
+<li>Change Fail Percentage.</li>
+</ol><blockquote>
+<p>What percentage of changes to production or released to users result in degraded service (e.g., lead to service impairment or service outage) and subsequently require remediation (e.g., require a hotfix, rollback, fix forward, patch)?</p>
+</blockquote><p>These metrics have been found useful to measure and improve ones ML-based software delivery.</p><div class="alert alert-danger">
+<p>The complete ML development pipeline includes three levels where <strong>changes can occur: Data, ML Model, and Code</strong>. This means that in machine learning-based systems, the trigger for a build might be the combination of a code change, data change or model change.</p>
+</div><h1 id="CRISP-ML"><a class="anchor hidden-xs" href="#CRISP-ML" title="CRISP-ML"><i class="fa fa-link"></i></a>CRISP-ML</h1><p>Standardization of approaches and processes makes it possible to unify and scale the best practices of research and development management, including extending them to other domains. For example, CRISP-DM (Cross-Industry Standard Process for Data Mining) as the most common methodology for performing data science projects describes their life cycle in 6 phases, each of which includes a number of tasks.</p><p>A similar approach to machine learning was published in 2012 under the name CRISP-ML(Q). It is an acronym for CRoss-Industry Standard Process model for the development of Machine Learning applications with Quality assurance methodology. Based on CRISP-DM, the CRISP-ML(Q) process model describes six steps:</p><ol>
+<li>Understanding of business and data;</li>
+<li>Data engineering (data preparation);</li>
+<li>Machine learning modeling;</li>
+<li>Quality assurance of machine learning applications;</li>
+<li>Deploying an ML model;</li>
+<li>Monitoring and maintenance of the ML system.</li>
+</ol><h2 id="Datasets-in-Research-vs-Industry"><a class="anchor hidden-xs" href="#Datasets-in-Research-vs-Industry" title="Datasets-in-Research-vs-Industry"><i class="fa fa-link"></i></a>Datasets in Research vs. Industry</h2><p>Datasets themselves are a core part of that success of models. This is why data gathering, preparation, and labeling should be seen as an iterative process, just like modeling. Start with a simple dataset that you can gather immediately, and be open to improving it based on what you learn.</p><p>This iterative approach to data can seem confusing at first. In ML research, performance is often reported on standard datasets that the community uses as benchmarks and are thus immutable. In traditional software engineering, we write deterministic rules for our programs, so we treat data as something to receive, process, and store.</p><p><img src="https://i.imgur.com/S4sDzrS.png" alt="" class="md-image md-image"></p><center>
+    <b>Datasets are fixed in research, but part of the product in industry</b>
+</center><br><p>ML engineering combines engineering and ML in order to build products. Our dataset is thus just another tool to allow us to build products. In ML engineering, choosing an initial dataset, regularly updating it, and augmenting it is often the majority of the work. This difference in workflow between research and industry is illustrated in the figure above.</p><p><img src="https://ml-ops.org/content/mlops-principles#versioning" alt="" class="md-image md-image"></p><h1 id="Business-understanding"><a class="anchor hidden-xs" href="#Business-understanding" title="Business-understanding"><i class="fa fa-link"></i></a>Business understanding</h1><p>Developing machine learning applications starts with identifying the scope of the ML application, the success criteria, and a data quality verification. The goal of this first phase is to ensure the feasibility of the project.</p><p>We gather success criteria along with business, and machine learning success criteria during this phase. These criteria are required to be measurable. Therefore, defining clear and measurable Key Performance Indicators (KPI) such as “time savings per user and session” is required. A helpful approach is to define a <code>non-ML heuristic benchmark</code> to communicate the impact of machine learning tasks with the business stakeholders.</p><h2 id="ML-Problem-framing"><a class="anchor hidden-xs" href="#ML-Problem-framing" title="ML-Problem-framing"><i class="fa fa-link"></i></a>ML Problem framing</h2><ul>
+<li>Problem framing helps determine your project’s technical feasibility and provides a clear set of goals and success criteria.</li>
+<li>When considering an ML solution, effective problem framing can determine whether or not your product ultimately succeeds.</li>
+</ul><p>At a high level, <strong>ML problem framing</strong> consists of two distinct steps:</p><ol>
+<li>Determining whether ML is the right approach for solving a problem.</li>
+<li>Framing the problem in ML terms to ensure that an ML approach is a good solution to the problem before beginning to work with data and train a model.</li>
+</ol><p>A. To <strong>understand the problem</strong>, perform the following tasks:</p><ol>
+<li>State the goal for the product you are developing or refactoring.</li>
+</ol><table>
+<thead>
+<tr>
+<th>App</th>
+<th>Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weather app</td>
+<td>Calculate precipitation in six-hour increments for a geographic region.</td>
+</tr>
+<tr>
+<td>Banking app</td>
+<td>Identify fraudulent transactions.</td>
+</tr>
+</tbody>
+</table><ol start="2">
+<li>Determine whether the goal is best solved using, predictive ML, generative AI, or a non-ML solution.</li>
+<li>Verify you have the data required to train a model if you’re using a predictive ML approach.</li>
+</ol><p>B. After verifying that your problem is best solved using either a predictive ML or a generative AI approach, you’re ready to frame your problem in ML terms. You frame a problem in ML terms by completing the following tasks:</p><ol>
+<li>Define the ideal outcome and the model’s goal.</li>
+<li>Identify the model’s output.</li>
+<li>Define success metrics.</li>
+</ol><p>I recommend to comprehend this course from Google (<a href="https://developers.google.com/machine-learning/problem-framing" target="_blank" rel="noopener">https://developers.google.com/machine-learning/problem-framing</a>)</p><h2 id="ML-Canvas"><a class="anchor hidden-xs" href="#ML-Canvas" title="ML-Canvas"><i class="fa fa-link"></i></a>ML Canvas</h2><p>Confirming the feasibility before setting up the ML project is a best practice in an industrial setting. Applying the <strong>Machine Learning Canvas (ML Canvas) framework</strong> would be a structured way to perform this task. The ML Canvas guides through the prediction and learning phases of the ML application. In addition, it enables all stakeholders to specify data availability, regulatory constraints, and application requirements such as robustness, scalability, explainability, and resource demand.</p><p>The Machine Learning Canvas is a template for developing new or documenting existing predictive systems that are based on machine learning techniques. It is a visual chart with elements describing a question to predict answers to (with machine learning), objectives to reach in the application domain, ways to use predictions to reach these objectives, data sources used to learn a predictor, and performance evaluation methods.</p><p>The template can be downloaded from <a href="https://github.com/louisdorard/machine-learning-canvas" target="_blank" rel="noopener">here</a>.</p><p><img src="https://i.imgur.com/7up5JSC.png" alt="" class="md-image md-image"></p><h1 id="CRISP-DM-Vs-CRISP-ML"><a class="anchor hidden-xs" href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM-Vs-CRISP-ML"><i class="fa fa-link"></i></a>CRISP-DM Vs. CRISP-ML</h1><p>There are not a lot of case studies of CRISP-ML published in the Internet, but you can find a lot studies for CRISP-DM process. CRISP-ML combines business and data understanding phases of CRISP-DM into one phase but these phases have similar objectives. So, the case study here I will be present is related to CRISP-DM, with some modifications. There is another case study of CRISP-ML mentioned in <code>References</code> section.</p><center>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" alt="" width="400" height="400" class="md-image md-image"><br>
+CRISP-DM</p>
+<p><img src="https://media.licdn.com/dms/image/D5612AQGFIZzxlUftaQ/article-inline_image-shrink_1000_1488/0/1682685992254?e=1723075200&amp;v=beta&amp;t=ULUlPFqx9jqSrBPP1ALNHeP89XwaHy5ZP4BK321NyUg" alt="" width="400" height="400" class="md-image md-image"></p>
+<p>CRISP-ML</p>
+</center><h2 id="Business-and-Data-understanding"><a class="anchor hidden-xs" href="#Business-and-Data-understanding" title="Business-and-Data-understanding"><i class="fa fa-link"></i></a>Business and Data understanding</h2><p>The initial phase is concerned with tasks to define the business objectives and translate it to ML objectives, to collect and verify the data quality and to finaly assess the project feasibility.</p><p><img src="https://i.imgur.com/eA7ErtC.jpeg" alt="" class="md-image md-image"></p><p>Follow the attached notebook for more details.</p><h1 id="-Hydra"><a class="anchor hidden-xs" href="#-Hydra" title="-Hydra"><i class="fa fa-link"></i></a><img src="https://hydra.cc/img/logo.svg" alt="" width="100" height="100" class="md-image md-image"> Hydra</h1><p><a href="https://hydra.cc/" target="_blank" rel="noopener">Hydra</a> is an open-source Python framework that simplifies the development of research and other complex applications. The key feature is the ability to <strong>dynamically</strong> create a hierarchical configuration by composition and override it through config files and the command line. Some <strong>features</strong> of Hydra:</p><ul>
+<li>A Python framework for configuration management from Facebook Research.</li>
+<li>Dynamically builds a hierarchical configuration composable from multiple sources</li>
+<li>Configuration can be specified or overridden from the command line</li>
+<li>Configuration can be structured using OmegaConf package</li>
+<li>Run multiple jobs with different arguments with a single command (ML Experimenting)</li>
+</ul><div class="alert alert-warning">
+<p><a href="https://omegaconf.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">OmegaConf</a> is a YAML based hierarchical configuration system, with support for merging configurations from multiple sources (files, CLI argument, environment variables) providing a consistent API regardless of how the configuration was created. OmegaConf also offers runtime type safety via Structured Configs.</p>
+</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
+pip install hydra-core 
+</code></pre><div class="alert alert-info">
+<p><strong>Note:</strong> Python decorator is a function that takes another Python function and extends the behavior of the latter function without explicitly modifying it. Example:</p>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mydecorator</span><span class="hljs-params">(func)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"Before"</span>)
+        func()
+        print(<span class="hljs-string">"After"</span>)
+    <span class="hljs-keyword">return</span> wrapper
+
+<span class="hljs-meta">@mydecorator</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">say_whee</span><span class="hljs-params">()</span>:</span>
+    print(<span class="hljs-string">"Welcome!"</span>)
+</code></pre>
+</div><h3 id="Basic-example"><a class="anchor hidden-xs" href="#Basic-example" title="Basic-example"><i class="fa fa-link"></i></a>Basic example</h3><p>Configuration file: <code>configs/main.yaml</code></p><pre><code class="yaml hljs"><span class="hljs-attr">db:</span>
+<span class="hljs-attr">  driver:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">  user:</span> <span class="hljs-string">james</span>
+<span class="hljs-attr">  password:</span> <span class="hljs-string">secret</span>
+</code></pre><p>Python file: <code>src/app.py</code></p><pre><code class="python hljs"><span class="hljs-keyword">import</span> hydra
+<span class="hljs-keyword">from</span> omegaconf <span class="hljs-keyword">import</span> DictConfig, OmegaConf
+
+<span class="hljs-meta">@hydra.main(version_base=None, config_path="configs", config_name="main")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">app</span><span class="hljs-params">(cfg : DictConfig = None)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    print(OmegaConf.to_yaml(cfg))
+    print(cfg.db.password)
+    print(cfg[<span class="hljs-string">'db'</span>][<span class="hljs-string">'password'</span>])
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app()
+</code></pre><p>You can learn more about <a href="https://omegaconf.readthedocs.io/en/latest/usage.html#access-and-manipulation" target="_blank" rel="noopener">OmegaConf</a> here later.</p><div class="alert alert-warning">
+<p><strong>Note:</strong> Create a new virtual environemnt using <code>venv</code> or <code>conda</code> in VS code.</p>
+</div><p>We can run our simple application as:</p><pre><code class="go hljs">python app<span class="token punctuation">.</span>py
+</code></pre><p>The output will be:</p><pre><code class="fix hljs"><span class="hljs-attr">db:
+  driver: mysql
+  user: james
+  password: secret
+
+secret
+secret
+</span></code></pre><p>We will have the Hydra output directory <code>outputs</code> and the application log file. Inside the configuration output directory we have:</p><ul>
+<li><code>config.yaml</code>: A dump of the user specified configuration</li>
+<li><code>hydra.yaml</code>: A dump of the Hydra configuration</li>
+<li><code>overrides.yaml</code>: The command line overrides used</li>
+</ul><p>And in the main output directory:</p><ul>
+<li><code>app.log</code>: A log file created for this run</li>
+</ul><p>We can override our configuration as follows:</p><pre><code class="go hljs">python app<span class="token punctuation">.</span>py db<span class="token punctuation">.</span>password<span class="token operator">=</span>secret2 <span class="token operator">+</span>db<span class="token punctuation">.</span>dbname<span class="token operator">=</span>project_db <span class="token operator">++</span>version<span class="token operator">=</span><span class="token number">1.2</span><span class="token number">.4</span> ~db<span class="token punctuation">.</span>driver
+</code></pre><p>The output:</p><pre><code class="yaml hljs"><span class="hljs-attr">db:</span>
+<span class="hljs-attr">  user:</span> <span class="hljs-string">james</span>
+<span class="hljs-attr">  password:</span> <span class="hljs-string">secret2</span>
+<span class="hljs-attr">  dbname:</span> <span class="hljs-string">project_db</span>
+<span class="hljs-attr">version:</span> <span class="hljs-number">1.2</span><span class="hljs-number">.4</span>
+
+<span class="hljs-string">secret2</span>
+<span class="hljs-string">secret2</span>
+</code></pre><h3 id="Composition-example"><a class="anchor hidden-xs" href="#Composition-example" title="Composition-example"><i class="fa fa-link"></i></a>Composition example</h3><p>You may want to alternate between two different databases. To support this create a <strong><code>config group</code></strong> named <code>db</code>, and place one config file for each alternative inside. The directory structure of our application now looks like:</p><pre><code class="yaml hljs"><span class="hljs-string">├──</span> <span class="hljs-string">configs</span>
+<span class="hljs-string">│</span>   <span class="hljs-string">├──</span> <span class="hljs-string">main.yaml</span>
+<span class="hljs-string">│</span>   <span class="hljs-string">├──</span> <span class="hljs-string">db</span>
+<span class="hljs-string">│</span>       <span class="hljs-string">├──</span> <span class="hljs-string">mysql.yaml</span>
+<span class="hljs-string">│</span>       <span class="hljs-string">└──</span> <span class="hljs-string">postgresql.yaml</span>
+<span class="hljs-string">│</span>   
+<span class="hljs-string">├──</span> <span class="hljs-string">src</span>
+    <span class="hljs-string">└──</span> <span class="hljs-string">my_app.py</span>
+</code></pre><p>The primary configuration file: <code>configs/main.yaml</code></p><pre><code class="yaml hljs"><span class="hljs-attr">defaults:</span>
+<span class="hljs-attr">  - db:</span> <span class="hljs-string">mysql</span>
+
+<span class="hljs-attr">db:</span>
+<span class="hljs-attr">    user:</span> <span class="hljs-string">james</span>
+</code></pre><p>The configuration file: <code>configs/db/mysql.yaml</code></p><pre><code class="yaml hljs"><span class="hljs-attr">driver:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">password:</span> <span class="hljs-string">secret_mysql</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">jones</span>
+</code></pre><p>The configuration file: <code>configs/db/postgresql.yaml</code></p><pre><code class="yaml hljs"><span class="hljs-attr">driver:</span> <span class="hljs-string">psql</span>
+<span class="hljs-attr">password:</span> <span class="hljs-string">secret_psql</span>
+<span class="hljs-attr">user:</span> <span class="hljs-string">jones</span>
+</code></pre><h1 id="-DVC"><a class="anchor hidden-xs" href="#-DVC" title="-DVC"><i class="fa fa-link"></i></a><img src="https://dvc.org/img/logos/dvc.svg" alt="" width="100" height="100" class="md-image md-image"> DVC</h1><h1 id="-Pytest"><a class="anchor hidden-xs" href="#-Pytest" title="-Pytest"><i class="fa fa-link"></i></a><img src="https://docs.pytest.org/en/8.2.x/_static/pytest1.png" alt="" width="100" height="100" class="md-image md-image"> Pytest</h1><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+<!-- **Business understanding** -->
+<p><strong>[Lab 1]</strong></p>
+<ol>
+<li>Create a Github repo for the project. Use the Github UI, select Python for <code>.gitignore</code> and add a <code>README.md</code> file. Add the instructor and all team members to the repository as contributors. The strcture is similar to:</li>
+</ol>
+<pre><code>├───README.md          # Repo docs
+├───.gitignore         # gitignore file
+├───requirements.txt   # Python packages   
+├───configs            # Hydra configuration management
+├───data               # All data
+├───docs               # Project docs like reports or figures
+├───models             # ML models
+├───notebooks          # Jupyter notebooks
+├───outputs            # Outputs of Hydra
+├───pipelines          # A Soft link to DAGs of Apache Airflow
+├───reports            # Generated reports 
+├───scripts            # Shell scripts (.sh)
+├───services           # Metadata of services (PostgreSQL, Feast, Apache airflow, ...etc)
+├───sql                # SQL files
+├───src                # Python scripts
+└───tests              # Scripts for testing Python code
+</code></pre>
+<p><strong>Note:</strong> You can use <a href="https://cookiecutter-pypackage.readthedocs.io/en/latest/readme.html" target="_blank" rel="noopener">Cookiecutter PyPackage</a> if you prefer but it is not required in this project.<br>
+2. Install VS Code and add required and useful extensions such as Python, Docker, Jupyter, …etc.<br>
+3. Open the project repository using VS Code in some local folder.<br>
+4. Create a virtual environment using <code>venv</code> or <code>conda</code>. Activate it.<br>
+5. Add <code>requirements.txt</code>. Add an executable file like a script <code>scripts/install_requirements.sh</code> to install the requirements using the pip to the created virtual environment. Run it whenever you added a new package to <code>requirements.txt</code>.<br>
+6. Use notebooks to understand the data. This will be detailed next labs.<br>
+7. [Good practice/optional] Do a preliminary ML modeling in the notebook to be ready for the next phases (Phase 3).<br>
+8. Add all notebooks to the folder <code>notebooks</code>.<br>
+9. Keep the repository organized and well-documented. Add README files to each folder and documentation to source code files (Use Pylint extension of VS Code)<br>
+10. Complete the notebook <code>business_understanding.ipynb</code>(shared in this document) and push it to <code>notebooks</code> folder. You can complete this notebook by writing on the notebook itslef or by writing it in a document shared as pdf and pushed to <code>reports</code> folder. Build the ML Canvas and push it to <code>reports</code> folder as a pdf.<br>
+<strong>[Lab 2]</strong><br>
+11. Add a new branch (e.g. <code>dev</code>) to the repo.<br>
+12. Add a function <code>sample_data</code> in a module <code>src/data.py</code> to read the data file and take a sample. Use Hydra to manage the data url in the configs and any configurations needed like the size of the sample, the name of the dataset,…etc. You need to define a structure for project configurations and use Hydra to read them from the source code. The function should read the data url from config files using Hydra and sample the data. Then, it stores the data samples in <code>data/samples</code> folder as <code>sample.csv</code> where the sample size is 20% of the total rows in the whole data. The sample size can be added to the config files too. The idea here is to make your project maintainable and ready for any changes with minimal modifications (DRY principle). For each new sample added, version the data using <code>dvc</code> to not lose any data samples.<br>
+13. Run the function and it should generate a sample. The function should overwrite the file <code>sample.csv</code> if it already exists. You can manage the data versions using <code>dvc</code>.<br>
+14. Add tests to the function in <code>tests</code> folder and make sure it can pass all tests. You can add extensions from VS Code to setup <code>pytest</code>.<br>
+15. Commit the changes to <code>dev</code> branch and merge it to <code>main</code> branch.<br>
+16. You should commit and push whenever you fixed some issue or started/finished building some artifact.</p>
+</div><h2 id="B-Report-Only-for-Master’s-students"><a class="anchor hidden-xs" href="#B-Report-Only-for-Master’s-students" title="B-Report-Only-for-Master’s-students"><i class="fa fa-link"></i></a>B. Report <strong>[Only for Master’s students]</strong></h2><div class="alert alert-success">
+<!-- **Business understanding** -->
+<p>Complete the following chapters:</p>
+<ul>
+<li>
+<p><strong>Chapter 1: Introduction</strong></p>
+<ul>
+<li>Write a short introduction for your report. Add some motivational statements to your case study. Add some figures or statistics to support your arguments.</li>
+</ul>
+</li>
+<li>
+<p><strong>Chapter 2: Business and Data understanding</strong></p>
+<ul>
+<li>
+<p>This phase focuses on understanding the project objectives and requirements from a business perspective, then converting this knowledge into a machine learning problem. Your organisation may have competing objectives and constraints that must be properly balanced. The goal of this stage of the process is to uncover important factors that could influence the outcome of the project. Neglecting this step can mean that a great deal of effort is put into producing the right answers to the wrong questions.</p>
+</li>
+<li>
+<p>Write a paragraph to state your business problem connected to your data, assessment of the current situation. Give the reader a short overview of the problem and the necessary background about the business that you will focus on in your report. Make sure that concepts are explained/defined. Do not forget to cite your sources.</p>
+</li>
+<li>
+<p><strong>Section 2.1. Terminology</strong></p>
+<ul>
+<li>Compile a glossary of terminology relevant to the project. This will generally have two components:
+<ul>
+<li><strong>Section 2.1.1. Business terminology</strong> A glossary of relevant business terminology, which forms part of the business understanding available to the project. Constructing this glossary is a useful “knowledge elicitation” and education exercise.</li>
+<li><strong>Section 2.1.2. ML terminology</strong> A glossary of machine learning terminology, illustrated with examples relevant to the business problem in question.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Section 2.2. Scope of the ML project</strong></p>
+<ul>
+<li><strong>Section 2.2.1. Background</strong> Write here the information that is known about the organization’s business situation at the beginning of the project.</li>
+<li><strong>Section 2.2.2. Business problem</strong> State here the business problem.</li>
+<li><strong>Section 2.2.3. Business objectives</strong> State here the project objectives based on the business objectives. This means describing your primary objective from a business perspective. There may also be other related questions that you would like to address. For example, your primary goal might be to keep current customers by predicting when they are prone to move to a competitor. Related business questions might be “Does the channel used affect whether customers stay or go?” or “Will lower ATM fees significantly reduce the number of high-value customers who leave?”.</li>
+<li><strong>Section 2.2.4. ML objectives</strong> A business goal states objectives in business terminology. A machine learning goal states project objectives in technical terms. For example, the business goal might be “Increase catalogue sales to existing customers.” A machine learning goal might be “Predict how many widgets a customer will buy, given their purchases over the past three years, demographic information (age, salary, city, etc.), and the price of the item.”</li>
+</ul>
+</li>
+<li>
+<p><strong>Section 2.3. Success criteria</strong></p>
+<ul>
+<li>Specify the success criteria of the ML project on three different levels: the business success criteria, the ML success criteria and the economic success criteria. Make sure that the success criteria are measurable and defined in alignment to each other and with respect to the overall system requirements to prevent contradictory objectives.</li>
+<li><strong>Section 2.3.1. Business Success Criteria:</strong> Define the purpose and the success criteria of the ML application from a business point of view. For example, if an ML application is planned for a quality check in production and is supposed to outperform the current manual failure rate of 3%, the business success criterion could be derived as e.g. “failure rate less than 3%”.</li>
+<li><strong>Section 2.3.2. ML Success Criteria:</strong> Translate the business objective into ML success criteria (see table 2). It is advised to define a minimum acceptable level of performance to meet the business goals (e.g. for a Minimal Viable Product (MVP)) In the mentioned example, the minimal success criterion is defined as “accuracy greater 97%”, but data scientists might optimize further, for example, the true-positive rate to miss items with quality issues.</li>
+<li><strong>Section 2.3.3. Economic Success Criteria:</strong> It is best practice to add an economic success criterion in the form of a Key Performance Indicator (KPI) to the project. A KPI is an economical measure for the relevance of the ML application. In the mentioned example, a KPI can be defined as “cost savings with automated quality check per part”.</li>
+</ul>
+</li>
+<li>
+<p><strong>Section 2.5. Data collection</strong></p>
+<ul>
+<li>TODO</li>
+</ul>
+</li>
+<li>
+<p><strong>Section 2.6. Data quality verification</strong></p>
+<ul>
+<li>TODO</li>
+</ul>
+</li>
+<li>
+<p><strong>Section 2.7. Project feasibility</strong></p>
+<ul>
+<li>TODO</li>
+</ul>
+</li>
+<li>
+<p><strong>Section 2.7. Project plan</strong></p>
+<ul>
+<li>TODO</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Push your report as pdf to <code>reports</code> folder for this phase. Add a version to the report such as <code>reportv1.pdf</code>.</strong></p>
+</li>
+</ul>
+<!-- - **Section 2.4. Feasibility**
+        - Checking the feasibility before setting up the project is considered best practice for the overall success of the ML approach, and can minimize the risk of premature failures due to false expectations. A feasibility test of the ML application should assess the situation and whether further development should be pursued. It is crucial, that the assessment includes the availability, size and quality of the training sample set. In practice, a major source of project delays is the lack of data availability. A small sample size carries the risk of low performance on out-of-sample data. The risk might be mitigated by e.g. adding domain knowledge or increasing data quality. However, if the sample size is not sufficient, the ML project should be terminated or put on hold at this stage.
+        - **Applicability of ML technology:** It is common to demonstrate the feasibility of the ML application with a proof of concept (PoC) when the ML algorithm is used for the first time in a specific domain. If a PoC already exists, setting up a software project that focuses on the deployment directly is more efficient, e.g. in case of yet another price estimation of used cars.
+        - **Legal constraints:** are essential for any business application. Legal constraints are frequently augmented by ethical and social considerations like fairness and trust.
+        - **Requirements on the application:** The success criteria that have been defined in section 2.3 have to be augmented with requirements that arise from running the application in the target domain or if not accessible an assumed target domain. The requirements include robustness, scalability, explainability and resource demand and are used for the development and verification in later phases. The challenge during the development is to optimize the success criteria while not violating the requirements and constraints. -->
+<!-- ---
+**Data understanding** -->
+</div><h1 id="References"><a class="anchor hidden-xs" href="#References" title="References"><i class="fa fa-link"></i></a>References</h1><ul>
+<li><a href="https://www.researchgate.net/publication/366452532_Machine_Learning_for_Feeling_Analysis_in_Twitter_Communications_A_Case_Study_in_HEYDRU_Peru" target="_blank" rel="noopener">Case study - Machine Learning for Feeling Analysis in Twitter Communications: A Case Study in HEYDRU!, Perú</a></li>
+<li><a href="https://ml-ops.org/content/crisp-ml" target="_blank" rel="noopener">CRISP-ML(Q). The ML Lifecycle Process</a></li>
+<li><a href="https://arxiv.org/pdf/1810.03993" target="_blank" rel="noopener">Model Cards for Model Reporting</a></li>
+<li><a href="https://github.com/louisdorard/machine-learning-canvas/tree/master" target="_blank" rel="noopener">MACHINE LEARNING CANVAS</a>
+<ul>
+<li><a href="https://www.ownml.co/machine-learning-canvas" target="_blank" rel="noopener">https://www.ownml.co/machine-learning-canvas</a></li>
+</ul>
+</li>
+<li><a href="https://www.sv-europe.com/wp-content/uploads/An-Introduction-to-CRISP-DM-slides.pdf" target="_blank" rel="noopener">An introduction to CRISP-DM</a></li>
+<li><a href="https://blog.infocruncher.com/resources/ml-productionisation/The%20Big%20Book%20of%20MLOps%20(Databricks,%20v6,%202022).pdf" target="_blank" rel="noopener">The big book of MLOps</a></li>
+<li><a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank" rel="noopener">MLOps - Google Cloud</a></li>
+<li><a href="https://solutions.trustradius.com/buyer-blog/what-is-mlops/" target="_blank" rel="noopener">What is MLOps</a></li>
+<li><a href="https://www.oreilly.com/library/view/python-testing-with/9781680509427/" target="_blank" rel="noopener">Python Testing with pytest - 2nd edition</a></li>
+</ul></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+</ul>
+</li>
+<li class=""><a href="#Business-understanding" title="Business understanding">Business understanding</a><ul class="nav">
+<li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+</ul>
+</li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Business-and-Data-understanding" title="Business and Data understanding">Business and Data understanding</a></li>
+</ul>
+</li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example" title="Composition example">Composition example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#References" title="References">References</a></li>
+</ul>
+</div><div class="toc-menu" style="">
+    <a class="expand-toggle expand-all" href="#">Expand all</a>
+    <a class="expand-toggle collapse-all" href="#" style="display: none;">Collapse all</a>
+    <a class="back-to-top" href="#">Back to top</a>
+    <a class="go-to-bottom" href="#">Go to bottom</a>
+</div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+</ul>
+</li>
+<li class=""><a href="#Business-understanding" title="Business understanding">Business understanding</a><ul class="nav">
+<li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+</ul>
+</li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Business-and-Data-understanding" title="Business and Data understanding">Business and Data understanding</a></li>
+</ul>
+</li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example" title="Composition example">Composition example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#References" title="References">References</a></li>
+</ul>
+</div><div class="toc-menu" style="">
+    <a class="expand-toggle expand-all" href="#">Expand all</a>
+    <a class="expand-toggle collapse-all" href="#" style="display: none;">Collapse all</a>
+    <a class="back-to-top" href="#">Back to top</a>
+    <a class="go-to-bottom" href="#">Go to bottom</a>
+</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha256-kJrlY+s09+QoWjpkOrXXwhxeaoDz9FW5SaxF8I0DibQ=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
