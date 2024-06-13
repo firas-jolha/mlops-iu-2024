@@ -64,17 +64,12 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 </li>
 <li><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul>
 <li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-</ul>
-</li>
-<li><a href="#Business-understanding" title="Business understanding">Business understanding</a><ul>
 <li><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
 <li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a><ul>
-<li><a href="#Business-and-Data-understanding" title="Business and Data understanding">Business and Data understanding</a></li>
-</ul>
-</li>
+<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul>
 <li><a href="#Demo" title="Demo">Demo</a><ul>
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
@@ -250,7 +245,7 @@ After computing the ML Test Score, we can reason about the readiness of the ML s
 <li>Monitoring and maintenance of the ML system.</li>
 </ol><h2 id="Datasets-in-Research-vs-Industry"><a class="anchor hidden-xs" href="#Datasets-in-Research-vs-Industry" title="Datasets-in-Research-vs-Industry"><i class="fa fa-link"></i></a>Datasets in Research vs. Industry</h2><p>Datasets themselves are a core part of that success of models. This is why data gathering, preparation, and labeling should be seen as an iterative process, just like modeling. Start with a simple dataset that you can gather immediately, and be open to improving it based on what you learn.</p><p>This iterative approach to data can seem confusing at first. In ML research, performance is often reported on standard datasets that the community uses as benchmarks and are thus immutable. In traditional software engineering, we write deterministic rules for our programs, so we treat data as something to receive, process, and store.</p><p><img src="https://i.imgur.com/S4sDzrS.png" alt="" class="md-image md-image"></p><center>
     <b>Datasets are fixed in research, but part of the product in industry</b>
-</center><br><p>ML engineering combines engineering and ML in order to build products. Our dataset is thus just another tool to allow us to build products. In ML engineering, choosing an initial dataset, regularly updating it, and augmenting it is often the majority of the work. This difference in workflow between research and industry is illustrated in the figure above.</p><p><img src="https://ml-ops.org/content/mlops-principles#versioning" alt="" class="md-image md-image"></p><h1 id="Business-understanding"><a class="anchor hidden-xs" href="#Business-understanding" title="Business-understanding"><i class="fa fa-link"></i></a>Business understanding</h1><p>Developing machine learning applications starts with identifying the scope of the ML application, the success criteria, and a data quality verification. The goal of this first phase is to ensure the feasibility of the project.</p><p>We gather success criteria along with business, and machine learning success criteria during this phase. These criteria are required to be measurable. Therefore, defining clear and measurable Key Performance Indicators (KPI) such as “time savings per user and session” is required. A helpful approach is to define a <code>non-ML heuristic benchmark</code> to communicate the impact of machine learning tasks with the business stakeholders.</p><h2 id="ML-Problem-framing"><a class="anchor hidden-xs" href="#ML-Problem-framing" title="ML-Problem-framing"><i class="fa fa-link"></i></a>ML Problem framing</h2><ul>
+</center><br><p>ML engineering combines engineering and ML in order to build products. Our dataset is thus just another tool to allow us to build products. In ML engineering, choosing an initial dataset, regularly updating it, and augmenting it is often the majority of the work. This difference in workflow between research and industry is illustrated in the figure above.</p><p><img src="https://ml-ops.org/content/mlops-principles#versioning" alt="" class="md-image md-image"></p><h2 id="ML-Problem-framing"><a class="anchor hidden-xs" href="#ML-Problem-framing" title="ML-Problem-framing"><i class="fa fa-link"></i></a>ML Problem framing</h2><ul>
 <li>Problem framing helps determine your project’s technical feasibility and provides a clear set of goals and success criteria.</li>
 <li>When considering an ML solution, effective problem framing can determine whether or not your product ultimately succeeds.</li>
 </ul><p>At a high level, <strong>ML problem framing</strong> consists of two distinct steps:</p><ol>
@@ -287,7 +282,7 @@ After computing the ML Test Score, we can reason about the readiness of the ML s
 CRISP-DM</p>
 <p><img src="https://media.licdn.com/dms/image/D5612AQGFIZzxlUftaQ/article-inline_image-shrink_1000_1488/0/1682685992254?e=1723075200&amp;v=beta&amp;t=ULUlPFqx9jqSrBPP1ALNHeP89XwaHy5ZP4BK321NyUg" alt="" width="400" height="400" class="md-image md-image"></p>
 <p>CRISP-ML</p>
-</center><h2 id="Business-and-Data-understanding"><a class="anchor hidden-xs" href="#Business-and-Data-understanding" title="Business-and-Data-understanding"><i class="fa fa-link"></i></a>Business and Data understanding</h2><p>The initial phase is concerned with tasks to define the business objectives and translate it to ML objectives, to collect and verify the data quality and to finaly assess the project feasibility.</p><p><img src="https://i.imgur.com/eA7ErtC.jpeg" alt="" class="md-image md-image"></p><p>Follow the attached notebook for more details.</p><h1 id="-Hydra"><a class="anchor hidden-xs" href="#-Hydra" title="-Hydra"><i class="fa fa-link"></i></a><img src="https://hydra.cc/img/logo.svg" alt="" width="100" height="100" class="md-image md-image"> Hydra</h1><p><a href="https://hydra.cc/" target="_blank" rel="noopener">Hydra</a> is an open-source Python framework that simplifies the development of research and other complex applications. The key feature is the ability to <strong>dynamically</strong> create a hierarchical configuration by composition and override it through config files and the command line. Some <strong>features</strong> of Hydra:</p><ul>
+</center><h1 id="CRISP-ML---Phase-I--Business-and-Data-understanding"><a class="anchor hidden-xs" href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML---Phase-I--Business-and-Data-understanding"><i class="fa fa-link"></i></a>CRISP-ML - Phase I : Business and Data understanding</h1><p>The initial phase is concerned with tasks to define the business objectives and translate it to ML objectives, to collect and verify the data quality and to finaly assess the project feasibility.</p><p><img src="https://i.imgur.com/eA7ErtC.jpeg" alt="" class="md-image md-image"></p><p>Follow the attached notebook for more details.</p><h1 id="-Hydra"><a class="anchor hidden-xs" href="#-Hydra" title="-Hydra"><i class="fa fa-link"></i></a><img src="https://hydra.cc/img/logo.svg" alt="" width="100" height="100" class="md-image md-image"> Hydra</h1><p><a href="https://hydra.cc/" target="_blank" rel="noopener">Hydra</a> is an open-source Python framework that simplifies the development of research and other complex applications. The key feature is the ability to <strong>dynamically</strong> create a hierarchical configuration by composition and override it through config files and the command line. Some <strong>features</strong> of Hydra:</p><ul>
 <li>A Python framework for configuration management from Facebook Research.</li>
 <li>Dynamically builds a hierarchical configuration composable from multiple sources</li>
 <li>Configuration can be specified or overridden from the command line</li>
@@ -516,61 +511,56 @@ secret
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
-<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
-<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
-<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
-<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
-<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
-<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
-<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
-<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
-<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
-<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
-<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
-<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
-<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-</ul>
-</li>
-<li class=""><a href="#Business-understanding" title="Business understanding">Business understanding</a><ul class="nav">
+<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
 <li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
 <li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a><ul class="nav">
-<li class=""><a href="#Business-and-Data-understanding" title="Business and Data understanding">Business and Data understanding</a></li>
-</ul>
-</li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li class=""><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
-<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
-<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li class=""><a href="#References" title="References">References</a></li>
+<li><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
@@ -583,61 +573,56 @@ secret
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
-<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
-<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
-<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
-<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
-<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
-<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
-<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
-<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
-<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
-<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
-<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
-<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
-<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
-<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-</ul>
-</li>
-<li class=""><a href="#Business-understanding" title="Business understanding">Business understanding</a><ul class="nav">
+<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
 <li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
 <li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a><ul class="nav">
-<li class=""><a href="#Business-and-Data-understanding" title="Business and Data understanding">Business and Data understanding</a></li>
-</ul>
-</li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li class=""><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
-<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
-<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li class=""><a href="#References" title="References">References</a></li>
+<li><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
