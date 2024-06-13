@@ -74,7 +74,11 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li><a href="#Demo" title="Demo">Demo</a><ul>
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
 <li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
+<li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
+<li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
+<li><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
 </ul>
 </li>
 </ul>
@@ -345,7 +349,7 @@ secret
 
 <span class="hljs-string">secret2</span>
 <span class="hljs-string">secret2</span>
-</code></pre><h3 id="Composition-example"><a class="anchor hidden-xs" href="#Composition-example" title="Composition-example"><i class="fa fa-link"></i></a>Composition example</h3><p>You may want to alternate between two different databases. To support this create a <strong><code>config group</code></strong> named <code>db</code>, and place one config file for each alternative inside. The directory structure of our application now looks like:</p><pre><code class="yaml hljs"><span class="hljs-string">├──</span> <span class="hljs-string">configs</span>
+</code></pre><h3 id="Composition-example0"><a class="anchor hidden-xs" href="#Composition-example0" title="Composition-example0"><i class="fa fa-link"></i></a>Composition example</h3><p>You may want to alternate between two different databases. To support this create a <strong><code>config group</code></strong> named <code>db</code>, and place one config file for each alternative inside. The directory structure of our application now looks like:</p><pre><code class="yaml hljs"><span class="hljs-string">├──</span> <span class="hljs-string">configs</span>
 <span class="hljs-string">│</span>   <span class="hljs-string">├──</span> <span class="hljs-string">main.yaml</span>
 <span class="hljs-string">│</span>   <span class="hljs-string">├──</span> <span class="hljs-string">db</span>
 <span class="hljs-string">│</span>       <span class="hljs-string">├──</span> <span class="hljs-string">mysql.yaml</span>
@@ -364,7 +368,67 @@ secret
 </code></pre><p>The configuration file: <code>configs/db/postgresql.yaml</code></p><pre><code class="yaml hljs"><span class="hljs-attr">driver:</span> <span class="hljs-string">psql</span>
 <span class="hljs-attr">password:</span> <span class="hljs-string">secret_psql</span>
 <span class="hljs-attr">user:</span> <span class="hljs-string">jones</span>
-</code></pre><h1 id="-DVC"><a class="anchor hidden-xs" href="#-DVC" title="-DVC"><i class="fa fa-link"></i></a><img src="https://dvc.org/img/logos/dvc.svg" alt="" width="100" height="100" class="md-image md-image"> DVC</h1><h1 id="-Pytest"><a class="anchor hidden-xs" href="#-Pytest" title="-Pytest"><i class="fa fa-link"></i></a><img src="https://docs.pytest.org/en/8.2.x/_static/pytest1.png" alt="" width="100" height="100" class="md-image md-image"> Pytest</h1><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+</code></pre><p><strong><code>defaults</code></strong> is a special directive telling Hydra to use <code>db/mysql.yaml</code> when composing the configuration object. The resulting <code>cfg</code> object is a composition of configs from defaults with configs specified in your     <code>main.yaml</code>.</p><p>You can now choose which database configuration to use and override values from the command line:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-string">db=postgresql</span>
+</code></pre><p>The output:</p><pre><code class="yaml hljs"><span class="hljs-attr">db:</span>
+<span class="hljs-attr">  driver:</span> <span class="hljs-string">psql</span>
+<span class="hljs-attr">  password:</span> <span class="hljs-string">secret_psql</span>
+<span class="hljs-attr">  user:</span> <span class="hljs-string">james</span>
+
+<span class="hljs-string">secret_psql</span>
+<span class="hljs-string">secret_psql</span>
+</code></pre><p>Use <code>_self_</code> enrty in <code>Defaults List</code>, and check what changes in the output.</p><div class="alert alert-info">
+<p>The <code>_self_</code> entry determines the relative position of this config in the <code>Defaults List</code>. If it is not specified, it is added automatically as the last item.</p>
+</div><h3 id="Multirun-example"><a class="anchor hidden-xs" href="#Multirun-example" title="Multirun-example"><i class="fa fa-link"></i></a>Multirun example</h3><p>You can run your function multiple times with different configurations easily with the <code>--multirun|-m</code> flag.</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span> <span class="hljs-string">db=mysql,postgresql</span>
+</code></pre><h3 id="Missing-values-and-Value-interpolation"><a class="anchor hidden-xs" href="#Missing-values-and-Value-interpolation" title="Missing-values-and-Value-interpolation"><i class="fa fa-link"></i></a>Missing values and Value interpolation</h3><p>We can populate config values dynamically via value interpolation. We can specify missing values in configuration files using <code>???</code> literal.<br>
+The primary configuration file <code>configs/main.yaml</code>.</p><pre><code class="yaml hljs"><span class="hljs-attr">db:</span>
+<span class="hljs-attr">    user:</span> <span class="hljs-string">james</span>
+<span class="hljs-attr">    age:</span> <span class="hljs-string">???</span>
+<span class="hljs-attr">    current_age:</span> <span class="hljs-string">${db.age}</span>
+<span class="hljs-attr">    age_string:</span> <span class="hljs-string">"This is my age ${db.current_age}"</span>
+
+<span class="hljs-attr">defaults:</span>
+<span class="hljs-attr">  - db:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">_self_</span>
+</code></pre><p>The script file: <code>src/app.py</code></p><pre><code class="python hljs">
+<span class="hljs-string">"""
+My application 
+"""</span>
+<span class="hljs-keyword">import</span> hydra
+<span class="hljs-keyword">from</span> omegaconf <span class="hljs-keyword">import</span> DictConfig, OmegaConf
+
+<span class="hljs-meta">@hydra.main(config_path="../configs", config_name="main", version_base=None)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">app</span><span class="hljs-params">(cfg: DictConfig = None)</span>:</span>
+    <span class="hljs-string">"""
+    Entry function of my application
+    """</span>
+
+    print(OmegaConf.to_yaml(cfg))
+    print(cfg.db.password)
+    print(cfg[<span class="hljs-string">'db'</span>][<span class="hljs-string">'password'</span>])
+    print(cfg.db.age)
+    print(cfg.db.current_age)
+    print(cfg.db.age_string)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    app()
+</code></pre><p>The command line:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-string">db.age=10</span>
+</code></pre><p>The output:</p><pre><code class="yaml hljs"><span class="hljs-attr">db:</span>
+<span class="hljs-attr">  driver:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">  password:</span> <span class="hljs-string">secret_mysql</span>
+<span class="hljs-attr">  user:</span> <span class="hljs-string">james</span>
+<span class="hljs-attr">  age:</span> <span class="hljs-number">10</span>
+<span class="hljs-attr">  current_age:</span> <span class="hljs-string">${db.age}</span>
+<span class="hljs-attr">  age_string:</span> <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">my</span> <span class="hljs-string">age</span> <span class="hljs-string">${db.current_age}</span>
+
+<span class="hljs-string">secret_mysql</span>
+<span class="hljs-string">secret_mysql</span>
+<span class="hljs-number">10</span>
+<span class="hljs-number">10</span>
+<span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">my</span> <span class="hljs-string">age</span> <span class="hljs-number">10</span>
+</code></pre><h3 id="Non-config-group-defaults"><a class="anchor hidden-xs" href="#Non-config-group-defaults" title="Non-config-group-defaults"><i class="fa fa-link"></i></a>Non-config group defaults</h3><p>Sometimes a config file does not belong in any config group. You can still load it by default. Here is an example for <code>some_file.yaml</code>.</p><pre><code class="yaml hljs"><span class="hljs-attr">defaults:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">some_file</span>
+</code></pre><p>Config files that are not part of a config group will always be loaded. They cannot be overridden. Prefer using a config group.</p><h3 id="Structured-Configs"><a class="anchor hidden-xs" href="#Structured-Configs" title="Structured-Configs"><i class="fa fa-link"></i></a>Structured Configs</h3><p>Structured Configs use Python <a href="https://docs.python.org/3.8/library/dataclasses.html" target="_blank" rel="noopener">dataclasses</a> to describe your configuration structure and types. We will not cover this section here, but you can learn about it on your own from <a href="https://hydra.cc/docs/tutorials/structured_config/intro/" target="_blank" rel="noopener">here</a>.</p><hr><h1 id="-DVC"><a class="anchor hidden-xs" href="#-DVC" title="-DVC"><i class="fa fa-link"></i></a><img src="https://dvc.org/img/logos/dvc.svg" alt="" width="100" height="100" class="md-image md-image"> DVC</h1><h1 id="-Pytest"><a class="anchor hidden-xs" href="#-Pytest" title="-Pytest"><i class="fa fa-link"></i></a><img src="https://docs.pytest.org/en/8.2.x/_static/pytest1.png" alt="" width="100" height="100" class="md-image md-image"> Pytest</h1><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
 <!-- **Business understanding** -->
 <p><strong>[Lab 1]</strong></p>
 <ol>
@@ -511,53 +575,57 @@ secret
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
-<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
-<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
-<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
-<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
-<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
-<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
-<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
-<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
-<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
-<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
-<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
-<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
-<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-<li><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
-<li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+<li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+<li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
-<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li class=""><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
+<li class=""><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
+<li class=""><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
+<li class=""><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
@@ -573,53 +641,57 @@ secret
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
-<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
-<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
-<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
-<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
-<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
-<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
-<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
-<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
-<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
-<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
-<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
-<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
-<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
-<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-<li><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
-<li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+<li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+<li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
 <li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
-<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li class=""><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
+<li class=""><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
+<li class=""><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
+<li class=""><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a></li>
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
