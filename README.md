@@ -4,7 +4,7 @@ The aim of this project is to apply the CRISP-ML process on a machine learning p
 
 ### [Capstone Project](html/Capstone Project.html)
 
-### [Phase I - Business and data understanding](html/.html)
+### [Phase I - Business and data understanding](html/Phase I - Business and data understanding.html)
 
 ### [Phase II - Data engineering/preparation](html/.html)
 
