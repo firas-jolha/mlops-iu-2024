@@ -71,10 +71,10 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul>
-<li><a href="#Demo0" title="Demo">Demo</a><ul>
+<li><a href="#Demo" title="Demo">Demo</a><ul>
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
 <li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
 <li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
 <li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
 <li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
@@ -89,7 +89,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
 <li><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
 <li><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul>
-<li><a href="#Example0" title="Example">Example</a></li>
+<li><a href="#Example" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul>
@@ -104,13 +104,13 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
 <li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
 <li><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul>
-<li><a href="#Example0" title="Example:">Example:</a></li>
+<li><a href="#Example1" title="Example:">Example:</a></li>
 </ul>
 </li>
 <li><a href="#Test-discovery" title="Test discovery">Test discovery</a></li>
 <li><a href="#Test-Outcomes" title="Test Outcomes">Test Outcomes</a></li>
 <li><a href="#Failing-a-test" title="Failing a test">Failing a test</a><ul>
-<li><a href="#Example" title="Example">Example</a></li>
+<li><a href="#Example2" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
@@ -329,7 +329,7 @@ CRISP-DM</p>
 <li>Run multiple jobs with different arguments with a single command (ML Experimenting)</li>
 </ul><div class="alert alert-warning">
 <p><a href="https://omegaconf.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">OmegaConf</a> is a YAML based hierarchical configuration system, with support for merging configurations from multiple sources (files, CLI argument, environment variables) providing a consistent API regardless of how the configuration was created. OmegaConf also offers runtime type safety via Structured Configs.</p>
-</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo0"><a class="anchor hidden-xs" href="#Demo0" title="Demo0"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
+</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
 pip install hydra-core 
 </code></pre><div class="alert alert-info">
 <p><strong>Note:</strong> Python decorator is a function that takes another Python function and extends the behavior of the latter function without explicitly modifying it. Example:</p>
@@ -384,7 +384,7 @@ secret
 
 <span class="hljs-string">secret2</span>
 <span class="hljs-string">secret2</span>
-</code></pre><h3 id="Composition-example0"><a class="anchor hidden-xs" href="#Composition-example0" title="Composition-example0"><i class="fa fa-link"></i></a>Composition example</h3><p>You may want to alternate between two different databases. To support this create a <strong><code>config group</code></strong> named <code>db</code>, and place one config file for each alternative inside. The directory structure of our application now looks like:</p><pre><code class="yaml hljs"><span class="hljs-string">├──</span> <span class="hljs-string">configs</span>
+</code></pre><h3 id="Composition-example"><a class="anchor hidden-xs" href="#Composition-example" title="Composition-example"><i class="fa fa-link"></i></a>Composition example</h3><p>You may want to alternate between two different databases. To support this create a <strong><code>config group</code></strong> named <code>db</code>, and place one config file for each alternative inside. The directory structure of our application now looks like:</p><pre><code class="yaml hljs"><span class="hljs-string">├──</span> <span class="hljs-string">configs</span>
 <span class="hljs-string">│</span>   <span class="hljs-string">├──</span> <span class="hljs-string">main.yaml</span>
 <span class="hljs-string">│</span>   <span class="hljs-string">├──</span> <span class="hljs-string">db</span>
 <span class="hljs-string">│</span>       <span class="hljs-string">├──</span> <span class="hljs-string">mysql.yaml</span>
@@ -545,7 +545,7 @@ Initializes Hydra and add an absolute config dir to the config search path. The 
 <li>Tag the commit.</li>
 <li>Push the commit to Github with tags.</li>
 <li>Push the data to the DVC remote registry.</li>
-</ol><h3 id="Example0"><a class="anchor hidden-xs" href="#Example0" title="Example0"><i class="fa fa-link"></i></a>Example</h3><p>Here I will download my data <a href="https://archive.ics.uci.edu/static/public/222/data.csv" target="_blank" rel="noopener"><code>data.csv</code></a>, version it, introduce a change to it, after that I will version the change, and switch between versions:</p><ol>
+</ol><h3 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h3><p>Here I will download my data <a href="https://archive.ics.uci.edu/static/public/222/data.csv" target="_blank" rel="noopener"><code>data.csv</code></a>, version it, introduce a change to it, after that I will version the change, and switch between versions:</p><ol>
 <li>Given the data url, you can download it using <code>wget</code> as follows:</li>
 </ol><pre><code class="yaml hljs"><span class="hljs-string">mkdir</span> <span class="hljs-bullet">-p</span> <span class="hljs-string">data/raw</span>
 
@@ -728,7 +728,7 @@ fs.get(<span class="hljs-string">"data"</span>, <span class="hljs-string">"data"
 </div><h2 id="Create-test-functions-in-pytest"><a class="anchor hidden-xs" href="#Create-test-functions-in-pytest" title="Create-test-functions-in-pytest"><i class="fa fa-link"></i></a>Create test functions in pytest</h2><p>The module <code>unittest</code> is a built-in testing framework in Python but includes a lot of boilerplate code. <code>pytest</code>  simplifies this workflow by allowing you to use normal functions and Python’s <code>assert</code> keyword directly.</p><center>
 <p><img src="https://i.imgur.com/f35eEAI.png" alt="" width="300" height="200" class="md-image md-image"><br>
 pytest vs unittest</p>
-</center><h3 id="Example0"><a class="anchor hidden-xs" href="#Example0" title="Example0"><i class="fa fa-link"></i></a>Example:</h3><p>Here I created two dummy functions with their test functions.</p><pre><code class="python hljs"><span class="hljs-comment"># src/dummy.py</span>
+</center><h3 id="Example1"><a class="anchor hidden-xs" href="#Example1" title="Example1"><i class="fa fa-link"></i></a>Example:</h3><p>Here I created two dummy functions with their test functions.</p><pre><code class="python hljs"><span class="hljs-comment"># src/dummy.py</span>
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum</span><span class="hljs-params">(a, b)</span>:</span>
     <span class="hljs-keyword">return</span> a + b
@@ -817,7 +817,7 @@ Here are the possible outcomes of a test:</p><ul>
 <li>an assert statement fails, which will raise an <code>AssertionError</code> exception,</li>
 <li>the test code calls <code>pytest.fail()</code>, which will raise an exception, or</li>
 <li>any other exception is raised (<code>raise</code> keyword).</li>
-</ul><h3 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h3><pre><code class="python hljs"><span class="hljs-comment"># src/cards.py</span>
+</ul><h3 id="Example2"><a class="anchor hidden-xs" href="#Example2" title="Example2"><i class="fa fa-link"></i></a>Example</h3><pre><code class="python hljs"><span class="hljs-comment"># src/cards.py</span>
 
 <span class="hljs-keyword">from</span> dataclasses <span class="hljs-keyword">import</span> asdict, dataclass
 
@@ -955,6 +955,8 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 6. Complete the notebook <code>business_understanding.ipynb</code>(shared in this document) and push it to <code>notebooks</code> folder. You can complete this notebook by writing on the notebook itslef or by writing it in a document shared as pdf and pushed to <code>reports</code> folder. Build the ML Canvas and push it to <code>reports</code> folder as a pdf.<br>
 7. Use Jupyter/Colab notebooks to understand the data. The notebook should include data analysis results supported with charts as follows:</p>
 <ul>
+<li>Data Description and exploration:
+<ul>
 <li>What data features need to be cleaned</li>
 <li>What cleaning methods you applied to get a clean data</li>
 <li>The description of the data</li>
@@ -966,13 +968,12 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li>This needs to be clearly stated and not based on the datatype of the features since it can be misleading. You need to read the data description and understand each feature.</li>
 </ul>
 </li>
-<li>Missing values
+<li>The distribution of each data feature and the target
 <ul>
-<li>How many missing values are there per feature</li>
-<li>Which features need to be imputed/handled</li>
-<li>How you will handle the missing features</li>
-<li>What is the quality of the data (bad, good, excellent)</li>
-<li>Do a preliminary data cleaning to get a data without missing values</li>
+<li>Using charts, analyse visually the linear relationship of each feature with the target (Bivariate analysis). You can also do that between features.</li>
+<li>Make a conclusion (Are there linear relationships between them?)</li>
+<li>Initially, decide which ML methods could be useful/not useful for this data</li>
+<li>Try to form a preliminary set of features which have relationships and you believe may contribute to the performance of the ML model</li>
 </ul>
 </li>
 <li>Data transformation methods for ML-ready datasets
@@ -982,25 +983,36 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li>Do a preliminary data transformation to get an ML-ready data</li>
 </ul>
 </li>
-<li>The distribution of each data feature and the target
+<li>Correlation analysis (Only Master’s students)
 <ul>
-<li>Using charts, analyse visually the linear relationship of each feature with the target (Bivariate analysis). You can also do that between features.</li>
-<li>Make a conclusion (Are there linear relationships between them?)</li>
-<li>Initially, decide which ML methods could be useful/not useful for this data</li>
-<li>Try to form a preliminary set of features which have relationships and you believe may contribute to the performance of the ML model</li>
+<li>Which features are correlated</li>
+<li>Which features have strong correlation with the target.</li>
+<li>Which correlation methods you used and why?</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>Data quality verification
+<ul>
+<li>Missing values
+<ul>
+<li>How many missing values are there per feature</li>
+<li>Which features need to be imputed/handled</li>
+<li>How you will handle the missing features</li>
+<li>What is the quality of the data (bad, good, excellent)</li>
+<li>Do a preliminary data cleaning to get a data without missing values</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data requirements:
+<ul>
 <li>Data validation/testing
 <ul>
 <li>Write expectations using GX about the data coming from the source</li>
 <li>Validate the expectations</li>
 </ul>
 </li>
-<li>Correlation analysis (Only Master’s students)
-<ul>
-<li>Which features are correlated</li>
-<li>Which features have strong correlation with the target.</li>
-<li>Which correlation methods you used and why?</li>
 </ul>
 </li>
 </ul>
@@ -1177,10 +1189,10 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
 <li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
 <li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
 <li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
 <li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
@@ -1195,7 +1207,7 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
 <li><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
 <li><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
-<li><a href="#Example0" title="Example">Example</a></li>
+<li><a href="#Example" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul class="nav">
@@ -1210,13 +1222,13 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
 <li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
 <li><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul class="nav">
-<li><a href="#Example0" title="Example:">Example:</a></li>
+<li><a href="#Example1" title="Example:">Example:</a></li>
 </ul>
 </li>
 <li><a href="#Test-discovery" title="Test discovery">Test discovery</a></li>
 <li><a href="#Test-Outcomes" title="Test Outcomes">Test Outcomes</a></li>
 <li><a href="#Failing-a-test" title="Failing a test">Failing a test</a><ul class="nav">
-<li><a href="#Example" title="Example">Example</a></li>
+<li><a href="#Example2" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
@@ -1279,10 +1291,10 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
 <li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
 <li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
 <li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
 <li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
@@ -1297,7 +1309,7 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
 <li><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
 <li><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
-<li><a href="#Example0" title="Example">Example</a></li>
+<li><a href="#Example" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul class="nav">
@@ -1312,13 +1324,13 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
 <li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
 <li><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul class="nav">
-<li><a href="#Example0" title="Example:">Example:</a></li>
+<li><a href="#Example1" title="Example:">Example:</a></li>
 </ul>
 </li>
 <li><a href="#Test-discovery" title="Test discovery">Test discovery</a></li>
 <li><a href="#Test-Outcomes" title="Test Outcomes">Test Outcomes</a></li>
 <li><a href="#Failing-a-test" title="Failing a test">Failing a test</a><ul class="nav">
-<li><a href="#Example" title="Example">Example</a></li>
+<li><a href="#Example2" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
