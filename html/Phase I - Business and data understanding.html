@@ -71,20 +71,56 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul>
-<li><a href="#Demo" title="Demo">Demo</a><ul>
+<li><a href="#Demo0" title="Demo">Demo</a><ul>
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
 <li><a href="#Basic-example" title="Basic example">Basic example</a></li>
 <li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
 <li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
 <li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
 <li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
+<li><a href="#Compose-API" title="Compose API">Compose API</a></li>
 <li><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
+<li><a href="#-DVC" title=" DVC"> DVC</a><ul>
+<li><a href="#Install-DVC" title="Install DVC">Install DVC</a></li>
+<li><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
+<li><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
+<li><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul>
+<li><a href="#Example0" title="Example">Example</a></li>
+</ul>
+</li>
+<li><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul>
+<li><a href="#Using-Git" title="Using Git">Using Git</a></li>
+<li><a href="#Using-dvcapi-Python-API" title="Using dvc.api Python API">Using dvc.api Python API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#-Pytest" title=" Pytest"> Pytest</a><ul>
+<li><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
+<li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
+<li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
+<li><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul>
+<li><a href="#Example0" title="Example:">Example:</a></li>
+</ul>
+</li>
+<li><a href="#Test-discovery" title="Test discovery">Test discovery</a></li>
+<li><a href="#Test-Outcomes" title="Test Outcomes">Test Outcomes</a></li>
+<li><a href="#Failing-a-test" title="Failing a test">Failing a test</a><ul>
+<li><a href="#Example" title="Example">Example</a></li>
+</ul>
+</li>
+<li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
+<li><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
+<li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
+<li><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li><a href="#Markers" title="Markers">Markers</a></li>
+<li><a href="#Coverage" title="Coverage">Coverage</a></li>
+</ul>
+</li>
 <li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
 <li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
 <li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
@@ -104,7 +140,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li>Evaluate the model to find errors and optimize model performance</li>
 <li>Deploy the model to active use</li>
 <li>Monitor the model to make sure it continues to work as expected</li>
-</ol><p><strong>Example:</strong> Imagine a pizza restaurant franchise that wants to use ML to sell more pizza. The team followed the steps shown above. The team wants to make an ML model that suggests discounts, coupons, and other promotions. The team names it “Pizzatron”. Pizzatron runs on current sales data and sends promotion recommendations to store owners. It is simple, isn’t it?</p><h2 id="Machine-Learning-is-Not-Simple"><a class="anchor hidden-xs" href="#Machine-Learning-is-Not-Simple" title="Machine-Learning-is-Not-Simple"><i class="fa fa-link"></i></a>Machine Learning is Not Simple</h2><p>With our simlified Pizzatron example, there are complexities at every phase in the machine learning development chain. To begin with, in practice, the “team” in the example usually consists of three or more teams. To do an analysis this well, you need data scientists. Experts in building and deploying ML systems are known as ML engineers. Teams of software engineers work together to prepare data and construct models.</p><p>Even if we assume that everyone involved does their job well, there are bound to be mistakes.</p><ol>
+</ol><p><strong>Example:</strong> The team wants to make an ML model that suggests discounts, coupons, and other promotions. The team names it “Pizzatron”. Pizzatron runs on current sales data and sends promotion recommendations to store owners. It is simple, isn’t it?</p><h2 id="Machine-Learning-is-Not-Simple"><a class="anchor hidden-xs" href="#Machine-Learning-is-Not-Simple" title="Machine-Learning-is-Not-Simple"><i class="fa fa-link"></i></a>Machine Learning is Not Simple</h2><p>With our simplified Pizzatron example, there are complexities at every phase in the machine learning development chain. To begin with, in practice, the “team” in the example usually consists of three or more teams. To do an analysis this well, you need data scientists. Experts in building and deploying ML systems are known as ML engineers. Teams of software engineers work together to prepare data and construct models.</p><p>Even if we assume that everyone involved does their job well, there are bound to be mistakes.</p><ol>
 <li>What if the initial metrics had a flaw that made Pizzatron “learn” that pineapple pizza is a big seller at Christmas?</li>
 <li>What if the designers did not account for available materials, so Pizzatron often promotes out-of-stock ingredients?</li>
 <li>If Pizzatron was developed using data from the United States, will it know how to behave for franchises in Italy and Japan?</li>
@@ -182,8 +218,7 @@ MLOps = ModelOps + DataOps + DevOps
 <li>Data may only be able to reside in restricted jurisdictions.</li>
 <li>Data storage may not be immutable.</li>
 <li>Data ownership may be a factor.</li>
-</ul><h3 id="5-Experiments-Tracking"><a class="anchor hidden-xs" href="#5-Experiments-Tracking" title="5-Experiments-Tracking"><i class="fa fa-link"></i></a>5. Experiments Tracking</h3><p>In contrast to the traditional software development process, in ML development, multiple experiments on model training can be executed in parallel before making the decision what model will be promoted to production.</p><h3 id="6-Testing"><a class="anchor hidden-xs" href="#6-Testing" title="6-Testing"><i class="fa fa-link"></i></a>6. Testing</h3><p>The complete development pipeline includes three essential components, data pipeline, ML model pipeline, and application pipeline. In accordance with this separation we distinguish three scopes for testing in ML systems: tests for features and data, tests for model development, and tests for ML infrastructure.</p><h3 id="7-Monitoring"><a class="anchor hidden-xs" href="#7-Monitoring" title="7-Monitoring"><i class="fa fa-link"></i></a>7. Monitoring</h3><p>The picture below shows that the model monitoring can be implemented by tracking the precision, recall, and F1-score of the model prediction along with the time. The decrease of the precision, recall, and F1-score triggers the model retraining, which leads to model recovery.<br>
-<img src="https://ml-ops.org/img/model-decay-monitoring.jpg" alt="" class="md-image md-image"></p><h3 id="8-“ML-Test-Score”-System"><a class="anchor hidden-xs" href="#8-“ML-Test-Score”-System" title="8-“ML-Test-Score”-System"><i class="fa fa-link"></i></a>8. “ML Test Score” System</h3><p>The “ML Test Score” measures the overall readiness of the ML system for production. The final ML Test Score is computed as follows:</p><ul>
+</ul><h3 id="5-Experiments-Tracking"><a class="anchor hidden-xs" href="#5-Experiments-Tracking" title="5-Experiments-Tracking"><i class="fa fa-link"></i></a>5. Experiments Tracking</h3><p>In contrast to the traditional software development process, in ML development, multiple experiments on model training can be executed in parallel before making the decision what model will be promoted to production.</p><h3 id="6-Testing"><a class="anchor hidden-xs" href="#6-Testing" title="6-Testing"><i class="fa fa-link"></i></a>6. Testing</h3><p>The complete development pipeline includes three essential components, data pipeline, ML model pipeline, and application pipeline. In accordance with this separation we distinguish three scopes for testing in ML systems: tests for features and data, tests for model development, and tests for ML infrastructure.</p><h3 id="7-Monitoring"><a class="anchor hidden-xs" href="#7-Monitoring" title="7-Monitoring"><i class="fa fa-link"></i></a>7. Monitoring</h3><p>The picture below shows that the model monitoring can be implemented by tracking the precision, recall, and F1-score of the model prediction along with the time. The decrease of the precision, recall, and F1-score triggers the model retraining, which leads to model recovery.</p><p><img src="https://ml-ops.org/img/model-decay-monitoring.jpg" alt="" class="md-image md-image"></p><h3 id="8-“ML-Test-Score”-System"><a class="anchor hidden-xs" href="#8-“ML-Test-Score”-System" title="8-“ML-Test-Score”-System"><i class="fa fa-link"></i></a>8. “ML Test Score” System</h3><p>The “ML Test Score” measures the overall readiness of the ML system for production. The final ML Test Score is computed as follows:</p><ul>
 <li>For each test, half a point is awarded for executing the test manually, with the results documented and distributed.</li>
 <li>A <strong>full point</strong> is awarded if the there is a system in place to run that test automatically on a repeated basis.</li>
 <li>Sum the score of each of the four sections individually: Data Tests, Model Tests, ML Infrastructure Tests, and Monitoring.</li>
@@ -249,7 +284,7 @@ After computing the ML Test Score, we can reason about the readiness of the ML s
 <li>Monitoring and maintenance of the ML system.</li>
 </ol><h2 id="Datasets-in-Research-vs-Industry"><a class="anchor hidden-xs" href="#Datasets-in-Research-vs-Industry" title="Datasets-in-Research-vs-Industry"><i class="fa fa-link"></i></a>Datasets in Research vs. Industry</h2><p>Datasets themselves are a core part of that success of models. This is why data gathering, preparation, and labeling should be seen as an iterative process, just like modeling. Start with a simple dataset that you can gather immediately, and be open to improving it based on what you learn.</p><p>This iterative approach to data can seem confusing at first. In ML research, performance is often reported on standard datasets that the community uses as benchmarks and are thus immutable. In traditional software engineering, we write deterministic rules for our programs, so we treat data as something to receive, process, and store.</p><p><img src="https://i.imgur.com/S4sDzrS.png" alt="" class="md-image md-image"></p><center>
     <b>Datasets are fixed in research, but part of the product in industry</b>
-</center><br><p>ML engineering combines engineering and ML in order to build products. Our dataset is thus just another tool to allow us to build products. In ML engineering, choosing an initial dataset, regularly updating it, and augmenting it is often the majority of the work. This difference in workflow between research and industry is illustrated in the figure above.</p><p><img src="https://ml-ops.org/content/mlops-principles#versioning" alt="" class="md-image md-image"></p><h2 id="ML-Problem-framing"><a class="anchor hidden-xs" href="#ML-Problem-framing" title="ML-Problem-framing"><i class="fa fa-link"></i></a>ML Problem framing</h2><ul>
+</center><br><p>ML engineering combines engineering and ML in order to build products. Our dataset is thus just another tool to allow us to build products. In ML engineering, choosing an initial dataset, regularly updating it, and augmenting it is often the majority of the work. This difference in workflow between research and industry is illustrated in the figure above.</p><h2 id="ML-Problem-framing"><a class="anchor hidden-xs" href="#ML-Problem-framing" title="ML-Problem-framing"><i class="fa fa-link"></i></a>ML Problem framing</h2><ul>
 <li>Problem framing helps determine your project’s technical feasibility and provides a clear set of goals and success criteria.</li>
 <li>When considering an ML solution, effective problem framing can determine whether or not your product ultimately succeeds.</li>
 </ul><p>At a high level, <strong>ML problem framing</strong> consists of two distinct steps:</p><ol>
@@ -294,7 +329,7 @@ CRISP-DM</p>
 <li>Run multiple jobs with different arguments with a single command (ML Experimenting)</li>
 </ul><div class="alert alert-warning">
 <p><a href="https://omegaconf.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">OmegaConf</a> is a YAML based hierarchical configuration system, with support for merging configurations from multiple sources (files, CLI argument, environment variables) providing a consistent API regardless of how the configuration was created. OmegaConf also offers runtime type safety via Structured Configs.</p>
-</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
+</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo0"><a class="anchor hidden-xs" href="#Demo0" title="Demo0"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
 pip install hydra-core 
 </code></pre><div class="alert alert-info">
 <p><strong>Note:</strong> Python decorator is a function that takes another Python function and extends the behavior of the latter function without explicitly modifying it. Example:</p>
@@ -428,7 +463,469 @@ My application
 <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">my</span> <span class="hljs-string">age</span> <span class="hljs-number">10</span>
 </code></pre><h3 id="Non-config-group-defaults"><a class="anchor hidden-xs" href="#Non-config-group-defaults" title="Non-config-group-defaults"><i class="fa fa-link"></i></a>Non-config group defaults</h3><p>Sometimes a config file does not belong in any config group. You can still load it by default. Here is an example for <code>some_file.yaml</code>.</p><pre><code class="yaml hljs"><span class="hljs-attr">defaults:</span>
 <span class="hljs-bullet">  -</span> <span class="hljs-string">some_file</span>
-</code></pre><p>Config files that are not part of a config group will always be loaded. They cannot be overridden. Prefer using a config group.</p><h3 id="Structured-Configs"><a class="anchor hidden-xs" href="#Structured-Configs" title="Structured-Configs"><i class="fa fa-link"></i></a>Structured Configs</h3><p>Structured Configs use Python <a href="https://docs.python.org/3.8/library/dataclasses.html" target="_blank" rel="noopener">dataclasses</a> to describe your configuration structure and types. We will not cover this section here, but you can learn about it on your own from <a href="https://hydra.cc/docs/tutorials/structured_config/intro/" target="_blank" rel="noopener">here</a>.</p><hr><h1 id="-DVC"><a class="anchor hidden-xs" href="#-DVC" title="-DVC"><i class="fa fa-link"></i></a><img src="https://dvc.org/img/logos/dvc.svg" alt="" width="100" height="100" class="md-image md-image"> DVC</h1><h1 id="-Pytest"><a class="anchor hidden-xs" href="#-Pytest" title="-Pytest"><i class="fa fa-link"></i></a><img src="https://docs.pytest.org/en/8.2.x/_static/pytest1.png" alt="" width="100" height="100" class="md-image md-image"> Pytest</h1><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+</code></pre><p>Config files that are not part of a config group will always be loaded. They cannot be overridden. Prefer using a config group.</p><h3 id="Compose-API"><a class="anchor hidden-xs" href="#Compose-API" title="Compose-API"><i class="fa fa-link"></i></a>Compose API</h3><p>The compose API can compose a config similarly to <code>@hydra.main()</code> anywhere in the code. The Compose API is useful when <code>@hydra.main()</code> is not applicable.</p><p>Prior to calling <code>compose()</code>, you have to initialize Hydra: This can be done by using the standard <code>@hydra.main()</code> or by calling one of the initialization methods listed below:</p><ul>
+<li><code>initialize()</code>: Initialize with a config path relative to the caller</li>
+<li><code>initialize_config_module()</code>: Initialize with config_module (absolute name)</li>
+<li><code>initialize_config_dir()</code>: Initialize with a config_dir on the file system (absolute path)</li>
+</ul><p>All 3 initialization ways can be used as methods or contexts. When used as methods, they are initializing Hydra globally and should only be called once. When used as contexts, they are initializing Hydra within the context and can be used multiple times.</p><p><strong>Example:</strong></p><pre><code class="python hljs"><span class="hljs-keyword">from</span> hydra <span class="hljs-keyword">import</span> compose, initialize
+<span class="hljs-keyword">from</span> omegaconf <span class="hljs-keyword">import</span> OmegaConf
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    <span class="hljs-comment"># context initialization</span>
+    <span class="hljs-keyword">with</span> initialize(version_base=<span class="hljs-literal">None</span>, config_path=<span class="hljs-string">"configs"</span>, job_name=<span class="hljs-string">"test_app"</span>):
+        cfg = compose(config_name=<span class="hljs-string">"main"</span>, overrides=[<span class="hljs-string">"db=mysql"</span>, <span class="hljs-string">"db.user=me"</span>])
+        print(OmegaConf.to_yaml(cfg))
+
+    <span class="hljs-comment"># global initialization</span>
+    initialize(version_base=<span class="hljs-literal">None</span>, config_path=<span class="hljs-string">"configs"</span>, job_name=<span class="hljs-string">"test_app"</span>)
+    cfg = compose(config_name=<span class="hljs-string">"main"</span>, overrides=[<span class="hljs-string">"db=mysql"</span>, <span class="hljs-string">"db.user=me"</span>])
+    print(OmegaConf.to_yaml(cfg))
+</code></pre><p>Three Hydra initializers:</p><ol>
+<li><code>initialize</code><br>
+Initializes Hydra and adds the <code>config_path</code> to the config search path. The <code>config_path</code> is relative to the parent of the caller.</li>
+<li><code>initialize_config_module</code><br>
+Initializes Hydra and adds the <code>config_module</code> to the config search path. The config module must be importable (an <code>__init__.py</code> must exist at its top level)</li>
+<li><code>initialize_config_dir</code><br>
+Initializes Hydra and add an absolute config dir to the config search path. The <code>config_dir</code> is always a path on the file system and is must be an absolute path. Relative paths will result in an error.</li>
+</ol><h3 id="Structured-Configs"><a class="anchor hidden-xs" href="#Structured-Configs" title="Structured-Configs"><i class="fa fa-link"></i></a>Structured Configs</h3><p>Structured Configs use Python <a href="https://docs.python.org/3.8/library/dataclasses.html" target="_blank" rel="noopener">dataclasses</a> to describe your configuration structure and types. We will not cover this section here, but you can learn about it on your own from <a href="https://hydra.cc/docs/tutorials/structured_config/intro/" target="_blank" rel="noopener">here</a>.</p><hr><h1 id="-DVC"><a class="anchor hidden-xs" href="#-DVC" title="-DVC"><i class="fa fa-link"></i></a><img src="https://dvc.org/img/logos/dvc.svg" alt="" width="100" height="100" class="md-image md-image"> DVC</h1><p>Data Version Control (DVC) is a free, open-source tool for data management. It allows to track large datasets and version the data.</p><blockquote>
+<p>💫 DVC is your “Git for data”!</p>
+</blockquote><h2 id="Install-DVC"><a class="anchor hidden-xs" href="#Install-DVC" title="Install-DVC"><i class="fa fa-link"></i></a>Install DVC</h2><pre><code class="python hljs">pip install dvc
+</code></pre><p>We will use a local directory as a remote storage for versioning data files. You can check the <a href="https://dvc.org/doc/install" target="_blank" rel="noopener">documentation</a> if you want to install for a different remote storage.</p><h2 id="Initialize-DVC-repository"><a class="anchor hidden-xs" href="#Initialize-DVC-repository" title="Initialize-DVC-repository"><i class="fa fa-link"></i></a>Initialize DVC repository</h2><ol>
+<li>Open your project repository in VS code and initialize DVC repository by running the command line:</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">init</span>
+</code></pre><div class="alert alert-info">
+<p>There is a VS code extension for DVC, you can install it from <a href="https://marketplace.visualstudio.com/items?itemName=Iterative.dvc" target="_blank" rel="noopener">here</a>.</p>
+</div><p>This will initialize the DVC repository. The output is:</p><p><img src="https://i.imgur.com/kyD8lB3.png" alt="" class="md-image md-image"></p><p>A few internal files are created that should be added to Git.<br>
+<img src="https://i.imgur.com/ubDrfBT.png" alt="" class="md-image md-image"></p><p>We should commit this change to Git as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">add</span> <span class="hljs-string">.</span>   
+<span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"initialize DVC"</span>
+</code></pre><div class="alert alert-warning">
+<p><code>DVC</code> is technically <strong>not</strong> a version control system by itself! It manipulates <code>.dvc</code> files, whose contents define the data file versions. Git is already used to version your code, and now it can also version your data alongside it.</p>
+</div><p>The internal files:</p><ul>
+<li><code>.dvc</code> files (“dot DVC files”) are placeholders to track data files and directories.</li>
+<li><code>.dvc/config</code>: This is the default DVC configuration file. It can be edited by hand or with the <code>dvc config</code> command.</li>
+<li><code>.dvc/.gitignore</code>: This is a <code>.gitignore</code> file to untrack the folders <code>config.local</code>, <code>/tmp</code>, <code>/cache</code>.</li>
+<li><code>.dvc/config.local</code>:  This is an optional Git-ignored configuration file, that will overwrite options in <code>.dvc/config</code>. This is useful when you need to specify sensitive values (secrets, passwords) which should not reach the Git repo (credentials, private locations, etc). This config file can also be edited by hand or with <code>dvc config --local</code>.</li>
+<li><code>.dvc/cache</code>: Default location of the cache directory. The cache stores the project data in a special structure. The data files and directories in the workspace will only contain links to the data files in the cache.</li>
+<li><code>.dvc/tmp</code>: Directory for miscellaneous temporary files.</li>
+</ul><div class="alert alert-warning">
+<p>The metafiles of DVC are typically versioned with Git, as DVC does not replace its Git version control features, but rather extends on them.</p>
+</div><h2 id="Configure-a-remote-storage"><a class="anchor hidden-xs" href="#Configure-a-remote-storage" title="Configure-a-remote-storage"><i class="fa fa-link"></i></a>Configure a remote storage</h2><p>We will use a local directory as a remote storage but feel free to use the supported remote storage options if you have sufficient access. DVC remotes are similar to Git remotes (e.g. GitHub or GitLab hosting), but for cached data instead of code.</p><ul>
+<li>Create <code>datastore</code> folder in the root directory of the project repository.</li>
+<li>Add <code>localstore</code> as a remote storage.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">remote</span> <span class="hljs-string">add</span> <span class="hljs-bullet">--default</span> <span class="hljs-string">localstore</span> <span class="hljs-string">$PWD/datastore</span>
+<span class="hljs-comment"># localstore is a placeholder for the remote storage</span>
+<span class="hljs-comment"># $PWD/datastore is the path of the remote storage</span>
+
+
+<span class="hljs-comment"># Add the data store to .gitignore to untrack it</span>
+<span class="hljs-string">echo</span> <span class="hljs-string">datastore</span> <span class="hljs-string">&gt;&gt;</span> <span class="hljs-string">.gitignore</span>
+</code></pre><p>This command line will modify the <code>.dvc/config</code> file and you need to commit this change to Git repo.</p><div class="alert alert-info">
+<ul>
+<li>You can define more than one remote storage.</li>
+<li>It is better to use an absolute path to define the local path of the remote storage.</li>
+<li>We need to specify one remote storage as default.</li>
+</ul>
+</div><ul>
+<li>Commit the change to Git repo.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">add</span> <span class="hljs-string">.dvc/config</span>
+<span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add remote storage"</span>
+</code></pre><h2 id="Tracking-data"><a class="anchor hidden-xs" href="#Tracking-data" title="Tracking-data"><i class="fa fa-link"></i></a>Tracking data</h2><div class="alert alert-warning">
+<p><strong>Notes on data versioning using <code>DVC</code></strong>:</p>
+<ul>
+<li>Before tracking the data, make sure that you committed the changes to Git repository.</li>
+<li>Everytime you get a new data (change in the data), you should commit the previous version such that each data version should be tracked in a single git commit. This allows to restore the data with a specific version by checking out its commit.</li>
+<li>It is useful to <em>tag the Git commit</em> of each data version, such that switching the data versions will be easy. If you do not use tags, then you need to know the commit hash for the data version to restore.</li>
+</ul>
+</div><p><strong>To version a data file <code>data.csv</code></strong>:</p><ol>
+<li>Download/Add the data file <code>data.scv</code> to your Git repository.</li>
+<li>Initialize DVC repository (only once per repository).</li>
+<li>Add <code>data.csv</code> to DVC repository.</li>
+<li>Add the changes like <em>data.csv.dvc</em> to Git repository.</li>
+<li>Commit the changes to Git repository.</li>
+<li>Tag the commit.</li>
+<li>Push the commit to Github with tags.</li>
+<li>Push the data to the DVC remote registry.</li>
+</ol><h3 id="Example0"><a class="anchor hidden-xs" href="#Example0" title="Example0"><i class="fa fa-link"></i></a>Example</h3><p>Here I will download my data <a href="https://archive.ics.uci.edu/static/public/222/data.csv" target="_blank" rel="noopener"><code>data.csv</code></a>, version it, introduce a change to it, after that I will version the change, and switch between versions:</p><ol>
+<li>Given the data url, you can download it using <code>wget</code> as follows:</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">mkdir</span> <span class="hljs-bullet">-p</span> <span class="hljs-string">data/raw</span>
+
+<span class="hljs-string">wget</span> <span class="hljs-attr">https://archive.ics.uci.edu/static/public/222/data.csv</span> <span class="hljs-bullet">-O</span> <span class="hljs-string">data/raw/data.csv</span>
+</code></pre><div class="alert alert-info">
+<p>If your data is stored in Git or DVC repository then you can download it using <code>dvc</code> as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">get</span> <span class="hljs-attr">https://github.com/iterative/dataset-registry</span> <span class="hljs-string">get-started/data.xml</span> <span class="hljs-bullet">-o</span> <span class="hljs-string">data/raw/data.csv</span>
+</code></pre>
+</div><ol start="2">
+<li>Initialize DVC repository. We did it in the previous section.</li>
+<li>Start tracking the data in DVC.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">add</span> <span class="hljs-string">data/raw/data.csv</span> 
+</code></pre><p><img src="https://i.imgur.com/bE6cqVR.png" alt="" class="md-image md-image"></p><p>DVC stores information about the added file in a special <code>.dvc</code> file named <code>data/raw/data.csv.dvc</code>. This small, human-readable metadata file acts as a placeholder for the original data for the purpose of Git tracking. The actual data file <code>data.csv</code> is added to <code>.gitignore</code> to untrack it from Git repository.</p><ol start="4">
+<li>Track changes in Git.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">add</span> <span class="hljs-string">data/raw/data.csv.dvc</span> <span class="hljs-string">data/raw/.gitignore</span>
+</code></pre><p>Now the metadata about your data is versioned alongside your source code, while the original data file was added to <code>.gitignore</code>.</p><ol start="5">
+<li>Commit the changes to Git repository.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add raw data"</span>
+</code></pre><ol start="6">
+<li>Tag the commit</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-bullet">-a</span> <span class="hljs-string">"v1.0"</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add data version v1.0"</span>
+</code></pre><ol start="7">
+<li>Push the commit to Github with tags.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-bullet">--tags</span>
+</code></pre><ol start="8">
+<li>Push the data to the DVC remote registry.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">push</span>
+</code></pre><div class="alert alert-info">
+<p><strong>Info:</strong> DVC tracks the data in the remote storage, whereas Git tracks the hash code of the files.</p>
+</div><p>Here I will download a new version of the data <a href="https://archive.ics.uci.edu/static/public/96/data.csv" target="_blank" rel="noopener"><code>data.csv</code></a> and version it.<br>
+9. Download new data.</p><pre><code class="yaml hljs"><span class="hljs-string">wget</span> <span class="hljs-attr">https://archive.ics.uci.edu/static/public/96/data.csv</span> <span class="hljs-bullet">-O</span> <span class="hljs-string">data/raw/data.csv</span>
+</code></pre><div class="alert alert-info">
+<p>You can check the status of DVC repository by running:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">status</span>
+</code></pre>
+<p>The option <code>-c|--cloud</code> allows to show status of a local cache (.dvc/cache) compared to the remote repository.</p>
+</div><ol start="10">
+<li>Add the file to DVC repository</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">add</span> <span class="hljs-string">data/raw/data.csv</span>
+</code></pre><ol start="11">
+<li>Add the changes like <em>data.csv.dvc</em> to Git repository.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">add</span> <span class="hljs-string">.</span>
+</code></pre><ol start="12">
+<li>Commit the changes</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add new data"</span>
+</code></pre><ol start="13">
+<li>Tag the commit</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-bullet">-a</span> <span class="hljs-string">"v2.0"</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"A new version of the data V2.0"</span>
+</code></pre><ol start="14">
+<li>Push the commit to Github with tags.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-bullet">--tags</span>
+</code></pre><ol start="15">
+<li>Push the data to the DVC remote registry.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">push</span>
+</code></pre><div class="alert alert-info">
+<p>You can list the tags of a Git repo as:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span>
+</code></pre>
+</div><h2 id="Switch-between-data-versions"><a class="anchor hidden-xs" href="#Switch-between-data-versions" title="Switch-between-data-versions"><i class="fa fa-link"></i></a>Switch between data versions</h2><p>You actually can delete the file from <code>data</code> folder since it is stored in the remote storage. You will notice that the data is locally saved in its cache folder <code>.dvc/cache</code> using file hashes.</p><h3 id="Using-Git"><a class="anchor hidden-xs" href="#Using-Git" title="Using-Git"><i class="fa fa-link"></i></a>Using Git</h3><p>You can restore the previous versions of the data from Git repository by checking out the corresponding commit. You can use the tags that you defined as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">v1.0</span> <span class="hljs-string">data/data.csv.dvc</span>
+</code></pre><p>This will restore the <code>data.csv.dvc</code> metafile.</p><p>In order to restore the actual file, you need to checkout DVC too:</p><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">checkout</span>
+</code></pre><p>You can add and commit the selected version then push it.</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-string">data/data.csv.dvc</span> <span class="hljs-bullet">-a</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"Restored data v1.0"</span>
+</code></pre><p>You do not need to push it to DVC again since this version is already stored in the remote storage.</p><div class="alert alert-danger">
+<p>Notice that if you checkout without specifying the file (e.g. <code>git checkout v1.0</code>), then all other tracked files (e.g. config files, source codes, …etc) with the same commit “v1.0” will also be checked out (be careful). This will also <em>detach</em> the HEAD pointer to point to the commit which contains the data of version <code>v1.0</code>. You can attach it to <code>main</code> branch by running <code>git switch main</code>.</p>
+</div><h3 id="Using-dvcapi-Python-API"><a class="anchor hidden-xs" href="#Using-dvcapi-Python-API" title="Using-dvcapi-Python-API"><i class="fa fa-link"></i></a>Using <code>dvc.api</code> Python API</h3><p>DVC comes as a VS Code Extension, as a command line interface, and as a Python API. Here we will use <code>dvc.api</code> to obtain the data files based on the selected version.</p><pre><code class="yaml hljs"><span class="hljs-comment"># configs/main.yaml</span>
+
+<span class="hljs-attr">data:</span>
+<span class="hljs-attr">  version:</span> <span class="hljs-number">1.0</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-string">data/raw/data.csv</span>
+<span class="hljs-attr">  repo:</span> <span class="hljs-string">.</span>
+<span class="hljs-attr">  remote:</span> <span class="hljs-string">localstore</span>
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># src/app.py</span>
+
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> hydra
+<span class="hljs-keyword">import</span> dvc.api
+<span class="hljs-keyword">import</span> os.path
+
+<span class="hljs-meta">@hydra.main(config_path="../configs", config_name="main", version_base=None)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">app</span><span class="hljs-params">(cfg=None)</span>:</span>
+
+    url = dvc.api.get_url(
+        path=os.path.join(<span class="hljs-string">"data/raw/data.csv"</span>), <span class="hljs-comment"># the path to the file in the remote storage</span>
+        repo=os.path.join(cfg.data.repo), <span class="hljs-comment"># The url/path to the remote stage</span>
+        rev=str(cfg.data.version), <span class="hljs-comment"># the version of the data to restore</span>
+        remote=cfg.data.remote <span class="hljs-comment"># The placeholder of the remote storage</span>
+        )
+    
+    print(url) <span class="hljs-comment"># It will be the path of the file in the remote storage</span>
+
+    <span class="hljs-comment"># Read the data</span>
+    df = pd.read_csv(url)
+    print(df.head())
+
+    
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">"__main__"</span>:
+    app()
+</code></pre><p>You can set the version in the config file and read the data with the requested version.</p><div class="alert alert-info">
+<ul>
+<li>Notice that the file <code>data.csv</code> in the folder <code>data</code>, can be deleted for some reason, and you still need to set its path the same when you added to the DVC repository since DVC also tracks the path of the file in <code>data.csv.dvc</code> file.</li>
+<li>If the data file <code>data/data.csv</code> is deleted, we still can restore it by running <code>dvc pull</code>, since it is stored in the remote storage.</li>
+<li>The metafile <code>data.csv.dvc</code> is important to not delete it to know how to restore your actual data file.</li>
+</ul>
+</div><p>Some other functions which could be useful from <code>dvc.api</code>:</p><pre><code class="python hljs"><span class="hljs-keyword">from</span> dvc.api <span class="hljs-keyword">import</span> DVCFileSystem
+
+fs = DVCFileSystem(<span class="hljs-string">"."</span>) <span class="hljs-comment"># /path/to/local/repository</span>
+
+url = <span class="hljs-string">"https://remote/repository"</span> <span class="hljs-comment"># remote repository</span>
+fs = DVCFileSystem(url, rev=<span class="hljs-string">"main"</span>)
+
+<span class="hljs-comment"># Open a file</span>
+<span class="hljs-keyword">with</span> fs.open(<span class="hljs-string">"data.csv"</span>, mode=<span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> f:
+    print(f.readlines()[<span class="hljs-number">0</span>])
+    
+<span class="hljs-comment"># Reading a file</span>
+text = fs.read_text(<span class="hljs-string">"get-started/data.xml"</span>, encoding=<span class="hljs-string">"utf-8"</span>)
+
+contents = fs.read_bytes(<span class="hljs-string">"get-started/data.xml"</span>)
+
+
+<span class="hljs-comment"># Listing all DVC-tracked files recursively</span>
+fs.find(<span class="hljs-string">"/"</span>, detail=<span class="hljs-literal">False</span>, dvc_only=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># Listing all files (including Git-tracked)</span>
+fs.find(<span class="hljs-string">"/"</span>, detail=<span class="hljs-literal">False</span>)
+
+
+<span class="hljs-comment"># Downloading a file or a directory</span>
+fs.get_file(<span class="hljs-string">"data/data.xml"</span>, <span class="hljs-string">"data.xml"</span>)
+<span class="hljs-comment">## This downloads "data/data.xml" file to the current working directory as "data.xml" file</span>
+
+fs.get(<span class="hljs-string">"data"</span>, <span class="hljs-string">"data"</span>, recursive=<span class="hljs-literal">True</span>)
+<span class="hljs-comment">## This downloads all the files in "data" directory - be it Git-tracked or DVC-tracked into a local directory "data".</span>
+</code></pre><h1 id="-Pytest"><a class="anchor hidden-xs" href="#-Pytest" title="-Pytest"><i class="fa fa-link"></i></a><img src="https://docs.pytest.org/en/8.2.x/_static/pytest1.png" alt="" width="100" height="100" class="md-image md-image"> Pytest</h1><p>Testing is one of the important practices to do in MLOps pipelines. Writing and maintaining boilerplate tests is not easy, so you should leverage all the tools at your disposal to make it as painless as possible. <code>pytest</code> is one of the best tools that you can use to boost your testing productivity. In ML projects, we need to test or validate data, code and model. <code>pytest</code> is intended to validate the codebase of the project.</p><h2 id="Install-pytest"><a class="anchor hidden-xs" href="#Install-pytest" title="Install-pytest"><i class="fa fa-link"></i></a>Install pytest</h2><pre><code>pip install pytest
+</code></pre><h2 id="AAA-pattern"><a class="anchor hidden-xs" href="#AAA-pattern" title="AAA-pattern"><i class="fa fa-link"></i></a>AAA pattern</h2><p>The AAA (Arrange-Act-Assert) pattern is a widely recognized and effective approach to structuring unit tests. This pattern provides a clear and organized structure for writing tests, enhancing readability and maintainability. By following the AAA pattern, developers can create robust and reliable unit tests that validate the behavior of their code.</p><p>The <strong>Arrange-Act-Assert</strong> pattern:</p><ol>
+<li><em>Arrange</em>, or set up, the conditions for the test</li>
+<li><em>Act</em>, or perform, the specific action or method being tested by calling some function or method</li>
+<li><em>Assert</em>, or verify, that the actual results match the expected results.</li>
+</ol><p><strong>Example:</strong></p><pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">return</span> a + b
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_sum</span><span class="hljs-params">()</span>:</span>    
+    <span class="hljs-comment"># Arrange</span>
+    x = <span class="hljs-number">1</span>
+    y = <span class="hljs-number">1</span>
+
+    <span class="hljs-comment"># Act</span>
+    result = sum(x, y)
+
+    <span class="hljs-comment"># Assert</span>
+    <span class="hljs-keyword">assert</span> result == <span class="hljs-number">2</span>
+</code></pre><h2 id="unittest-short-demo"><a class="anchor hidden-xs" href="#unittest-short-demo" title="unittest-short-demo"><i class="fa fa-link"></i></a><code>unittest</code> short demo</h2><p>If you have written unit tests for your Python code before, then you may have used Python’s built-in <code>unittest</code> module. The package <code>unittest</code> provides a solid base on which to build your test suite, but it has a few shortcomings.</p><p>Testing frameworks typically hook into your test’s assertions so that they can provide information when an assertion fails. <code>unittest</code>, for example, provides a number of helpful assertion utilities out of the box. However, even a small set of tests requires a fair amount of <em>boilerplate code</em>.</p><pre><code class="python hljs"><span class="hljs-comment"># tests/dummy.py</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">return</span> a + b
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># tests/test_sum_unittest.py</span>
+
+<span class="hljs-keyword">from</span> unittest <span class="hljs-keyword">import</span> TestCase
+
+<span class="hljs-keyword">from</span> src.dummy <span class="hljs-keyword">import</span> sum
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TryTesting</span><span class="hljs-params">(TestCase)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_sum_pn</span><span class="hljs-params">(self)</span>:</span>
+        x = <span class="hljs-number">1</span>
+        y = <span class="hljs-number">-1</span>
+
+        result = sum(x, y)
+        
+        self.assertTrue(result == <span class="hljs-number">0</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_sum_pp</span><span class="hljs-params">(self)</span>:</span>
+        x = <span class="hljs-number">1</span>
+        y = <span class="hljs-number">1</span>
+
+        result = sum(x, y)
+        
+        self.assertGreater(result, <span class="hljs-number">2</span>)
+</code></pre><p>You can run <code>unittest</code> tests from command line using <code>discover</code> option.</p><pre><code class="go hljs">python <span class="token operator">-</span>m unittest discover tests
+</code></pre><div class="alert alert-danger">
+<p><strong>Note:</strong> By default, the test modules and functions, should start with “test*”  such as “test_sum”, “test_x.py”, “test_fun”, …etc.</p>
+</div><h2 id="Create-test-functions-in-pytest"><a class="anchor hidden-xs" href="#Create-test-functions-in-pytest" title="Create-test-functions-in-pytest"><i class="fa fa-link"></i></a>Create test functions in pytest</h2><p>The module <code>unittest</code> is a built-in testing framework in Python but includes a lot of boilerplate code. <code>pytest</code>  simplifies this workflow by allowing you to use normal functions and Python’s <code>assert</code> keyword directly.</p><center>
+<p><img src="https://i.imgur.com/f35eEAI.png" alt="" width="300" height="200" class="md-image md-image"><br>
+pytest vs unittest</p>
+</center><h3 id="Example0"><a class="anchor hidden-xs" href="#Example0" title="Example0"><i class="fa fa-link"></i></a>Example:</h3><p>Here I created two dummy functions with their test functions.</p><pre><code class="python hljs"><span class="hljs-comment"># src/dummy.py</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">return</span> a + b
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mul</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">return</span> a * b
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># tests/test_sum.py</span>
+
+<span class="hljs-keyword">from</span> src.dummy <span class="hljs-keyword">import</span> sum
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_sum_pn</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    y = <span class="hljs-number">-1</span>
+
+    result = sum(x, y)
+
+    <span class="hljs-keyword">assert</span> result == <span class="hljs-number">0</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_sum_pp</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    y = <span class="hljs-number">1</span>
+
+    result = sum(x, y)
+
+    <span class="hljs-keyword">assert</span> result &gt; <span class="hljs-number">2</span>
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># tests/test_mul.py</span>
+
+<span class="hljs-keyword">from</span> src.dummy <span class="hljs-keyword">import</span> mul
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_mul_pn</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    y = <span class="hljs-number">-1</span>
+
+    result = mul(x, y)
+
+    <span class="hljs-keyword">assert</span> result &lt; <span class="hljs-number">0</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_mul_pp</span><span class="hljs-params">()</span>:</span>
+    x = <span class="hljs-number">1</span>
+    y = <span class="hljs-number">1</span>
+
+    result = mul(x, y)
+
+    <span class="hljs-keyword">assert</span> result &gt; <span class="hljs-number">0</span>
+</code></pre><p>You can run tests from command line using <code>pytest</code> command.</p><pre><code class="yaml hljs"><span class="hljs-string">pytest</span>
+</code></pre><div class="alert alert-warning">
+<p>If you get an error “ModuleNotFoundError: No module named ‘src’”, then it is probably that you did not add <code>__init__.py</code> file to <code>src</code> and <code>tests</code> folders. Add them and run the command again.</p>
+</div><p>The output:</p><pre><code class="yaml hljs"><span class="hljs-string">=================</span> <span class="hljs-string">test</span> <span class="hljs-string">session</span> <span class="hljs-string">starts</span> <span class="hljs-string">=================</span>
+<span class="hljs-string">platform</span> <span class="hljs-string">win32</span> <span class="hljs-bullet">--</span> <span class="hljs-string">Python</span> <span class="hljs-number">3.12</span><span class="hljs-number">.0</span><span class="hljs-string">,</span> <span class="hljs-string">pytest-8.2.2,</span> <span class="hljs-string">pluggy-1.5.0</span>
+<span class="hljs-attr">rootdir:</span> <span class="hljs-attr">C:\Users\Admin\mlops\test\mlops-dvc-test01</span>
+<span class="hljs-attr">plugins:</span> <span class="hljs-string">hydra-core-1.3.2</span>
+<span class="hljs-string">collected</span> <span class="hljs-number">4</span> <span class="hljs-string">items</span>
+
+<span class="hljs-string">tests\test_mul.py</span> <span class="hljs-string">..</span>                             <span class="hljs-string">[</span> <span class="hljs-number">50</span><span class="hljs-string">%]</span>
+<span class="hljs-string">tests\test_sum.py</span> <span class="hljs-string">.F</span>                             <span class="hljs-string">[100%]</span>
+
+<span class="hljs-string">======================</span> <span class="hljs-string">FAILURES</span> <span class="hljs-string">=======================</span>
+<span class="hljs-string">_____________________</span> <span class="hljs-string">test_sum_pp</span> <span class="hljs-string">_____________________</span> 
+
+    <span class="hljs-string">def</span> <span class="hljs-string">test_sum_pp():</span>
+        <span class="hljs-string">x</span> <span class="hljs-string">=</span> <span class="hljs-number">1</span>
+        <span class="hljs-string">y</span> <span class="hljs-string">=</span> <span class="hljs-number">1</span>
+
+        <span class="hljs-string">result</span> <span class="hljs-string">=</span> <span class="hljs-string">sum(x,</span> <span class="hljs-string">y)</span>
+
+<span class="hljs-string">&gt;       assert result &gt; 2
+E       assert 2 &gt; 2
+
+tests\test_sum.py:17: AssertionError
+=============== short test summary info =============== 
+FAILED tests/test_sum.py::test_sum_pp - assert 2 &gt; 2    
+============= 1 failed, 3 passed in 0.27s =============
+</span></code></pre><h2 id="Test-discovery"><a class="anchor hidden-xs" href="#Test-discovery" title="Test-discovery"><i class="fa fa-link"></i></a>Test discovery</h2><p><code>pytest</code> is able to find all the tests we want it to run as long as we name them according to the pytest naming conventions which are:</p><ul>
+<li>Test files/modules should be named <code>test_&lt;something&gt;.py</code> or <code>&lt;something&gt;_test.py</code>.</li>
+<li>Test methods and functions should be named <code>test_&lt;something&gt;</code>.</li>
+<li>Test classes should be named <code>Test&lt;Something&gt;</code>.</li>
+</ul><h2 id="Test-Outcomes"><a class="anchor hidden-xs" href="#Test-Outcomes" title="Test-Outcomes"><i class="fa fa-link"></i></a>Test Outcomes</h2><p>So far we’ve seen one passing test and one failing test. However, pass and fail are not the only outcomes possible.<br>
+Here are the possible outcomes of a test:</p><ul>
+<li>PASSED (.)—The test ran successfully.</li>
+<li>FAILED (F)—The test did not run successfully.</li>
+<li>SKIPPED (s)—The test was skipped.</li>
+<li>XFAIL (x)—The test was not supposed to pass, and it ran and failed. You can tell pytest that a test is expected to fail by using the <code>@pytest.mark.xfail()</code> decorator.</li>
+<li>XPASS (X)—The test was marked with xfail, but it ran and passed.</li>
+<li>ERROR (E)—An exception happened either during the execution of a fixture or hook function, and not during the execution of a test function.</li>
+</ul><h2 id="Failing-a-test"><a class="anchor hidden-xs" href="#Failing-a-test" title="Failing-a-test"><i class="fa fa-link"></i></a>Failing a test</h2><p>A test will fail if there is any uncaught exception. This can happen if</p><ul>
+<li>an assert statement fails, which will raise an <code>AssertionError</code> exception,</li>
+<li>the test code calls <code>pytest.fail()</code>, which will raise an exception, or</li>
+<li>any other exception is raised (<code>raise</code> keyword).</li>
+</ul><h3 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h3><pre><code class="python hljs"><span class="hljs-comment"># src/cards.py</span>
+
+<span class="hljs-keyword">from</span> dataclasses <span class="hljs-keyword">import</span> asdict, dataclass
+
+<span class="hljs-meta">@dataclass</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Card</span>:</span>
+    summary: str = <span class="hljs-literal">None</span>
+    owner: str = <span class="hljs-literal">None</span>
+    state: str = <span class="hljs-string">"todo"</span>
+    id: int = <span class="hljs-number">0</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">from_dict</span><span class="hljs-params">(cls, d)</span>:</span>
+        <span class="hljs-keyword">return</span> Card(**d)
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">to_dict</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> asdict(self)
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># tests/test_alt_fail.py</span>
+
+<span class="hljs-keyword">import</span> pytest
+<span class="hljs-keyword">from</span> src.cards <span class="hljs-keyword">import</span> Card
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_with_fail</span><span class="hljs-params">()</span>:</span>
+    c1 = Card(<span class="hljs-string">"sit there"</span>, <span class="hljs-string">"brian"</span>)
+    c2 = Card(<span class="hljs-string">"do something"</span>, <span class="hljs-string">"okken"</span>)
+    <span class="hljs-keyword">if</span> c1 != c2:
+        pytest.fail(<span class="hljs-string">"they don't match"</span>)
+</code></pre><h2 id="Testing-for-expected-exceptions"><a class="anchor hidden-xs" href="#Testing-for-expected-exceptions" title="Testing-for-expected-exceptions"><i class="fa fa-link"></i></a>Testing for expected exceptions</h2><p>We’ve looked at how any exception can cause a test to fail. But what if a bit of code you are testing is supposed to raise an exception? How do you test for that? You use <code>pytest.raises()</code> to test for expected exceptions.</p><pre><code class="python hljs"><span class="hljs-comment"># src/cards.py</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardsDB</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, db_path)</span>:</span>
+        self._db_path = db_path
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># tests/test_no_exceptions</span>
+
+<span class="hljs-keyword">import</span> pytest
+<span class="hljs-keyword">from</span> src.cards <span class="hljs-keyword">import</span> CardsDB
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_no_path_raises</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">with</span> pytest.raises(TypeError):
+        CardsDB()
+</code></pre><p>We can run this test alone as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests/test_exceptions.py</span>
+</code></pre><p>The output:</p><pre><code class="yaml hljs"><span class="hljs-string">=================</span> <span class="hljs-string">test</span> <span class="hljs-string">session</span> <span class="hljs-string">starts</span> <span class="hljs-string">=================</span>
+<span class="hljs-string">platform</span> <span class="hljs-string">win32</span> <span class="hljs-bullet">--</span> <span class="hljs-string">Python</span> <span class="hljs-number">3.12</span><span class="hljs-number">.0</span><span class="hljs-string">,</span> <span class="hljs-string">pytest-8.2.2,</span> <span class="hljs-string">pluggy-1.5.0</span>
+<span class="hljs-attr">rootdir:</span> <span class="hljs-attr">C:\Users\Admin\mlops\test\mlops-dvc-test01</span>     
+<span class="hljs-attr">plugins:</span> <span class="hljs-string">hydra-core-1.3.2</span>
+<span class="hljs-string">collected</span> <span class="hljs-number">1</span> <span class="hljs-string">item</span>                                        
+
+<span class="hljs-string">tests\test_exceptions.py</span> <span class="hljs-string">.</span>                       <span class="hljs-string">[100%]</span> 
+
+<span class="hljs-string">==================</span> <span class="hljs-number">1</span> <span class="hljs-string">passed</span> <span class="hljs-string">in</span> <span class="hljs-number">0.04</span><span class="hljs-string">s</span> <span class="hljs-string">==================</span>
+</code></pre><h2 id="Grouping-Tests-with-Classes"><a class="anchor hidden-xs" href="#Grouping-Tests-with-Classes" title="Grouping-Tests-with-Classes"><i class="fa fa-link"></i></a>Grouping Tests with Classes</h2><p>So far we have written test functions within test modules. <code>pytest</code> also allows us to group tests with classes.</p><pre><code class="python hljs"><span class="hljs-comment"># tests/test_card.py</span>
+
+<span class="hljs-keyword">from</span> src.cards <span class="hljs-keyword">import</span> Card
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestEquality</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_equality</span><span class="hljs-params">(self)</span>:</span>
+        c1 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        c2 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        <span class="hljs-keyword">assert</span> c1 == c2
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_equality_with_diff_ids</span><span class="hljs-params">(self)</span>:</span>
+        c1 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        c2 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">4567</span>)
+        <span class="hljs-keyword">assert</span> c1 == c2
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_inequality</span><span class="hljs-params">(self)</span>:</span>
+        c1 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        c2 = Card(<span class="hljs-string">"completely different"</span>, <span class="hljs-string">"okken"</span>, <span class="hljs-string">"done"</span>, <span class="hljs-number">123</span>)
+        <span class="hljs-keyword">assert</span> c1 != c2
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestCardIds</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_equality_id</span><span class="hljs-params">(self)</span>:</span>
+        c1 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        c2 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">122</span>)
+        <span class="hljs-keyword">assert</span> c1.id == c2.id
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_equality_with_diff_ids</span><span class="hljs-params">(self)</span>:</span>
+        c1 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        c2 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">4567</span>)
+        <span class="hljs-keyword">assert</span> c1.id != c2.id
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_inequality</span><span class="hljs-params">(self)</span>:</span>
+        c1 = Card(<span class="hljs-string">"something"</span>, <span class="hljs-string">"brian"</span>, <span class="hljs-string">"todo"</span>, <span class="hljs-number">123</span>)
+        c2 = Card(<span class="hljs-string">"completely different"</span>, <span class="hljs-string">"okken"</span>, <span class="hljs-string">"done"</span>, <span class="hljs-number">123</span>)
+        <span class="hljs-keyword">assert</span> c1.id != c2.id
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_hello</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">assert</span> msg==<span class="hljs-string">"hello"</span>
+</code></pre><p>We can run a subset of tests as follows:</p><ul>
+<li>All tests in a class</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests/test_card.py::TestCardIds</span>
+</code></pre><ul>
+<li>All tests in a module</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests/test_card.py</span>
+</code></pre><ul>
+<li>Single test function</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests/test_card.py::test_hello</span>
+</code></pre><ul>
+<li>Single test method</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests/test_card.py::TestCardIds::test_inequality</span>
+</code></pre><ul>
+<li>All tests in a directory</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">test</span>
+</code></pre><h2 id="pytest-Fixtures"><a class="anchor hidden-xs" href="#pytest-Fixtures" title="pytest-Fixtures"><i class="fa fa-link"></i></a>pytest Fixtures</h2><p>Fixtures are functions that are run by pytest before (and sometimes after) the actual test functions.</p><p>You can use fixtures to get a data set for the tests to work on. Fixtures are also used to get data ready for multiple tests.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> pytest
+<span class="hljs-meta">@pytest.fixture()</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">some_data</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_some_data</span><span class="hljs-params">(some_data)</span>:</span>
+    <span class="hljs-keyword">assert</span> some_data == <span class="hljs-number">42</span>
+</code></pre><p>The <code>@pytest.fixture()</code> decorator is used to tell <code>pytest</code> that a function is a fixture. When you include the fixture name in the <strong>parameter list</strong> of a test function, <code>pytest</code> knows to run it before running the test. Fixtures can do work, and can also return data to the test function.</p><p>Fixture parameters:<br>
+TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrization" title="Parametrization"><i class="fa fa-link"></i></a>Parametrization</h2><p>TODO</p><h2 id="Markers"><a class="anchor hidden-xs" href="#Markers" title="Markers"><i class="fa fa-link"></i></a>Markers</h2><p>TODO</p><h2 id="Coverage"><a class="anchor hidden-xs" href="#Coverage" title="Coverage"><i class="fa fa-link"></i></a>Coverage</h2><p>TODO</p><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><p>TODO</p><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
 <!-- **Business understanding** -->
 <p><strong>[Lab 1]</strong></p>
 <ol>
@@ -456,18 +953,79 @@ My application
 3. Open the project repository using VS Code in some local folder.<br>
 4. Create a virtual environment using <code>venv</code> or <code>conda</code>. Activate it.<br>
 5. Add <code>requirements.txt</code>. Add an executable file like a script <code>scripts/install_requirements.sh</code> to install the requirements using the pip to the created virtual environment. Run it whenever you added a new package to <code>requirements.txt</code>.<br>
-6. Use notebooks to understand the data. This will be detailed next labs.<br>
-7. [Good practice/optional] Do a preliminary ML modeling in the notebook to be ready for the next phases (Phase 3).<br>
-8. Add all notebooks to the folder <code>notebooks</code>.<br>
-9. Keep the repository organized and well-documented. Add README files to each folder and documentation to source code files (Use Pylint extension of VS Code)<br>
-10. Complete the notebook <code>business_understanding.ipynb</code>(shared in this document) and push it to <code>notebooks</code> folder. You can complete this notebook by writing on the notebook itslef or by writing it in a document shared as pdf and pushed to <code>reports</code> folder. Build the ML Canvas and push it to <code>reports</code> folder as a pdf.<br>
-<strong>[Lab 2]</strong><br>
-11. Add a new branch (e.g. <code>dev</code>) to the repo.<br>
-12. Add a function <code>sample_data</code> in a module <code>src/data.py</code> to read the data file and take a sample. Use Hydra to manage the data url in the configs and any configurations needed like the size of the sample, the name of the dataset,…etc. You need to define a structure for project configurations and use Hydra to read them from the source code. The function should read the data url from config files using Hydra and sample the data. Then, it stores the data samples in <code>data/samples</code> folder as <code>sample.csv</code> where the sample size is 20% of the total rows in the whole data. The sample size can be added to the config files too. The idea here is to make your project maintainable and ready for any changes with minimal modifications (DRY principle). For each new sample added, version the data using <code>dvc</code> to not lose any data samples.<br>
-13. Run the function and it should generate a sample. The function should overwrite the file <code>sample.csv</code> if it already exists. You can manage the data versions using <code>dvc</code>.<br>
-14. Add tests to the function in <code>tests</code> folder and make sure it can pass all tests. You can add extensions from VS Code to setup <code>pytest</code>.<br>
-15. Commit the changes to <code>dev</code> branch and merge it to <code>main</code> branch.<br>
-16. You should commit and push whenever you fixed some issue or started/finished building some artifact.</p>
+6. Complete the notebook <code>business_understanding.ipynb</code>(shared in this document) and push it to <code>notebooks</code> folder. You can complete this notebook by writing on the notebook itslef or by writing it in a document shared as pdf and pushed to <code>reports</code> folder. Build the ML Canvas and push it to <code>reports</code> folder as a pdf.<br>
+7. Use Jupyter/Colab notebooks to understand the data. The notebook should include data analysis results supported with charts as follows:</p>
+<ul>
+<li>What data features need to be cleaned</li>
+<li>What cleaning methods you applied to get a clean data</li>
+<li>The description of the data</li>
+<li>The quantity of the data</li>
+<li>The data types of the features</li>
+<li>How many unique values per feature</li>
+<li>Categories of feature types (which features are categorical, which are numerical, which are text, …)
+<ul>
+<li>This needs to be clearly stated and not based on the datatype of the features since it can be misleading. You need to read the data description and understand each feature.</li>
+</ul>
+</li>
+<li>Missing values
+<ul>
+<li>How many missing values are there per feature</li>
+<li>Which features need to be imputed/handled</li>
+<li>How you will handle the missing features</li>
+<li>What is the quality of the data (bad, good, excellent)</li>
+<li>Do a preliminary data cleaning to get a data without missing values</li>
+</ul>
+</li>
+<li>Data transformation methods for ML-ready datasets
+<ul>
+<li>Which data features need transformation</li>
+<li>What type of transformation needed per feature (e.g. one hot encoding for categorical features)</li>
+<li>Do a preliminary data transformation to get an ML-ready data</li>
+</ul>
+</li>
+<li>The distribution of each data feature and the target
+<ul>
+<li>Using charts, analyse visually the linear relationship of each feature with the target (Bivariate analysis). You can also do that between features.</li>
+<li>Make a conclusion (Are there linear relationships between them?)</li>
+<li>Initially, decide which ML methods could be useful/not useful for this data</li>
+<li>Try to form a preliminary set of features which have relationships and you believe may contribute to the performance of the ML model</li>
+</ul>
+</li>
+<li>Data validation/testing
+<ul>
+<li>Write expectations using GX about the data coming from the source</li>
+<li>Validate the expectations</li>
+</ul>
+</li>
+<li>Correlation analysis (Only Master’s students)
+<ul>
+<li>Which features are correlated</li>
+<li>Which features have strong correlation with the target.</li>
+<li>Which correlation methods you used and why?</li>
+</ul>
+</li>
+</ul>
+<ol start="8">
+<li>Do a preliminary ML modeling in the Jupyter notebook. Build a proof-of-concept (POC) ML model.</li>
+<li>Add all notebooks to the folder <code>notebooks</code>.</li>
+<li>Keep the repository organized and well-documented. Add README files to each folder and documentation to source code files (Use Pylint extension of VS Code)</li>
+<li>Add a new branch (e.g. <code>dev</code>) to the repo.</li>
+<li>Add a function <code>sample_data</code> in a module <code>src/data.py</code> to read the data file and take a sample. Use Hydra to manage the data url in the configs and any configurations needed like the size of the sample, the name of the dataset,…etc. You need to define a structure for project configurations and use Hydra to read them from the source code. The function should read the data url from config files using Hydra and sample the data. Then, it stores the data samples in <code>data/samples</code> folder as <code>sample.csv</code> where the sample size is 20% of the total rows in the whole data. The sample size can be added to the config files too. The idea here is to make your project maintainable and ready for any changes with minimal modifications (DRY principle). For each new sample added, version the data using <code>dvc</code> to not lose any data samples.</li>
+<li>Run the function <code>sample_data</code> and it should generate a sample. The function should overwrite the file <code>sample.csv</code> if it already exists. You can manage the data versions using <code>dvc</code>.</li>
+<li>Add test functions (at least 2) in the <code>tests</code> folder to test the function <code>sample_data</code> and make sure it can pass all tests. You can add extensions from VS Code to setup <code>pytest</code>.</li>
+<li>Add another function <code>validate_initial_data</code> which declares expectations about the data features and validates them.</li>
+<li>Write a script <code>scripts/test_data.sh</code> to automate:</li>
+</ol>
+<ul>
+<li>Take a data sample</li>
+<li>Version the data</li>
+<li>Validate data</li>
+</ul>
+<p><strong>Note:</strong> Make sure that it is automated and it gives reproducible results without side effects.<br>
+17. Commit the changes to <code>dev</code> branch and merge it to <code>main</code> branch.<br>
+18. You should commit and push whenever you fixed some issue or started/finished building some artifact.</p>
+</div><div class="alert alert-danger">
+<p>Use properly all tools (hydra, pytest, dvc, …etc) that you studided in this phase.</p>
 </div><h2 id="B-Report-Only-for-Master’s-students"><a class="anchor hidden-xs" href="#B-Report-Only-for-Master’s-students" title="B-Report-Only-for-Master’s-students"><i class="fa fa-link"></i></a>B. Report <strong>[Only for Master’s students]</strong></h2><div class="alert alert-success">
 <!-- **Business understanding** -->
 <p>Complete the following chapters:</p>
@@ -519,13 +1077,25 @@ My application
 <li>
 <p><strong>Section 2.5. Data collection</strong></p>
 <ul>
-<li>TODO</li>
+<li>This section should include the initial exploration of the metadata of the dataset. It should provide reports about data collection, data version control.</li>
+<li><strong>Section 2.5.1 Data collection report</strong>: Specify the data source from which the data is collected, the format and data types of data features, the quantity of the data, and how the data is collected.</li>
+<li><strong>Section 2.5.2 Data version control report</strong>: Describe data versions, what change happend in the data, how do you backup the data, how do you store historical data, and which people who have access and can modify the data. This should be done after you collect the data.</li>
 </ul>
 </li>
 <li>
 <p><strong>Section 2.6. Data quality verification</strong></p>
 <ul>
-<li>TODO</li>
+<li>Here, we explore the data and check the quality. We need to define expectations for the data and validate the data.</li>
+<li><strong>Section 2.6.1. Data description</strong>: A section to describe the data that has been acquired including its format, its quantity (for example, the number of records and fields in each table), the identities of the fields and any other surface features which have been discovered.</li>
+<li><strong>Section 2.6.2. Data exploration</strong> present results of your data exploration, including first findings or initial hypothesis and their impact on the remainder of the project. If appropriate you could include graphs and plots here to indicate data characteristics that suggest further examination of interesting data subsets.</li>
+<li><strong>Section 2.6.3. Data requirements</strong> describe the data requirements. The requirements can be defined either on the meta-level or directly in the data, and should state the expected conditions of the data, i.e., whether a certain sample is plausible. The requirements can be, e.g., the expected feature values (a range for continuous features or a list for discrete features), the format of the data and the maximum number of missing values. The bounds of the requirements has to be defined carefully to include all possible real world values but discard non-plausible data. Data that does not satisfy the expected conditions could be treated as anomalies and need to be evaluated manually or excluded automatically. To mitigate the risk of anchoring bias in this first phase discussing the requirements with a domain expert is advised. Documentation of the data requirements could be expressed in the form of a schema with strict data types and conditions.</li>
+<li><strong>Section 2.6.4. Data quality verification report</strong> verify and report the quality of the data. Examine the quality of the data, addressing questions such as:
+<ul>
+<li>Is the data complete (does it cover all the cases required)?</li>
+<li>Is it correct, or does it contain errors and, if there are errors, how common are they?</li>
+<li>Are there missing values in the data? If so, how are they represented, where do they occur, and how common are they?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -535,7 +1105,7 @@ My application
 </ul>
 </li>
 <li>
-<p><strong>Section 2.7. Project plan</strong></p>
+<p><strong>Section 2.8. Project plan</strong></p>
 <ul>
 <li>TODO</li>
 </ul>
@@ -576,56 +1146,92 @@ My application
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
-<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
-<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
-<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
-<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
-<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
-<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
-<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
-<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
-<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
-<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
-<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
-<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
-<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-<li><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
-<li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+<li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+<li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
-<li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
-<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
-<li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
-<li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
-<li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
-<li><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li class=""><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
+<li class=""><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
+<li class=""><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
+<li class=""><a href="#Compose-API" title="Compose API">Compose API</a></li>
+<li class=""><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a><ul class="nav">
+<li class=""><a href="#Install-DVC" title="Install DVC">Install DVC</a></li>
+<li class=""><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
+<li class=""><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
+<li class=""><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
+<li class=""><a href="#Example0" title="Example">Example</a></li>
+</ul>
+</li>
+<li class=""><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul class="nav">
+<li class=""><a href="#Using-Git" title="Using Git">Using Git</a></li>
+<li class=""><a href="#Using-dvcapi-Python-API" title="Using dvc.api Python API">Using dvc.api Python API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
+<li class=""><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
+<li class=""><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
+<li class=""><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
+<li class=""><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul class="nav">
+<li class=""><a href="#Example0" title="Example:">Example:</a></li>
+</ul>
+</li>
+<li class=""><a href="#Test-discovery" title="Test discovery">Test discovery</a></li>
+<li class=""><a href="#Test-Outcomes" title="Test Outcomes">Test Outcomes</a></li>
+<li class=""><a href="#Failing-a-test" title="Failing a test">Failing a test</a><ul class="nav">
+<li class=""><a href="#Example" title="Example">Example</a></li>
+</ul>
+</li>
+<li class=""><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
+<li class=""><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
+<li class=""><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
+<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li class=""><a href="#Markers" title="Markers">Markers</a></li>
+<li class=""><a href="#Coverage" title="Coverage">Coverage</a></li>
+</ul>
+</li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
@@ -642,56 +1248,92 @@ My application
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
 <li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
-<li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
-<li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
-<li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
-<li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
-<li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
-<li><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
-<li><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
-<li><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
-<li><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
-<li><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
-<li><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
-<li><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
+<li class=""><a href="#People-and-personas" title="People and personas">People and personas</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
+<li class=""><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
+<li class=""><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
+<li class=""><a href="#5-Experiments-Tracking" title="5. Experiments Tracking">5. Experiments Tracking</a></li>
+<li class=""><a href="#6-Testing" title="6. Testing">6. Testing</a></li>
+<li class=""><a href="#7-Monitoring" title="7. Monitoring">7. Monitoring</a></li>
+<li class=""><a href="#8-“ML-Test-Score”-System" title="8. “ML Test Score” System">8. “ML Test Score” System</a></li>
+<li class=""><a href="#9-Reproducibility" title="9. Reproducibility">9. Reproducibility</a></li>
+<li class=""><a href="#10-Loosely-Coupled-Architecture-Modularity" title="10. Loosely Coupled Architecture (Modularity)">10. Loosely Coupled Architecture (Modularity)</a></li>
+<li class=""><a href="#11-ML-based-Software-Delivery-Metrics-4-metrics-from-“Accelerate”" title="11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)">11. ML-based Software Delivery Metrics (4 metrics from “Accelerate”)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
-<li><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
-<li><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
-<li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
+<li class=""><a href="#CRISP-ML" title="CRISP-ML">CRISP-ML</a><ul class="nav">
+<li class=""><a href="#Datasets-in-Research-vs-Industry" title="Datasets in Research vs. Industry">Datasets in Research vs. Industry</a></li>
+<li class=""><a href="#ML-Problem-framing" title="ML Problem framing">ML Problem framing</a></li>
+<li class=""><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
-<li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
-<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example0" title="Composition example">Composition example</a></li>
-<li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
-<li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
-<li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
-<li><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example0" title="Composition example">Composition example</a></li>
+<li class=""><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
+<li class=""><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
+<li class=""><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
+<li class=""><a href="#Compose-API" title="Compose API">Compose API</a></li>
+<li class=""><a href="#Structured-Configs" title="Structured Configs">Structured Configs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a></li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a></li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a><ul class="nav">
+<li class=""><a href="#Install-DVC" title="Install DVC">Install DVC</a></li>
+<li class=""><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
+<li class=""><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
+<li class=""><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
+<li class=""><a href="#Example0" title="Example">Example</a></li>
+</ul>
+</li>
+<li class=""><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul class="nav">
+<li class=""><a href="#Using-Git" title="Using Git">Using Git</a></li>
+<li class=""><a href="#Using-dvcapi-Python-API" title="Using dvc.api Python API">Using dvc.api Python API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
+<li class=""><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
+<li class=""><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
+<li class=""><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
+<li class=""><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul class="nav">
+<li class=""><a href="#Example0" title="Example:">Example:</a></li>
+</ul>
+</li>
+<li class=""><a href="#Test-discovery" title="Test discovery">Test discovery</a></li>
+<li class=""><a href="#Test-Outcomes" title="Test Outcomes">Test Outcomes</a></li>
+<li class=""><a href="#Failing-a-test" title="Failing a test">Failing a test</a><ul class="nav">
+<li class=""><a href="#Example" title="Example">Example</a></li>
+</ul>
+</li>
+<li class=""><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
+<li class=""><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
+<li class=""><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
+<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li class=""><a href="#Markers" title="Markers">Markers</a></li>
+<li class=""><a href="#Coverage" title="Coverage">Coverage</a></li>
+</ul>
+</li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
