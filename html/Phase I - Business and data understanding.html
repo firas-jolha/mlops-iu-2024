@@ -540,10 +540,10 @@ Initializes Hydra and add an absolute config dir to the config search path. The 
 <li>Download/Add the data file <code>data.scv</code> to your Git repository.</li>
 <li>Initialize DVC repository (only once per repository).</li>
 <li>Add <code>data.csv</code> to DVC repository.</li>
-<li>Add the changes like <em>data.csv.dvc</em> to Git repository.</li>
+<li>Add the changes (<em>data.csv.dvc</em>) to Git repository.</li>
 <li>Commit the changes to Git repository.</li>
-<li>Tag the commit.</li>
-<li>Push the commit to Github with tags.</li>
+<li>Push the commit to Github.</li>
+<li>Tag the commit and push the tag to Github.</li>
 <li>Push the data to the DVC remote registry.</li>
 </ol><h3 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h3><p>Here I will download my data <a href="https://archive.ics.uci.edu/static/public/222/data.csv" target="_blank" rel="noopener"><code>data.csv</code></a>, version it, introduce a change to it, after that I will version the change, and switch between versions:</p><ol>
 <li>Given the data url, you can download it using <code>wget</code> as follows:</li>
@@ -565,11 +565,13 @@ Initializes Hydra and add an absolute config dir to the config search path. The 
 <li>Commit the changes to Git repository.</li>
 </ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add raw data"</span>
 </code></pre><ol start="6">
-<li>Tag the commit</li>
-</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-bullet">-a</span> <span class="hljs-string">"v1.0"</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add data version v1.0"</span>
+<li>Push the commit to Github.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">push</span>
 </code></pre><ol start="7">
-<li>Push the commit to Github with tags.</li>
-</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-bullet">--tags</span>
+<li>Tag the commit and push the tag to Github</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-bullet">-a</span> <span class="hljs-string">"v1.0"</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add data version v1.0"</span>
+
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-bullet">--tags</span>
 </code></pre><ol start="8">
 <li>Push the data to the DVC remote registry.</li>
 </ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">push</span>
@@ -592,11 +594,13 @@ Initializes Hydra and add an absolute config dir to the config search path. The 
 <li>Commit the changes</li>
 </ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"add new data"</span>
 </code></pre><ol start="13">
-<li>Tag the commit</li>
-</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-bullet">-a</span> <span class="hljs-string">"v2.0"</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"A new version of the data V2.0"</span>
+<li>Push the commit to Github.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">push</span>
 </code></pre><ol start="14">
-<li>Push the commit to Github with tags.</li>
-</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-bullet">--tags</span>
+<li>Tag the commit and push to Github.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-bullet">-a</span> <span class="hljs-string">"v2.0"</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"A new version of the data V2.0"</span>
+
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-bullet">--tags</span>
 </code></pre><ol start="15">
 <li>Push the data to the DVC remote registry.</li>
 </ol><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">push</span>
@@ -604,9 +608,9 @@ Initializes Hydra and add an absolute config dir to the config search path. The 
 <p>You can list the tags of a Git repo as:</p>
 <pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">tag</span>
 </code></pre>
-</div><h2 id="Switch-between-data-versions"><a class="anchor hidden-xs" href="#Switch-between-data-versions" title="Switch-between-data-versions"><i class="fa fa-link"></i></a>Switch between data versions</h2><p>You actually can delete the file from <code>data</code> folder since it is stored in the remote storage. You will notice that the data is locally saved in its cache folder <code>.dvc/cache</code> using file hashes.</p><h3 id="Using-Git"><a class="anchor hidden-xs" href="#Using-Git" title="Using-Git"><i class="fa fa-link"></i></a>Using Git</h3><p>You can restore the previous versions of the data from Git repository by checking out the corresponding commit. You can use the tags that you defined as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">v1.0</span> <span class="hljs-string">data/data.csv.dvc</span>
+</div><h2 id="Switch-between-data-versions"><a class="anchor hidden-xs" href="#Switch-between-data-versions" title="Switch-between-data-versions"><i class="fa fa-link"></i></a>Switch between data versions</h2><p>You actually can delete the file from <code>data</code> folder since it is stored in the remote storage. You will notice that the data is locally saved in its cache folder <code>.dvc/cache</code> using file hashes.</p><h3 id="Using-Git"><a class="anchor hidden-xs" href="#Using-Git" title="Using-Git"><i class="fa fa-link"></i></a>Using Git</h3><p>You can restore the previous versions of the data from Git repository by checking out the corresponding commit. You can use the tags that you defined as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">v1.0</span> <span class="hljs-string">data/raw/data.csv.dvc</span>
 </code></pre><p>This will restore the <code>data.csv.dvc</code> metafile.</p><p>In order to restore the actual file, you need to checkout DVC too:</p><pre><code class="yaml hljs"><span class="hljs-string">dvc</span> <span class="hljs-string">checkout</span>
-</code></pre><p>You can add and commit the selected version then push it.</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-string">data/data.csv.dvc</span> <span class="hljs-bullet">-a</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"Restored data v1.0"</span>
+</code></pre><p>You can add and commit the selected version then push it.</p><pre><code class="yaml hljs"><span class="hljs-string">git</span> <span class="hljs-string">commit</span> <span class="hljs-string">data/raw/data.csv.dvc</span> <span class="hljs-bullet">-a</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">"Restored data v1.0"</span>
 </code></pre><p>You do not need to push it to DVC again since this version is already stored in the remote storage.</p><div class="alert alert-danger">
 <p>Notice that if you checkout without specifying the file (e.g. <code>git checkout v1.0</code>), then all other tracked files (e.g. config files, source codes, …etc) with the same commit “v1.0” will also be checked out (be careful). This will also <em>detach</em> the HEAD pointer to point to the commit which contains the data of version <code>v1.0</code>. You can attach it to <code>main</code> branch by running <code>git switch main</code>.</p>
 </div><h3 id="Using-dvcapi-Python-API"><a class="anchor hidden-xs" href="#Using-dvcapi-Python-API" title="Using-dvcapi-Python-API"><i class="fa fa-link"></i></a>Using <code>dvc.api</code> Python API</h3><p>DVC comes as a VS Code Extension, as a command line interface, and as a Python API. Here we will use <code>dvc.api</code> to obtain the data files based on the selected version.</p><pre><code class="yaml hljs"><span class="hljs-comment"># configs/main.yaml</span>
@@ -916,7 +920,7 @@ Here are the possible outcomes of a test:</p><ul>
 </ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests/test_card.py::TestCardIds::test_inequality</span>
 </code></pre><ul>
 <li>All tests in a directory</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">test</span>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests</span>
 </code></pre><h2 id="pytest-Fixtures"><a class="anchor hidden-xs" href="#pytest-Fixtures" title="pytest-Fixtures"><i class="fa fa-link"></i></a>pytest Fixtures</h2><p>Fixtures are functions that are run by pytest before (and sometimes after) the actual test functions.</p><p>You can use fixtures to get a data set for the tests to work on. Fixtures are also used to get data ready for multiple tests.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> pytest
 <span class="hljs-meta">@pytest.fixture()</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">some_data</span><span class="hljs-params">()</span>:</span>
@@ -925,7 +929,7 @@ Here are the possible outcomes of a test:</p><ul>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_some_data</span><span class="hljs-params">(some_data)</span>:</span>
     <span class="hljs-keyword">assert</span> some_data == <span class="hljs-number">42</span>
 </code></pre><p>The <code>@pytest.fixture()</code> decorator is used to tell <code>pytest</code> that a function is a fixture. When you include the fixture name in the <strong>parameter list</strong> of a test function, <code>pytest</code> knows to run it before running the test. Fixtures can do work, and can also return data to the test function.</p><p>Fixture parameters:<br>
-TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrization" title="Parametrization"><i class="fa fa-link"></i></a>Parametrization</h2><p>TODO</p><h2 id="Markers"><a class="anchor hidden-xs" href="#Markers" title="Markers"><i class="fa fa-link"></i></a>Markers</h2><p>TODO</p><h2 id="Coverage"><a class="anchor hidden-xs" href="#Coverage" title="Coverage"><i class="fa fa-link"></i></a>Coverage</h2><p>TODO</p><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><p>TODO</p><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrization" title="Parametrization"><i class="fa fa-link"></i></a>Parametrization</h2><p>TODO</p><h2 id="Markers"><a class="anchor hidden-xs" href="#Markers" title="Markers"><i class="fa fa-link"></i></a>Markers</h2><p>TODO</p><h2 id="Coverage"><a class="anchor hidden-xs" href="#Coverage" title="Coverage"><i class="fa fa-link"></i></a>Coverage</h2><p>TODO</p><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
 <!-- **Business understanding** -->
 <ol>
 <li>Create a Github repo for the project. Use the Github UI, select Python for <code>.gitignore</code> and add a <code>README.md</code> file. Add the instructor and all team members to the repository as contributors. The strcture is similar to:</li>
@@ -1217,7 +1221,7 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 </li>
 </ul>
 </li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
 <li><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
 <li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
@@ -1234,18 +1238,18 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
 <li><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
 <li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
-<li><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
-<li><a href="#Markers" title="Markers">Markers</a></li>
-<li><a href="#Coverage" title="Coverage">Coverage</a></li>
+<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li class=""><a href="#Markers" title="Markers">Markers</a></li>
+<li class=""><a href="#Coverage" title="Coverage">Coverage</a></li>
 </ul>
 </li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li><a href="#References" title="References">References</a></li>
+<li class=""><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
@@ -1319,7 +1323,7 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 </li>
 </ul>
 </li>
-<li><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
+<li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
 <li><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
 <li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
@@ -1336,18 +1340,18 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
 <li><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
 <li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
-<li><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
-<li><a href="#Markers" title="Markers">Markers</a></li>
-<li><a href="#Coverage" title="Coverage">Coverage</a></li>
+<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li class=""><a href="#Markers" title="Markers">Markers</a></li>
+<li class=""><a href="#Coverage" title="Coverage">Coverage</a></li>
 </ul>
 </li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li><a href="#References" title="References">References</a></li>
+<li class=""><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
