@@ -71,7 +71,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 <li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
 <li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
 <li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul>
-<li><a href="#Demo" title="Demo">Demo</a><ul>
+<li><a href="#Demo0" title="Demo">Demo</a><ul>
 <li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
 <li><a href="#Basic-example" title="Basic example">Basic example</a></li>
 <li><a href="#Composition-example" title="Composition example">Composition example</a></li>
@@ -115,13 +115,54 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Colab-notebook"><a class="anchor
 </li>
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
 <li><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
-<li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
-<li><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
-<li><a href="#Markers" title="Markers">Markers</a></li>
-<li><a href="#Coverage" title="Coverage">Coverage</a></li>
+<li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a><ul>
+<li><a href="#Fixture-parameters" title="Fixture parameters:">Fixture parameters:</a></li>
 </ul>
 </li>
-<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li><a href="#Markers" title="Markers">Markers</a></li>
+<li><a href="#tip1" title=""></a></li>
+</ul>
+</li>
+<li><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a><ul>
+<li><a href="#Install-GX" title="Install GX">Install GX</a></li>
+<li><a href="#GX-Core-components" title="GX Core components">GX Core components</a><ul>
+<li><a href="#Data-context" title="Data context">Data context</a></li>
+<li><a href="#Data-Sources" title="Data Sources">Data Sources</a></li>
+<li><a href="#Data-Assets" title="Data Assets">Data Assets</a></li>
+<li><a href="#Batch-and-Batch-Request" title="Batch and Batch Request">Batch and Batch Request</a></li>
+<li><a href="#Expectations" title="Expectations">Expectations</a></li>
+<li><a href="#Expectation-Suites" title="Expectation Suites">Expectation Suites</a></li>
+<li><a href="#Data-Assistants" title="Data Assistants">Data Assistants</a></li>
+</ul>
+</li>
+<li><a href="#Data-validation-workflow-in-GX" title="Data validation workflow in GX">Data validation workflow in GX</a><ul>
+<li><a href="#Checkpoints" title="Checkpoints">Checkpoints</a></li>
+<li><a href="#Validation-Results" title="Validation Results">Validation Results</a></li>
+<li><a href="#Data-docs" title="Data docs">Data docs</a></li>
+<li><a href="#Actions" title="Actions">Actions</a></li>
+</ul>
+</li>
+<li><a href="#Demo" title="Demo">Demo</a><ul>
+<li><a href="#A-script-to-run-the-checkpoint" title="A script to run the checkpoint">A script to run the checkpoint</a></li>
+</ul>
+</li>
+<li><a href="#great_expectations-CLI" title="great_expectations CLI">great_expectations CLI</a></li>
+<li><a href="#Where-you-should-use-it" title="Where you should use it?">Where you should use it?</a></li>
+</ul>
+</li>
+<li><a href="#Data-Quality" title="Data Quality">Data Quality</a><ul>
+<li><a href="#What-are-the-Six-Data-Quality-Dimensions" title="What are the Six Data Quality Dimensions?">What are the Six Data Quality Dimensions?</a><ul>
+<li><a href="#Completeness0" title="Completeness">Completeness</a></li>
+<li><a href="#Uniqueness" title="Uniqueness">Uniqueness</a></li>
+<li><a href="#Timelessness" title="Timelessness">Timelessness</a></li>
+<li><a href="#Validity" title="Validity">Validity</a></li>
+<li><a href="#Accuracy" title="Accuracy">Accuracy</a></li>
+<li><a href="#Consistency" title="Consistency">Consistency</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
 <li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
@@ -329,7 +370,7 @@ CRISP-DM</p>
 <li>Run multiple jobs with different arguments with a single command (ML Experimenting)</li>
 </ul><div class="alert alert-warning">
 <p><a href="https://omegaconf.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">OmegaConf</a> is a YAML based hierarchical configuration system, with support for merging configurations from multiple sources (files, CLI argument, environment variables) providing a consistent API regardless of how the configuration was created. OmegaConf also offers runtime type safety via Structured Configs.</p>
-</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
+</div><p>To get started using Hydra, you can watch <a href="https://youtu.be/tEsPyYnzt8s?si=IFtawZ5Qi-IP0056" target="_blank" rel="noopener">this video</a></p><h2 id="Demo0"><a class="anchor hidden-xs" href="#Demo0" title="Demo0"><i class="fa fa-link"></i></a>Demo</h2><p>Here I will present some of the features of this tool and some of its use cases. The official website has good tutorials  and guides, so follow them to learn more about the tool.</p><h3 id="Install-Hydra"><a class="anchor hidden-xs" href="#Install-Hydra" title="Install-Hydra"><i class="fa fa-link"></i></a>Install Hydra</h3><pre><code class="python hljs"><span class="hljs-comment"># It is a Python package.</span>
 pip install hydra-core 
 </code></pre><div class="alert alert-info">
 <p><strong>Note:</strong> Python decorator is a function that takes another Python function and extends the behavior of the latter function without explicitly modifying it. Example:</p>
@@ -362,14 +403,14 @@ pip install hydra-core
 </code></pre><p>You can learn more about <a href="https://omegaconf.readthedocs.io/en/latest/usage.html#access-and-manipulation" target="_blank" rel="noopener">OmegaConf</a> here later.</p><div class="alert alert-warning">
 <p><strong>Note:</strong> Create a new virtual environemnt using <code>venv</code> or <code>conda</code> in VS code.</p>
 </div><p>We can run our simple application as:</p><pre><code class="go hljs">python app<span class="token punctuation">.</span>py
-</code></pre><p>The output will be:</p><pre><code class="fix hljs"><span class="hljs-attr">db:
-  driver: mysql
-  user: james
-  password: secret
+</code></pre><p>The output will be:</p><pre><code class="yaml hljs"><span class="hljs-attr">db:</span>
+<span class="hljs-attr">  driver:</span> <span class="hljs-string">mysql</span>
+<span class="hljs-attr">  user:</span> <span class="hljs-string">james</span>
+<span class="hljs-attr">  password:</span> <span class="hljs-string">secret</span>
 
-secret
-secret
-</span></code></pre><p>We will have the Hydra output directory <code>outputs</code> and the application log file. Inside the configuration output directory we have:</p><ul>
+<span class="hljs-string">secret</span>
+<span class="hljs-string">secret</span>
+</code></pre><p>We will have the Hydra output directory <code>outputs</code> and the application log file. Inside the configuration output directory we have:</p><ul>
 <li><code>config.yaml</code>: A dump of the user specified configuration</li>
 <li><code>hydra.yaml</code>: A dump of the Hydra configuration</li>
 <li><code>overrides.yaml</code>: The command line overrides used</li>
@@ -922,14 +963,533 @@ Here are the possible outcomes of a test:</p><ul>
 <li>All tests in a directory</li>
 </ul><pre><code class="yaml hljs"><span class="hljs-string">pytest</span> <span class="hljs-string">tests</span>
 </code></pre><h2 id="pytest-Fixtures"><a class="anchor hidden-xs" href="#pytest-Fixtures" title="pytest-Fixtures"><i class="fa fa-link"></i></a>pytest Fixtures</h2><p>Fixtures are functions that are run by pytest before (and sometimes after) the actual test functions.</p><p>You can use fixtures to get a data set for the tests to work on. Fixtures are also used to get data ready for multiple tests.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> pytest
+
 <span class="hljs-meta">@pytest.fixture()</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">some_data</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>
+	<span class="hljs-string">"""
+	Loads some data 
+	"""</span>
+	
+	df = pd.read_csv(<span class="hljs-string">"data.csv"</span>)
+	
+    <span class="hljs-keyword">return</span> df
 
+<span class="hljs-comment"># some_data is the function name (fixture)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_some_data</span><span class="hljs-params">(some_data)</span>:</span>
-    <span class="hljs-keyword">assert</span> some_data == <span class="hljs-number">42</span>
-</code></pre><p>The <code>@pytest.fixture()</code> decorator is used to tell <code>pytest</code> that a function is a fixture. When you include the fixture name in the <strong>parameter list</strong> of a test function, <code>pytest</code> knows to run it before running the test. Fixtures can do work, and can also return data to the test function.</p><p>Fixture parameters:<br>
-TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrization" title="Parametrization"><i class="fa fa-link"></i></a>Parametrization</h2><p>TODO</p><h2 id="Markers"><a class="anchor hidden-xs" href="#Markers" title="Markers"><i class="fa fa-link"></i></a>Markers</h2><p>TODO</p><h2 id="Coverage"><a class="anchor hidden-xs" href="#Coverage" title="Coverage"><i class="fa fa-link"></i></a>Coverage</h2><p>TODO</p><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+    <span class="hljs-keyword">assert</span> len(some_data) &gt; <span class="hljs-number">0</span>
+</code></pre><p>The <code>@pytest.fixture()</code> decorator is used to tell <code>pytest</code> that a function is a fixture. When you include the fixture name in the <strong>parameter list</strong> of a test function, <code>pytest</code> knows to run it before running the test. Fixtures can do work, and can also return data to the test function.</p><h3 id="Fixture-parameters"><a class="anchor hidden-xs" href="#Fixture-parameters" title="Fixture-parameters"><i class="fa fa-link"></i></a>Fixture parameters:</h3><ul>
+<li>scope
+<ul>
+<li>Defines the order of when the fixture should run relative to running of all the test function using the fixture.</li>
+<li><code>scope=function</code>
+<ul>
+<li>The default scope for fixtures</li>
+<li>Run once per test function.</li>
+</ul>
+</li>
+<li><code>scope=module</code>
+<ul>
+<li>Run once per module, regardless of how many test functions or methods or other fixtures in the module use it.</li>
+</ul>
+</li>
+<li><code>scope='class'</code>
+<ul>
+<li>Run once per test class, regardless of how many test methods are in the class.</li>
+</ul>
+</li>
+<li><code>scope='session'</code>
+<ul>
+<li>Run once per session. All test methods and functions using a fixture of session scope share one setup and teardown call.</li>
+</ul>
+</li>
+<li>You can track the execution order using <code>--setup-show</code> of <code>pytest</code></li>
+</ul>
+</li>
+<li>autouse=True
+<ul>
+<li>enables the fixture to run all of the time.</li>
+</ul>
+</li>
+</ul><pre><code class="wrap python hljs"><span class="hljs-comment"># tests/test_auto</span>
+<span class="hljs-keyword">import</span> pytest
+<span class="hljs-keyword">import</span> time
+<span class="hljs-meta">@pytest.fixture(autouse=True, scope="session")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">footer_session_scope</span><span class="hljs-params">()</span>:</span>
+	<span class="hljs-string">"""Report the time at the end of a session."""</span>
+	<span class="hljs-keyword">yield</span>
+	now = time.time()
+	print(<span class="hljs-string">"--"</span>)
+	print(
+		<span class="hljs-string">"finished : {}"</span>.format(
+		time.strftime(<span class="hljs-string">"%d %b %X"</span>, time.localtime(now))
+		)
+	)
+	print(<span class="hljs-string">"-----------------"</span>)
+	
+	
+<span class="hljs-meta">@pytest.fixture(autouse=True)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">footer_function_scope</span><span class="hljs-params">()</span>:</span>
+	<span class="hljs-string">"""Report test durations after each function."""</span>
+	start = time.time()
+	<span class="hljs-keyword">yield</span>
+	stop = time.time()
+	delta = stop - start
+	print(<span class="hljs-string">"\ntest duration : {:0.3} seconds"</span>.format(delta))
+	
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_1</span><span class="hljs-params">()</span>:</span>
+	<span class="hljs-string">"""Simulate long-ish running test."""</span>
+	time.sleep(<span class="hljs-number">1</span>)
+	
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_2</span><span class="hljs-params">()</span>:</span>
+	<span class="hljs-string">"""Simulate slightly longer test."""</span>
+	time.sleep(<span class="hljs-number">1.23</span>)
+
+</code></pre><pre><code class="python hljs"><span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-meta">@pytest.fixture()</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cards_db</span><span class="hljs-params">()</span>:</span>
+	<span class="hljs-keyword">with</span> TemporaryDirectory() <span class="hljs-keyword">as</span> db_dir:
+	db_path = Path(db_dir)
+	db = cards.CardsDB(db_path)
+	<span class="hljs-keyword">yield</span> db
+	db.close()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_empty</span><span class="hljs-params">(cards_db)</span>:</span>
+	<span class="hljs-keyword">assert</span> cards_db.count() == <span class="hljs-number">0</span>
+</code></pre><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrization" title="Parametrization"><i class="fa fa-link"></i></a>Parametrization</h2><p>Parametrized testing refers to adding parameters to our test functions and passing in multiple sets of arguments to the test to create new test cases.</p><pre><code class="python hljs"><span class="hljs-comment"># test_param.py</span>
+
+<span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-meta">@pytest.mark.parametrize("test_input,expected", [("3+5", 8), ("2+4", 6), ("6*9", 42)])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_eval</span><span class="hljs-params">(test_input, expected)</span>:</span>
+    <span class="hljs-keyword">assert</span> eval(test_input) == expected
+</code></pre><p>Here, the <code>@parametrize</code> decorator defines three different <code>(test_input,expected)</code> tuples so that the <code>test_eval</code> function will run three times using them in turn.</p><h2 id="Markers"><a class="anchor hidden-xs" href="#Markers" title="Markers"><i class="fa fa-link"></i></a>Markers</h2><p>In pytest, markers are a way to tell pytest there’s something special about a particular test.<br>
+pytest’s builtin markers are used to modify the behavior of how tests run.</p><ul>
+<li>@pytest.mark.filterwarnings(warning): This marker adds a warning filter to the given test.</li>
+<li>@pytest.mark.skip(reason=None): This marker skips the test with an optional reason.</li>
+</ul><div class="alert alert-info">
+<p>@pytest.mark.parametrize() is a marker.</p>
+</div><h2 id="tip1"><a class="anchor hidden-xs" href="#tip1" title="tip1"><i class="fa fa-link"></i></a><!-- # ![](https://tox.wiki/en/4.15.1/_static/tox.svg =100x100) tox --></h2><h1 id="-Great-Expectations-GX"><a class="anchor hidden-xs" href="#-Great-Expectations-GX" title="-Great-Expectations-GX"><i class="fa fa-link"></i></a><img src="https://images.ctfassets.net/ycwst8v1r2x5/jbrHhqGtdpbZFhki5MqBp/e6a5f6b567173b39430a1a18d060cb8e/gx_logo_horiz_color.png?w=210&amp;h=56&amp;q=85&amp;fm=webp" alt="" class="md-image md-image">  Great Expectations (GX)</h1><p>Great Expectations is a tool for validating and documenting your data. Software developers have long known that automated testing is essential for managing complex codebases. Great Expectations brings the same discipline, confidence, and acceleration to data science and data engineering teams. It is a Python library that provides a framework for describing the acceptable state of data and then validating that the data meets those criteria.</p><p><img src="https://docs.greatexpectations.io/assets/images/gx_oss_process-050a4264f415a1bff3ceea3ac6f9b3a0.png" alt="" class="md-image md-image"></p><h2 id="Install-GX"><a class="anchor hidden-xs" href="#Install-GX" title="Install-GX"><i class="fa fa-link"></i></a>Install GX</h2><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">great_expectations</span>
+</code></pre><p>We can import the package as follows:</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> great_expectations <span class="hljs-keyword">as</span> gx
+</code></pre><h2 id="GX-Core-components"><a class="anchor hidden-xs" href="#GX-Core-components" title="GX-Core-components"><i class="fa fa-link"></i></a>GX Core components</h2><p>When working with GX you use the following four core components to access, store, and manage underlying objects and processes:</p><ul>
+<li><strong>Data Context</strong>: Manages the settings and metadata for a GX project, and provides an <em>entry point to the GX Python API</em>.</li>
+<li><strong>Data Sources</strong>: <em>Connects to your data sources</em>, and organizes retrieved data for future use.</li>
+<li><strong>Expectations</strong>: Identifies the <em>standards (data requirements)</em> to which your data should conform.</li>
+<li><strong>Checkpoints</strong>: <em>Validates a set of Expectations</em> against a specific set of data.</li>
+</ul><h3 id="Data-context"><a class="anchor hidden-xs" href="#Data-context" title="Data-context"><i class="fa fa-link"></i></a>Data context</h3><p>A Data Context contains all the metadata used by GX, the configurations for GX objects, and the output from validating data.</p><p><img src="https://docs.greatexpectations.io/assets/images/data_context_flowchart-2d63bd4a6be784aa4d7f44a962a65b72.png" alt="" class="md-image md-image"></p><p>We have 3 data context types:</p><ol>
+<li><strong>Ephemeral Data Context</strong>: Exists in memory, and does not persist beyond the current Python session.</li>
+<li><strong>File Data Context</strong>: Exists as a folder and configuration files. Its contents persist between Python sessions.</li>
+<li><strong>Cloud Data Context</strong>: Supports persistence between Python sessions, but additionally serves as the entry point for Great Expectations Cloud.</li>
+</ol><p>We can create an Ephermeral data context as follows:</p><pre><code class="python hljs">context = gx.get_context()
+
+<span class="hljs-comment"># This will create a temporary folder in /tmp to hold the data context files</span>
+</code></pre><p>The output:<br>
+<img src="https://i.imgur.com/D5ADQmA.png" alt="" class="md-image md-image"></p><p>We can create a <strong>File data context</strong> as follows:</p><pre><code class="wrap python hljs"><span class="hljs-keyword">from</span> great_expectations.data_context <span class="hljs-keyword">import</span> FileDataContext
+
+context = FileDataContext(context_root_dir = <span class="hljs-string">"../services"</span>)
+<span class="hljs-comment"># This will create a folder "../services/gx" in the current working directory and will store the data context files</span>
+
+<span class="hljs-comment"># context = FileDataContext(project_root_dir = "../services")</span>
+<span class="hljs-comment"># This will create a folder "../services/gx" in the current working directory and will store the data context file</span>
+</code></pre><div class="alert alert-warning">
+<p>if you have an existing file data context, then you can load it as follows:</p>
+<pre><code class="wrap python hljs">context = gx.get_context(context_root_dir = <span class="hljs-string">"../services/gx"</span>)
+
+<span class="hljs-comment"># OR</span>
+<span class="hljs-comment"># context = gx.get_context(project_root_dir = "../services")</span>
+</code></pre>
+</div><div class="alert alert-warning">
+<p>You should work with File data context for the project.</p>
+</div><div class="alert alert-warning">
+<p>You can convert an Ephemeral Data Context to a Filesystem Data Context.</p>
+<pre><code class="python hljs">context = context.convert_to_file_context()
+</code></pre>
+<p>This will put the data context files in a folder <code>./gx</code>.</p>
+</div><h3 id="Data-Sources"><a class="anchor hidden-xs" href="#Data-Sources" title="Data-Sources"><i class="fa fa-link"></i></a>Data Sources</h3><p>Data Sources connect GX to <em>Data Assets</em> such as CSV files in a folder, a PostgreSQL database hosted on AWS, or any combination of data formats and environments. Regardless of the format of your Data Asset or where it resides, Data Sources provide GX with a unified API for working with it.</p><p><img src="https://docs.greatexpectations.io/assets/images/datasource_flowchart-73d07084d7c20d480f92dacb8001222f.png" alt="" class="md-image md-image"></p><div class="alert alert-warning">
+<p>Data Sources do not modify your data.</p>
+</div><div class="alert alert-warning">
+<p>We can use a Filesystem data source or a cloud data source but for this project, we need to use a Filesystem data source.</p>
+</div><h4 id="Single-file-with-pandas0"><a class="anchor hidden-xs" href="#Single-file-with-pandas0" title="Single-file-with-pandas0"><i class="fa fa-link"></i></a>Single file with pandas</h4><p>We can create a Pandas data source to connect to the data file stored on the local filesystem as follows:</p><pre><code class="python hljs">ds1 = context.sources.add_or_update_pandas(name=<span class="hljs-string">"my_pandas_ds"</span>)
+<span class="hljs-comment"># ds1 is PandasDatasource</span>
+</code></pre><h4 id="Multiple-files-with-pandas"><a class="anchor hidden-xs" href="#Multiple-files-with-pandas" title="Multiple-files-with-pandas"><i class="fa fa-link"></i></a>Multiple files with pandas</h4><p>We can create a Pandas data source to connect to the data <strong>files</strong> stored in a folder on the local filesystem as follows:</p><pre><code class="python hljs">ds2  = context.sources.add_or_update_pandas_filesystem(name=<span class="hljs-string">"my_pandas_ds"</span>, base_directory=<span class="hljs-string">"../data/raw"</span>)
+
+<span class="hljs-comment"># base_directory is the path to the folder containing data files</span>
+<span class="hljs-comment"># ds2 is PandasFilesystemDatasource</span>
+</code></pre><h3 id="Data-Assets"><a class="anchor hidden-xs" href="#Data-Assets" title="Data-Assets"><i class="fa fa-link"></i></a>Data Assets</h3><p>Data Assets are collections of records within a Data Source.</p><ul>
+<li>A Data Source tells GX how to <strong>connect</strong> to your Data Assets</li>
+<li>Data Assets tell GX how to <strong>organize</strong> that data into batches</li>
+</ul><h4 id="Filesystem-data-assets0"><a class="anchor hidden-xs" href="#Filesystem-data-assets0" title="Filesystem-data-assets0"><i class="fa fa-link"></i></a>Filesystem data assets</h4><p>We can create a csv data asset to read the data from data file(s) stored on the local filesystem as follows:</p><pre><code class="python hljs"><span class="hljs-comment"># Read a single data file</span>
+da1 = ds1.add_csv_asset(
+    name = <span class="hljs-string">"asset01"</span>,
+    filepath_or_buffer=<span class="hljs-string">"/path/to/data/file.csv"</span>
+)
+
+
+<span class="hljs-comment"># Read multiple data files</span>
+da2 = ds2.add_csv_asset(
+    name = <span class="hljs-string">"asset02"</span>,
+    batching_regex = <span class="hljs-string">r"yellow_tripdata_sample_(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d{2})\.csv"</span>
+)
+<span class="hljs-comment"># Here we defined a regex pattern to read files only those match this pattern</span>
+</code></pre><h4 id="In-memory-data-assets"><a class="anchor hidden-xs" href="#In-memory-data-assets" title="In-memory-data-assets"><i class="fa fa-link"></i></a>In-memory data assets</h4><p>Here we will try to read data from a Pandas dataframe residing in memory. So, Pandas is responsible for reading the data and loading to the memory.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+df = pd.read_csv(<span class="hljs-string">"/path/to/data/file.csv"</span>)
+
+<span class="hljs-comment"># ds1 is a PandasDatasource</span>
+da3 = ds1.add_dataframe_asset(name = <span class="hljs-string">"pandas_dataframe"</span>)
+</code></pre><div class="alert alert-warning">
+<p>We did not pass the dataframe so far, we will do when we build a batch request.</p>
+</div><h3 id="Batch-and-Batch-Request"><a class="anchor hidden-xs" href="#Batch-and-Batch-Request" title="Batch-and-Batch-Request"><i class="fa fa-link"></i></a>Batch and Batch Request</h3><p>Data Assets can be partitioned into <strong>Batches</strong>. Batches are unique subsets of records within a Data Asset. For example, say you have a Data Asset in a SQL Data Source that consists of all records from last year in a given table. You could then partition those records into Batches of data that correspond to the records for individual months of that year.</p><p>A <strong>Batch Request</strong> specifies one or more Batches within the Data Asset. Batch Requests are the primary way of retrieving data for use in GX.</p><h4 id="From-filesystem-data-assets"><a class="anchor hidden-xs" href="#From-filesystem-data-assets" title="From-filesystem-data-assets"><i class="fa fa-link"></i></a>From filesystem data assets</h4><p>We can request data from the previous data asset as follows:</p><pre><code class="python hljs">batch_request = da1.build_batch_request()
+
+batches = da1.get_batch_list_from_batch_request(batch_request)
+<span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> batches:
+    print(batch.batch_spec)
+</code></pre><h4 id="From-in-memory-data-assets"><a class="anchor hidden-xs" href="#From-in-memory-data-assets" title="From-in-memory-data-assets"><i class="fa fa-link"></i></a>From in-memory data assets</h4><p>Here we will pass the Pandas dataframe to build the batch request.</p><pre><code class="python hljs">batch_request = da3.build_batch_request(dataframe = df)
+
+batches = da3.get_batch_list_from_batch_request(batch_request)
+
+<span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> batches:
+    print(batch.batch_spec)
+</code></pre><div class="alert alert-warning">
+<p>You can filter data when you build batch requests for data assets connected to a PSQL table or Pandas file system data source. The options to batch requests depends on the type of data assets being used, we can know that as follows:</p>
+<pre><code class="python hljs">print(my_asset.batch_request_options)
+</code></pre>
+<p>For instance, for file based data assets, we can use sorters to sort the retrieved data as follows:</p>
+<pre><code class="wrap python hljs">my_asset = my_asset.add_sorters([<span class="hljs-string">'+year'</span>, <span class="hljs-string">'-month'</span>])
+
+<span class="hljs-comment"># Here we can use da2 as data asset</span>
+<span class="hljs-comment"># Here the data will be sorted by `year` in asc order and by `month` in desc order</span>
+</code></pre>
+</div><div class="alert alert-warning">
+<p>We can use <code>head()</code> method of the Batch to see the content of the dataframe.</p>
+</div><h3 id="Expectations"><a class="anchor hidden-xs" href="#Expectations" title="Expectations"><i class="fa fa-link"></i></a>Expectations</h3><p>Expectations provide a flexible, declarative language for describing expected behaviors. Unlike traditional unit tests which describe the expected behavior of code given a specific input, Expectations apply to the input data itself.</p><p><span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-62-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><mtext>An Expectation is a verifiable assertion about data.</mtext></math>" role="presentation" style="text-align: center; position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-206" style="width: 25.649em; display: inline-block;"><span style="display: inline-block; position: relative; width: 22.093em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1022.04em, 2.751em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-207"><span class="mtext" id="MathJax-Span-208" style="font-family: MathJax_Main;">An Expectation is a verifiable assertion about data.</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.309em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtext>An Expectation is a verifiable assertion about data.</mtext></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-62">
+\text{An Expectation is a verifiable assertion about data.}
+</script></span></p><p>For example, you can define an Expectation that a column contains no null values. When GX runs that Expectation on your data it generates a report which indicates if a null value was found.</p><p>Expectations can be built directly from the domain knowledge of subject matter experts, interactively while introspecting a set of data, or through automated tools provided by GX.</p><h4 id="How-to-build-expctations"><a class="anchor hidden-xs" href="#How-to-build-expctations" title="How-to-build-expctations"><i class="fa fa-link"></i></a>How to build expctations</h4><p>We have four workflows to create expectations. The methodology for saving and testing Expectations is the same for all workflows.</p><p><img src="https://docs.greatexpectations.io/assets/images/where_expectations_come_from-d848fe00a77ae738a3e3d053e128474e.png" alt="" class="md-image md-image"></p><h5 id="1-Create-Expectations-interactively"><a class="anchor hidden-xs" href="#1-Create-Expectations-interactively" title="1-Create-Expectations-interactively"><i class="fa fa-link"></i></a>1. Create Expectations interactively</h5><p>Here, you work in a Python interpreter or Jupyter Notebook.<br>
+- You use a <em>Validator</em> and call Expectations as methods on it to define them in an <em>Expectation Suite</em>.<br>
+- When you have finished you save that Expectation Suite into your <em>Expectation Store</em>.</p><p><strong>Example:</strong></p><pre><code class="python hljs"><span class="hljs-comment"># Create a batch request</span>
+data_asset = context.get_datasource(<span class="hljs-string">"my_datasource"</span>).get_asset(<span class="hljs-string">"my_data_asset"</span>)
+batch_request = data_asset.build_batch_request()
+
+
+<span class="hljs-comment"># Create an expectations suite</span>
+context.add_or_update_expectation_suite(<span class="hljs-string">"my_expectation_suite"</span>)
+
+<span class="hljs-comment"># Verify that the expectation is created</span>
+context.list_expectation_suite_names()
+
+
+<span class="hljs-comment"># Create a validator</span>
+validator = context.get_validator(
+    batch_request=batch_request,
+    expectation_suite_name=<span class="hljs-string">"my_expectation_suite"</span>,
+)
+
+<span class="hljs-comment"># Check the validator content</span>
+print(validator.head())
+
+
+<span class="hljs-comment"># Add your expectations on the validator</span>
+validator.expect_column_values_to_not_be_null(
+	column=<span class="hljs-string">"vendor_id"</span>
+)
+
+validator.expect_column_values_to_not_be_null(
+	column=<span class="hljs-string">"account_id"</span>
+)
+
+validator.expect_column_values_to_be_in_set(
+	column=<span class="hljs-string">"transaction_type"</span>, 
+	value_set = [<span class="hljs-string">"purchase"</span>, <span class="hljs-string">"refund"</span>, <span class="hljs-string">"upgrade"</span>]
+)
+
+
+<span class="hljs-comment"># Save your expecations suite</span>
+validator.save_expectation_suite(
+	discard_failed_expectations = <span class="hljs-literal">False</span>
+)
+
+<span class="hljs-comment"># In interactive mode, GX will add all exepctations that you successfully run to the suite.</span>
+
+</code></pre><h5 id="2-Manually-define-Expectations"><a class="anchor hidden-xs" href="#2-Manually-define-Expectations" title="2-Manually-define-Expectations"><i class="fa fa-link"></i></a>2. Manually define Expectations</h5><p>Advanced users can use a manual process to create Expectations. This workflow does not require Data Assets, but it does require knowledge of the configurations available for Expectations.</p><p><strong>Example:</strong></p><pre><code class="python hljs"><span class="hljs-comment"># Data assets and batch request are not needed since we will not run the expectations</span>
+<span class="hljs-comment"># data_asset = context.get_datasource("my_datasource").get_asset("my_data_asset")</span>
+<span class="hljs-comment"># batch_request = data_asset.build_batch_request()</span>
+
+
+<span class="hljs-comment"># Create an expectations suite</span>
+suite = context.add_or_update_expectation_suite(<span class="hljs-string">"my_expectation_suite"</span>)
+
+<span class="hljs-comment"># Verify that the expectation is created</span>
+context.list_expectation_suite_names()
+
+
+<span class="hljs-comment"># Import the class to create expectation configuration </span>
+<span class="hljs-keyword">from</span> great_expectations.core.expectation_configuration <span class="hljs-keyword">import</span> (
+    ExpectationConfiguration
+)
+
+<span class="hljs-comment"># Create your expectations</span>
+
+<span class="hljs-comment"># Expectation 1</span>
+expectation_configuration_1 = ExpectationConfiguration(
+    <span class="hljs-comment"># Name of expectation type being added</span>
+    expectation_type=<span class="hljs-string">"expect_column_values_to_not_be_null"</span>,
+    <span class="hljs-comment"># These are the arguments of the expectation</span>
+    <span class="hljs-comment"># The keys allowed in the dictionary are Parameters and</span>
+    <span class="hljs-comment"># Keyword Arguments of this Expectation Type</span>
+    kwargs={
+        <span class="hljs-string">"column"</span>: <span class="hljs-string">"vendor_id"</span>
+    },
+    <span class="hljs-comment"># This is how you can optionally add a comment about this expectation.</span>
+    <span class="hljs-comment"># It will be rendered in Data Docs.</span>
+    <span class="hljs-comment"># See this guide for details:</span>
+    <span class="hljs-comment"># `How to add comments to Expectations and display them in Data Docs`.</span>
+    meta={
+        <span class="hljs-string">"notes"</span>: {
+            <span class="hljs-string">"format"</span>: <span class="hljs-string">"markdown"</span>,
+            <span class="hljs-string">"content"</span>: <span class="hljs-string">"Some clever comment about this expectation. **Markdown** `Supported`"</span>,
+        }
+    },
+)
+
+<span class="hljs-comment"># Add the Expectation 1 to the suite</span>
+suite.add_expectation(
+    expectation_configuration=expectation_configuration_1
+)
+
+
+<span class="hljs-comment"># validator.expect_column_values_to_not_be_null(</span>
+<span class="hljs-comment"># 	column="vendor_id"</span>
+<span class="hljs-comment"># )</span>
+
+
+<span class="hljs-comment"># Expectation 2</span>
+expectation_configuration_2 = ExpectationConfiguration(
+    <span class="hljs-comment"># Name of expectation type being added</span>
+    expectation_type=<span class="hljs-string">"expect_column_values_to_not_be_null"</span>,
+    <span class="hljs-comment"># These are the arguments of the expectation</span>
+    <span class="hljs-comment"># The keys allowed in the dictionary are Parameters and</span>
+    <span class="hljs-comment"># Keyword Arguments of this Expectation Type</span>
+    kwargs={
+        <span class="hljs-string">"column"</span>: <span class="hljs-string">"account_id"</span>
+    },
+    <span class="hljs-comment"># This is how you can optionally add a comment about this expectation.</span>
+    <span class="hljs-comment"># It will be rendered in Data Docs.</span>
+    <span class="hljs-comment"># See this guide for details:</span>
+    <span class="hljs-comment"># `How to add comments to Expectations and display them in Data Docs`.</span>
+    meta={
+        <span class="hljs-string">"notes"</span>: {
+            <span class="hljs-string">"format"</span>: <span class="hljs-string">"markdown"</span>,
+            <span class="hljs-string">"content"</span>: <span class="hljs-string">"Some clever comment about this expectation. **Markdown** `Supported`"</span>,
+        }
+    },
+)
+
+<span class="hljs-comment"># Add the Expectation 2 to the suite</span>
+suite.add_expectation(
+    expectation_configuration=expectation_configuration_2
+)
+
+
+<span class="hljs-comment"># validator.expect_column_values_to_not_be_null(</span>
+<span class="hljs-comment"># 	column="account_id"</span>
+<span class="hljs-comment"># )</span>
+
+<span class="hljs-comment"># Expectation 1</span>
+expectation_configuration_3 = ExpectationConfiguration(
+    <span class="hljs-comment"># Name of expectation type being added</span>
+    expectation_type=<span class="hljs-string">"expect_column_values_to_be_in_set"</span>,
+    <span class="hljs-comment"># These are the arguments of the expectation</span>
+    <span class="hljs-comment"># The keys allowed in the dictionary are Parameters and</span>
+    <span class="hljs-comment"># Keyword Arguments of this Expectation Type</span>
+    kwargs={
+        <span class="hljs-string">"column"</span>: <span class="hljs-string">"transaction_type"</span>,
+        <span class="hljs-string">"value_set"</span>: [<span class="hljs-string">"purchase"</span>, <span class="hljs-string">"refund"</span>, <span class="hljs-string">"upgrade"</span>],
+    },
+)
+
+validator.expect_column_values_to_be_in_set(
+	column=<span class="hljs-string">"transaction_type"</span>, 
+	value_set = [<span class="hljs-string">"purchase"</span>, <span class="hljs-string">"refund"</span>, <span class="hljs-string">"upgrade"</span>]
+)
+
+<span class="hljs-comment"># Add the Expectation 3 to the suite</span>
+suite.add_expectation(
+    expectation_configuration=expectation_configuration_3
+)
+
+<span class="hljs-comment"># Save your expecations suite</span>
+context.save_expectation_suite(expectation_suite=suite)
+
+<span class="hljs-comment"># validator.save_expectation_suite(</span>
+<span class="hljs-comment"># 	discard_failed_expectations = False</span>
+<span class="hljs-comment"># )</span>
+
+<span class="hljs-comment"># In non-interactive mode, you have to manually add each exepctation to the suite.</span>
+
+</code></pre><h5 id="3-Create-Expectations-with-Data-Assistants"><a class="anchor hidden-xs" href="#3-Create-Expectations-with-Data-Assistants" title="3-Create-Expectations-with-Data-Assistants"><i class="fa fa-link"></i></a>3. Create Expectations with Data Assistants</h5><p>Here, you use a <em>Data Assistant</em> to generate Expectations based on the input data you provide. You can preview the Metrics that these Expectations are based on, and you can save the generated Expectations as an <em>Expectation Suite</em> in an <em>Expectation Store</em>.</p><div class="alert alert-warning">
+<p>You can find all supported expectations in the <a href="https://greatexpectations.io/expectations/" target="_blank" rel="noopener">gallery of GX expectations</a></p>
+</div><h3 id="Expectation-Suites"><a class="anchor hidden-xs" href="#Expectation-Suites" title="Expectation-Suites"><i class="fa fa-link"></i></a>Expectation Suites</h3><p>When GX validates data, an Expectation Suite helps streamline the process by running all of the contained Expectations against that data. In almost all cases, when you create an Expectation you will be creating it inside of an Expectation Suite object.</p><p><span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-67-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><mtext>&amp;#xA0;Expectation Suites are collections of Expectations describing your data.&amp;#xA0;</mtext></math>" role="presentation" style="text-align: center; position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-221" style="width: 36.317em; display: inline-block;"><span style="display: inline-block; position: relative; width: 31.307em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1031.04em, 2.751em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-222"><span class="mtext" id="MathJax-Span-223" style="font-family: MathJax_Main;">&nbsp;Expectation Suites are collections of Expectations describing your data.&nbsp;</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.309em; border-left: 0px solid; width: 0px; height: 1.191em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtext>&nbsp;Expectation Suites are collections of Expectations describing your data.&nbsp;</mtext></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-67">
+\text{
+Expectation Suites are collections of Expectations describing your data.
+}
+</script></span></p><p>You can define multiple Expectation Suites for the same data to cover different use cases. An example could be having one Expectation Suite for raw data, and a more strict Expectation Suite for that same data post-processing. Because an Expectation Suite is decoupled from a specific source of data, you can apply the same Expectation Suite against multiple, disparate Data Sources. For instance, you can reuse an Expectation Suite that was created around an older set of data to validate the quality of a new set of data.</p><h3 id="Data-Assistants"><a class="anchor hidden-xs" href="#Data-Assistants" title="Data-Assistants"><i class="fa fa-link"></i></a>Data Assistants</h3><p>A Data Assistant is a utility that automates the process of building Expectations by asking questions about your data, gathering information to describe what is observed, and then presenting Metrics and proposed Expectations based on the answers it has determined. This can accelerate the process of creating Expectations for the provided data.</p><h2 id="Data-validation-workflow-in-GX"><a class="anchor hidden-xs" href="#Data-validation-workflow-in-GX" title="Data-validation-workflow-in-GX"><i class="fa fa-link"></i></a>Data validation workflow in GX</h2><p>The following diagram illustrates the end-to-end GX OSS data validation workflow that you’ll implement with this quickstart. Click a workflow step to view the related content.</p><p><img src="https://i.imgur.com/Z2Ccdbh.png" alt="" class="md-image md-image"></p><p><img src="https://docs.greatexpectations.io/assets/images/how_a_checkpoint_works-10e7fda2c9013d98a36c1d8526036764.png" alt="" class="md-image md-image"></p><h3 id="Checkpoints"><a class="anchor hidden-xs" href="#Checkpoints" title="Checkpoints"><i class="fa fa-link"></i></a>Checkpoints</h3><p>A Checkpoint is the primary means for validating data in a production deployment of GX. Checkpoints provide an abstraction for bundling a Batch (or Batches) of data with an Expectation Suite (or several), and then running those Expectations against the paired data.</p><p><img src="https://docs.greatexpectations.io/assets/images/checkpoint_flowchart-80a2dc06e90a4739f6cfdec60a115c1e.png" alt="" class="md-image md-image"></p><h4 id="Create-a-checkpoint"><a class="anchor hidden-xs" href="#Create-a-checkpoint" title="Create-a-checkpoint"><i class="fa fa-link"></i></a>Create a checkpoint</h4><pre><code class="python hljs"><span class="hljs-comment"># Given the batch requests and the expectation suites</span>
+<span class="hljs-comment"># We create checkpoint</span>
+checkpoint = context.add_or_update_checkpoint(
+    name=<span class="hljs-string">"my_checkpoint"</span>,
+    validations=[ <span class="hljs-comment"># A list of validations</span>
+        {
+            <span class="hljs-string">"batch_request"</span>: batch_request,
+            <span class="hljs-string">"expectation_suite_name"</span>: <span class="hljs-string">"my_expectation_suite"</span>,
+        },
+    ],
+)
+</code></pre><h4 id="Run-a-checkpoint"><a class="anchor hidden-xs" href="#Run-a-checkpoint" title="Run-a-checkpoint"><i class="fa fa-link"></i></a>Run a checkpoint</h4><pre><code class="python hljs">checkpoint_result = checkpoint.run()
+</code></pre><div class="alert alert-warning">
+<p>By default, a Checkpoint only validates the last Batch included in a Batch Request. We can run the checkpoint on all batches in a batch request by converting the list of batches into a list of batch requests <img class="emoji" alt=":confused:" src="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/images/basic/confused.png"></p>
+<pre><code class="python hljs">
+<span class="hljs-comment"># Given a batch request</span>
+batch_list = asset.get_batch_list_from_batch_request(batch_request)
+
+batch_request_list = [batch.batch_request <span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> batch_list]
+
+
+validations = [
+    {
+		<span class="hljs-string">"batch_request"</span>: batch.batch_request,
+		<span class="hljs-string">"expectation_suite_name"</span>: <span class="hljs-string">"my_expectation_suite"</span>
+	}
+    <span class="hljs-keyword">for</span> batch <span class="hljs-keyword">in</span> batch_list
+]
+
+checkpoint = context.add_or_update_checkpoint(
+    name=<span class="hljs-string">"my_validator_checkpoint"</span>,
+    validations=validations
+)
+
+checkpoint_result = checkpoint.run()
+</code></pre>
+</div><h4 id="Present-results-in-data-docs"><a class="anchor hidden-xs" href="#Present-results-in-data-docs" title="Present-results-in-data-docs"><i class="fa fa-link"></i></a>Present results in data docs</h4><pre><code class="python hljs"><span class="hljs-comment"># Build the data docs (website files)</span>
+context.build_data_docs()
+
+<span class="hljs-comment"># Open the data docs in a browser</span>
+context.open_data_docs()
+</code></pre><h4 id="Retrieve-your-Checkpoint"><a class="anchor hidden-xs" href="#Retrieve-your-Checkpoint" title="Retrieve-your-Checkpoint"><i class="fa fa-link"></i></a>Retrieve your Checkpoint</h4><pre><code class="python hljs">retrieved_checkpoint = context.get_checkpoint(name=<span class="hljs-string">"my_checkpoint"</span>)
+</code></pre><div class="alert alert-warning">
+<p>We can add more validations (different batch requests with different expectation suites) to the checkpoint as follows:</p>
+<pre><code class="python hljs">validations = [
+    {
+        <span class="hljs-string">"batch_request"</span>: {
+            <span class="hljs-string">"datasource_name"</span>: <span class="hljs-string">"my_datasource"</span>,
+            <span class="hljs-string">"data_asset_name"</span>: <span class="hljs-string">"users"</span>,
+        },
+        <span class="hljs-string">"expectation_suite_name"</span>: <span class="hljs-string">"users.warning"</span>,
+    },
+    {
+        <span class="hljs-string">"batch_request"</span>: {
+            <span class="hljs-string">"datasource_name"</span>: <span class="hljs-string">"my_datasource"</span>,
+            <span class="hljs-string">"data_asset_name"</span>: <span class="hljs-string">"users.error"</span>,
+        },
+        <span class="hljs-string">"expectation_suite_name"</span>: <span class="hljs-string">"users"</span>,
+    },
+]
+
+checkpoint = context.add_or_update_checkpoint(
+    name=<span class="hljs-string">"my_checkpoint"</span>,
+    validations=validations,
+)
+</code></pre>
+</div><h3 id="Validation-Results"><a class="anchor hidden-xs" href="#Validation-Results" title="Validation-Results"><i class="fa fa-link"></i></a>Validation Results</h3><p>The Validation Results returned by GX tell you how your data corresponds to what you expected of it. You can view this information in the Data Docs that are configured in your Data Context. Evaluating your Validation Results helps you identify issues with your data. If the Validation Results show that your data meets your Expectations, you can confidently use it.</p><h3 id="Data-docs"><a class="anchor hidden-xs" href="#Data-docs" title="Data-docs"><i class="fa fa-link"></i></a>Data docs</h3><p>Data Docs are human-readable documentation generated by GX. Data Docs describe the standards that you expect your data to conform to, and the results of validating your data against those standards. The Data Context manages the storage and retrieval of this information.</p><p>We can host and share data docs locally as follows:</p><pre><code class="python hljs"><span class="hljs-comment"># Build the data docs (website files)</span>
+context.build_data_docs()
+
+<span class="hljs-comment"># Open the data docs in a browser</span>
+context.open_data_docs()
+</code></pre><p>The output:<br>
+<img src="https://i.imgur.com/cr07KaT.png" alt="" class="md-image md-image"></p><h3 id="Actions"><a class="anchor hidden-xs" href="#Actions" title="Actions"><i class="fa fa-link"></i></a>Actions</h3><p>The Validation Results generated when a Checkpoint runs determine what Actions are performed. Typical use cases include sending email, Slack messages, or custom notifications. Another common use case is updating Data Docs sites. Actions can be used to do anything you are capable of programming in Python. Actions are a versatile tool for integrating Checkpoints in your pipeline’s workflow.</p><div class="alert alert-warning">
+<p>In the project, we will raise an exception if there are any failed expectations. You can get the status of the checkpoint as follows:</p>
+<pre><code class="python hljs">checkpoint_result.success
+</code></pre>
+</div><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><ul>
+<li>Follow this notebook
+<ul>
+<li><a href="https://colab.research.google.com/drive/1Gx8xTB-k8jbIOL7IqzQjSTKEwsaGK6-S?usp=sharing" target="_blank" rel="noopener">gx.single.file.pandas.datasource.ipynb</a></li>
+</ul>
+</li>
+</ul><h3 id="A-script-to-run-the-checkpoint"><a class="anchor hidden-xs" href="#A-script-to-run-the-checkpoint" title="A-script-to-run-the-checkpoint"><i class="fa fa-link"></i></a>A script to run the checkpoint</h3><p>After you define your checkpoint and expectations suite. You should write a script/function to validate your data.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> great_expectations <span class="hljs-keyword">as</span> gx
+
+context = gx.get_context(project_root_dir = <span class="hljs-string">"services"</span>)
+
+retrieved_checkpoint = context.get_checkpoint(name=<span class="hljs-string">"my_checkpoint"</span>)
+
+results = retrieved_checkpoint.run()
+
+<span class="hljs-keyword">assert</span> results.success
+</code></pre><h2 id="great_expectations-CLI"><a class="anchor hidden-xs" href="#great_expectations-CLI" title="great_expectations-CLI"><i class="fa fa-link"></i></a>great_expectations CLI</h2><p>Great Expectations comes with a CLI to perform operations as command lines. This tool will basically create a FileDataContext in a folder <code>gx</code> in the current working directory.</p><div class="alert alert-danger">
+<p>It is not recommended to use the CLI to create datasources or other objects. Use this tool only if you want to explore the GX project folder. Use  the Python API (great_expectations) to do tasks with GX.</p>
+</div><p>Some commands:</p><ul>
+<li>Initialize a GX project</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">great_expectations</span> <span class="hljs-string">init</span>
+</code></pre><p>You initialize your project only once per repository. <code>init</code> initializes a new Great Expectations project <code>gx</code> in the current working directory. If you want to specify the GX project directory then you need to Access the folder “project_root_dir” where <code>gx</code> folder will be created by the CLI and run the command line.</p><p><img src="https://i.imgur.com/VEnDM35.png" alt="" class="md-image md-image"></p><ul>
+<li>List all data sources</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">great_expectations</span> <span class="hljs-string">datasource</span> <span class="hljs-string">list</span>
+</code></pre><p>This will guide you to create a datasource and then opens a Jupyter notebook. You run the cells to create a new data source.</p><ul>
+<li>build data docs</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">great_expectations</span> <span class="hljs-string">docs</span> <span class="hljs-string">build</span>
+</code></pre><h2 id="Where-you-should-use-it"><a class="anchor hidden-xs" href="#Where-you-should-use-it" title="Where-you-should-use-it"><i class="fa fa-link"></i></a>Where you should use it?</h2><p>You should validate the data after you collect it and whenever you transform it. You can see in the figure below that the data validation happens after:</p><ol>
+<li>Collecting and ingesting the data to a data store/warehouse</li>
+<li>Cleaning the data</li>
+<li>Data engineering</li>
+<li>Model prediction<br>
+<img src="https://greatexpectations.io/images/blog/ml_workflow_validation.png" alt="" class="md-image md-image"></li>
+</ol><div class="alert alert-warning">
+<p>In this project, you will validate the data:</p>
+<ol>
+<li>After you collect it where you need to define data requirements (expectations) and test quality of the data. This will ensure that the data from the source is <em>valid</em>. The valid data will be stored in a Postgresql database.</li>
+<li>After you transform it, exactly after data engineering/preparation and before storing features in feature stores. This will ensure tha the data is <em>valid</em> before training the model. The valid data will be stored in a feature store.</li>
+</ol>
+</div><h1 id="Data-Quality"><a class="anchor hidden-xs" href="#Data-Quality" title="Data-Quality"><i class="fa fa-link"></i></a>Data Quality</h1><p><strong>Data quality (DQ)</strong> is defined as the data’s suitability for a user’s defined purpose. It is subjective, as the concept of quality is relative to the standards defined by the end users’ expectations.</p><p><strong>Data Quality Expectations:</strong> It is possible that for the exact same data, depending on their usage, different users can have totally different data quality expectations. For example, the accounting department needs accurate data to the penny, whereas the marketing team does not, because the approximate sales number are enough to determine the sales trends.</p><h2 id="What-are-the-Six-Data-Quality-Dimensions"><a class="anchor hidden-xs" href="#What-are-the-Six-Data-Quality-Dimensions" title="What-are-the-Six-Data-Quality-Dimensions"><i class="fa fa-link"></i></a>What are the Six Data Quality Dimensions?</h2><p>The six primary data quality dimensions are <strong>Accuracy, Completeness, Consistency, Uniqueness, Timeliness, and Validity</strong>. However, this classification is not universally agreed upon.</p><p><img src="https://i.imgur.com/sY8HxbS.png" alt="" class="md-image md-image"></p><h3 id="Completeness0"><a class="anchor hidden-xs" href="#Completeness0" title="Completeness0"><i class="fa fa-link"></i></a>Completeness</h3><p>The completeness data quality dimension is defined as the percentage of data populated vs. the possibility of 100% fulfillment.</p><ul>
+<li>Example on GX expectation:
+<ul>
+<li><code>expect_column_values_to_not_be_null</code> — expect the column values to not be null.</li>
+</ul>
+</li>
+<li>It is labeled as “Missingness” in the <a href="https://greatexpectations.io/expectations" target="_blank" rel="noopener">GX gallery of Expectations</a>.</li>
+</ul><h3 id="Uniqueness"><a class="anchor hidden-xs" href="#Uniqueness" title="Uniqueness"><i class="fa fa-link"></i></a>Uniqueness</h3><p>Uniqueness is a dimension of data quality that refers to the degree to which each record in a dataset represents a unique and distinct entity or event. It measures whether the data is free of duplicates or redundant records, and whether each record represents a unique and distinct entity.</p><ul>
+<li>Example on GX expectation:
+<ul>
+<li><code>expect_column_values_to_be_unique</code> — Expect each column value to be unique.</li>
+</ul>
+</li>
+<li>It is labeled as “Cardinality” in the <a href="https://greatexpectations.io/expectations" target="_blank" rel="noopener">GX gallery of Expectations</a>.</li>
+</ul><h3 id="Timelessness"><a class="anchor hidden-xs" href="#Timelessness" title="Timelessness"><i class="fa fa-link"></i></a>Timelessness</h3><p>Timelessness is a dimension of data quality that measures the relevance and accuracy of data over time. It refers to whether the data is up to date.</p><ul>
+<li>Example on GX expectation:
+<ul>
+<li><code>expect_column_values_to_be_between</code> — expect the column values to not be null.</li>
+</ul>
+</li>
+<li>It is labeled as “Sets” in the <a href="https://greatexpectations.io/expectations" target="_blank" rel="noopener">GX gallery of Expectations</a>.</li>
+</ul><h3 id="Validity"><a class="anchor hidden-xs" href="#Validity" title="Validity"><i class="fa fa-link"></i></a>Validity</h3><p>Validity is a dimension of data quality that measures whether the data is accurate and conforms to the expected format or structure. Because invalid data can disrupt the training of AI algorithms on a dataset, organizations should establish a set of methodical business rules for evaluating data validity.</p><ul>
+<li>Example on GX expectation:
+<ul>
+<li><code>expect_column_values_to_match_regex</code> — expect the column values to match a specific regex format.</li>
+</ul>
+</li>
+<li>It is labeled as (“Schema”) in the <a href="https://greatexpectations.io/expectations" target="_blank" rel="noopener">GX gallery of Expectations</a>.</li>
+</ul><h3 id="Accuracy"><a class="anchor hidden-xs" href="#Accuracy" title="Accuracy"><i class="fa fa-link"></i></a>Accuracy</h3><p>Accuracy is the degree to which data represent real-world things, events, or an agreed-upon source.</p><ul>
+<li>Example on GX expectation:
+<ul>
+<li><code>expect_column_max_to_be_between</code> — expect the column max value to between a range of two   specific values.</li>
+</ul>
+</li>
+<li>It is labeled as (“Numerical data”) in the <a href="https://greatexpectations.io/expectations" target="_blank" rel="noopener">GX gallery of Expectations</a>.</li>
+</ul><h3 id="Consistency"><a class="anchor hidden-xs" href="#Consistency" title="Consistency"><i class="fa fa-link"></i></a>Consistency</h3><p>Consistency is a dimension of data quality that refers to the degree to which data is uniform across a dataset.</p><ul>
+<li>Example on GX expectation:
+<ul>
+<li><code>expect_column_values_to_be_between</code> — expect each column value to be in a given set.</li>
+</ul>
+</li>
+<li>It is labeled as (“Set”) in the <a href="https://greatexpectations.io/expectations" target="_blank" rel="noopener">GX gallery of Expectations</a>.</li>
+</ul><div class="alert alert-warning">
+<p>More than one data quality dimension can be checked using one GX expectation. There are more than one expectation to check each data quality dimension.</p>
+</div><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
 <!-- **Business understanding** -->
 <ol>
 <li>Create a Github repo for the project. Use the Github UI, select Python for <code>.gitignore</code> and add a <code>README.md</code> file. Add the instructor and all team members to the repository as contributors. The strcture is similar to:</li>
@@ -1028,9 +1588,11 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li>Add a function <code>sample_data</code> in a module <code>src/data.py</code> to read the data file and take a sample. Use Hydra to manage the data url in the configs and any configurations needed like the size of the sample, the name of the dataset,…etc. You need to define a structure for project configurations and use Hydra to read them from the source code. The function should read the data url from config files using Hydra and sample the data. Then, it stores the data samples in <code>data/samples</code> folder as <code>sample.csv</code> where the sample size is 20% of the total rows in the whole data. The sample size can be added to the config files too. The idea here is to make your project maintainable and ready for any changes with minimal modifications (DRY principle). For each new sample added, version the data using <code>dvc</code> to not lose any data samples.</li>
 <li>Run the function <code>sample_data</code> and it should generate a sample. The function should overwrite the file <code>sample.csv</code> if it already exists. You can manage the data versions using <code>dvc</code>.</li>
 <li>Add test functions (at least 2) in the <code>tests</code> folder to test the function <code>sample_data</code> and make sure it can pass all tests. You can add extensions from VS Code to setup <code>pytest</code>.</li>
-<li>Add another function <code>validate_initial_data</code> which declares expectations about the data features and validates them.</li>
-<li>Write a script <code>scripts/test_data.sh</code> to automate:</li>
+<li>Add another function <code>validate_initial_data</code> which declares expectations about the data features and validates them. Create an expectation suite and save them. Make sure that you created a File data context in a folder <code>services/gx</code> where the metdata of the context will be stored.</li>
 </ol>
+<p><strong>Note:</strong> You need to write expectations to satisfy the data requirements. The data requirements should be written (and added to <code>1_business_data_understanding.ipynb</code>) to cover the data quality dimensions which are completeness, uniqueness, timelessness, validity, consistency, and accuracy. Basically, the number of expectations is not a fixed number. Ideally, for each data feature we aim to validate all dimensions. For simplicity, we ask to validate 3 most important dimensions for each of the   7 most critical features (in total 21-40 expectations). Do not try to validate same dimension for all features, use a diverse set of quality dimensions. You should validate each dimension at least once per dataset.</p>
+<p><strong>Note:</strong> If any of the expectations got failed, then the program should raise a custom exception (alert) and terminate the program. This is the action that we will use for validating the data.<br>
+16. Write a script <code>scripts/test_data.sh</code> to automate:</p>
 <ul>
 <li>Take a data sample</li>
 <li>Version the data</li>
@@ -1116,13 +1678,13 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li>
 <p><strong>Section 2.7. Project feasibility</strong></p>
 <ul>
-<li>TODO</li>
+<li>Same requirements as in the colab notebook.</li>
 </ul>
 </li>
 <li>
 <p><strong>Section 2.8. Project plan</strong></p>
 <ul>
-<li>TODO</li>
+<li>Same requirements as in the colab notebook.</li>
 </ul>
 </li>
 </ul>
@@ -1131,13 +1693,6 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <p><strong>Push your report as pdf to <code>reports</code> folder for this phase. Add a version to the report such as <code>reportv1.pdf</code>.</strong></p>
 </li>
 </ul>
-<!-- - **Section 2.4. Feasibility**
-        - Checking the feasibility before setting up the project is considered best practice for the overall success of the ML approach, and can minimize the risk of premature failures due to false expectations. A feasibility test of the ML application should assess the situation and whether further development should be pursued. It is crucial, that the assessment includes the availability, size and quality of the training sample set. In practice, a major source of project delays is the lack of data availability. A small sample size carries the risk of low performance on out-of-sample data. The risk might be mitigated by e.g. adding domain knowledge or increasing data quality. However, if the sample size is not sufficient, the ML project should be terminated or put on hold at this stage.
-        - **Applicability of ML technology:** It is common to demonstrate the feasibility of the ML application with a proof of concept (PoC) when the ML algorithm is used for the first time in a specific domain. If a PoC already exists, setting up a software project that focuses on the deployment directly is more efficient, e.g. in case of yet another price estimation of used cars.
-        - **Legal constraints:** are essential for any business application. Legal constraints are frequently augmented by ethical and social considerations like fairness and trust.
-        - **Requirements on the application:** The success criteria that have been defined in section 2.3 have to be augmented with requirements that arise from running the application in the target domain or if not accessible an assumed target domain. The requirements include robustness, scalability, explainability and resource demand and are used for the development and verification in later phases. The challenge during the development is to optimize the success criteria while not violating the requirements and constraints. -->
-<!-- ---
-**Data understanding** -->
 </div><h1 id="References"><a class="anchor hidden-xs" href="#References" title="References"><i class="fa fa-link"></i></a>References</h1><ul>
 <li><a href="https://www.researchgate.net/publication/366452532_Machine_Learning_for_Feeling_Analysis_in_Twitter_Communications_A_Case_Study_in_HEYDRU_Peru" target="_blank" rel="noopener">Case study - Machine Learning for Feeling Analysis in Twitter Communications: A Case Study in HEYDRU!, Perú</a></li>
 <li><a href="https://ml-ops.org/content/crisp-ml" target="_blank" rel="noopener">CRISP-ML(Q). The ML Lifecycle Process</a></li>
@@ -1152,6 +1707,10 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank" rel="noopener">MLOps - Google Cloud</a></li>
 <li><a href="https://solutions.trustradius.com/buyer-blog/what-is-mlops/" target="_blank" rel="noopener">What is MLOps</a></li>
 <li><a href="https://www.oreilly.com/library/view/python-testing-with/9781680509427/" target="_blank" rel="noopener">Python Testing with pytest - 2nd edition</a></li>
+<li><a href="https://greatexpectations.io/blog/ml-ops-great-expectations" target="_blank" rel="noopener">How does Great Expectations fit into ML Ops?</a></li>
+<li><a href="https://docs.greatexpectations.io/docs/oss/tutorials/quickstart/" target="_blank" rel="noopener">Getting started with Great Expectations</a></li>
+<li><a href="https://icedq.com/6-data-quality-dimensions#:~:text=The%20six%20data%20quality%20dimensions%20are%20Accuracy%2C%20Completeness%2C%20Consistency%2C,Uniqueness%2C%20Timeliness%2C%20and%20Validity." target="_blank" rel="noopener">6 Dimensions of Data Quality, Examples, and Measurement</a></li>
+<li></li>
 </ul></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -1160,16 +1719,16 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
 <li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
 <li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
 <li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
 <li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
 <li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
@@ -1190,13 +1749,13 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
-<li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
-<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example" title="Composition example">Composition example</a></li>
 <li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
 <li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
 <li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
@@ -1206,12 +1765,12 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a><ul class="nav">
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a><ul class="nav">
 <li><a href="#Install-DVC" title="Install DVC">Install DVC</a></li>
 <li><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
 <li><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
-<li><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
-<li><a href="#Example" title="Example">Example</a></li>
+<li class=""><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
+<li class=""><a href="#Example" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul class="nav">
@@ -1224,7 +1783,7 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
 <li><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
-<li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
+<li class=""><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
 <li><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul class="nav">
 <li><a href="#Example1" title="Example:">Example:</a></li>
 </ul>
@@ -1237,19 +1796,60 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 </li>
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
 <li><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
-<li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
-<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
-<li class=""><a href="#Markers" title="Markers">Markers</a></li>
-<li class=""><a href="#Coverage" title="Coverage">Coverage</a></li>
+<li class=""><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a><ul class="nav">
+<li class=""><a href="#Fixture-parameters" title="Fixture parameters:">Fixture parameters:</a></li>
 </ul>
 </li>
-<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li class=""><a href="#Markers" title="Markers">Markers</a></li>
+<li class=""><a href="#tip1" title=""></a></li>
+</ul>
+</li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a><ul class="nav">
+<li class=""><a href="#Install-GX" title="Install GX">Install GX</a></li>
+<li class=""><a href="#GX-Core-components" title="GX Core components">GX Core components</a><ul class="nav">
+<li class=""><a href="#Data-context" title="Data context">Data context</a></li>
+<li class=""><a href="#Data-Sources" title="Data Sources">Data Sources</a></li>
+<li class=""><a href="#Data-Assets" title="Data Assets">Data Assets</a></li>
+<li class=""><a href="#Batch-and-Batch-Request" title="Batch and Batch Request">Batch and Batch Request</a></li>
+<li class=""><a href="#Expectations" title="Expectations">Expectations</a></li>
+<li class=""><a href="#Expectation-Suites" title="Expectation Suites">Expectation Suites</a></li>
+<li class=""><a href="#Data-Assistants" title="Data Assistants">Data Assistants</a></li>
+</ul>
+</li>
+<li class=""><a href="#Data-validation-workflow-in-GX" title="Data validation workflow in GX">Data validation workflow in GX</a><ul class="nav">
+<li class=""><a href="#Checkpoints" title="Checkpoints">Checkpoints</a></li>
+<li class=""><a href="#Validation-Results" title="Validation Results">Validation Results</a></li>
+<li class=""><a href="#Data-docs" title="Data docs">Data docs</a></li>
+<li class=""><a href="#Actions" title="Actions">Actions</a></li>
+</ul>
+</li>
+<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#A-script-to-run-the-checkpoint" title="A script to run the checkpoint">A script to run the checkpoint</a></li>
+</ul>
+</li>
+<li class=""><a href="#great_expectations-CLI" title="great_expectations CLI">great_expectations CLI</a></li>
+<li class=""><a href="#Where-you-should-use-it" title="Where you should use it?">Where you should use it?</a></li>
+</ul>
+</li>
+<li class=""><a href="#Data-Quality" title="Data Quality">Data Quality</a><ul class="nav">
+<li class=""><a href="#What-are-the-Six-Data-Quality-Dimensions" title="What are the Six Data Quality Dimensions?">What are the Six Data Quality Dimensions?</a><ul class="nav">
+<li class=""><a href="#Completeness0" title="Completeness">Completeness</a></li>
+<li class=""><a href="#Uniqueness" title="Uniqueness">Uniqueness</a></li>
+<li class=""><a href="#Timelessness" title="Timelessness">Timelessness</a></li>
+<li class=""><a href="#Validity" title="Validity">Validity</a></li>
+<li class=""><a href="#Accuracy" title="Accuracy">Accuracy</a></li>
+<li class=""><a href="#Consistency" title="Consistency">Consistency</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li class=""><a href="#References" title="References">References</a></li>
+<li><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
@@ -1262,16 +1862,16 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
-<li><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
-<li><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
-<li><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
-<li><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
+<li class=""><a href="#Phase-I---Business-and-data-understanding" title="Phase I - Business and data understanding">Phase I - Business and data understanding</a></li>
+<li class=""><a href="#Colab-notebook" title="Colab notebook">Colab notebook</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Intro-to-MLOps" title="Intro to MLOps">Intro to MLOps</a><ul class="nav">
+<li class=""><a href="#Machine-Learning-The-Short-Version" title="Machine Learning: The Short Version">Machine Learning: The Short Version</a></li>
+<li class=""><a href="#Machine-Learning-is-Not-Simple" title="Machine Learning is Not Simple">Machine Learning is Not Simple</a></li>
 <li><a href="#MLOps-Makes-it-Better" title="MLOps Makes it Better">MLOps Makes it Better</a></li>
 <li><a href="#People-and-personas" title="People and personas">People and personas</a></li>
-<li><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
-<li><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
+<li class=""><a href="#MLOps-principles" title="MLOps principles">MLOps principles</a><ul class="nav">
+<li class=""><a href="#1-Iterative-Incremental-Process" title="1. Iterative-Incremental Process">1. Iterative-Incremental Process</a></li>
 <li><a href="#2-Automation" title="2. Automation">2. Automation</a></li>
 <li><a href="#3-Continuous-X" title="3. Continuous X">3. Continuous X</a></li>
 <li><a href="#4-Versioning" title="4. Versioning">4. Versioning</a></li>
@@ -1292,13 +1892,13 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li><a href="#ML-Canvas" title="ML Canvas">ML Canvas</a></li>
 </ul>
 </li>
-<li><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
-<li><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
-<li><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
-<li><a href="#Demo" title="Demo">Demo</a><ul class="nav">
-<li><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
-<li><a href="#Basic-example" title="Basic example">Basic example</a></li>
-<li><a href="#Composition-example" title="Composition example">Composition example</a></li>
+<li class=""><a href="#CRISP-DM-Vs-CRISP-ML" title="CRISP-DM Vs. CRISP-ML">CRISP-DM Vs. CRISP-ML</a></li>
+<li class=""><a href="#CRISP-ML---Phase-I--Business-and-Data-understanding" title="CRISP-ML - Phase I : Business and Data understanding">CRISP-ML - Phase I : Business and Data understanding</a></li>
+<li class=""><a href="#-Hydra" title=" Hydra"> Hydra</a><ul class="nav">
+<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#Install-Hydra" title="Install Hydra">Install Hydra</a></li>
+<li class=""><a href="#Basic-example" title="Basic example">Basic example</a></li>
+<li class=""><a href="#Composition-example" title="Composition example">Composition example</a></li>
 <li><a href="#Multirun-example" title="Multirun example">Multirun example</a></li>
 <li><a href="#Missing-values-and-Value-interpolation" title="Missing values and Value interpolation">Missing values and Value interpolation</a></li>
 <li><a href="#Non-config-group-defaults" title="Non-config group defaults">Non-config group defaults</a></li>
@@ -1308,12 +1908,12 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 </li>
 </ul>
 </li>
-<li><a href="#-DVC" title=" DVC"> DVC</a><ul class="nav">
+<li class=""><a href="#-DVC" title=" DVC"> DVC</a><ul class="nav">
 <li><a href="#Install-DVC" title="Install DVC">Install DVC</a></li>
 <li><a href="#Initialize-DVC-repository" title="Initialize DVC repository">Initialize DVC repository</a></li>
 <li><a href="#Configure-a-remote-storage" title="Configure a remote storage">Configure a remote storage</a></li>
-<li><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
-<li><a href="#Example" title="Example">Example</a></li>
+<li class=""><a href="#Tracking-data" title="Tracking data">Tracking data</a><ul class="nav">
+<li class=""><a href="#Example" title="Example">Example</a></li>
 </ul>
 </li>
 <li><a href="#Switch-between-data-versions" title="Switch between data versions">Switch between data versions</a><ul class="nav">
@@ -1326,7 +1926,7 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 <li class=""><a href="#-Pytest" title=" Pytest"> Pytest</a><ul class="nav">
 <li><a href="#Install-pytest" title="Install pytest">Install pytest</a></li>
 <li><a href="#AAA-pattern" title="AAA pattern">AAA pattern</a></li>
-<li><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
+<li class=""><a href="#unittest-short-demo" title="unittest short demo">unittest short demo</a></li>
 <li><a href="#Create-test-functions-in-pytest" title="Create test functions in pytest">Create test functions in pytest</a><ul class="nav">
 <li><a href="#Example1" title="Example:">Example:</a></li>
 </ul>
@@ -1339,19 +1939,60 @@ TODO</p><h2 id="Parametrization"><a class="anchor hidden-xs" href="#Parametrizat
 </li>
 <li><a href="#Testing-for-expected-exceptions" title="Testing for expected exceptions">Testing for expected exceptions</a></li>
 <li><a href="#Grouping-Tests-with-Classes" title="Grouping Tests with Classes">Grouping Tests with Classes</a></li>
-<li><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a></li>
-<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
-<li class=""><a href="#Markers" title="Markers">Markers</a></li>
-<li class=""><a href="#Coverage" title="Coverage">Coverage</a></li>
+<li class=""><a href="#pytest-Fixtures" title="pytest Fixtures">pytest Fixtures</a><ul class="nav">
+<li class=""><a href="#Fixture-parameters" title="Fixture parameters:">Fixture parameters:</a></li>
 </ul>
 </li>
-<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a></li>
+<li class=""><a href="#Parametrization" title="Parametrization">Parametrization</a></li>
+<li class=""><a href="#Markers" title="Markers">Markers</a></li>
+<li class=""><a href="#tip1" title=""></a></li>
+</ul>
+</li>
+<li class=""><a href="#-Great-Expectations-GX" title="  Great Expectations (GX)">  Great Expectations (GX)</a><ul class="nav">
+<li class=""><a href="#Install-GX" title="Install GX">Install GX</a></li>
+<li class=""><a href="#GX-Core-components" title="GX Core components">GX Core components</a><ul class="nav">
+<li class=""><a href="#Data-context" title="Data context">Data context</a></li>
+<li class=""><a href="#Data-Sources" title="Data Sources">Data Sources</a></li>
+<li class=""><a href="#Data-Assets" title="Data Assets">Data Assets</a></li>
+<li class=""><a href="#Batch-and-Batch-Request" title="Batch and Batch Request">Batch and Batch Request</a></li>
+<li class=""><a href="#Expectations" title="Expectations">Expectations</a></li>
+<li class=""><a href="#Expectation-Suites" title="Expectation Suites">Expectation Suites</a></li>
+<li class=""><a href="#Data-Assistants" title="Data Assistants">Data Assistants</a></li>
+</ul>
+</li>
+<li class=""><a href="#Data-validation-workflow-in-GX" title="Data validation workflow in GX">Data validation workflow in GX</a><ul class="nav">
+<li class=""><a href="#Checkpoints" title="Checkpoints">Checkpoints</a></li>
+<li class=""><a href="#Validation-Results" title="Validation Results">Validation Results</a></li>
+<li class=""><a href="#Data-docs" title="Data docs">Data docs</a></li>
+<li class=""><a href="#Actions" title="Actions">Actions</a></li>
+</ul>
+</li>
+<li class=""><a href="#Demo" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#A-script-to-run-the-checkpoint" title="A script to run the checkpoint">A script to run the checkpoint</a></li>
+</ul>
+</li>
+<li class=""><a href="#great_expectations-CLI" title="great_expectations CLI">great_expectations CLI</a></li>
+<li class=""><a href="#Where-you-should-use-it" title="Where you should use it?">Where you should use it?</a></li>
+</ul>
+</li>
+<li class=""><a href="#Data-Quality" title="Data Quality">Data Quality</a><ul class="nav">
+<li class=""><a href="#What-are-the-Six-Data-Quality-Dimensions" title="What are the Six Data Quality Dimensions?">What are the Six Data Quality Dimensions?</a><ul class="nav">
+<li class=""><a href="#Completeness0" title="Completeness">Completeness</a></li>
+<li class=""><a href="#Uniqueness" title="Uniqueness">Uniqueness</a></li>
+<li class=""><a href="#Timelessness" title="Timelessness">Timelessness</a></li>
+<li class=""><a href="#Validity" title="Validity">Validity</a></li>
+<li class=""><a href="#Accuracy" title="Accuracy">Accuracy</a></li>
+<li class=""><a href="#Consistency" title="Consistency">Consistency</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li class=""><a href="#References" title="References">References</a></li>
+<li><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
