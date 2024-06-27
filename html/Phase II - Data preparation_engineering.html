@@ -1553,8 +1553,7 @@ async_dag_2()
     <span class="hljs-comment"># dag is an instance of DAG</span>
 </code></pre><h2 id="Airflow-UI"><a class="anchor hidden-xs" href="#Airflow-UI" title="Airflow-UI"><i class="fa fa-link"></i></a>Airflow UI</h2><p>The Airflow UI makes it easy to monitor and troubleshoot your data pipelines. Here’s a quick overview of some of the features and visualizations you can find in the Airflow UI.</p><h3 id="DAGs-View"><a class="anchor hidden-xs" href="#DAGs-View" title="DAGs-View"><i class="fa fa-link"></i></a>DAGs View</h3><p>List of the DAGs in your environment, and a set of shortcuts to useful pages. You can see exactly how many tasks succeeded, failed, or are currently running at a glance.<br>
 <img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/dags.png" alt="" class="md-image md-image"></p><h3 id="Cluster-Activity-View"><a class="anchor hidden-xs" href="#Cluster-Activity-View" title="Cluster-Activity-View"><i class="fa fa-link"></i></a>Cluster Activity View</h3><p>Native Airflow dashboard page into the UI to collect several useful metrics for monitoring your Airflow cluster.<br>
-![]<br>
-(<a href="https://airflow.apache.org/docs/apache-airflow/stable/_images/cluster_activity.png" target="_blank" rel="noopener">https://airflow.apache.org/docs/apache-airflow/stable/_images/cluster_activity.png</a>)</p><h3 id="Datasets-View"><a class="anchor hidden-xs" href="#Datasets-View" title="Datasets-View"><i class="fa fa-link"></i></a>Datasets View</h3><p>A combined listing of the current datasets and a graph illustrating how they are produced and consumed by DAGs.</p><p><img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/datasets.png" alt="" class="md-image md-image"></p><h3 id="Grid-View"><a class="anchor hidden-xs" href="#Grid-View" title="Grid-View"><i class="fa fa-link"></i></a>Grid View</h3><p>A bar chart and grid representation of the DAG that spans across time. The top row is a chart of DAG Runs by duration, and below, task instances. If a pipeline is late, you can quickly see where the different steps are and identify the blocking ones.</p><p><img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/grid.png" alt="" class="md-image md-image"></p><h3 id="Graph-View"><a class="anchor hidden-xs" href="#Graph-View" title="Graph-View"><i class="fa fa-link"></i></a>Graph View</h3><p>The graph view is perhaps the most comprehensive. Visualize your DAG’s dependencies and their current status for a specific run.</p><p><img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/graph.png" alt="" class="md-image md-image"></p><div class="alert alert-info">
+<img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/cluster_activity.png" alt="" class="md-image md-image"></p><h3 id="Datasets-View"><a class="anchor hidden-xs" href="#Datasets-View" title="Datasets-View"><i class="fa fa-link"></i></a>Datasets View</h3><p>A combined listing of the current datasets and a graph illustrating how they are produced and consumed by DAGs.</p><p><img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/datasets.png" alt="" class="md-image md-image"></p><h3 id="Grid-View"><a class="anchor hidden-xs" href="#Grid-View" title="Grid-View"><i class="fa fa-link"></i></a>Grid View</h3><p>A bar chart and grid representation of the DAG that spans across time. The top row is a chart of DAG Runs by duration, and below, task instances. If a pipeline is late, you can quickly see where the different steps are and identify the blocking ones.</p><p><img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/grid.png" alt="" class="md-image md-image"></p><h3 id="Graph-View"><a class="anchor hidden-xs" href="#Graph-View" title="Graph-View"><i class="fa fa-link"></i></a>Graph View</h3><p>The graph view is perhaps the most comprehensive. Visualize your DAG’s dependencies and their current status for a specific run.</p><p><img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/graph.png" alt="" class="md-image md-image"></p><div class="alert alert-info">
 <p>The landing time for a task instance is the delta between the dag run’s data interval end (typically this means when the dag “should” run) and the dag run completion time.</p>
 </div><h1 id="ZenML"><a class="anchor hidden-xs" href="#ZenML" title="ZenML"><i class="fa fa-link"></i></a>ZenML</h1><p>ZenML is an extensible, open-source MLOps framework for creating portable, production-ready machine learning pipelines.</p><pre><code class="yaml hljs"><span class="hljs-comment"># You do not need to run this if you installed the package from requirements.txt</span>
 <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">zenml[server]</span>
@@ -2166,10 +2165,10 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </ul>
 </li>
 <li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
-<li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
+<li><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
 <li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
 <li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
-<li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
+<li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
 <li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
 <li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
 <li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
@@ -2178,8 +2177,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 <li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
 <li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
-<li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
+<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li class=""><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
 <li><a href="#Grid-View" title="Grid View">Grid View</a></li>
@@ -2279,10 +2278,10 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </ul>
 </li>
 <li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
-<li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
+<li><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
 <li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
 <li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
-<li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
+<li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
 <li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
 <li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
 <li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
@@ -2291,8 +2290,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 <li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
 <li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
-<li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
+<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li class=""><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
 <li><a href="#Grid-View" title="Grid View">Grid View</a></li>
