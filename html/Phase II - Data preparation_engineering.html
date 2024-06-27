@@ -146,8 +146,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Dataset"><a class="anchor hidden
 </ul>
 </div><p></p><h1 id="Description"><a class="anchor hidden-xs" href="#Description" title="Description"><i class="fa fa-link"></i></a>Description</h1><p>The second phase of the CRISP-ML process model aims to prepare data for the following modeling phase. Data selection, data cleaning, feature engineering, and data standardization tasks are performed during this phase.</p><p>We identify valuable and necessary features for future model training by using either filter methods, wrapper methods, or embedded methods for data selection. Furthermore, we select data by discarding samples that do not satisfy data quality requirements. At this point, we also might tackle the problem of unbalanced classes by applying over-sampling or under-sampling strategies.</p><p>The data cleaning task implies that we perform error detection and error correction steps for the available data. Adding unit testing for data will mitigate the risk of error propagation to the next phase. Depending on the machine learning task, we might need to perform feature engineering and data augmentation activities. For example, such methods include one-hot encoding, clustering, or discretization of continuous attributes.</p><p>The data standardization task denotes the process of unifying the ML tools’ input data to avoid the risk of erroneous data. Finally, the normalization task will mitigate the risk of bias to features on larger scales. We build data and input data transformation pipelines for data pre-processing and feature creation to ensure the ML application’s reproducibility during this phase.</p><div class="alert alert-warning">
 <p>In the 2nd phase of the project, we will transform the data and prepare it for ML modeling. The objective here is to have automated pipelines which can start extracting the data from the data source till persisting the features in some feature store.</p>
-</div><p><img src="https://i.imgur.com/RZjyhY0.jpeg" alt="" class="md-image md-image"><br>
-Data preparation is not a static phase and backtracking circles from later phases are necessary if, for example, the modeling phase or the deployment phase reveal erroneous data. So, we need to automate the data preparation pipelines.</p><div class="alert alert-danger">
+</div><p><img src="https://i.imgur.com/RZjyhY0.jpeg" alt="" class="md-image md-image"></p><p>Data preparation is not a static phase and backtracking circles from later phases are necessary if, for example, the modeling phase or the deployment phase reveal erroneous data. So, we need to automate the data preparation pipelines.</p><div class="alert alert-danger">
 <p><strong>Note:</strong><br>
 The commands and scripts here are written considering by default that the Current Working Directory (CWD) is the project folder path. So ensure that you are there before you run commands. In my PC, I have <code>~/project</code> folder in my home directory which is the project folder path and it is also the CWD unless the directory is changed using <code>cd</code>.</p>
 </div><h1 id="Docker-and-Docker-compose-Extra-section-for-now"><a class="anchor hidden-xs" href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker-and-Docker-compose-Extra-section-for-now"><i class="fa fa-link"></i></a>Docker and Docker compose [Extra section for now]</h1><div class="alert alert-danger">
@@ -940,7 +939,7 @@ The backfill command will re-run all the instances of the dag_id for all the int
 <li><code>end_date</code>: The last date your DAG will be executed. This parameter is optional.</li>
 </ul>
 </li>
-</ul><h4 id="Example0"><a class="anchor hidden-xs" href="#Example0" title="Example0"><i class="fa fa-link"></i></a>Example</h4><p>To demonstrate how these concepts work together, consider a DAG that is scheduled to run <em>every 5 minutes</em> as shown in the image below.</p><p><img src="https://www.astronomer.io/docs/assets/images/2_4_5minExample-2398badb0335832b04874388f49116d4.png" alt="" class="md-image md-image"></p><ul>
+</ul><h4 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h4><p>To demonstrate how these concepts work together, consider a DAG that is scheduled to run <em>every 5 minutes</em> as shown in the image below.</p><p><img src="https://www.astronomer.io/docs/assets/images/2_4_5minExample-2398badb0335832b04874388f49116d4.png" alt="" class="md-image md-image"></p><ul>
 <li><code>Logical date</code>: 2022-08-28 22:<strong>37</strong>:33 UTC.
 <ul>
 <li>Displayed in <code>Data interval start</code> field</li>
@@ -1502,7 +1501,7 @@ start_date = pendulum.datetime(<span class="hljs-number">2021</span>, <span clas
 <img src="https://www.astronomer.io/docs/assets/images/deferrable_operator_process-684cf9e1955514cc33f4801afbace2a6.png" alt="" class="md-image md-image"></li>
 <li>Deferrable operators should be used whenever you have tasks that occupy a worker slot while polling for a condition in an external system. For example, using deferrable operators for sensor tasks can provide efficiency gains and reduce operational costs.</li>
 <li>Many Airflow operators, such as the <code>TriggerDagRunOperator</code>, can be set to run in deferrable mode using the <code>deferrable</code> parameter.</li>
-</ul><h5 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h5><p>The following example DAG is scheduled to run every minute between its <code>start_date</code> and its <code>end_date</code>. Every DAG run contains one sensor task that will potentially take up to 20 minutes to complete.</p><pre><code class="python hljs"><span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag
+</ul><h5 id="Example1"><a class="anchor hidden-xs" href="#Example1" title="Example1"><i class="fa fa-link"></i></a>Example</h5><p>The following example DAG is scheduled to run every minute between its <code>start_date</code> and its <code>end_date</code>. Every DAG run contains one sensor task that will potentially take up to 20 minutes to complete.</p><pre><code class="python hljs"><span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag
 <span class="hljs-keyword">from</span> airflow.sensors.date_time <span class="hljs-keyword">import</span> DateTimeSensor
 <span class="hljs-keyword">from</span> pendulum <span class="hljs-keyword">import</span> datetime
 
@@ -2024,7 +2023,7 @@ print(training_df.head())
 <li>Transform the data sample into features.
 <ul>
 <li>Write a function <code>preprocess_data</code> which transforms the input data sample into features and returns them as a dataframe/tensor.</li>
-<li>Send to the next step, the dataframe (X, y) and data version.</li>
+<li>Send to the next step, the dataframe (X, y).</li>
 </ul>
 </li>
 <li>Validate the features.
@@ -2038,7 +2037,7 @@ print(training_df.head())
 </li>
 <li>Load the features.
 <ul>
-<li>Load and version the features and the target in artifact store of ZenML.</li>
+<li>Load and version the features X and the target y in artifact store of ZenML.</li>
 <li>Use the same version as the data sample.</li>
 <li>Ensure that you can retrieve your version from ZenML store.</li>
 <li><strong>[optional task related to Feast]</strong> Persist the features (X, y) in a parquet file <code>data/processed/features.parquet</code>.</li>
@@ -2139,100 +2138,100 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Dataset" title="Dataset">Dataset</a></li>
 <li><a href="#Agenda" title="Agenda">Agenda</a></li>
 <li><a href="#Description" title="Description">Description</a></li>
-<li class=""><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
+<li><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
 <li><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
 <li><a href="#Dockerfile-definition" title="Dockerfile definition">Dockerfile definition</a></li>
-<li class=""><a href="#Demo" title="Demo">Demo</a></li>
-<li class=""><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+<li><a href="#Demo" title="Demo">Demo</a></li>
+<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
 </ul>
 </li>
 <li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
-<li class=""><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
-<li class=""><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
-<li class=""><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
+<li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
+<li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
+<li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
 </ul>
 </li>
-<li class=""><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
-<li class=""><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
-<li class=""><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
-<li class=""><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
-<li class=""><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
+<li><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
+<li><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
+<li><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
+<li><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
+<li><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
-<li class=""><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
-<li class=""><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
-<li class=""><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
-<li class=""><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
+<li><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
+<li><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
+<li><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
+<li><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
+<li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
+<li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
 <li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
-<li class=""><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
-<li class=""><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
+<li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
+<li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
 <li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li class=""><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
-<li class=""><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
-<li class=""><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
-<li class=""><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
+<li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
+<li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
+<li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
+<li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li class=""><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
-<li class=""><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
-<li class=""><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
-<li class=""><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
-<li class=""><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
-<li class=""><a href="#Grid-View" title="Grid View">Grid View</a></li>
-<li class=""><a href="#Graph-View" title="Graph View">Graph View</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
-<li class=""><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
-<li class=""><a href="#Step" title="Step">Step</a></li>
-<li class=""><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
-<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
-<li class=""><a href="#Materializers" title="Materializers">Materializers</a></li>
-</ul>
-</li>
-<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
-</ul>
-</li>
-<li class=""><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
-<li class=""><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
-<li class=""><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
-<li class=""><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
-<li class=""><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
-</ul>
-</li>
-<li class=""><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
-<li class=""><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
-<li class=""><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
-</ul>
-</li>
-<li class=""><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
-</ul>
-</li>
-<li class=""><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul class="nav">
-<li class=""><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul class="nav">
-<li class=""><a href="#Install-feast" title="Install feast">Install feast</a></li>
-</ul>
-</li>
-<li class=""><a href="#Demo1" title="Demo">Demo</a><ul class="nav">
-<li class=""><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
-<li class=""><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
-<li class=""><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
-<li class=""><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
+<li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
+<li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
+<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
+<li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
+<li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
+<li><a href="#Grid-View" title="Grid View">Grid View</a></li>
+<li><a href="#Graph-View" title="Graph View">Graph View</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
+<li><a href="#Step" title="Step">Step</a></li>
+<li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Materializers" title="Materializers">Materializers</a></li>
+</ul>
+</li>
+<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+</ul>
+</li>
+<li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
+<li><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
+<li><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
+<li><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
+<li><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
+</ul>
+</li>
+<li><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
+<li><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
+<li><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
+</ul>
+</li>
+<li><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
+</ul>
+</li>
+<li><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul class="nav">
+<li><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul class="nav">
+<li><a href="#Install-feast" title="Install feast">Install feast</a></li>
+</ul>
+</li>
+<li><a href="#Demo1" title="Demo">Demo</a><ul class="nav">
+<li><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
+<li><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
+<li><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
+<li><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
@@ -2252,100 +2251,100 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Dataset" title="Dataset">Dataset</a></li>
 <li><a href="#Agenda" title="Agenda">Agenda</a></li>
 <li><a href="#Description" title="Description">Description</a></li>
-<li class=""><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
+<li><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
 <li><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
 <li><a href="#Dockerfile-definition" title="Dockerfile definition">Dockerfile definition</a></li>
-<li class=""><a href="#Demo" title="Demo">Demo</a></li>
-<li class=""><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+<li><a href="#Demo" title="Demo">Demo</a></li>
+<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
 </ul>
 </li>
 <li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
-<li class=""><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
-<li class=""><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
-<li class=""><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
+<li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
+<li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
+<li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
 </ul>
 </li>
-<li class=""><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
-<li class=""><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
-<li class=""><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
-<li class=""><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
-<li class=""><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
+<li><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
+<li><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
+<li><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
+<li><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
+<li><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
-<li class=""><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
-<li class=""><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
-<li class=""><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
-<li class=""><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
+<li><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
+<li><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
+<li><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
+<li><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
+<li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
+<li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
 <li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
-<li class=""><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
-<li class=""><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
+<li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
+<li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
 <li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li class=""><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
-<li class=""><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
-<li class=""><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
-<li class=""><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
+<li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
+<li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
+<li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
+<li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li class=""><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
-<li class=""><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
-<li class=""><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
-<li class=""><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
-<li class=""><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
-<li class=""><a href="#Grid-View" title="Grid View">Grid View</a></li>
-<li class=""><a href="#Graph-View" title="Graph View">Graph View</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
-<li class=""><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
-<li class=""><a href="#Step" title="Step">Step</a></li>
-<li class=""><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
-<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
-<li class=""><a href="#Materializers" title="Materializers">Materializers</a></li>
-</ul>
-</li>
-<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
-</ul>
-</li>
-<li class=""><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
-<li class=""><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
-<li class=""><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
-<li class=""><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
-<li class=""><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
-</ul>
-</li>
-<li class=""><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
-<li class=""><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
-<li class=""><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
-</ul>
-</li>
-<li class=""><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
-</ul>
-</li>
-<li class=""><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul class="nav">
-<li class=""><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul class="nav">
-<li class=""><a href="#Install-feast" title="Install feast">Install feast</a></li>
-</ul>
-</li>
-<li class=""><a href="#Demo1" title="Demo">Demo</a><ul class="nav">
-<li class=""><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
-<li class=""><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
-<li class=""><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
-<li class=""><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
+<li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
+<li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
+<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
+<li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
+<li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
+<li><a href="#Grid-View" title="Grid View">Grid View</a></li>
+<li><a href="#Graph-View" title="Graph View">Graph View</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
+<li><a href="#Step" title="Step">Step</a></li>
+<li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Materializers" title="Materializers">Materializers</a></li>
+</ul>
+</li>
+<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+</ul>
+</li>
+<li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
+<li><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
+<li><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
+<li><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
+<li><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
+</ul>
+</li>
+<li><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
+<li><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
+<li><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
+</ul>
+</li>
+<li><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
+</ul>
+</li>
+<li><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul class="nav">
+<li><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul class="nav">
+<li><a href="#Install-feast" title="Install feast">Install feast</a></li>
+</ul>
+</li>
+<li><a href="#Demo1" title="Demo">Demo</a><ul class="nav">
+<li><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
+<li><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
+<li><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
+<li><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
