@@ -47,10 +47,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Dataset"><a class="anchor hidden
 <li><a href="#Agenda" title="Agenda">Agenda</a></li>
 <li><a href="#Description" title="Description">Description</a></li>
 <li><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul>
-<li><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
-<li><a href="#Dockerfile-definition" title="Dockerfile definition">Dockerfile definition</a></li>
-<li><a href="#Demo" title="Demo">Demo</a></li>
-<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+<li><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
 </ul>
 </li>
 <li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul>
@@ -67,7 +64,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Dataset"><a class="anchor hidden
 </ul>
 </li>
 <li><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
-<li><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
+<li><a href="#Core-concepts0" title="Core concepts">Core concepts</a></li>
 <li><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
 <li><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul>
 <li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
@@ -78,13 +75,13 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Dataset"><a class="anchor hidden
 <li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
 <li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
 <li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
+<li><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
 <li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
 <li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
 <li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
+<li><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
 <li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
 <li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul>
 <li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
@@ -123,20 +120,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Dataset"><a class="anchor hidden
 <li><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
 </ul>
 </li>
-<li><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul>
-<li><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul>
-<li><a href="#Install-feast" title="Install feast">Install feast</a></li>
-</ul>
-</li>
-<li><a href="#Demo1" title="Demo">Demo</a><ul>
-<li><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
-<li><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
-<li><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
-<li><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a></li>
 <li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
 <li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
@@ -151,21 +135,41 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Dataset"><a class="anchor hidden
 The commands and scripts here are written considering by default that the Current Working Directory (CWD) is the project folder path. So ensure that you are there before you run commands. In my PC, I have <code>~/project</code> folder in my home directory which is the project folder path and it is also the CWD unless the directory is changed using <code>cd</code>.</p>
 </div><h1 id="Docker-and-Docker-compose-Extra-section-for-now"><a class="anchor hidden-xs" href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker-and-Docker-compose-Extra-section-for-now"><i class="fa fa-link"></i></a>Docker and Docker compose [Extra section for now]</h1><div class="alert alert-danger">
 <p>This section is extra for now but will be mandatory in phase 5 of CRISP-ML.</p>
-</div><p>Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called <strong>containers</strong>.</p><p>In simpler words, <strong>Docker</strong> is a tool that allows to easily deploy the applications in a <em>sandbox</em> (called <em>containers</em>) to run on the host operating system i.e. Linux.</p><p>The key benefit of Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development. Unlike virtual machines, containers do not have high <em>overhead</em> and hence enable more efficient usage of the underlying system and resources.</p><p>The industry standard today is to use <strong>Virtual Machines</strong> (VMs) to run software applications. VMs run applications inside a guest Operating System, which runs on virtual hardware powered by the server’s host OS.</p><p>VMs are great at providing full process isolation for applications: there are very few ways a problem in the host operating system can affect the software running in the guest operating system, and vice-versa. But this isolation comes at great cost — the computational overhead spent virtualizing hardware for a guest OS to use is substantial.</p><p><img src="https://www.eginnovations.com/blog/wp-content/uploads/2020/12/container-vms.jpg" alt="" class="md-image md-image"></p><p><strong>Containers</strong> take a different approach, by leveraging the low-level mechanics of the host operating system, containers provide most of the isolation of virtual machines at a fraction of the computing power.</p><ul>
+</div><details>
+<p>Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called <strong>containers</strong>.</p>
+<p>In simpler words, <strong>Docker</strong> is a tool that allows to easily deploy the applications in a <em>sandbox</em> (called <em>containers</em>) to run on the host operating system i.e. Linux.</p>
+<p>The key benefit of Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development. Unlike virtual machines, containers do not have high <em>overhead</em> and hence enable more efficient usage of the underlying system and resources.</p>
+<p>The industry standard today is to use <strong>Virtual Machines</strong> (VMs) to run software applications. VMs run applications inside a guest Operating System, which runs on virtual hardware powered by the server’s host OS.</p>
+<p>VMs are great at providing full process isolation for applications: there are very few ways a problem in the host operating system can affect the software running in the guest operating system, and vice-versa. But this isolation comes at great cost — the computational overhead spent virtualizing hardware for a guest OS to use is substantial.</p>
+<p><img src="https://www.eginnovations.com/blog/wp-content/uploads/2020/12/container-vms.jpg" alt="" class="md-image md-image"></p>
+<p><strong>Containers</strong> take a different approach, by leveraging the low-level mechanics of the host operating system, containers provide most of the isolation of virtual machines at a fraction of the computing power.</p>
+<ul>
 <li><strong>Dockerfile</strong> is a simple text file that contains a list of instructions that the Docker client calls while creating an image.</li>
-</ul><center>
+</ul>
+<center>
 <p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230406105935/dockerfile-2.png" alt="" width="400" height="150" class="md-image md-image"></p>
-</center><ul>
+</center>
+<ul>
 <li><strong>Docker image</strong> is an artifact with several layers and a lightweight, compact stand-alone executable package that contains all of the components required to run a piece of software, including the code, a runtime, libraries, environment variables, and configuration files.</li>
 <li><strong>Docker container</strong> is a runtime instance of an image.</li>
-</ul><h2 id="Install-docker-and-docker-compose"><a class="anchor hidden-xs" href="#Install-docker-and-docker-compose" title="Install-docker-and-docker-compose"><i class="fa fa-link"></i></a>Install docker and docker compose</h2><p>The official website has a good tutorial to download and install both tools. I share here some of the tutorials:</p><ul>
+</ul>
+<h2 id="Install-docker-and-docker-compose"><a class="anchor hidden-xs" href="#Install-docker-and-docker-compose" title="Install-docker-and-docker-compose"><i class="fa fa-link"></i></a>Install docker and docker compose</h2>
+<p>The official website has a good tutorial to download and install both tools. I share here some of the tutorials:</p>
+<ul>
 <li><a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener">https://docs.docker.com/get-docker/</a></li>
 <li><a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">https://docs.docker.com/compose/</a></li>
-</ul><p>After you install the tools, use the docker command to run <code>hello-world</code> container as follows:</p><pre><code>docker run hello-world
-</code></pre><p>This command line will download the docker image <code>hello-world</code> for the first time and run a container.</p><div class="alert alert-danger">
+</ul>
+<p>After you install the tools, use the docker command to run <code>hello-world</code> container as follows:</p>
+<pre><code>docker run hello-world
+</code></pre>
+<p>This command line will download the docker image <code>hello-world</code> for the first time and run a container.</p>
+<div class="alert alert-danger">
 <p><strong>Note:</strong> If docker is not running due to restrictions in Russia, then add a mirror to the configuration of the docker daemon (<code>daemon.json</code>). The guide is in this link <a href="https://dockerhub.timeweb.cloud/" target="_blank" rel="noopener">https://dockerhub.timeweb.cloud/</a>.</p>
 <p><img src="https://i.imgur.com/ZB5kKZX.png" alt="" class="md-image md-image"></p>
-</div><h2 id="Dockerfile-definition"><a class="anchor hidden-xs" href="#Dockerfile-definition" title="Dockerfile-definition"><i class="fa fa-link"></i></a>Dockerfile definition</h2><p><code>Dockerfile</code> contains the instructions to build a Docker image.</p><pre><code class="wrap dockerfile hljs"><span class="hljs-comment"># Represents the base image, which is the command that is executed first before any other commands.</span>
+</div>
+</details><h2 id="Dockerfile-definition-extra-section"><a class="anchor hidden-xs" href="#Dockerfile-definition-extra-section" title="Dockerfile-definition-extra-section"><i class="fa fa-link"></i></a>Dockerfile definition [extra section]</h2><details>
+<p><code>Dockerfile</code> contains the instructions to build a Docker image.</p>
+<pre><code class="wrap dockerfile hljs"><span class="hljs-comment"># Represents the base image, which is the command that is executed first before any other commands.</span>
 <span class="hljs-keyword">FROM</span> &lt;ImageName&gt;
 
 <span class="hljs-comment"># used to copy the file/folders to the image while building the image. </span>
@@ -203,7 +207,10 @@ The commands and scripts here are written considering by default that the Curren
 
 <span class="hljs-comment"># sets the working directory for the instructions that follow</span>
 <span class="hljs-keyword">WORKDIR</span><span class="bash"> SOME_CONTAINER_PATH </span>
-</code></pre><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><p>Here we will create a simple Flask app, dockerize it and push it to Docker hub.</p><ul>
+</code></pre>
+<h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2>
+<p>Here we will create a simple Flask app, dockerize it and push it to Docker hub.</p>
+<ul>
 <li>Prepare the following files.
 <ul>
 <li>requirements.txt: contains the app dependencies.</li>
@@ -211,12 +218,14 @@ The commands and scripts here are written considering by default that the Curren
 <li>Dockerfile: contains the instructions to build a Docker image.</li>
 </ul>
 </li>
-</ul><pre><code class="yaml hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+</ul>
+<pre><code class="yaml hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
 <span data-linenumber="2"></span>
 <span data-linenumber="3"></span></div><div class="code"><span class="hljs-comment"># requirements.txt</span>
 
 <span class="hljs-string">flask</span>
-</div></div></code></pre><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+</div></div></code></pre>
+<pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
 <span data-linenumber="2"></span>
 <span data-linenumber="3"></span>
 <span data-linenumber="4"></span>
@@ -243,7 +252,8 @@ app = Flask(__name__)
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
     port = int(os.environ.get(<span class="hljs-string">'PORT'</span>, <span class="hljs-number">5000</span>))
     app.run(debug=<span class="hljs-literal">True</span>, host=<span class="hljs-string">'0.0.0.0'</span>, port=port)
-</div></div></code></pre><pre><code class="dockerfile hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+</div></div></code></pre>
+<pre><code class="dockerfile hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
 <span data-linenumber="2"></span>
 <span data-linenumber="3"></span>
 <span data-linenumber="4"></span>
@@ -294,15 +304,22 @@ app = Flask(__name__)
 
 <span class="hljs-comment"># This will be based to the default entry point</span>
 <span class="hljs-comment"># CMD [ "python", "./app.py" ]</span>
-</div></div></code></pre><ul>
+</div></div></code></pre>
+<ul>
 <li>Build the image with tag <code>flask_webservice</code>.</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">build</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">flask_webservice</span> <span class="hljs-string">.</span>
-</code></pre><ul>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">build</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">flask_webservice</span> <span class="hljs-string">.</span>
+</code></pre>
+<ul>
 <li>Run the container on port 5000. Add a name to the container <code>flask_webservice</code>.</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">-d</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span><span class="hljs-string">:5000</span> <span class="hljs-bullet">--name</span> <span class="hljs-string">test_webservice</span> <span class="hljs-string">flask_webservice</span> 
-</code></pre><p>The option <code>-p</code> is used to map ports between the host and the container. The option <code>-d</code> is used to detach the shell from the container such that it will run in the background and will not block the shell.</p><ul>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">-d</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span><span class="hljs-string">:5000</span> <span class="hljs-bullet">--name</span> <span class="hljs-string">test_webservice</span> <span class="hljs-string">flask_webservice</span> 
+</code></pre>
+<p>The option <code>-p</code> is used to map ports between the host and the container. The option <code>-d</code> is used to detach the shell from the container such that it will run in the background and will not block the shell.</p>
+<ul>
 <li>Some other commands.</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-comment"># Stops the container</span>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-comment"># Stops the container</span>
 <span class="hljs-string">docker</span> <span class="hljs-string">stop</span> <span class="hljs-string">&lt;container-id-name&gt;</span>
 
 <span class="hljs-comment"># Stops the container</span>
@@ -310,27 +327,50 @@ app = Flask(__name__)
 
 <span class="hljs-comment"># shows all running containers</span>
 <span class="hljs-string">docker</span> <span class="hljs-string">ps</span>
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Add a volume if you are debugging the application.</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span><span class="hljs-string">:5000</span> <span class="hljs-bullet">--name</span> <span class="hljs-string">test_service</span> <span class="hljs-bullet">-v</span> <span class="hljs-string">.:/usr/src/app</span> <span class="hljs-bullet">--rm</span> <span class="hljs-string">flask_webservice</span>
-</code></pre><p>A Docker volume is an independent file system entirely managed by Docker and exists as a normal file or directory on the host, where data is persisted.</p><ul>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span><span class="hljs-string">:5000</span> <span class="hljs-bullet">--name</span> <span class="hljs-string">test_service</span> <span class="hljs-bullet">-v</span> <span class="hljs-string">.:/usr/src/app</span> <span class="hljs-bullet">--rm</span> <span class="hljs-string">flask_webservice</span>
+</code></pre>
+<p>A Docker volume is an independent file system entirely managed by Docker and exists as a normal file or directory on the host, where data is persisted.</p>
+<ul>
 <li>Create a repository on Docker hub<br>
 <img src="https://i.imgur.com/DQNJGPd.png" alt="" class="md-image md-image"></li>
 <li>Log in on your local machine</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">login</span>
-</code></pre><p>Enter the username and password.</p><ul>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">login</span>
+</code></pre>
+<p>Enter the username and password.</p>
+<ul>
 <li>Rename the docker image</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">tag</span> <span class="hljs-string">flask_webservice</span> <span class="hljs-string">firasj/dummy_flask_service:v1.0</span>
-</code></pre><ul>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">tag</span> <span class="hljs-string">flask_webservice</span> <span class="hljs-string">firasj/dummy_flask_service:v1.0</span>
+</code></pre>
+<ul>
 <li>Push to Docker Hub</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">push</span> <span class="hljs-string">firasj/dummy_flask_service:v1.0</span>
-</code></pre><p>Whenever you made changes, you can build then push another version/tag to Docker hub.</p><ul>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">push</span> <span class="hljs-string">firasj/dummy_flask_service:v1.0</span>
+</code></pre>
+<p>Whenever you made changes, you can build then push another version/tag to Docker hub.</p>
+<ul>
 <li>Access the container via terminal</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">exec</span> <span class="hljs-bullet">-i</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">test_service</span> <span class="hljs-string">bash</span>
-</code></pre><p>If you pass to the previous command <code>app.py</code> instead of <code>bash</code>, then the container will run the python as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">app.py</span>
-</code></pre><p>If we pass a different application <code>app2.py</code>, the container will run the python as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">app2.py</span>
-</code></pre><p>If the <code>docker</code> command asks for <code>sudo</code> permission everytime you use it, run the following:</p><pre><code class="yaml hljs"><span class="hljs-string">sudo</span> <span class="hljs-string">chmod</span> <span class="hljs-number">777</span> <span class="hljs-string">/var/run/docker.sock</span>
-</code></pre><p>This will give permissions to everyone to run docker (could be risky for multi-user environments).</p><h2 id="Docker-Compose"><a class="anchor hidden-xs" href="#Docker-Compose" title="Docker-Compose"><i class="fa fa-link"></i></a>Docker Compose</h2><p>Docker Compose is a tool for defining and running multi-container applications.</p><div class="alert alert-info">
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">exec</span> <span class="hljs-bullet">-i</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">test_service</span> <span class="hljs-string">bash</span>
+</code></pre>
+<p>If you pass to the previous command <code>app.py</code> instead of <code>bash</code>, then the container will run the python as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">app.py</span>
+</code></pre>
+<p>If we pass a different application <code>app2.py</code>, the container will run the python as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">app2.py</span>
+</code></pre>
+<p>If the <code>docker</code> command asks for <code>sudo</code> permission everytime you use it, run the following:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">sudo</span> <span class="hljs-string">chmod</span> <span class="hljs-number">777</span> <span class="hljs-string">/var/run/docker.sock</span>
+</code></pre>
+<p>This will give permissions to everyone to run docker (could be risky for multi-user environments).</p>
+<h2 id="Docker-Compose"><a class="anchor hidden-xs" href="#Docker-Compose" title="Docker-Compose"><i class="fa fa-link"></i></a>Docker Compose</h2>
+<p>Docker Compose is a tool for defining and running multi-container applications.</p>
+<div class="alert alert-info">
 <p>You can find below some tutorials to learn Docker and Docker compose.</p>
 <blockquote>
 <p><a href="https://learnxinyminutes.com/docs/docker/" target="_blank" rel="noopener">https://learnxinyminutes.com/docs/docker/</a><br>
@@ -338,7 +378,8 @@ A tutorial to learn Docker<br>
 <a href="https://docker-curriculum.com/#docker-compose" target="_blank" rel="noopener">https://docker-curriculum.com/#docker-compose</a><br>
 A tutorial to learn Docker compose</p>
 </blockquote>
-</div><p>You can run Apache Airflow using docker and docker compose. Example on docker and docker compose is below this section.</p><h1 id="Apache-Airflow"><a class="anchor hidden-xs" href="#Apache-Airflow" title="Apache-Airflow"><i class="fa fa-link"></i></a>Apache Airflow</h1><p>Apache Airflow™ is an open-source platform for developing, scheduling, and monitoring batch-oriented workflows. The main characteristic of Airflow workflows is that all workflows are defined in Python code, such that <strong>“Workflows as code”</strong>. It started in 2014 at Airbnb, and is written in Python.</p><p><img src="https://i.imgur.com/oSrp7pc.png" alt="" class="md-image md-image"></p><p>Airflow is a platform that lets you build and run <strong>workflows</strong>. A workflow is represented as a <strong>DAG</strong> (a Directed Acyclic Graph), and contains individual pieces of work called <strong>Tasks</strong>, arranged with dependencies and “data” flows taken into account. Airflow™ is a <strong>batch workflow orchestration platform</strong>.</p><h2 id="Install-Airflow"><a class="anchor hidden-xs" href="#Install-Airflow" title="Install-Airflow"><i class="fa fa-link"></i></a>Install Airflow</h2><p>There are multiple ways to install Aapch Airflow, but here we will demonstrate only <code>pip</code> and <code>Docker</code> mathods.</p><h3 id="1-Usingpip"><a class="anchor hidden-xs" href="#1-Usingpip" title="1-Usingpip"><i class="fa fa-link"></i></a>1. Using<code>pip</code></h3><p>Apache Airflow has no support for Windows platform and we need to find a way to run it using Docker or WSL2. For Linux users. the installation is easier.</p><h4 id="Windows-user"><a class="anchor hidden-xs" href="#Windows-user" title="Windows-user"><i class="fa fa-link"></i></a>Windows user</h4><p>We will use WSL2 system to run Airflow. You need to install WSL2 with the Ubuntu distro.</p><div class="alert alert-danger">
+</div>
+</details><p>You can run Apache Airflow using docker and docker compose. Example on docker and docker compose is below this section.</p><h1 id="Apache-Airflow"><a class="anchor hidden-xs" href="#Apache-Airflow" title="Apache-Airflow"><i class="fa fa-link"></i></a>Apache Airflow</h1><p>Apache Airflow™ is an open-source platform for developing, scheduling, and monitoring batch-oriented workflows. The main characteristic of Airflow workflows is that all workflows are defined in Python code, such that <strong>“Workflows as code”</strong>. It started in 2014 at Airbnb, and is written in Python.</p><p><img src="https://i.imgur.com/oSrp7pc.png" alt="" class="md-image md-image"></p><p>Airflow is a platform that lets you build and run <strong>workflows</strong>. A workflow is represented as a <strong>DAG</strong> (a Directed Acyclic Graph), and contains individual pieces of work called <strong>Tasks</strong>, arranged with dependencies and “data” flows taken into account. Airflow™ is a <strong>batch workflow orchestration platform</strong>.</p><h2 id="Install-Airflow"><a class="anchor hidden-xs" href="#Install-Airflow" title="Install-Airflow"><i class="fa fa-link"></i></a>Install Airflow</h2><p>There are multiple ways to install Aapch Airflow, but here we will demonstrate only <code>pip</code> and <code>Docker</code> mathods.</p><h3 id="1-Usingpip"><a class="anchor hidden-xs" href="#1-Usingpip" title="1-Usingpip"><i class="fa fa-link"></i></a>1. Using<code>pip</code></h3><p>Apache Airflow has no support for Windows platform and we need to find a way to run it using Docker or WSL2. For Linux users. the installation is easier.</p><h4 id="Windows-user"><a class="anchor hidden-xs" href="#Windows-user" title="Windows-user"><i class="fa fa-link"></i></a>Windows user</h4><p>We will use WSL2 system to run Airflow. You need to install WSL2 with the Ubuntu distro.</p><div class="alert alert-danger">
 <p>This step is important for Windows users as some tools do not support Windows platform such as <code>feast</code> and <code>airflow</code>.</p>
 </div><p>You need to follow the steps below:</p><ol>
 <li>Follow this <a href="https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/" target="_blank" rel="noopener">tutorial</a> to install WSL2 and Ubuntu on Windows. Open Ubuntu app (terminal) on your Windows and configure the username and password. This user has sudo permission and root user is not needed.</li>
@@ -809,7 +850,7 @@ If you terminated the Airflow components and want to run them again. Before you 
     hello &gt;&gt; world()
 
 
-</div></div></code></pre><p>In this workflow, we can see two tasks. The first one is defined using operators and the second one is defined usig <code>@task</code> decorator (TaskFlow API).</p><p><img src="https://i.imgur.com/GbLivcO.png" alt="" class="md-image md-image"></p><h2 id="Core-concepts"><a class="anchor hidden-xs" href="#Core-concepts" title="Core-concepts"><i class="fa fa-link"></i></a>Core concepts</h2><ul>
+</div></div></code></pre><p>In this workflow, we can see two tasks. The first one is defined using operators and the second one is defined usig <code>@task</code> decorator (TaskFlow API).</p><p><img src="https://i.imgur.com/GbLivcO.png" alt="" class="md-image md-image"></p><h2 id="Core-concepts0"><a class="anchor hidden-xs" href="#Core-concepts0" title="Core-concepts0"><i class="fa fa-link"></i></a>Core concepts</h2><ul>
 <li><strong>DAG</strong>
 <ul>
 <li>Directed Acyclic Graph. An Airflow DAG is a workflow defined as a graph, where all dependencies between nodes are directed and nodes do not self-reference, meaning there are no circular dependencies.</li>
@@ -949,7 +990,7 @@ The backfill command will re-run all the instances of the dag_id for all the int
 <li><code>end_date</code>: The last date your DAG will be executed. This parameter is optional.</li>
 </ul>
 </li>
-</ul><h4 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h4><p>To demonstrate how these concepts work together, consider a DAG that is scheduled to run <em>every 5 minutes</em> as shown in the image below.</p><p><img src="https://www.astronomer.io/docs/assets/images/2_4_5minExample-2398badb0335832b04874388f49116d4.png" alt="" class="md-image md-image"></p><ul>
+</ul><h4 id="Example0"><a class="anchor hidden-xs" href="#Example0" title="Example0"><i class="fa fa-link"></i></a>Example</h4><p>To demonstrate how these concepts work together, consider a DAG that is scheduled to run <em>every 5 minutes</em> as shown in the image below.</p><p><img src="https://www.astronomer.io/docs/assets/images/2_4_5minExample-2398badb0335832b04874388f49116d4.png" alt="" class="md-image md-image"></p><ul>
 <li><code>Logical date</code>: 2022-08-28 22:<strong>37</strong>:33 UTC.
 <ul>
 <li>Displayed in <code>Data interval start</code> field</li>
@@ -1006,6 +1047,7 @@ Airflow was originally developed for extract, transform, and load (ETL) operatio
 <p>DAG should run idempotent (able to be re-run without changing the results), so do <strong>not</strong> use <code>datetime.now()</code> for scheduling.</p>
 </div><div class="alert alert-info">
 <h4 id="Cron-Expressions-Extra-section"><a class="anchor hidden-xs" href="#Cron-Expressions-Extra-section" title="Cron-Expressions-Extra-section"><i class="fa fa-link"></i></a>Cron Expressions [Extra section]</h4>
+<details>
 <ul>
 <li>
 <p><code>cron</code> is a basic utility available on Unix-based systems. It enables users to schedule tasks to run periodically at a specified date/time.</p>
@@ -1051,6 +1093,7 @@ Airflow was originally developed for extract, transform, and load (ETL) operatio
 		- @weekly – run once a week
 		- @daily or @midnight – run once a day
 		- @hourly – run hourly -->
+</details>
 </div><div class="alert alert-info">
 <p>Cron expressions are historically used to schedule tasks in Apache Airflow.</p>
 </div><div class="alert alert-info">
@@ -1202,7 +1245,8 @@ print_hello()
 <p><img src="https://i.imgur.com/tQsUi8h.png" alt="" width="450" height="300" class="md-image md-image"></p>
 </center>
 <p>Templates reference in Airflow is <a href="https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html" target="_blank" rel="noopener">here</a>.</p>
-</div><h3 id="Xcoms-amp-Variables"><a class="anchor hidden-xs" href="#Xcoms-amp-Variables" title="Xcoms-amp-Variables"><i class="fa fa-link"></i></a>Xcoms &amp; Variables</h3><pre><code class="python hljs"><span class="hljs-comment"># pipelines/example_xcoms_vars_dag.py</span>
+</div><h3 id="Xcoms-extra-section"><a class="anchor hidden-xs" href="#Xcoms-extra-section" title="Xcoms-extra-section"><i class="fa fa-link"></i></a>Xcoms [extra section]</h3><details>
+<pre><code class="python hljs"><span class="hljs-comment"># pipelines/example_xcoms_vars_dag.py</span>
 
 <span class="hljs-keyword">import</span> pendulum
 
@@ -1278,7 +1322,8 @@ value_2 = {<span class="hljs-string">"a"</span>: <span class="hljs-string">"b"</
     [bash_pull, python_pull_from_bash] &lt;&lt; bash_push
 
     puller(push_by_returning()) &lt;&lt; push()
-</code></pre><h3 id="Python-tasks-with-virtual-environments"><a class="anchor hidden-xs" href="#Python-tasks-with-virtual-environments" title="Python-tasks-with-virtual-environments"><i class="fa fa-link"></i></a>Python tasks with virtual environments</h3><pre><code class="python hljs"><span class="hljs-comment"># pipelines/example_python_task_venv_dag.py</span>
+</code></pre>
+</details><h3 id="Python-tasks-with-virtual-environments"><a class="anchor hidden-xs" href="#Python-tasks-with-virtual-environments" title="Python-tasks-with-virtual-environments"><i class="fa fa-link"></i></a>Python tasks with virtual environments</h3><pre><code class="python hljs"><span class="hljs-comment"># pipelines/example_python_task_venv_dag.py</span>
 
 <span class="hljs-string">"""
 Example DAG demonstrating the usage of the TaskFlow API to execute Python functions natively and within a virtual environment.
@@ -1287,41 +1332,23 @@ Example DAG demonstrating the usage of the TaskFlow API to execute Python functi
 
 <span class="hljs-keyword">import</span> sys
 <span class="hljs-keyword">import</span> time
-<span class="hljs-keyword">from</span> pprint <span class="hljs-keyword">import</span> pprint
 
 <span class="hljs-keyword">import</span> pendulum
 
 <span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag, task
 <span class="hljs-keyword">from</span> airflow.operators.python <span class="hljs-keyword">import</span> is_venv_installed
 
-
 PATH_TO_PYTHON_BINARY = sys.executable
 
 
 <span class="hljs-meta">@dag(</span>
+    dag_id=<span class="hljs-string">"example_python_venv"</span>,
     schedule=<span class="hljs-literal">None</span>,
     start_date=pendulum.datetime(<span class="hljs-number">2021</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, tz=<span class="hljs-string">"UTC"</span>),
     catchup=<span class="hljs-literal">False</span>,
     tags=[<span class="hljs-string">"example"</span>],
 )
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">example_python_decorator</span><span class="hljs-params">()</span>:</span>
-
-<span class="hljs-meta">    @task(task_id="print_the_context")</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_context</span><span class="hljs-params">(ds=None, **kwargs)</span>:</span>
-        <span class="hljs-string">"""Print the Airflow context and ds variable from the context."""</span>
-        pprint(kwargs)
-        print(ds)
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"Whatever you return gets printed in the logs"</span>
-
-    run_this = print_context()
-
-
-<span class="hljs-meta">    @task(task_id="log_sql_query", templates_dict={"query": "sql/sample.sql"}, templates_exts=[".sql"])</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">log_sql</span><span class="hljs-params">(**kwargs)</span>:</span>
-        log.info(<span class="hljs-string">"Python task decorator query: %s"</span>, str(kwargs[<span class="hljs-string">"templates_dict"</span>][<span class="hljs-string">"query"</span>]))
-
-    log_the_sql = log_sql()
-
     
     <span class="hljs-comment"># Generate 5 sleeping tasks, sleeping from 0.0 to 0.4 seconds respectively</span>
 <span class="hljs-meta">    @task</span>
@@ -1332,11 +1359,9 @@ PATH_TO_PYTHON_BINARY = sys.executable
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):
         sleeping_task = my_sleeping_function.override(task_id=<span class="hljs-string">f"sleep_for_<span class="hljs-subst">{i}</span>"</span>)(random_base=i / <span class="hljs-number">10</span>)
 
-        run_this &gt;&gt; log_the_sql &gt;&gt; sleeping_task
-
 
     <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_venv_installed():
-        log.warning(<span class="hljs-string">"The virtalenv_python example task requires virtualenv, please install it."</span>)
+        print(<span class="hljs-string">"The virtalenv_python example task requires virtualenv, please install it."</span>)
     <span class="hljs-keyword">else</span>:
 
 <span class="hljs-meta">        @task.virtualenv(</span>
@@ -1349,6 +1374,7 @@ PATH_TO_PYTHON_BINARY = sys.executable
             Importing at the module level ensures that it will not attempt to import the
             library before it is installed.
             """</span>
+
             <span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep
 
             <span class="hljs-keyword">from</span> colorama <span class="hljs-keyword">import</span> Back, Fore, Style
@@ -1387,38 +1413,48 @@ PATH_TO_PYTHON_BINARY = sys.executable
         external_python_task = callable_external_python()
 
 
-        run_this &gt;&gt; external_python_task &gt;&gt; virtualenv_task
+        external_python_task &gt;&gt; virtualenv_task
 
-example_python_decorator()
+
+dag = example_python_decorator()
+
+
+<span class="hljs-comment"># Test the pipeline by running </span>
+<span class="hljs-comment"># python pipelines/example_python_task_venv_dag.py</span>
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">"__main__"</span>:
+    dag.test()
 </code></pre><h3 id="ExternalTaskSensor"><a class="anchor hidden-xs" href="#ExternalTaskSensor" title="ExternalTaskSensor"><i class="fa fa-link"></i></a>ExternalTaskSensor</h3><pre><code class="python hljs"><span class="hljs-comment"># pipelines/example_external_task_sensor_dag.py</span>
 
 <span class="hljs-keyword">import</span> pendulum
 
 <span class="hljs-keyword">from</span> airflow.models.dag <span class="hljs-keyword">import</span> DAG
 <span class="hljs-keyword">from</span> airflow.operators.empty <span class="hljs-keyword">import</span> EmptyOperator
+<span class="hljs-keyword">from</span> airflow.operators.bash <span class="hljs-keyword">import</span> BashOperator
 <span class="hljs-keyword">from</span> airflow.sensors.external_task <span class="hljs-keyword">import</span> ExternalTaskMarker, ExternalTaskSensor
+<span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> timedelta
+<span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> task
 
-start_date = pendulum.datetime(<span class="hljs-number">2021</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, tz=<span class="hljs-string">"UTC"</span>)
+start_date = pendulum.datetime(<span class="hljs-number">2024</span>, <span class="hljs-number">6</span>, <span class="hljs-number">27</span>, <span class="hljs-number">19</span>, <span class="hljs-number">30</span>, tz = <span class="hljs-string">"Europe/Moscow"</span>)
 
 <span class="hljs-keyword">with</span> DAG(
-    dag_id=<span class="hljs-string">"example_external_task_marker_parent"</span>,
+    dag_id=<span class="hljs-string">"example_external_task_sensor_parent"</span>,
     start_date=start_date,
     catchup=<span class="hljs-literal">False</span>,
-    schedule=<span class="hljs-literal">None</span>,
+    schedule=timedelta(minutes=<span class="hljs-number">1</span>),
     tags=[<span class="hljs-string">"example2"</span>],
 ) <span class="hljs-keyword">as</span> parent_dag:
     
-    parent_task = ExternalTaskMarker(
-        task_id=<span class="hljs-string">"parent_task"</span>,
-        external_dag_id=<span class="hljs-string">"example_external_task_marker_child"</span>,
-        external_task_id=<span class="hljs-string">"child_task1"</span>,
+    parent_task = BashOperator(
+        task_id = <span class="hljs-string">"parent_task"</span>,
+        bash_command=<span class="hljs-string">"echo Run this before! "</span>,
+        cwd=<span class="hljs-string">"/"</span>
     )
     
 
 <span class="hljs-keyword">with</span> DAG(
-    dag_id=<span class="hljs-string">"example_external_task_marker_child"</span>,
+    dag_id=<span class="hljs-string">"example_external_task_sensor_child"</span>,
     start_date=start_date,
-    schedule=<span class="hljs-literal">None</span>,
+    schedule=timedelta(minutes=<span class="hljs-number">1</span>),
     catchup=<span class="hljs-literal">False</span>,
     tags=[<span class="hljs-string">"example2"</span>],
 ) <span class="hljs-keyword">as</span> child_dag:
@@ -1427,24 +1463,17 @@ start_date = pendulum.datetime(<span class="hljs-number">2021</span>, <span clas
         task_id=<span class="hljs-string">"child_task1"</span>,
         external_dag_id=parent_dag.dag_id,
         external_task_id=parent_task.task_id,
-        timeout=<span class="hljs-number">600</span>,
-        allowed_states=[<span class="hljs-string">"success"</span>],
-        failed_states=[<span class="hljs-string">"failed"</span>, <span class="hljs-string">"skipped"</span>],
-        mode=<span class="hljs-string">"reschedule"</span>,
+        timeout=<span class="hljs-number">600</span>
     )
+
+<span class="hljs-meta">    @task(task_id = "child_task2")</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_this_after</span><span class="hljs-params">()</span>:</span>
+        print(<span class="hljs-string">"I am running!"</span>)
     
-    child_task2 = ExternalTaskSensor(
-        task_id=<span class="hljs-string">"child_task2"</span>,
-        external_dag_id=parent_dag.dag_id,
-        external_task_group_id=<span class="hljs-string">"parent_dag_task_group_id"</span>,
-        timeout=<span class="hljs-number">600</span>,
-        allowed_states=[<span class="hljs-string">"success"</span>],
-        failed_states=[<span class="hljs-string">"failed"</span>, <span class="hljs-string">"skipped"</span>],
-        mode=<span class="hljs-string">"reschedule"</span>,
-    )
-    
-    child_task3 = EmptyOperator(task_id=<span class="hljs-string">"child_task3"</span>)
-    child_task1 &gt;&gt; child_task2 &gt;&gt; child_task3
+    child_task2 = run_this_after()
+
+
+    child_task1 &gt;&gt; child_task2
 </code></pre><h3 id="Trigger-Dag-Run-operator"><a class="anchor hidden-xs" href="#Trigger-Dag-Run-operator" title="Trigger-Dag-Run-operator"><i class="fa fa-link"></i></a>Trigger Dag Run operator</h3><p>It triggers a DAG run for a specified <code>dag_id</code>.</p><pre><code class="python hljs"><span class="hljs-comment"># pipelines/example_trigger_controller_dag.py</span>
 
 <span class="hljs-keyword">import</span> pendulum
@@ -1499,7 +1528,8 @@ start_date = pendulum.datetime(<span class="hljs-number">2021</span>, <span clas
     )
 </code></pre><div class="alert alert-info">
 <p><strong>Info:</strong> You can check more DAG examples from <a href="https://github.com/apache/airflow/tree/main/airflow/example_dags" target="_blank" rel="noopener">here</a>.</p>
-</div><h2 id="Deferrable-operators"><a class="anchor hidden-xs" href="#Deferrable-operators" title="Deferrable-operators"><i class="fa fa-link"></i></a>Deferrable operators</h2><ul>
+</div><h2 id="Deferrable-operators-Extra-section"><a class="anchor hidden-xs" href="#Deferrable-operators-Extra-section" title="Deferrable-operators-Extra-section"><i class="fa fa-link"></i></a>Deferrable operators [Extra section]</h2><details>
+<ul>
 <li>They use the Python <code>asyncio</code> library to run tasks waiting for an external resource to finish (asynchronous run).</li>
 <li>This frees up your workers and allows you to use resources more effectively.</li>
 <li><em>Triggers</em>: Small, asynchronous sections of Python code. Due to their asynchronous nature, they coexist efficiently in a single process known as the triggerer which runs an asyncio event loop in your Airflow environment.</li>
@@ -1513,7 +1543,10 @@ start_date = pendulum.datetime(<span class="hljs-number">2021</span>, <span clas
 <img src="https://www.astronomer.io/docs/assets/images/deferrable_operator_process-684cf9e1955514cc33f4801afbace2a6.png" alt="" class="md-image md-image"></li>
 <li>Deferrable operators should be used whenever you have tasks that occupy a worker slot while polling for a condition in an external system. For example, using deferrable operators for sensor tasks can provide efficiency gains and reduce operational costs.</li>
 <li>Many Airflow operators, such as the <code>TriggerDagRunOperator</code>, can be set to run in deferrable mode using the <code>deferrable</code> parameter.</li>
-</ul><h5 id="Example1"><a class="anchor hidden-xs" href="#Example1" title="Example1"><i class="fa fa-link"></i></a>Example</h5><p>The following example DAG is scheduled to run every minute between its <code>start_date</code> and its <code>end_date</code>. Every DAG run contains one sensor task that will potentially take up to 20 minutes to complete.</p><pre><code class="python hljs"><span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag
+</ul>
+<p><strong>Example</strong></p>
+<p>The following example DAG is scheduled to run every minute between its <code>start_date</code> and its <code>end_date</code>. Every DAG run contains one sensor task that will potentially take up to 20 minutes to complete.</p>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag
 <span class="hljs-keyword">from</span> airflow.sensors.date_time <span class="hljs-keyword">import</span> DateTimeSensor
 <span class="hljs-keyword">from</span> pendulum <span class="hljs-keyword">import</span> datetime
 
@@ -1532,9 +1565,11 @@ start_date = pendulum.datetime(<span class="hljs-number">2021</span>, <span clas
 
 
 sync_dag_2()
-</code></pre><p><img src="https://www.astronomer.io/docs/assets/images/standard_sensor_slot_taking-71956444ab01fcbd0bf2c8f356cee9f7.png" alt="" class="md-image md-image"></p><div class="alert alert-danger">
-<p>Using <code>DateTimeSensor</code>, one worker slot is taken up by every sensor that runs.</p>
-</div><p>By using the deferrable version of this sensor, <code>DateTimeSensorAsync</code>, you can achieve full concurrency while freeing up your workers to complete additional tasks across your Airflow environment.</p><pre><code class="python hljs"><span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag
+</code></pre>
+<p><img src="https://www.astronomer.io/docs/assets/images/standard_sensor_slot_taking-71956444ab01fcbd0bf2c8f356cee9f7.png" alt="" class="md-image md-image"></p>
+<p><strong>Note:</strong> Using <code>DateTimeSensor</code>, one worker slot is taken up by every sensor that runs.</p>
+<p>By using the deferrable version of this sensor, <code>DateTimeSensorAsync</code>, you can achieve full concurrency while freeing up your workers to complete additional tasks across your Airflow environment.</p>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> airflow.decorators <span class="hljs-keyword">import</span> dag
 <span class="hljs-keyword">from</span> pendulum <span class="hljs-keyword">import</span> datetime
 <span class="hljs-keyword">from</span> airflow.sensors.date_time <span class="hljs-keyword">import</span> DateTimeSensorAsync
 
@@ -1553,7 +1588,10 @@ sync_dag_2()
 
 
 async_dag_2()
-</code></pre><p><img src="https://www.astronomer.io/docs/assets/images/deferrable_grid_view-6af110dce8fdef5e74522c1742b1880f.png" alt="" class="md-image md-image"></p><p>In the previous screenshot, all tasks are shown in a deferred (violet) state. Tasks in other DAGs can use the available worker slots, making the deferrable operator more cost and time-efficient.</p><h2 id="Test-a-pipeline"><a class="anchor hidden-xs" href="#Test-a-pipeline" title="Test-a-pipeline"><i class="fa fa-link"></i></a>Test a pipeline</h2><ul>
+</code></pre>
+<p><img src="https://www.astronomer.io/docs/assets/images/deferrable_grid_view-6af110dce8fdef5e74522c1742b1880f.png" alt="" class="md-image md-image"></p>
+<p>In the previous screenshot, all tasks are shown in a deferred (violet) state. Tasks in other DAGs can use the available worker slots, making the deferrable operator more cost and time-efficient.</p>
+</details><h2 id="Test-a-pipeline"><a class="anchor hidden-xs" href="#Test-a-pipeline" title="Test-a-pipeline"><i class="fa fa-link"></i></a>Test a pipeline</h2><ul>
 <li>You can test a pipeline from airflow CLI as follows:</li>
 </ul><pre><code class="python hljs">airflow dags test &lt;dag-id&gt;
 </code></pre><p>This will run the dag only for one time. This is not scheduling dags.</p><ul>
@@ -1870,19 +1908,28 @@ zenml_pipeline = BashOperator(
 ...
 </code></pre><div class="alert alert-warning">
 <p>Do not run the ZenML pipeline by simply calling the pipeline function using a PythonOperator.</p>
-</div><h1 id="Feast-Extra-section"><a class="anchor hidden-xs" href="#Feast-Extra-section" title="Feast-Extra-section"><i class="fa fa-link"></i></a>Feast [Extra section]</h1><p>Feast is a standalone, open-source <em>feature store</em> that organizations use to store and serve features consistently for <em>offline</em> training and <em>online</em> inference. Feast allows to:</p><ul>
+</div><h1 id="Feast-Extra-section"><a class="anchor hidden-xs" href="#Feast-Extra-section" title="Feast-Extra-section"><i class="fa fa-link"></i></a>Feast [Extra section]</h1><details>
+<p>Feast is a standalone, open-source <em>feature store</em> that organizations use to store and serve features consistently for <em>offline</em> training and <em>online</em> inference. Feast allows to:</p>
+<ul>
 <li>Make features consistently available for training and serving by managing an <strong>offline store</strong> (to process historical data for scale-out batch scoring or model training), a low-latency <strong>online store</strong> (to power real-time prediction), and a battle-tested <strong>feature server</strong> (to serve pre-computed features online).</li>
 <li>Avoid data leakage by generating point-in-time correct feature sets so data scientists can focus on feature engineering rather than debugging error-prone dataset joining logic. This ensure that future feature values do not leak to models during training.</li>
 <li>Decouple ML from data infrastructure by providing a single data access layer that abstracts feature storage from feature retrieval, ensuring models remain portable as you move from training models to serving models.</li>
-</ul><p><img src="https://feastsite.wpenginepowered.com/wp-content/uploads/2023/01/feast-home-hero@4x.png" alt="" class="md-image md-image"></p><div class="alert alert-danger">
-<p>Feast today primarily addresses <strong>timestamped structured</strong> data.</p>
-</div><div class="alert alert-warning">
-<p>If your data in the dataframe does not have timestamps, you need to create dummy timestamps and add them to the dataframe in order to persist it in the feature store.</p>
-</div><h2 id="Core-concepts2"><a class="anchor hidden-xs" href="#Core-concepts2" title="Core-concepts2"><i class="fa fa-link"></i></a>Core concepts</h2><p>The top-level namespace within Feast is a <strong>project</strong>. Users define one or more feature views within a project. Each <strong>feature view</strong> contains one or more <strong>features</strong>. These features typically relate to one or more <strong>entities</strong>. A feature view must always have a <strong>data source</strong>, which in turn is used during the generation of training datasets and when materializing feature values into the online store.</p><p><img src="https://docs.feast.dev/~gitbook/image?url=https%3A%2F%2F1077803379-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FkZAY3SRpOLt8j3A1DKAA%252Fuploads%252Fgit-blob-af58d3cf3809fcc5e69119de273668f715f27538%252Fimage%2520%287%29.png%3Falt%3Dmedia&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=6673daf57a0fc0f5cef2b6a31c8a8089c62f1aa142da01c797e6a056ce73e073" alt="" class="md-image md-image"></p><h3 id="Install-feast"><a class="anchor hidden-xs" href="#Install-feast" title="Install-feast"><i class="fa fa-link"></i></a>Install feast</h3><pre><code class="yaml hljs"><span class="hljs-comment"># You do not need to run this if you installed the package from requirements.txt</span>
+</ul>
+<p><img src="https://feastsite.wpenginepowered.com/wp-content/uploads/2023/01/feast-home-hero@4x.png" alt="" class="md-image md-image"></p>
+<p><strong>Note:</strong> Feast today primarily addresses <strong>timestamped structured</strong> data.</p>
+<p><strong>Note:</strong> If your data in the dataframe does not have timestamps, you need to create dummy timestamps and add them to the dataframe in order to persist it in the feature store.</p>
+<h2 id="Core-concepts"><a class="anchor hidden-xs" href="#Core-concepts" title="Core-concepts"><i class="fa fa-link"></i></a>Core concepts</h2>
+<p>The top-level namespace within Feast is a <strong>project</strong>. Users define one or more feature views within a project. Each <strong>feature view</strong> contains one or more <strong>features</strong>. These features typically relate to one or more <strong>entities</strong>. A feature view must always have a <strong>data source</strong>, which in turn is used during the generation of training datasets and when materializing feature values into the online store.</p>
+<p><img src="https://docs.feast.dev/~gitbook/image?url=https%3A%2F%2F1077803379-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FkZAY3SRpOLt8j3A1DKAA%252Fuploads%252Fgit-blob-af58d3cf3809fcc5e69119de273668f715f27538%252Fimage%2520%287%29.png%3Falt%3Dmedia&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=6673daf57a0fc0f5cef2b6a31c8a8089c62f1aa142da01c797e6a056ce73e073" alt="" class="md-image md-image"></p>
+<h3 id="Install-feast"><a class="anchor hidden-xs" href="#Install-feast" title="Install-feast"><i class="fa fa-link"></i></a>Install feast</h3>
+<pre><code class="yaml hljs"><span class="hljs-comment"># You do not need to run this if you installed the package from requirements.txt</span>
 <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">feast</span>
-</code></pre><div class="alert alert-danger">
-<p>feast 0.36.0+ may work with Windows but it has conflicts with other packages in our toolset. The earlier versions of feast usually do not work on Windows. If you try to run, you may see such errors <code>fcntl module not found</code>. Windows users are working on Ubuntu WSL2 and no issues will be encountered I presume.</p>
-</div><h2 id="Demo1"><a class="anchor hidden-xs" href="#Demo1" title="Demo1"><i class="fa fa-link"></i></a>Demo</h2><p>Here we will build a local feature store to store the ML-ready dataset.</p><h3 id="1-Create-a-feature-repository"><a class="anchor hidden-xs" href="#1-Create-a-feature-repository" title="1-Create-a-feature-repository"><i class="fa fa-link"></i></a>1. Create a feature repository</h3><pre><code class="yaml hljs"><span class="hljs-comment"># Create a directory for feast metadata</span>
+</code></pre>
+<p><strong>Note:</strong> feast 0.36.0+ may work with Windows but it has conflicts with other packages in our toolset. The earlier versions of feast usually do not work on Windows. If you try to run, you may see such errors <code>fcntl module not found</code>. Windows users are working on Ubuntu WSL2 and no issues will be encountered I presume.</p>
+<h2 id="Demo1"><a class="anchor hidden-xs" href="#Demo1" title="Demo1"><i class="fa fa-link"></i></a>Demo</h2>
+<p>Here we will build a local feature store to store the ML-ready dataset.</p>
+<h3 id="1-Create-a-feature-repository"><a class="anchor hidden-xs" href="#1-Create-a-feature-repository" title="1-Create-a-feature-repository"><i class="fa fa-link"></i></a>1. Create a feature repository</h3>
+<pre><code class="yaml hljs"><span class="hljs-comment"># Create a directory for feast metadata</span>
 <span class="hljs-string">mkdir</span> <span class="hljs-bullet">-p</span> <span class="hljs-string">services/feast</span>
 
 <span class="hljs-comment"># Access the folder</span>
@@ -1893,7 +1940,12 @@ zenml_pipeline = BashOperator(
 
 <span class="hljs-comment"># Access the feast repo</span>
 <span class="hljs-string">cd</span> <span class="hljs-string">feast_project/feature_repo</span>
-</code></pre><p>The repo has <code>feature_store.yaml</code> which contains a demo setup configuring where data sources are.</p><h3 id="2-Configure-the-feature-repository"><a class="anchor hidden-xs" href="#2-Configure-the-feature-repository" title="2-Configure-the-feature-repository"><i class="fa fa-link"></i></a>2. Configure the feature repository</h3><p>The configuration of the feature repository is in the location <code>services\feast\feast_project\feature_repo\feature_store.yaml</code>. We can configure it as follows:</p><pre><code class="yaml hljs"><span class="hljs-attr">project:</span> <span class="hljs-string">feast_project</span>
+</code></pre>
+<p>The repo has <code>feature_store.yaml</code> which contains a demo setup configuring where data sources are.</p>
+<!-- test_workflow.py showcases how to run all key Feast commands, including defining, retrieving, and pushing features. You can run this with python test_workflow.py -->
+<h3 id="2-Configure-the-feature-repository"><a class="anchor hidden-xs" href="#2-Configure-the-feature-repository" title="2-Configure-the-feature-repository"><i class="fa fa-link"></i></a>2. Configure the feature repository</h3>
+<p>The configuration of the feature repository is in the location <code>services\feast\feast_project\feature_repo\feature_store.yaml</code>. We can configure it as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-attr">project:</span> <span class="hljs-string">feast_project</span>
 <span class="hljs-attr">registry:</span> <span class="hljs-string">registry.db</span>
 <span class="hljs-attr">provider:</span> <span class="hljs-string">local</span>
 <span class="hljs-attr">online_store:</span>
@@ -1902,21 +1954,29 @@ zenml_pipeline = BashOperator(
 <span class="hljs-attr">offline_store:</span>
 <span class="hljs-attr">    type:</span> <span class="hljs-string">file</span>
 <span class="hljs-attr">entity_key_serialization_version:</span> <span class="hljs-number">2</span>
-</code></pre><p>The following top-level configuration options exist in the <code>feature_store.yaml</code> file.</p><ul>
+</code></pre>
+<p>The following top-level configuration options exist in the <code>feature_store.yaml</code> file.</p>
+<ul>
 <li>provider — Configures the environment in which Feast will deploy and operate.</li>
 <li>registry — Configures the location of the feature registry.</li>
 <li>online_store — Configures the online store.</li>
 <li>offline_store — Configures the offline store.</li>
 <li>project — Defines a namespace for the entire feature store. Can be used to isolate multiple deployments in a single installation of Feast. Should only contain letters, numbers, and underscores.</li>
-</ul><h3 id="3-Run-sample-workflow"><a class="anchor hidden-xs" href="#3-Run-sample-workflow" title="3-Run-sample-workflow"><i class="fa fa-link"></i></a>3. Run sample workflow</h3><ul>
+</ul>
+<!-- - engine - Configures the batch materialization engine. -->
+<h3 id="3-Run-sample-workflow"><a class="anchor hidden-xs" href="#3-Run-sample-workflow" title="3-Run-sample-workflow"><i class="fa fa-link"></i></a>3. Run sample workflow</h3>
+<ul>
 <li>Prepare your data for loading to the feature store.</li>
-</ul><pre><code class="python hljs">
+</ul>
+<pre><code class="python hljs">
 <span class="hljs-comment"># Add two columns</span>
 <span class="hljs-comment"># The timestamp and an id to reconize each row in the dataframe</span>
 
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Persist features to offline store</li>
-</ul><pre><code class="python hljs"><span class="hljs-keyword">from</span> feast <span class="hljs-keyword">import</span> (
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> feast <span class="hljs-keyword">import</span> (
     Entity, 
     FeatureView, 
     FileSource, 
@@ -1965,9 +2025,11 @@ bank_records = FeatureService(
         view
     ],
 )
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Retrieve features from offline store</li>
-</ul><pre><code class="python hljs"><span class="hljs-comment"># services/feast/feast_repo/feature_repo/feast_repo.py</span>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># services/feast/feast_repo/feature_repo/feast_repo.py</span>
 
 <span class="hljs-keyword">from</span> utils <span class="hljs-keyword">import</span> init_hydra
 
@@ -1994,9 +2056,11 @@ print(training_df.info())
 print()
 print(<span class="hljs-string">"----- Example features -----\n"</span>)
 print(training_df.head())
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Register feature definitions and deploy your feature store</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-comment"># services/feast/feast_repo/feature_repo/test_workflow.py</span>
+</ul>
+<pre><code class="yaml hljs"><span class="hljs-comment"># services/feast/feast_repo/feature_repo/test_workflow.py</span>
 
 <span class="hljs-comment"># Make sure that you access the feature repo folder</span>
 
@@ -2004,8 +2068,14 @@ print(training_df.head())
 <span class="hljs-comment"># feast apply</span>
 <span class="hljs-comment"># OR</span>
 <span class="hljs-string">feast</span> <span class="hljs-bullet">-c</span> <span class="hljs-string">services/feast/feast_project/feature_repo</span> <span class="hljs-string">apply</span>
-</code></pre><h3 id="4-Browse-your-features-with-the-Feast-Web-UI"><a class="anchor hidden-xs" href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4-Browse-your-features-with-the-Feast-Web-UI"><i class="fa fa-link"></i></a>4. Browse your features with the Feast Web UI</h3><p>You can access the Feast Web UI via running the following command:</p><pre><code class="yaml hljs"><span class="hljs-string">feast</span> <span class="hljs-bullet">-c</span> <span class="hljs-string">services/feast/feast_project/feature_repo</span> <span class="hljs-string">ui</span>
-</code></pre><p><img src="https://i.imgur.com/3wJLiJM.png" alt="" class="md-image md-image"></p><p>The server by default runs on port 8888.</p><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+</code></pre>
+<h3 id="4-Browse-your-features-with-the-Feast-Web-UI"><a class="anchor hidden-xs" href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4-Browse-your-features-with-the-Feast-Web-UI"><i class="fa fa-link"></i></a>4. Browse your features with the Feast Web UI</h3>
+<p>You can access the Feast Web UI via running the following command:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">feast</span> <span class="hljs-bullet">-c</span> <span class="hljs-string">services/feast/feast_project/feature_repo</span> <span class="hljs-string">ui</span>
+</code></pre>
+<p><img src="https://i.imgur.com/3wJLiJM.png" alt="" class="md-image md-image"></p>
+<p>The server by default runs on port 8888.</p>
+</details><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
 <ol>
 <li>Build an automated workflow (<code>pipelines/data_extract_dag.py</code>) in Apache <strong>Airflow</strong> to perform the following 4 tasks. The workflow should be scheduled to run every 5 minutes (increase the time if your DAG run takes more than 5 minutes). This pipeline should be <strong>atomic</strong> such that if a single task/step fails, then all of the tasks/steps fail (default case in Apache Airflow).
 <ul>
@@ -2181,101 +2251,85 @@ Do not write the business logic code in dag definition files in <code>pipelines<
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li><a href="#Phase-II---Data-preparationengineering" title="Phase II - Data preparation/engineering">Phase II - Data preparation/engineering</a></li>
-<li><a href="#Dataset" title="Dataset">Dataset</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Description" title="Description">Description</a></li>
-<li><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
-<li><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
-<li><a href="#Dockerfile-definition" title="Dockerfile definition">Dockerfile definition</a></li>
-<li><a href="#Demo" title="Demo">Demo</a></li>
-<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+<li class=""><a href="#Phase-II---Data-preparationengineering" title="Phase II - Data preparation/engineering">Phase II - Data preparation/engineering</a></li>
+<li class=""><a href="#Dataset" title="Dataset">Dataset</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Description" title="Description">Description</a></li>
+<li class=""><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
+<li class=""><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
 </ul>
 </li>
-<li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
-<li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
-<li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
-<li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
+<li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
+<li class=""><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
+<li class=""><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
+<li class=""><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
 </ul>
 </li>
-<li><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
-<li><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
-<li><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
-<li><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
-<li><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
+<li class=""><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
+<li class=""><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
+<li class=""><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
+<li class=""><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
+<li class=""><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
 </ul>
 </li>
 <li><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
-<li><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
-<li><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
-<li><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
-<li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
+<li class=""><a href="#Core-concepts0" title="Core concepts">Core concepts</a></li>
+<li class=""><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
+<li class=""><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
+<li class=""><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
 </ul>
 </li>
 <li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
-<li><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
+<li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
 <li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
 <li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
-<li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
-<li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
-<li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
-<li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
+<li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
+<li><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
+<li class=""><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
+<li class=""><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
+<li class=""><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
-<li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
+<li class=""><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
+<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
 <li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
 <li><a href="#Grid-View" title="Grid View">Grid View</a></li>
-<li><a href="#Graph-View" title="Graph View">Graph View</a></li>
+<li class=""><a href="#Graph-View" title="Graph View">Graph View</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
-<li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
-<li><a href="#Step" title="Step">Step</a></li>
-<li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
-<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
-<li><a href="#Materializers" title="Materializers">Materializers</a></li>
+<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li class=""><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
+<li class=""><a href="#Step" title="Step">Step</a></li>
+<li class=""><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
+<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li class=""><a href="#Materializers" title="Materializers">Materializers</a></li>
 </ul>
 </li>
-<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
 </ul>
 </li>
-<li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
-<li><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
-<li><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
-<li><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
-<li><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
+<li class=""><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
+<li class=""><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
+<li class=""><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
+<li class=""><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
+<li class=""><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
 </ul>
 </li>
-<li><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
-<li><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
-<li><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
+<li class=""><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
+<li class=""><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
+<li class=""><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
 </ul>
 </li>
-<li><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
+<li class=""><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
 </ul>
 </li>
-<li><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul class="nav">
-<li><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul class="nav">
-<li><a href="#Install-feast" title="Install feast">Install feast</a></li>
-</ul>
-</li>
-<li><a href="#Demo1" title="Demo">Demo</a><ul class="nav">
-<li><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
-<li><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
-<li><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
-<li><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class=""><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a></li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
@@ -2294,101 +2348,85 @@ Do not write the business logic code in dag definition files in <code>pipelines<
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
-<li><a href="#Phase-II---Data-preparationengineering" title="Phase II - Data preparation/engineering">Phase II - Data preparation/engineering</a></li>
-<li><a href="#Dataset" title="Dataset">Dataset</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Description" title="Description">Description</a></li>
-<li><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
-<li><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
-<li><a href="#Dockerfile-definition" title="Dockerfile definition">Dockerfile definition</a></li>
-<li><a href="#Demo" title="Demo">Demo</a></li>
-<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+<li class=""><a href="#Phase-II---Data-preparationengineering" title="Phase II - Data preparation/engineering">Phase II - Data preparation/engineering</a></li>
+<li class=""><a href="#Dataset" title="Dataset">Dataset</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Description" title="Description">Description</a></li>
+<li class=""><a href="#Docker-and-Docker-compose-Extra-section-for-now" title="Docker and Docker compose [Extra section for now]">Docker and Docker compose [Extra section for now]</a><ul class="nav">
+<li class=""><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
 </ul>
 </li>
-<li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
-<li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
-<li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
-<li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
+<li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
+<li class=""><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
+<li class=""><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
+<li class=""><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
 </ul>
 </li>
-<li><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
-<li><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
-<li><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
-<li><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
-<li><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
+<li class=""><a href="#Prepare-the-workspace-tested-on-Ubuntu-2204" title="Prepare the workspace [tested on Ubuntu 22.04]">Prepare the workspace [tested on Ubuntu 22.04]</a><ul class="nav">
+<li class=""><a href="#1-Install-python311" title="1. Install python3.11">1. Install python3.11</a></li>
+<li class=""><a href="#2-Create-a-new-virtual-environment-using-Python-311" title="2. Create a new virtual environment using Python 3.11">2. Create a new virtual environment using Python 3.11</a></li>
+<li class=""><a href="#3-Create-requirementstxt-and-install-the-dependencies" title="3. Create requirements.txt and install the dependencies.">3. Create requirements.txt and install the dependencies.</a></li>
+<li class=""><a href="#4-Setup-the-Airflow-components" title="4. Setup the Airflow components">4. Setup the Airflow components</a></li>
 </ul>
 </li>
 <li><a href="#Hello-world-workflow" title="Hello world workflow">Hello world workflow</a></li>
-<li><a href="#Core-concepts" title="Core concepts">Core concepts</a></li>
-<li><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
-<li><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
-<li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
+<li class=""><a href="#Core-concepts0" title="Core concepts">Core concepts</a></li>
+<li class=""><a href="#Airflow-components" title="Airflow components">Airflow components</a></li>
+<li class=""><a href="#DAG-Scheduling" title="DAG Scheduling">DAG Scheduling</a><ul class="nav">
+<li class=""><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
 </ul>
 </li>
 <li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
-<li><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
+<li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
 <li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
 <li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
-<li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li><a href="#Xcoms-amp-Variables" title="Xcoms &amp; Variables">Xcoms &amp; Variables</a></li>
-<li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
-<li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
-<li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
+<li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
+<li><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
+<li class=""><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
+<li class=""><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
+<li class=""><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
-<li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
+<li class=""><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
+<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
 <li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
 <li><a href="#Grid-View" title="Grid View">Grid View</a></li>
-<li><a href="#Graph-View" title="Graph View">Graph View</a></li>
+<li class=""><a href="#Graph-View" title="Graph View">Graph View</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
-<li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
-<li><a href="#Step" title="Step">Step</a></li>
-<li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
-<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
-<li><a href="#Materializers" title="Materializers">Materializers</a></li>
+<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li class=""><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
+<li class=""><a href="#Step" title="Step">Step</a></li>
+<li class=""><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
+<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li class=""><a href="#Materializers" title="Materializers">Materializers</a></li>
 </ul>
 </li>
-<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
 </ul>
 </li>
-<li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
-<li><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
-<li><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
-<li><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
-<li><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
+<li class=""><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
+<li class=""><a href="#ZenML-Stacks" title="ZenML Stacks">ZenML Stacks</a><ul class="nav">
+<li class=""><a href="#Orchestrator" title="Orchestrator">Orchestrator</a></li>
+<li class=""><a href="#Artifact-store" title="Artifact store">Artifact store</a></li>
+<li class=""><a href="#Create-a-local-stack-extra-section" title="Create a local stack [extra section]">Create a local stack [extra section]</a></li>
 </ul>
 </li>
-<li><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
-<li><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
-<li><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
+<li class=""><a href="#Manage-artifacts-in-ZenML" title="Manage artifacts in ZenML">Manage artifacts in ZenML</a><ul class="nav">
+<li class=""><a href="#Adding-artifacts" title="Adding artifacts">Adding artifacts</a></li>
+<li class=""><a href="#Consuming-artifacts" title="Consuming artifacts">Consuming artifacts</a></li>
 </ul>
 </li>
-<li><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
+<li class=""><a href="#Schedule-ZenML-pipelines-using-Airflow" title="Schedule ZenML pipelines using Airflow">Schedule ZenML pipelines using Airflow</a></li>
 </ul>
 </li>
-<li><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a><ul class="nav">
-<li><a href="#Core-concepts2" title="Core concepts">Core concepts</a><ul class="nav">
-<li><a href="#Install-feast" title="Install feast">Install feast</a></li>
-</ul>
-</li>
-<li><a href="#Demo1" title="Demo">Demo</a><ul class="nav">
-<li><a href="#1-Create-a-feature-repository" title="1. Create a feature repository">1. Create a feature repository</a></li>
-<li><a href="#2-Configure-the-feature-repository" title="2. Configure the feature repository">2. Configure the feature repository</a></li>
-<li><a href="#3-Run-sample-workflow" title="3. Run sample workflow">3. Run sample workflow</a></li>
-<li><a href="#4-Browse-your-features-with-the-Feast-Web-UI" title="4. Browse your features with the Feast Web UI">4. Browse your features with the Feast Web UI</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class=""><a href="#Feast-Extra-section" title="Feast [Extra section]">Feast [Extra section]</a></li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
