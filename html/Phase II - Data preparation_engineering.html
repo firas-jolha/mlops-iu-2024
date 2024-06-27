@@ -2061,11 +2061,11 @@ print(training_df.head())
 <ul>
 <li>Create a function <code>load_features</code> in <code>src/data.py</code> to do as follows.
 <ul>
-<li>Load and version the features X and the target y in artifact store of ZenML. (Use <code>zenml.load_artifact</code> method)</li>
-<li>Use the same version as the data sample.</li>
+<li>Load and version the features X and the target y in artifact store of ZenML.</li>
+<li>Use <code>zenml.save_artifact</code> method with a name like <code>features_target</code> and same version as the data sample version.</li>
 </ul>
 </li>
-<li>Ensure that you can retrieve your version from ZenML store.</li>
+<li>Ensure that you can retrieve your version from ZenML store. (Use <code>zenml.load_artifact</code>)</li>
 <li><strong>[optional task related to Feast]</strong> Persist the features (X, y) in a parquet file <code>data/processed/features.parquet</code>.</li>
 </ul>
 </li>
