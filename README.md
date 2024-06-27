@@ -6,9 +6,9 @@ The aim of this project is to apply the CRISP-ML process on a machine learning p
 
 ### [Phase I - Business and data understanding](html/Phase I - Business and data understanding.html)
 
-### [Phase II - Data engineering/preparation](html/.html)
+### [Phase II - Data engineering/preparation](html/Phase II - Data preparation_engineering.html)
 
-### [Phase III - Model engineering](html/.html)
+### [Phase III - Model engineering](html/Phase III - Model engineering.html)
 
 ### [Phase IV - Model validation](html/.html)
 
