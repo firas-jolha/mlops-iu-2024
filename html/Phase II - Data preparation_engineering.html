@@ -2036,14 +2036,14 @@ print(training_df.head())
 <ul>
 <li>Extract the data sample from the data store.
 <ul>
-<li>Write a function <code>read_datastore</code> which returns the sample as a dataframe/tensor.</li>
+<li>Write a function <code>read_datastore</code> in <code>src/data.py</code> which returns the sample as a dataframe/tensor.</li>
 <li>Get the version number of this data from a file  <code>./configs/data_version.yaml</code>.</li>
 <li>Send to the next step, the dataframe and data version.</li>
 </ul>
 </li>
 <li>Transform the data sample into features.
 <ul>
-<li>Write a function <code>preprocess_data</code> which transforms the input data sample into features and returns them as a dataframe/tensor.</li>
+<li>Write a function <code>preprocess_data</code> in <code>src/data.py</code> which transforms the input data sample into features and returns them as a dataframe/tensor.</li>
 <li>Send to the next step, the dataframe (X, y).</li>
 </ul>
 </li>
@@ -2053,13 +2053,18 @@ print(training_df.head())
 <li>Create expectations to validate all features. One expectation type applied on one or more features but we should run expecatations on all features. For example, you can expect one hot encoding columns to be 0 or 1.</li>
 <li>Create a batch request where the data asset is a pandas dataframe. Do not forget that here the pipeline tasks are exchanging data and not only metadata.</li>
 <li>Create a checkpoint to check the validitiy of the features.</li>
+<li>Write a function <code>validate_features</code> in <code>src/data.py</code> to validate the features by running the checkpoint.</li>
 <li>Send to the next step, the dataframe (X, y).</li>
 </ul>
 </li>
 <li>Load the features.
 <ul>
-<li>Load and version the features X and the target y in artifact store of ZenML.</li>
+<li>Create a function <code>load_features</code> in <code>src/data.py</code> to do as follows.
+<ul>
+<li>Load and version the features X and the target y in artifact store of ZenML. (Use <code>zenml.load_artifact</code> method)</li>
 <li>Use the same version as the data sample.</li>
+</ul>
+</li>
 <li>Ensure that you can retrieve your version from ZenML store.</li>
 <li><strong>[optional task related to Feast]</strong> Persist the features (X, y) in a parquet file <code>data/processed/features.parquet</code>.</li>
 </ul>
@@ -2072,12 +2077,12 @@ print(training_df.head())
 <li>A Bash task to run the ZenML pipeline.</li>
 <li><strong>[Optional task]</strong> Load the features to a feature store (parquet file as a data source).
 <ul>
-<li>Add <code>timestamp</code>, <code>id</code> fields to the dataframe (X, y). If your data has <code>timestamp</code> field, then you can use it.</li>
 <li>Create a file source and read the features from the parquet file.</li>
+<li>Add <code>timestamp</code>, <code>id</code> fields to the dataframe (X, y). If your data has <code>timestamp</code> field, then you can use it.</li>
 <li>Create an offline feature view with defined schema.</li>
 <li>Create a feature service to retrieve all features.</li>
 <li>Check if you can retrieve features from the offline store.<br>
-<strong>Note:</strong> Notice that this source code should be added to the folder where feature repo is initiated (e.g. <code>services/feast/feast_project/feature_repo/bank_repo.py</code> in my case) and you can run this source code by executing a command line as follows:</li>
+<strong>Note:</strong> Notice that this source code should be added to the folder where feature repo is initialized (e.g. <code>services/feast/feast_project/feature_repo/bank_repo.py</code> in my case) and you can run this source code by executing a command line as follows:</li>
 </ul>
 <pre><code class="yaml hljs"><span class="hljs-string">feast</span> <span class="hljs-bullet">-c</span> <span class="hljs-string">services/feast/feast_project/feature_repo</span> <span class="hljs-string">apply</span>
 </code></pre>
@@ -2209,7 +2214,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 </ul>
 </li>
-<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
 <li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
 <li><a href="#Step" title="Step">Step</a></li>
 <li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
@@ -2217,8 +2222,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Materializers" title="Materializers">Materializers</a></li>
 </ul>
 </li>
-<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
 </ul>
 </li>
 <li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
@@ -2250,8 +2255,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 </ul>
 </li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
@@ -2322,7 +2327,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 </ul>
 </li>
-<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
 <li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
 <li><a href="#Step" title="Step">Step</a></li>
 <li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
@@ -2330,8 +2335,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Materializers" title="Materializers">Materializers</a></li>
 </ul>
 </li>
-<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
 </ul>
 </li>
 <li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
@@ -2363,8 +2368,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 </ul>
 </li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
 <li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
