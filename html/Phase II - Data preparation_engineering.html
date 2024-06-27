@@ -2062,7 +2062,28 @@ print(training_df.head())
 <li>Create a function <code>load_features</code> in <code>src/data.py</code> to do as follows.
 <ul>
 <li>Load and version the features X and the target y in artifact store of ZenML.</li>
-<li>Use <code>zenml.save_artifact</code> method with a name like <code>features_target</code> and same version as the data sample version.</li>
+<li>Use <code>zenml.save_artifact</code> method with a name like <code>features_target</code> or <code>X_y</code> and same version as the data sample version. Here we will use the custom versions as tags, and let ZenML automatically increments the version.<pre><code class="python hljs"><span class="hljs-keyword">import</span> zenml
+
+<span class="hljs-comment"># save the artifact as follows:</span>
+<span class="hljs-comment"># df is your dataframe</span>
+<span class="hljs-comment"># name is the artifact name</span>
+<span class="hljs-comment"># version is your custom version (set it to tags)</span>
+<span class="hljs-comment"># I did not set `version` argument since I want an automatic versioning</span>
+zenml.save_artifact(data = df, name = <span class="hljs-string">"features_target"</span>, tags=[version])
+
+<span class="hljs-keyword">from</span> zenml.client <span class="hljs-keyword">import</span> Client
+client = Client()
+
+<span class="hljs-comment"># We can retrieve our artifact with a specific custom version `v5` as follows:</span>
+l = client.list_artifact_versions(name=<span class="hljs-string">"features_target"</span>, tag=<span class="hljs-string">"v5"</span>, sort_by=<span class="hljs-string">"version"</span>).items
+
+<span class="hljs-comment"># Descending order</span>
+l.reverse()
+
+<span class="hljs-comment"># l here is a list of items and l[0] will retrieve the latest version of the artifact</span>
+df = l[<span class="hljs-number">0</span>].load() <span class="hljs-comment"># pd.DataFrame</span>
+</code></pre>
+</li>
 </ul>
 </li>
 <li>Ensure that you can retrieve your version from ZenML store. (Use <code>zenml.load_artifact</code>)</li>
