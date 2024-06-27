@@ -628,6 +628,7 @@ listen_addresses = <span class="hljs-string">'*'</span>
 executor = LocalExecutor  <span class="hljs-comment"># line 45</span>
 
 <span class="hljs-comment"># 3. Change the database connection </span>
+<span class="hljs-comment"># line 424</span>
 sql_alchemy_conn = postgresql+psycopg2://firasj:firasj@localhost:5432/airflow
 <span class="hljs-comment"># This connection string has the following format</span>
 <span class="hljs-comment"># postgresql+psycopg2://&lt;db_user&gt;:&lt;db_user_password&gt;@&lt;hostname&gt;:&lt;port_number&gt;/&lt;database_name&gt;</span>
@@ -644,7 +645,7 @@ airflow db init
 </ul><pre><code class="wrap yaml hljs"><span class="hljs-comment"># Here we are creating admin user with Admin role</span>
 <span class="hljs-string">airflow</span> <span class="hljs-string">users</span> <span class="hljs-string">create</span> <span class="hljs-bullet">--role</span> <span class="hljs-string">Admin</span> <span class="hljs-bullet">--username</span> <span class="hljs-string">admin</span> <span class="hljs-bullet">--email</span> <span class="hljs-string">admin@example.org</span> <span class="hljs-bullet">--firstname</span> <span class="hljs-string">admin</span> <span class="hljs-bullet">--lastname</span> <span class="hljs-string">admin</span> <span class="hljs-bullet">--password</span> <span class="hljs-string">admin</span>
 </code></pre><blockquote>
-<p>You can check you user from the list as follows:</p>
+<p>You can check your user from the list as follows:</p>
 <pre><code class="yaml hljs"><span class="hljs-string">airflow</span> <span class="hljs-string">users</span> <span class="hljs-string">list</span>
 </code></pre>
 </blockquote><div class="alert alert-warning">
@@ -822,32 +823,36 @@ If you terminated the Airflow components and want to run them again. Before you 
 </div><div class="alert alert-warning">
 <p>We will use ZenML as data orchestrator and Airflow as workflow orchestrator.</p>
 </div><ul>
-<li><strong>DAG run</strong>
+<li>
+<p><strong>DAG run</strong></p>
 <ul>
 <li>The execution of a DAG at a specific point in time.</li>
 <li>A DAG run can be one of four different types: <code>scheduled</code>, <code>manual</code>, <code>dataset_triggered</code> or <code>backfill</code>.</li>
 </ul>
 </li>
-<li><strong>Operator</strong>
+<li>
+<p><strong>Operator</strong></p>
 <ul>
 <li>A unit of work for Airflow to complete such as BashOperator, PythonOperator,…etc</li>
 <li>Each operator includes unique arguments for the type of work it is completing.</li>
 </ul>
 </li>
-<li><strong>Task</strong>
+<li>
+<p><strong>Task</strong></p>
 <ul>
 <li>A step in a DAG describing a single unit of work.</li>
 <li>Determines how to execute your operator’s work within the context of a DAG</li>
 <li>To use an operator in a DAG, you have to instantiate it as a task.</li>
 </ul>
 </li>
-<li><strong>Task instance</strong>
+<li>
+<p><strong>Task instance</strong></p>
 <ul>
 <li>The execution of a task at a specific point in time.</li>
 </ul>
 </li>
-</ul><ul>
-<li>Airflow tasks are defined in Python code. You can define tasks using:
+<li>
+<p>Airflow tasks are defined in Python code. You can define tasks using:</p>
 <ul>
 <li>Decorators(<code>@task</code> and <code>@dag</code>) : The recommended way to create pipelines</li>
 <li>Traditional API (Operators and DAG)</li>
@@ -860,9 +865,12 @@ If you terminated the Airflow components and want to run them again. Before you 
 </ul>
 </div>
 </li>
-<li>The possible states for a Task Instance are:<br>
-<img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/task_lifecycle_diagram.png" alt="" class="md-image md-image"></li>
-<li>Special types of operators
+<li>
+<p>The possible states for a Task Instance are:<br>
+<img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/task_lifecycle_diagram.png" alt="" class="md-image md-image"></p>
+</li>
+<li>
+<p>Special types of operators</p>
 <ul>
 <li><strong>Sensors</strong>:
 <ul>
@@ -877,7 +885,9 @@ If you terminated the Airflow components and want to run them again. Before you 
 </li>
 </ul>
 </li>
-<li><strong>XComs</strong> is short for cross-communication, you can use XCom to pass information between your Airflow tasks.</li>
+<li>
+<p><strong>XComs</strong> is short for cross-communication, you can use XCom to pass information between your Airflow tasks.</p>
+</li>
 </ul><h2 id="Airflow-components"><a class="anchor hidden-xs" href="#Airflow-components" title="Airflow-components"><i class="fa fa-link"></i></a>Airflow components</h2><ul>
 <li><strong>Scheduler</strong>
 <ul>
@@ -1041,6 +1051,8 @@ Airflow was originally developed for extract, transform, and load (ETL) operatio
 		- @weekly – run once a week
 		- @daily or @midnight – run once a day
 		- @hourly – run hourly -->
+</div><div class="alert alert-info">
+<p>Cron expressions are historically used to schedule tasks in Apache Airflow.</p>
 </div><div class="alert alert-info">
 <p>You can use the website <a href="https://crontab.guru/" target="_blank" rel="noopener">https://crontab.guru/</a> to check your cron expressions.</p>
 </div><h2 id="Airflow-DAG-APIs"><a class="anchor hidden-xs" href="#Airflow-DAG-APIs" title="Airflow-DAG-APIs"><i class="fa fa-link"></i></a>Airflow DAG APIs</h2><p>Apache Airflow provides two APIs for creating DAGs. The legacy API uses operators (<code>airflow.operators</code>) and DAG (<code>airflow.DAG</code>) objects without using decorators. <strong>TaskFlow API</strong> (<code>airflow.decorators</code>) is the new <strong>recommended</strong> way to create dags where dags and tasks are written using decorators (<code>@dag</code> and <code>@task</code>).</p><div class="alert alert-info">
@@ -1627,29 +1639,30 @@ async_dag_2()
 
 BASE_PATH = os.path.expandvars(<span class="hljs-string">"$PROJECTPATH"</span>)
 
-<span class="hljs-meta">@step</span>
+<span class="hljs-meta">@step(enable_cache=False)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract</span><span class="hljs-params">()</span>-&gt; Tuple[
                 Annotated[pd.DataFrame,
-                        ArtifactConfig(name="initial_dataframe", 
-                                       tags=["data_preparation", "extract_step"])
+                        ArtifactConfig(name="extracted_data", 
+                                       tags=["data_preparation"]
+                                       )
                         ],
                 Annotated[str,
                         ArtifactConfig(name="data_version",
-                                       tags=["data_preparation", "extract_step"])]
+                                       tags=["data_preparation"])]
                     ]:</span>
     
     df, version = extract_data(BASE_PATH)
 
     <span class="hljs-keyword">return</span> df, version
 
-<span class="hljs-meta">@step</span>
+<span class="hljs-meta">@step(enable_cache=False)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transform</span><span class="hljs-params">(df: pd.DataFrame)</span>-&gt; Tuple[
                     Annotated[pd.DataFrame, 
-                            ArtifactConfig(name="input_dataframe",
-                                           tags=["data_preparation", "transform_step"])],
+                            ArtifactConfig(name="input_features",
+                                           tags=["data_preparation"])],
                     Annotated[pd.DataFrame,
-                            ArtifactConfig(name="target_dataframe", 
-                                            tags=["data_preparation", "transform_step"])]
+                            ArtifactConfig(name="input_target", 
+                                            tags=["data_preparation"])]
                                     ]:</span>
 
     <span class="hljs-comment"># Your data transformation code</span>
@@ -1657,15 +1670,15 @@ BASE_PATH = os.path.expandvars(<span class="hljs-string">"$PROJECTPATH"</span>)
 
     <span class="hljs-keyword">return</span> X, y
 
-<span class="hljs-meta">@step</span>
+<span class="hljs-meta">@step(enable_cache=False)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate</span><span class="hljs-params">(X:pd.DataFrame, 
              y:pd.DataFrame)</span>-&gt;Tuple[
                     Annotated[pd.DataFrame, 
-                            ArtifactConfig(name="valid_input_dataframe",
-                                           tags=["data_preparation", "validate_step"])],
+                            ArtifactConfig(name="valid_input_features",
+                                           tags=["data_preparation"])],
                     Annotated[pd.DataFrame,
-                            ArtifactConfig(name="valid_target_dataframe",
-                                           tags=["data_preparation", "validate_step"])]
+                            ArtifactConfig(name="valid_target",
+                                           tags=["data_preparation"])]
                                     ]:</span>
 
     X, y = validate_transformed_data(X, y)
@@ -1673,18 +1686,27 @@ BASE_PATH = os.path.expandvars(<span class="hljs-string">"$PROJECTPATH"</span>)
     <span class="hljs-keyword">return</span> X, y
 
 
-<span class="hljs-meta">@step</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load</span><span class="hljs-params">(X:pd.DataFrame, y:pd.DataFrame, version: str)</span>-&gt; <span class="hljs-keyword">None</span>:</span>
+<span class="hljs-meta">@step(enable_cache=False)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load</span><span class="hljs-params">(X:pd.DataFrame, y:pd.DataFrame, version: str)</span>-&gt; Tuple[
+                    Annotated[pd.DataFrame, 
+                            ArtifactConfig(name="features",
+                                           tags=["data_preparation"])],
+                    Annotated[pd.DataFrame,
+                            ArtifactConfig(name="target",
+                                           tags=["data_preparation"])]
+                                    ]:</span>
     
     load_features(X, y, version)
 
+    <span class="hljs-keyword">return</span> X, y
 
-<span class="hljs-meta">@pipeline</span>
+
+<span class="hljs-meta">@pipeline()</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prepare_data_pipeline</span><span class="hljs-params">()</span>:</span>
     df, version = extract()
     X, y = transform(df)
     X, y = validate(X, y)
-    load(X, y, version)
+    X, y = load(X, y, version)
 
 
 <span class="hljs-keyword">if</span> __name__==<span class="hljs-string">"__main__"</span>:
@@ -2144,7 +2166,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
 </ul>
 </li>
-<li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
+<li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
 <li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
 <li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
 <li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
@@ -2177,8 +2199,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 <li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
 <li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
-<li class=""><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
+<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
 <li><a href="#Grid-View" title="Grid View">Grid View</a></li>
@@ -2187,7 +2209,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 </ul>
 </li>
-<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
 <li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
 <li><a href="#Step" title="Step">Step</a></li>
 <li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
@@ -2195,8 +2217,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Materializers" title="Materializers">Materializers</a></li>
 </ul>
 </li>
-<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
 </ul>
 </li>
 <li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
@@ -2257,7 +2279,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
 </ul>
 </li>
-<li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
+<li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
 <li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
 <li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
 <li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
@@ -2290,8 +2312,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 <li><a href="#Deferrable-operators" title="Deferrable operators">Deferrable operators</a></li>
 <li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
-<li class=""><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
+<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
 <li><a href="#Grid-View" title="Grid View">Grid View</a></li>
@@ -2300,7 +2322,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 </li>
 </ul>
 </li>
-<li><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
+<li class=""><a href="#ZenML" title="ZenML">ZenML</a><ul class="nav">
 <li><a href="#Core-concepts1" title="Core concepts">Core concepts</a><ul class="nav">
 <li><a href="#Step" title="Step">Step</a></li>
 <li><a href="#Pipelines" title="Pipelines">Pipelines</a></li>
@@ -2308,8 +2330,8 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Materializers" title="Materializers">Materializers</a></li>
 </ul>
 </li>
-<li><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
-<li><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
+<li class=""><a href="#ZenML-Example" title="ZenML Example">ZenML Example</a><ul class="nav">
+<li class=""><a href="#ETL-data-pipeline" title="ETL data pipeline">ETL data pipeline</a></li>
 </ul>
 </li>
 <li><a href="#Explore-ZenML-Dashboard" title="Explore ZenML Dashboard">Explore ZenML Dashboard</a></li>
