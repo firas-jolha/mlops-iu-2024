@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Phase III - Model engineering - CodiMD
+    </title>
+    <link rel="icon" type="image/png" href="http://localhost:3000/favicon.png">
+    <link rel="apple-touch-icon" href="http://localhost:3000/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha256-H0KfTigpUV+0/5tn2HXC0CPwhhDhWgSawJdnFd0CGCo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,300italic,300|Source+Serif+Pro|Source+Code+Pro:400,300,500&subset=latin,latin-ext);.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{padding:0 1em;color:#777;border-left:.25em solid #ddd}.night .markdown-body blockquote{color:#bcbcbc}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.night .markdown-body h1,.night .markdown-body h2,.night .markdown-body h3,.night .markdown-body h4,.night .markdown-body h5,.night .markdown-body h6{color:#ddd}.markdown-body h1 .fa-link,.markdown-body h2 .fa-link,.markdown-body h3 .fa-link,.markdown-body h4 .fa-link,.markdown-body h5 .fa-link,.markdown-body h6 .fa-link{color:#000;vertical-align:middle;visibility:hidden;font-size:16px}.night .markdown-body h1 .fa-link,.night .markdown-body h2 .fa-link,.night .markdown-body h3 .fa-link,.night .markdown-body h4 .fa-link,.night .markdown-body h5 .fa-link,.night .markdown-body h6 .fa-link{color:#fff}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .fa-link,.markdown-body h2:hover .anchor .fa-link,.markdown-body h3:hover .anchor .fa-link,.markdown-body h4:hover .anchor .fa-link,.markdown-body h5:hover .anchor .fa-link,.markdown-body h6:hover .anchor .fa-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.night .markdown-body table tr{background-color:#5f5f5f}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.night .markdown-body table tr:nth-child(2n){background-color:#4f4f4f}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.night .markdown-body code,.night .markdown-body tt{color:#eee;background-color:hsla(0,0%,90.2%,.36)}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\A0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.markdown-body kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important}.markdown-body pre{border:inherit!important}.night .markdown-body pre{filter:invert(100%)}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.night .markdown-body .gist table tr:nth-child(2n){background-color:#ddd}.markdown-body code[data-gist-id]{background:none;padding:0;filter:invert(100%)}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.geo,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit}.night .markdown-body pre.graphviz .graph>polygon{fill:#333}.night .markdown-body pre.mermaid .sectionTitle,.night .markdown-body pre.mermaid .titleText,.night .markdown-body pre.mermaid text{fill:#fff}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.night .markdown-body .abc path{fill:#eee}.night .markdown-body .abc path.note_selected{fill:##4DD0E1}.night tspan{fill:#fefefe}.night pre rect{fill:transparent}.night pre.flow-chart path,.night pre.flow-chart rect{stroke:#fff}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body img{background-color:transparent}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;-webkit-transition:opacity .2s;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;-webkit-transition:opacity .2s;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.geo-map{width:100%;height:250px}.markmap-container{height:300px}.markmap-container>svg{width:100%;height:100%}.MJX_Assistive_MathML{display:none}.ui-infobar{position:relative;z-index:2;max-width:758px;margin-top:25px;margin-bottom:-25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:10000}.ui-toc-label{opacity:.9;background-color:#ccc;border:none}.ui-toc-label,.ui-toc .open .ui-toc-label{-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#5f5f5f}.ui-toc-label:focus{opacity:1;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc-dropdown{margin-top:23px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.night .ui-toc-dropdown .nav>li>a:focus,.night .ui-toc-dropdown .nav>li>a:hover{color:#fff;border-left-color:#fff}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.night .ui-toc-dropdown .nav>.active:focus>a,.night .ui-toc-dropdown .nav>.active:hover>a,.night .ui-toc-dropdown .nav>.active>a{color:#fff;border-left:2px solid #fff}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.night .ui-toc-dropdown .nav>li>a{color:#aaa}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:50px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a{padding-right:50px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:60px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a{padding-right:60px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a:hover{padding-left:49px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a:hover{padding-right:49px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a:hover{padding-left:59px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a:hover{padding-right:59px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>a{padding-left:48px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.active>.nav>.nav>.active>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active:hover>a{padding-right:48px}.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active>a{padding-left:58px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.active>.nav>.nav>.active>.nav>.active>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:hover>a{padding-right:58px}.markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,"\30D2\30E9\30AE\30CE\89D2\30B4   Pro W3",Osaka,Meiryo,"\30E1\30A4\30EA\30AA",MS Gothic,"\FF2D\FF33   \30B4\30B7\30C3\30AF",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,"\FF2D\FF33   \FF30\30B4\30B7\30C3\30AF",sans-serif}.markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang TC,Microsoft JhengHei,"\5FAE\8EDF\6B63\9ED1",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,"\5FAE\8EDF\6B63\9ED1UI",sans-serif}.markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang SC,Microsoft YaHei,"\5FAE\8F6F\96C5\9ED1",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,"\5FAE\8F6F\96C5\9ED1UI",sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:rgba(0,0,0,.85)}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:3px;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:contain}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}small span{line-height:22px}small .dropdown{display:inline-block}small .dropdown a:focus,small .dropdown a:hover{text-decoration:none}.unselectable{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-o-user-select:none;user-select:none}.night .navbar{background:#333;border-bottom-color:#333;color:#eee}.night .navbar a{color:#eee}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}.focus,:focus{outline:none!important}::-moz-focus-inner{border:0!important}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid" lang="en"><h1 id="Phase-III---Model-engineering"><a class="anchor hidden-xs" href="#Phase-III---Model-engineering" title="Phase-III---Model-engineering"><i class="fa fa-link"></i></a>Phase III - Model engineering</h1><p>Course: <strong>MLOps engineering</strong><br>
+Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-xs" href="#Agenda" title="Agenda"><i class="fa fa-link"></i></a>Agenda</h1><p></p><div class="toc"><ul>
+<li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#MLflow0" title="MLflow">MLflow</a><ul>
+<li><a href="#Components" title="Components">Components</a></li>
+</ul>
+</li>
+<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a></li>
+<li><a href="#Get-MLflow0" title="Get MLflow">Get MLflow</a></li>
+<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a></li>
+<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul>
+<li><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li><a href="#Demo0" title="Demo">Demo</a><ul>
+<li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
+<li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
+<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
+<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
+<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+</ul>
+</li>
+<li><a href="#Autlogging" title="Autlogging">Autlogging</a><ul>
+<li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</div><p></p><h1 id="Description"><a class="anchor hidden-xs" href="#Description" title="Description"><i class="fa fa-link"></i></a>Description</h1><p>The modeling phase is the ML-specific part of the process. This phase aims to specify one or several machine learning models to be deployed in the production. The translation to the ML task depends on the business problem that we are trying to solve. Constraints and requirements from the Business and Data Understanding phase will shape this phase. For example, the application domain’s model assessment metrics might include performance metrics, robustness, fairness, scalability, interpretability, model complexity degree, and model resource demand. We should adjust the importance of each of these metrics according to the use case.</p><p>Generally, the modeling phase includes model selection, model specialization, and model training tasks. Additionally, depending on the application, we might use a pre-trained model, compress the model, or apply ensemble learning methods to get the final ML model.</p><p>One main complaint about machine learning projects is the lack of reproducibility. Therefore we should ensure that the method and the results of the modeling phase are reproducible by collecting the model training method’s metadata. Typically we collect the following metadata: algorithm, training, validation and testing data set, hyper-parameters, and runtime environment description. The result reproducibility assumes the validation of the model’s mean performance on different random seeds. Following best practices, documenting trained models increases the transparency and explainability in ML projects. A helpful framework here is the “Model Cards Toolkit”.</p><p><img src="https://i.imgur.com/fcrEVEX.jpeg" alt="" class="md-image md-image"></p><p>Many phases in ML development are iterative. Sometimes, we might need to review the business goals, KPIs, and available data from the previous steps to adjust the outcomes of the ML model results. Finally, we package the ML workflow in a pipeline to create repeatable model training during the modeling phase.</p><h1 id="MLflow0"><a class="anchor hidden-xs" href="#MLflow0" title="MLflow0"><i class="fa fa-link"></i></a>MLflow</h1><p>MLflow, at its core, provides a suite of tools aimed at simplifying the ML workflow. It is tailored to assist ML practitioners throughout the various stages of ML development and deployment.</p><h2 id="Components"><a class="anchor hidden-xs" href="#Components" title="Components"><i class="fa fa-link"></i></a>Components</h2><p>MLflow’s functionalities are rooted in several foundational components:</p><ul>
+<li><strong>Tracking:</strong> MLflow Tracking provides both an API and UI dedicated to the logging of parameters, code versions, metrics, and artifacts during the ML process. This centralized repository captures details such as parameters, metrics, artifacts, data, and environment configurations, giving teams insight into their models’ evolution over time. Whether working in standalone scripts, notebooks, or other environments, Tracking facilitates the logging of results either to local files or a server, making it easier to compare multiple runs across different users.</li>
+<li><strong>Model Registry:</strong> A systematic approach to model management, the Model Registry assists in handling different versions of models, discerning their current state, and ensuring smooth productionization. It offers a centralized model store, APIs, and UI to collaboratively manage an MLflow Model’s full lifecycle, including model lineage, versioning, aliasing, tagging, and annotations.</li>
+<li><strong>Evaluate</strong>: Designed for in-depth model analysis, this set of tools facilitates objective model comparison.</li>
+<li><strong>Recipes</strong>: Serving as a guide for structuring ML projects, Recipes, while offering recommendations, are focused on ensuring functional end results optimized for real-world deployment scenarios.</li>
+<li><strong>Projects:</strong> MLflow Projects standardize the packaging of ML code, workflows, and artifacts, akin to an executable. Each project, be it a directory with code or a Git repository, employs a descriptor or convention to define its dependencies and execution method.</li>
+</ul><h1 id="Use-Cases-of-MLflow"><a class="anchor hidden-xs" href="#Use-Cases-of-MLflow" title="Use-Cases-of-MLflow"><i class="fa fa-link"></i></a>Use Cases of MLflow</h1><p>Here are some typical use cases:</p><ul>
+<li><strong>Experiment Tracking</strong>: A data science team leverages MLflow Tracking to log parameters and metrics for experiments within a particular domain. Using the MLflow UI, they can compare results and fine-tune their solution approach. The outcomes of these experiments are preserved as MLflow models.</li>
+<li><strong>Model Selection and Deployment</strong>: MLOps engineers employ the MLflow UI to assess and pick the top-performing models. The chosen model is registered in the MLflow Registry, allowing for monitoring its real-world performance.</li>
+<li><strong>Model Performance Monitoring</strong>: Post deployment, MLOps engineers utilize the MLflow Registry to gauge the model’s efficacy, juxtaposing it against other models in a live environment.</li>
+<li><strong>Collaborative Projects</strong>: Data scientists embarking on new ventures organize their work as an MLflow Project. This structure facilitates easy sharing and parameter modifications, promoting collaboration.</li>
+</ul><h1 id="Get-MLflow0"><a class="anchor hidden-xs" href="#Get-MLflow0" title="Get-MLflow0"><i class="fa fa-link"></i></a>Get MLflow</h1><p>You can easily install MLflow as a Python package:</p><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">mlflow</span>
+</code></pre><p>This will install the <code>mlflow</code> package and <code>mlflow</code> command.</p><h1 id="MLflow-CLI"><a class="anchor hidden-xs" href="#MLflow-CLI" title="MLflow-CLI"><i class="fa fa-link"></i></a>MLflow CLI</h1><p>The MLflow command-line interface (CLI) provides a simple interface to various functionality in MLflow. Here I show some of them:</p><ul>
+<li>Run MLflow server on localhost (default) and port 5000 (default)</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">server</span> <span class="hljs-bullet">-h</span> <span class="hljs-string">localhost</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span>
+</code></pre><ul>
+<li>Manage runs of experiments associated with a tracking server.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span>
+</code></pre><ul>
+<li>List all runs of the specified experiment in the configured tracking server.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span> <span class="hljs-string">list</span> <span class="hljs-bullet">--experiment-id</span> <span class="hljs-string">&lt;experiment_id&gt;</span>
+</code></pre><h1 id="Tracking-ML-experiments"><a class="anchor hidden-xs" href="#Tracking-ML-experiments" title="Tracking-ML-experiments"><i class="fa fa-link"></i></a>Tracking ML experiments</h1><p>ML experimentation is one of the core practices in Model engineering phase. ML experiments are usually done to optimize ML models, try new methods, test hypothesis…etc. We need a system which can help us to track these experiments and manage our ML workflows such that we can return back and check our progress. MLflow is one of the common tools used to track and log ML models and experiments.</p><p>Assume we have the following code snippet for our ML modeling <code>short_ml.py</code>:</p><pre><code class="python hljs">
+<span class="hljs-comment"># Iris data sets consists of 3 different types of irises’ </span>
+<span class="hljs-comment"># (Setosa, Versicolour, and Virginica) petal and sepal </span>
+<span class="hljs-comment"># length, stored in a 150x4 numpy.ndarray</span>
+
+<span class="hljs-comment"># The rows being the samples and the columns being: </span>
+<span class="hljs-comment"># Sepal Length, Sepal Width, Petal Length and Petal Width.</span>
+
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score, precision_score, recall_score, f1_score
+
+
+<span class="hljs-comment"># Load the Iris dataset</span>
+X, y = datasets.load_iris(return_X_y=<span class="hljs-literal">True</span>)
+
+
+<span class="hljs-comment"># Split the data into training and test sets</span>
+X_train, X_test, y_train, y_test = train_test_split(
+  X, y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">42</span>
+)
+
+<span class="hljs-comment"># Define the model hyperparameters</span>
+params = {
+  <span class="hljs-string">"solver"</span>: <span class="hljs-string">"lbfgs"</span>,
+  <span class="hljs-string">"max_iter"</span>: <span class="hljs-number">1000</span>,
+  <span class="hljs-string">"multi_class"</span>: <span class="hljs-string">"auto"</span>,
+  <span class="hljs-string">"random_state"</span>: <span class="hljs-number">8888</span>,
+}
+
+<span class="hljs-comment"># Train the model</span>
+lr = LogisticRegression(**params)
+lr.fit(X_train, y_train)
+
+<span class="hljs-comment"># Predict on the test set</span>
+y_pred = lr.predict(X_test)
+
+<span class="hljs-comment"># Calculate metrics</span>
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+recall = recall_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+f1 = f1_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+
+print(accuracy, precision, recall, f1)
+
+</code></pre><h2 id="Concepts"><a class="anchor hidden-xs" href="#Concepts" title="Concepts"><i class="fa fa-link"></i></a>Concepts</h2><blockquote>
+<p><strong>Runs</strong><br>
+are executions of some piece of data science code, for example, a single python <code>train.py</code> execution. Each run records <strong>metadata</strong> (various information about your run such as metrics, parameters, start and end times) and <strong>artifacts</strong> (output files from the run such as model weights, images, etc).</p>
+</blockquote><blockquote>
+<p><strong>Experiments</strong><br>
+An experiment groups together runs for a specific task.  They are logical containers for your runs. You can create an experiment using the CLI, API, or UI.</p>
+</blockquote><h2 id="Demo0"><a class="anchor hidden-xs" href="#Demo0" title="Demo0"><i class="fa fa-link"></i></a>Demo</h2><p>We can track experiments in MLflow as follows:</p><h3 id="1-Run-Tracking-server-locally"><a class="anchor hidden-xs" href="#1-Run-Tracking-server-locally" title="1-Run-Tracking-server-locally"><i class="fa fa-link"></i></a>1. Run Tracking server (locally)</h3><pre><code class="bash hljs"><span class="hljs-comment"># mlflow server --host localhost --port 5000</span>
+mlflow server
+
+</code></pre><p><img src="https://i.imgur.com/iMniksq.png" alt="" class="md-image md-image"></p><p>This will open the MLflow tracking web server on the port 5000 of the local host by default.</p><h3 id="2-Set-the-Tracking-Server-URI"><a class="anchor hidden-xs" href="#2-Set-the-Tracking-Server-URI" title="2-Set-the-Tracking-Server-URI"><i class="fa fa-link"></i></a>2. Set the Tracking Server URI</h3><div class="alert alert-warning">
+<p>We do not need it unless you are using different values than default port and hostname.</p>
+</div><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+
+<span class="hljs-comment"># mlflow.set_tracking_uri(uri="http://localhost:5000")</span>
+
+<span class="hljs-comment"># MLFLOW_TRACKING_URI  environment variable</span>
+</code></pre><h3 id="3-Build-a-model-and-prepare-metadata-for-logging"><a class="anchor hidden-xs" href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3-Build-a-model-and-prepare-metadata-for-logging"><i class="fa fa-link"></i></a>3. Build a model and prepare metadata for logging</h3><p>The following is the code that you want to use it for training and evaluating your model. In this code, we are not tracking ML experiments.</p><pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score, precision_score, recall_score, f1_score
+
+
+<span class="hljs-comment"># Load the Iris dataset</span>
+X, y = datasets.load_iris(return_X_y=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># Split the data into training and test sets</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">42</span>
+)
+
+<span class="hljs-comment"># Define the model hyperparameters</span>
+params = {
+    <span class="hljs-string">"solver"</span>: <span class="hljs-string">"lbfgs"</span>,
+    <span class="hljs-string">"max_iter"</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment"># Use hydra for configuration management    </span>
+    <span class="hljs-string">"random_state"</span>: <span class="hljs-number">8888</span>,
+}
+
+<span class="hljs-comment"># Train the model</span>
+lr = LogisticRegression(**params)
+lr.fit(X_train, y_train)
+
+<span class="hljs-comment"># Predict on the test set</span>
+y_pred = lr.predict(X_test)
+
+<span class="hljs-comment"># Calculate metrics</span>
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+recall = recall_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+f1 = f1_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+print(accuracy, precision, recall, f1)
+
+</code></pre><h3 id="4-Log-the-model-and-its-metadata-to-MLflow"><a class="anchor hidden-xs" href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4-Log-the-model-and-its-metadata-to-MLflow"><i class="fa fa-link"></i></a>4. Log the model and its metadata to MLflow</h3><p>The steps are as follows:</p><ol>
+<li>Set the tracking server Uri</li>
+<li>Create an experiment</li>
+<li>Start a run</li>
+<li>Log metadata (params, metrics) and artifacts (model)</li>
+<li>Run the code</li>
+<li>Track the run and results in Tracking UI.</li>
+</ol><pre><code class="python hljs">
+
+<span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">from</span> mlflow.models <span class="hljs-keyword">import</span> infer_signature
+<span class="hljs-keyword">import</span> mlflow.sklearn
+<span class="hljs-keyword">import</span> mlflow.exceptions
+
+<span class="hljs-comment"># Set our tracking server uri for logging</span>
+<span class="hljs-comment"># mlflow.set_tracking_uri(uri = "http://localhost:5000")</span>
+
+experiment_name = <span class="hljs-string">"MLflow experiment 01"</span>
+
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-comment"># Create a new MLflow Experiment</span>
+    experiment_id = mlflow.create_experiment(name=experiment_name)
+<span class="hljs-keyword">except</span> mlflow.exceptions.MlflowException <span class="hljs-keyword">as</span> e:
+    experiment_id = mlflow.get_experiment_by_name(<span class="hljs-string">"MLflow experiment 01"</span>).experiment_id
+
+print(experiment_id)
+
+
+<span class="hljs-comment"># Start an MLflow run</span>
+<span class="hljs-keyword">with</span> mlflow.start_run(run_name=<span class="hljs-string">"run 01"</span>, experiment_id=experiment_id) <span class="hljs-keyword">as</span> run:
+
+    <span class="hljs-comment"># Log the hyperparameters</span>
+    mlflow.log_params(params=params)
+
+    <span class="hljs-comment"># Log the performance metrics</span>
+    mlflow.log_metric(<span class="hljs-string">"accuracy"</span>, accuracy) <span class="hljs-comment"># type: ignore</span>
+    mlflow.log_metric(<span class="hljs-string">"f1"</span>, f1) <span class="hljs-comment"># type: ignore</span>
+    mlflow.log_metrics({
+        <span class="hljs-string">"accuracy"</span>: accuracy,
+        <span class="hljs-string">"f1"</span>: f1
+    })
+
+    <span class="hljs-comment"># Set a tag that we can use to remind ourselves what this run was for</span>
+    mlflow.set_tag(<span class="hljs-string">"Training Info"</span>, <span class="hljs-string">"Basic LR model for iris data"</span>)
+
+    <span class="hljs-comment"># Infer the model signature</span>
+    signature = infer_signature(X_test, y_test)
+
+
+    <span class="hljs-comment"># Log the model</span>
+    model_info = mlflow.sklearn.log_model(
+        sk_model=lr,
+        artifact_path=<span class="hljs-string">"iris_model"</span>,
+        signature=signature,
+        input_example=X_test,
+        registered_model_name=<span class="hljs-string">"first_model"</span>
+    )
+</code></pre><div class="alert alert-info">
+<p>In MLflow, a <strong>model signature</strong> precisely defines the schema for model inputs, outputs, and any additional parameters required for effective model operation.</p>
+</div><div class="alert alert-warning">
+<p>You can create an experiment via CLI as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">create</span> <span class="hljs-bullet">--experiment-name</span> <span class="hljs-string">fraud-detection</span>
+</code></pre>
+</div><div class="alert alert-info">
+<p>You can also create multiple runs inside a single run. This is useful for scenario like hyperparameter tuning, cross-validation folds, where you need another level of organization within an experiment. You can create child runs by passing <code>parent_run_id</code> to <code>mlflow.start_run()</code> function.</p>
+<pre><code class="python hljs"><span class="hljs-comment"># Start parent run</span>
+<span class="hljs-keyword">with</span> mlflow.start_run() <span class="hljs-keyword">as</span> parent_run:
+    param = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>]
+
+    <span class="hljs-comment"># Create a child run for each parameter setting</span>
+    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> param:
+        <span class="hljs-keyword">with</span> mlflow.start_run(nested=<span class="hljs-literal">True</span>) <span class="hljs-keyword">as</span> child_run:
+            mlflow.log_param(<span class="hljs-string">"p"</span>, p)
+            ...
+            mlflow.log_metric(<span class="hljs-string">"val_loss"</span>, val_loss)
+
+</code></pre>
+<p>You can fetch all child runs under a parent run using tags. The <code>MlflowClient.set_tag()</code> function lets you add custom tags to runs. A tag can only have a single unique value mapped to it at a time. For example:</p>
+<pre><code class="python hljs">client.set_tag(run.info.run_id, <span class="hljs-string">"tag_key"</span>, <span class="hljs-string">"tag_value"</span>)
+</code></pre>
+</div><h3 id="5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference"><a class="anchor hidden-xs" href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference"><i class="fa fa-link"></i></a>5. Load the model as a Python Function (<code>pyfunc</code>) and use it for inference</h3><p><strong>pyfunc</strong> is a common flavor for packaging models in MLflow. It provides a uniform interface to save and load any model type supported by Mlflow.</p><pre><code class="python hljs">
+<span class="hljs-comment"># Load the model back for predictions as a generic Python Function model flavor</span>
+loaded_model = mlflow.pyfunc.load_model(model_info.model_uri)
+
+<span class="hljs-comment"># Run predictions</span>
+predictions = loaded_model.predict(X_test)
+
+iris_feature_names = datasets.load_iris().feature_names
+
+<span class="hljs-comment"># Compare some prediction results</span>
+result = pd.DataFrame(X_test, columns=iris_feature_names)
+result[<span class="hljs-string">"actual_class"</span>] = y_test
+result[<span class="hljs-string">"predicted_class"</span>] = predictions
+
+result[:<span class="hljs-number">4</span>]
+
+</code></pre><h3 id="6-View-the-Run-in-the-MLflow-UI"><a class="anchor hidden-xs" href="#6-View-the-Run-in-the-MLflow-UI" title="6-View-the-Run-in-the-MLflow-UI"><i class="fa fa-link"></i></a>6. View the Run in the MLflow UI</h3><p>order to see the results of our run, we can navigate to the MLflow UI. Since we have already started the Tracking Server at <a href="http://localhost:5000" target="_blank" rel="noopener">http://localhost:5000</a>, we can simply navigate to that URL in our browser. When opening the site, you will see a screen similar to the following:<br>
+<img src="https://mlflow.org/docs/latest/_images/quickstart-our-experiment.png" alt="" class="md-image md-image"></p><p>Clicking on the name of the Experiment that we created (“MLflow experiment 01”) will give us a list of runs associated with the Experiment. You should see a random name that has been generated for the run and nothing else show up in the Table list view to the right.</p><p>Clicking on the name of the run will take you to the Run page, where the details of what we’ve logged will be shown. The elements have been highlighted below to show how and where this data is recorded within the UI.</p><p><img src="https://mlflow.org/docs/latest/_images/quickstart-our-run.png" alt="" class="md-image md-image"></p><div class="alert alert-info">
+<p>You can also access all of the functions in the Tracking UI programmatically with <code>MlflowClient</code>. For example, the following code snippet search for runs that has the best validation loss among all runs in the experiment.</p>
+<pre><code class="python hljs">client = mlflow.tracking.MlflowClient()
+experiment_id = <span class="hljs-string">"0"</span>
+best_run = client.search_runs(
+    experiment_id, order_by=[<span class="hljs-string">"metrics.val_loss ASC"</span>], max_results=<span class="hljs-number">1</span>
+)[<span class="hljs-number">0</span>]
+print(best_run.info)
+<span class="hljs-comment"># {'run_id': '...', 'metrics': {'val_loss': 0.123}, ...}</span>
+
+</code></pre>
+</div><h3 id="Launching-Multiple-Runs-in-One-Program"><a class="anchor hidden-xs" href="#Launching-Multiple-Runs-in-One-Program" title="Launching-Multiple-Runs-in-One-Program"><i class="fa fa-link"></i></a>Launching Multiple Runs in One Program</h3><p>Sometimes you want to launch multiple MLflow runs in the same program: for example, maybe you are performing a hyperparameter search locally or your experiments are just very fast to run. The way to do this depends on whether you want to run them <strong>sequentially</strong> or in <strong>parallel</strong>.</p><h4 id="Sequential-Runs"><a class="anchor hidden-xs" href="#Sequential-Runs" title="Sequential-Runs"><i class="fa fa-link"></i></a>Sequential Runs</h4><pre><code class="python hljs"><span class="hljs-comment"># First run</span>
+<span class="hljs-keyword">with</span> mlflow.start_run():
+    mlflow.log_param(<span class="hljs-string">"x"</span>, <span class="hljs-number">1</span>)
+    mlflow.log_metric(<span class="hljs-string">"y"</span>, <span class="hljs-number">2</span>)
+    ...
+
+<span class="hljs-comment"># Another run</span>
+<span class="hljs-keyword">with</span> mlflow.start_run():
+    ...
+
+</code></pre><h4 id="Parallel-Runs"><a class="anchor hidden-xs" href="#Parallel-Runs" title="Parallel-Runs"><i class="fa fa-link"></i></a>Parallel Runs</h4><p>MLflow also supports running multiple runs in parallel using <code>multiprocessing</code> or <code>multi threading</code>.</p><ul>
+<li>Multiprocessing</li>
+</ul><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">import</span> multiprocessing <span class="hljs-keyword">as</span> mp
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_model</span><span class="hljs-params">(params)</span>:</span>
+    <span class="hljs-keyword">with</span> mlflow.start_run():
+        mlflow.log_param(<span class="hljs-string">"p"</span>, params)
+        ...
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    params = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, ...]
+    pool = mp.Pool(processes=<span class="hljs-number">4</span>)
+    pool.map(train_model, params)
+
+</code></pre><ul>
+<li>Multithreading</li>
+</ul><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">import</span> threading
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_model</span><span class="hljs-params">(params)</span>:</span>
+    <span class="hljs-comment"># Create a child run by passing nested=True</span>
+    <span class="hljs-keyword">with</span> mlflow.start_run(nested=<span class="hljs-literal">True</span>):
+        mlflow.log_param(<span class="hljs-string">"p"</span>, params)
+        ...
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    params = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, ...]
+    threads = []
+    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> params:
+        t = threading.Thread(target=train_model, args=(p,))
+        threads.append(t)
+        t.start()
+
+    <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> threads:
+        t.join()
+</code></pre><h2 id="Autlogging"><a class="anchor hidden-xs" href="#Autlogging" title="Autlogging"><i class="fa fa-link"></i></a>Autlogging</h2><p>Autologging automatically logs your model, metrics, examples, signature, and parameters with only a single line of code for many of the most popular ML libraries in the Python ecosystem.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+
+<span class="hljs-comment"># Enable autlogging</span>
+mlflow.autolog()
+
+<span class="hljs-comment"># Your ML modeling code is here.</span>
+
+</code></pre><div class="alert alert-danger">
+<p>You should call <code>mlflow.autolog()</code> <strong>before</strong> your training code.</p>
+</div><p><img src="https://mlflow.org/docs/latest/_images/autologging-intro.png" alt="" class="md-image md-image"></p><h3 id="Get-MLflow-Run-instance-from-autologged-results"><a class="anchor hidden-xs" href="#Get-MLflow-Run-instance-from-autologged-results" title="Get-MLflow-Run-instance-from-autologged-results"><i class="fa fa-link"></i></a>Get MLflow Run instance from autologged results</h3><p>In some cases, you may want to access the MLflow Run instance associated with the autologged results. You can access the most recent autolog run through the <code>mlflow.last_active_run()</code> function.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_diabetes
+<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestRegressor
+
+mlflow.autolog()
+
+db = load_diabetes()
+X_train, X_test, y_train, y_test = train_test_split(db.data, db.target)
+
+<span class="hljs-comment"># Create and train models.</span>
+rf = RandomForestRegressor(n_estimators=<span class="hljs-number">100</span>, max_depth=<span class="hljs-number">6</span>, max_features=<span class="hljs-number">3</span>)
+rf.fit(X_train, y_train)
+
+<span class="hljs-comment"># Use the model to make predictions on the test dataset.</span>
+predictions = rf.predict(X_test)
+autolog_run = mlflow.last_active_run()
+print(autolog_run)
+</code></pre><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><p>TODO</p><h2 id="B-Report-Only-for-Master’s-students"><a class="anchor hidden-xs" href="#B-Report-Only-for-Master’s-students" title="B-Report-Only-for-Master’s-students"><i class="fa fa-link"></i></a>B. Report <strong>[Only for Master’s students]</strong></h2><p>TODO</p><h1 id="References"><a class="anchor hidden-xs" href="#References" title="References"><i class="fa fa-link"></i></a>References</h1><ul>
+<li><a href="https://ml-ops.org/content/crisp-ml" target="_blank" rel="noopener">CRISP-ML</a></li>
+</ul></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Description" title="Description">Description</a></li>
+<li class=""><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
+<li class=""><a href="#Components" title="Components">Components</a></li>
+</ul>
+</li>
+<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a></li>
+<li class=""><a href="#Get-MLflow0" title="Get MLflow">Get MLflow</a></li>
+<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a></li>
+<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
+<li class=""><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
+<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li class=""><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
+<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li class=""><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
+<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+</ul>
+</li>
+<li class=""><a href="#Autlogging" title="Autlogging">Autlogging</a><ul class="nav">
+<li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#References" title="References">References</a></li>
+</ul>
+</div><div class="toc-menu" style="">
+    <a class="expand-toggle expand-all" href="#">Expand all</a>
+    <a class="expand-toggle collapse-all" href="#" style="display: none;">Collapse all</a>
+    <a class="back-to-top" href="#">Back to top</a>
+    <a class="go-to-bottom" href="#">Go to bottom</a>
+</div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Description" title="Description">Description</a></li>
+<li class=""><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
+<li class=""><a href="#Components" title="Components">Components</a></li>
+</ul>
+</li>
+<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a></li>
+<li class=""><a href="#Get-MLflow0" title="Get MLflow">Get MLflow</a></li>
+<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a></li>
+<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+<li class=""><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
+<li class=""><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
+<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li class=""><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
+<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li class=""><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
+<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+</ul>
+</li>
+<li class=""><a href="#Autlogging" title="Autlogging">Autlogging</a><ul class="nav">
+<li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#References" title="References">References</a></li>
+</ul>
+</div><div class="toc-menu" style="">
+    <a class="expand-toggle expand-all" href="#">Expand all</a>
+    <a class="expand-toggle collapse-all" href="#" style="display: none;">Collapse all</a>
+    <a class="back-to-top" href="#">Back to top</a>
+    <a class="go-to-bottom" href="#">Go to bottom</a>
+</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha256-kJrlY+s09+QoWjpkOrXXwhxeaoDz9FW5SaxF8I0DibQ=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
