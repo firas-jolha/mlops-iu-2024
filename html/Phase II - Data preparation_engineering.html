@@ -659,17 +659,27 @@ listen_addresses = <span class="hljs-string">'*'</span>
 <span class="hljs-comment"># 6. Save the change and close it</span>
 </code></pre><ul>
 <li>Restart PostgreSQL service</li>
-</ul><pre><code class="bash hljs">firasj@Lenovo:~$ sudo systecmtl restart postgresql
+</ul><pre><code class="bash hljs">firasj@Lenovo:~$ sudo systemctl restart postgresql
+</code></pre><ul>
+<li>Initialize the default database (SQLite).</li>
+</ul><pre><code class="bash hljs"><span class="hljs-comment"># Set home directory of Airflow</span>
+<span class="hljs-built_in">export</span> AIRFLOW_HOME=<span class="hljs-variable">$PWD</span>/services/airflow
+
+<span class="hljs-comment"># Actiavte the virtual env</span>
+<span class="hljs-built_in">source</span> .venv/bin/activate
+
+<span class="hljs-comment"># Initialize the database</span>
+airflow db init
 </code></pre><ul>
 <li>Configure the Airflow.</li>
 </ul><pre><code class="bash hljs">
 <span class="hljs-comment"># 1. Go to the file `./services/airflow/airflow.cfg` in VS Code</span>
 
 <span class="hljs-comment"># 2. Change the executor</span>
-executor = LocalExecutor  <span class="hljs-comment"># line 45</span>
+executor = LocalExecutor  <span class="hljs-comment"># line 45 in version 2.7.3</span>
 
 <span class="hljs-comment"># 3. Change the database connection </span>
-<span class="hljs-comment"># line 424</span>
+<span class="hljs-comment"># line 424 in version 2.7.3</span>
 sql_alchemy_conn = postgresql+psycopg2://firasj:firasj@localhost:5432/airflow
 <span class="hljs-comment"># This connection string has the following format</span>
 <span class="hljs-comment"># postgresql+psycopg2://&lt;db_user&gt;:&lt;db_user_password&gt;@&lt;hostname&gt;:&lt;port_number&gt;/&lt;database_name&gt;</span>
@@ -691,13 +701,13 @@ airflow db init
 </code></pre>
 </blockquote><div class="alert alert-warning">
 <p>The webserver will usually load examples of workflows, you can disable that from <code>./services/airflow/airflow.cfg</code>.</p>
-<pre><code class="yaml hljs"><span class="hljs-comment"># line 124</span>
+<pre><code class="yaml hljs"><span class="hljs-comment"># line 124 in version 2.7.3</span>
 <span class="hljs-string">load_examples</span> <span class="hljs-string">=</span> <span class="hljs-literal">False</span>
 </code></pre>
 <p>Restart the webserver to see the change if it is already running.</p>
 </div><div class="alert alert-warning">
 <p>The default port for the Airflow webserver is 8080. You can change from the configuration file <code>./services/airflow/airflow.cfg</code>.</p>
-<pre><code class="yaml hljs"><span class="hljs-comment"># line 1320</span>
+<pre><code class="yaml hljs"><span class="hljs-comment"># line 1320 in version 2.7.3</span>
 <span class="hljs-string">web_server_port</span> <span class="hljs-string">=</span> <span class="hljs-number">8080</span>
 </code></pre>
 <p>Restart the webserver to see the change if it is already running.</p>
@@ -760,7 +770,7 @@ If you terminated the Airflow components and want to run them again. Before you 
 <strong>Note:</strong> If you see such errors in the log of the components, such as in the scheduler</p>
 <pre><code class="ruby hljs">File <span class="hljs-symbol">exists:</span> <span class="hljs-string">'/home/firasj/project/services/airflow/airflow-scheduler.pid'</span>
 </code></pre>
-<p>Then delete the pid file of the component.</p>
+<p>Then delete the pid file of the component and run it again.</p>
 </div><div class="alert alert-warning">
 <p><strong>Notes:</strong></p>
 <ul>
@@ -907,7 +917,7 @@ If you terminated the Airflow components and want to run them again. Before you 
 </div>
 </li>
 <li>
-<p>The possible states for a Task Instance are:<br>
+<p>The <a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html#task-instances" target="_blank" rel="noopener">possible states</a> for a Task Instance are:<br>
 <img src="https://airflow.apache.org/docs/apache-airflow/stable/_images/task_lifecycle_diagram.png" alt="" class="md-image md-image"></p>
 </li>
 <li>
@@ -1527,7 +1537,7 @@ start_date = pendulum.datetime(<span class="hljs-number">2024</span>, <span clas
     )
 </code></pre><div class="alert alert-info">
 <p><strong>Info:</strong> You can check more DAG examples from <a href="https://github.com/apache/airflow/tree/main/airflow/example_dags" target="_blank" rel="noopener">here</a>.</p>
-</div><h2 id="Deferrable-operators-Extra-section"><a class="anchor hidden-xs" href="#Deferrable-operators-Extra-section" title="Deferrable-operators-Extra-section"><i class="fa fa-link"></i></a>Deferrable operators [Extra section]</h2><details open="">
+</div><h2 id="Deferrable-operators-Extra-section"><a class="anchor hidden-xs" href="#Deferrable-operators-Extra-section" title="Deferrable-operators-Extra-section"><i class="fa fa-link"></i></a>Deferrable operators [Extra section]</h2><details>
 <ul>
 <li>They use the Python <code>asyncio</code> library to run tasks waiting for an external resource to finish (asynchronous run).</li>
 <li>This frees up your workers and allows you to use resources more effectively.</li>
@@ -2258,7 +2268,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
 </ul>
 </li>
-<li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
+<li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
 <li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
 <li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
 <li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
@@ -2278,20 +2288,20 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
-<li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
-<li class=""><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
-<li class=""><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
-<li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li class=""><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
-<li class=""><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
-<li class=""><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
-<li class=""><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
+<li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
+<li><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
+<li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
+<li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
+<li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
+<li><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
+<li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
+<li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
+<li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li class=""><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
-<li class=""><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
+<li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
+<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
 <li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
@@ -2355,7 +2365,7 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
 </ul>
 </li>
-<li class=""><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
+<li><a href="#Apache-Airflow" title="Apache Airflow">Apache Airflow</a><ul class="nav">
 <li><a href="#Install-Airflow" title="Install Airflow">Install Airflow</a><ul class="nav">
 <li><a href="#1-Usingpip" title="1. Usingpip">1. Usingpip</a></li>
 <li><a href="#2-Using-Docker" title="2. Using Docker">2. Using Docker</a></li>
@@ -2375,20 +2385,20 @@ Do not write the business logic code in dag definition files in <code>pipelines<
 <li><a href="#Scheduling-concepts" title="Scheduling concepts">Scheduling concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
-<li class=""><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
-<li class=""><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
-<li class=""><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
-<li class=""><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
-<li class=""><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
-<li class=""><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
-<li class=""><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
-<li class=""><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
+<li><a href="#Airflow-DAG-APIs" title="Airflow DAG APIs">Airflow DAG APIs</a></li>
+<li><a href="#DAG-Examples" title="DAG Examples">DAG Examples</a><ul class="nav">
+<li><a href="#1-Traditional-API-as-a-variable" title="1. Traditional API as a variable">1. Traditional API as a variable</a></li>
+<li><a href="#2-Traditional-API-as-a-context" title="2. Traditional API as a context">2. Traditional API as a context</a></li>
+<li><a href="#3-TaskFlow-API" title="3. TaskFlow API">3. TaskFlow API</a></li>
+<li><a href="#Xcoms-extra-section" title="Xcoms [extra section]">Xcoms [extra section]</a></li>
+<li><a href="#Python-tasks-with-virtual-environments" title="Python tasks with virtual environments">Python tasks with virtual environments</a></li>
+<li><a href="#ExternalTaskSensor" title="ExternalTaskSensor">ExternalTaskSensor</a></li>
+<li><a href="#Trigger-Dag-Run-operator" title="Trigger Dag Run operator">Trigger Dag Run operator</a></li>
 </ul>
 </li>
-<li class=""><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
-<li class=""><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
-<li class=""><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
+<li><a href="#Deferrable-operators-Extra-section" title="Deferrable operators [Extra section]">Deferrable operators [Extra section]</a></li>
+<li><a href="#Test-a-pipeline" title="Test a pipeline">Test a pipeline</a></li>
+<li><a href="#Airflow-UI" title="Airflow UI">Airflow UI</a><ul class="nav">
 <li><a href="#DAGs-View" title="DAGs View">DAGs View</a></li>
 <li><a href="#Cluster-Activity-View" title="Cluster Activity View">Cluster Activity View</a></li>
 <li><a href="#Datasets-View" title="Datasets View">Datasets View</a></li>
