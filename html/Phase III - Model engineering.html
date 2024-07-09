@@ -43,23 +43,73 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-
 <li><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a></li>
-<li><a href="#Get-MLflow0" title="Get MLflow">Get MLflow</a></li>
-<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a></li>
-<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul>
+<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul>
 <li><a href="#Concepts" title="Concepts">Concepts</a></li>
-<li><a href="#Demo0" title="Demo">Demo</a><ul>
+</ul>
+</li>
+<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul>
+<li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
+<li><a href="#Experiments" title="Experiments">Experiments</a></li>
+<li><a href="#Runs" title="Runs">Runs</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Others" title="Others">Others</a></li>
+</ul>
+</li>
+<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul>
+<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul>
 <li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
 <li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
 <li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul>
+<li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
+<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul>
 <li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
 </li>
-<li><a href="#Autlogging" title="Autlogging">Autlogging</a><ul>
+<li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul>
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
+</ul>
+</li>
+<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
+<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul>
+<li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
+<li><a href="#Models-view" title="Models view">Models view</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul>
+<li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
+<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul>
+<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+</ul>
+</li>
+<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+</ul>
+</li>
+<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul>
+<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul>
+<li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
+</ul>
+</li>
+<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul>
+<li><a href="#Examples" title="Examples">Examples</a></li>
+</ul>
+</li>
+<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul>
+<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
 </ul>
@@ -74,26 +124,94 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-
 </div><p></p><h1 id="Description"><a class="anchor hidden-xs" href="#Description" title="Description"><i class="fa fa-link"></i></a>Description</h1><p>The modeling phase is the ML-specific part of the process. This phase aims to specify one or several machine learning models to be deployed in the production. The translation to the ML task depends on the business problem that we are trying to solve. Constraints and requirements from the Business and Data Understanding phase will shape this phase. For example, the application domain’s model assessment metrics might include performance metrics, robustness, fairness, scalability, interpretability, model complexity degree, and model resource demand. We should adjust the importance of each of these metrics according to the use case.</p><p>Generally, the modeling phase includes model selection, model specialization, and model training tasks. Additionally, depending on the application, we might use a pre-trained model, compress the model, or apply ensemble learning methods to get the final ML model.</p><p>One main complaint about machine learning projects is the lack of reproducibility. Therefore we should ensure that the method and the results of the modeling phase are reproducible by collecting the model training method’s metadata. Typically we collect the following metadata: algorithm, training, validation and testing data set, hyper-parameters, and runtime environment description. The result reproducibility assumes the validation of the model’s mean performance on different random seeds. Following best practices, documenting trained models increases the transparency and explainability in ML projects. A helpful framework here is the “Model Cards Toolkit”.</p><p><img src="https://i.imgur.com/fcrEVEX.jpeg" alt="" class="md-image md-image"></p><p>Many phases in ML development are iterative. Sometimes, we might need to review the business goals, KPIs, and available data from the previous steps to adjust the outcomes of the ML model results. Finally, we package the ML workflow in a pipeline to create repeatable model training during the modeling phase.</p><h1 id="MLflow0"><a class="anchor hidden-xs" href="#MLflow0" title="MLflow0"><i class="fa fa-link"></i></a>MLflow</h1><p>MLflow, at its core, provides a suite of tools aimed at simplifying the ML workflow. It is tailored to assist ML practitioners throughout the various stages of ML development and deployment.</p><h2 id="Components"><a class="anchor hidden-xs" href="#Components" title="Components"><i class="fa fa-link"></i></a>Components</h2><p>MLflow’s functionalities are rooted in several foundational components:</p><ul>
 <li><strong>Tracking:</strong> MLflow Tracking provides both an API and UI dedicated to the logging of parameters, code versions, metrics, and artifacts during the ML process. This centralized repository captures details such as parameters, metrics, artifacts, data, and environment configurations, giving teams insight into their models’ evolution over time. Whether working in standalone scripts, notebooks, or other environments, Tracking facilitates the logging of results either to local files or a server, making it easier to compare multiple runs across different users.</li>
 <li><strong>Model Registry:</strong> A systematic approach to model management, the Model Registry assists in handling different versions of models, discerning their current state, and ensuring smooth productionization. It offers a centralized model store, APIs, and UI to collaboratively manage an MLflow Model’s full lifecycle, including model lineage, versioning, aliasing, tagging, and annotations.</li>
-<li><strong>Evaluate</strong>: Designed for in-depth model analysis, this set of tools facilitates objective model comparison.</li>
-<li><strong>Recipes</strong>: Serving as a guide for structuring ML projects, Recipes, while offering recommendations, are focused on ensuring functional end results optimized for real-world deployment scenarios.</li>
 <li><strong>Projects:</strong> MLflow Projects standardize the packaging of ML code, workflows, and artifacts, akin to an executable. Each project, be it a directory with code or a Git repository, employs a descriptor or convention to define its dependencies and execution method.</li>
 </ul><h1 id="Use-Cases-of-MLflow"><a class="anchor hidden-xs" href="#Use-Cases-of-MLflow" title="Use-Cases-of-MLflow"><i class="fa fa-link"></i></a>Use Cases of MLflow</h1><p>Here are some typical use cases:</p><ul>
 <li><strong>Experiment Tracking</strong>: A data science team leverages MLflow Tracking to log parameters and metrics for experiments within a particular domain. Using the MLflow UI, they can compare results and fine-tune their solution approach. The outcomes of these experiments are preserved as MLflow models.</li>
 <li><strong>Model Selection and Deployment</strong>: MLOps engineers employ the MLflow UI to assess and pick the top-performing models. The chosen model is registered in the MLflow Registry, allowing for monitoring its real-world performance.</li>
 <li><strong>Model Performance Monitoring</strong>: Post deployment, MLOps engineers utilize the MLflow Registry to gauge the model’s efficacy, juxtaposing it against other models in a live environment.</li>
 <li><strong>Collaborative Projects</strong>: Data scientists embarking on new ventures organize their work as an MLflow Project. This structure facilitates easy sharing and parameter modifications, promoting collaboration.</li>
-</ul><h1 id="Get-MLflow0"><a class="anchor hidden-xs" href="#Get-MLflow0" title="Get-MLflow0"><i class="fa fa-link"></i></a>Get MLflow</h1><p>You can easily install MLflow as a Python package:</p><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">mlflow</span>
-</code></pre><p>This will install the <code>mlflow</code> package and <code>mlflow</code> command.</p><h1 id="MLflow-CLI"><a class="anchor hidden-xs" href="#MLflow-CLI" title="MLflow-CLI"><i class="fa fa-link"></i></a>MLflow CLI</h1><p>The MLflow command-line interface (CLI) provides a simple interface to various functionality in MLflow. Here I show some of them:</p><ul>
+</ul><h2 id="Concepts"><a class="anchor hidden-xs" href="#Concepts" title="Concepts"><i class="fa fa-link"></i></a>Concepts</h2><blockquote>
+<p><strong>Runs</strong><br>
+are executions of some piece of data science code, for example, a single python <code>train.py</code> execution. Each run records <strong>metadata</strong> (various information about your run such as metrics, parameters, start and end times) and <strong>artifacts</strong> (output files from the run such as model weights, images, etc).</p>
+</blockquote><blockquote>
+<p><strong>Experiments</strong><br>
+An experiment groups together runs for a specific task.  They are logical containers for your runs. You can create an experiment using the CLI, API, or UI.</p>
+</blockquote><blockquote>
+<p><strong>Model</strong><br>
+An MLflow Model is created from an experiment or run that is logged with one of the model flavor’s <code>mlflow.&lt;model_flavor&gt;.log_model()</code> methods. Once logged, this model can then be registered with the Model Registry.</p>
+</blockquote><blockquote>
+<p><strong>Registered Model</strong><br>
+An MLflow Model can be registered with the Model Registry. A registered model has a unique name, contains versions, aliases, tags, and other metadata.</p>
+</blockquote><blockquote>
+<p><strong>Model Version</strong><br>
+Each registered model can have one or many versions. When a new model is added to the Model Registry, it is added as version 1. Each new model registered to the same model name increments the version number.</p>
+</blockquote><blockquote>
+<p><strong>Model Alias</strong><br>
+Model aliases allow you to assign a mutable, named reference to a particular version of a registered model. By assigning an alias to a specific model version, you can use the alias to refer that model version via a model URI or the model registry API.</p>
+</blockquote><h1 id="Get-MLflow"><a class="anchor hidden-xs" href="#Get-MLflow" title="Get-MLflow"><i class="fa fa-link"></i></a>Get MLflow</h1><p>You can easily install MLflow as a Python package:</p><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">mlflow</span>
+</code></pre><p>This will install the <code>mlflow</code> package and <code>mlflow</code> command.</p><h1 id="MLflow-CLI"><a class="anchor hidden-xs" href="#MLflow-CLI" title="MLflow-CLI"><i class="fa fa-link"></i></a>MLflow CLI</h1><p>The MLflow command-line interface (CLI) provides a simple interface to various functionality in MLflow. Here I show some of them:</p><h2 id="Tracking-server"><a class="anchor hidden-xs" href="#Tracking-server" title="Tracking-server"><i class="fa fa-link"></i></a>Tracking server</h2><ul>
 <li>Run MLflow server on localhost (default) and port 5000 (default)</li>
 </ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">server</span> <span class="hljs-bullet">-h</span> <span class="hljs-string">localhost</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span>
+</code></pre><h2 id="Experiments"><a class="anchor hidden-xs" href="#Experiments" title="Experiments"><i class="fa fa-link"></i></a>Experiments</h2><ul>
+<li>Manage experiments associated with a tracking server.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span>
 </code></pre><ul>
+<li>Create a new experiment “cli-exp”</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">create</span> <span class="hljs-bullet">--experiment-name</span> <span class="hljs-string">"cli-exp"</span>
+</code></pre><ul>
+<li>Mark an experiment whose id is “868669161979377932” for deletion.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">delete</span> <span class="hljs-bullet">--experiment-id</span> <span class="hljs-number">868669161979377932</span>
+</code></pre><ul>
+<li>Restore the deleted experiment whose id is “868669161979377932”</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">restore</span> <span class="hljs-bullet">--experiment-id</span> <span class="hljs-number">868669161979377932</span>
+</code></pre><ul>
+<li>Search for experiments</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-comment"># Only active experiments (default)</span>
+<span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">search</span> <span class="hljs-bullet">-v</span> <span class="hljs-string">active_only</span>
+
+<span class="hljs-comment"># Only deleted experiments</span>
+<span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">search</span> <span class="hljs-bullet">-v</span> <span class="hljs-string">deleted_only</span>
+
+<span class="hljs-comment"># All experiments</span>
+<span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">search</span> <span class="hljs-bullet">-v</span> <span class="hljs-string">all</span>
+</code></pre><h2 id="Runs"><a class="anchor hidden-xs" href="#Runs" title="Runs"><i class="fa fa-link"></i></a>Runs</h2><ul>
 <li>Manage runs of experiments associated with a tracking server.</li>
 </ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span>
 </code></pre><ul>
-<li>List all runs of the specified experiment in the configured tracking server.</li>
-</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span> <span class="hljs-string">list</span> <span class="hljs-bullet">--experiment-id</span> <span class="hljs-string">&lt;experiment_id&gt;</span>
-</code></pre><h1 id="Tracking-ML-experiments"><a class="anchor hidden-xs" href="#Tracking-ML-experiments" title="Tracking-ML-experiments"><i class="fa fa-link"></i></a>Tracking ML experiments</h1><p>ML experimentation is one of the core practices in Model engineering phase. ML experiments are usually done to optimize ML models, try new methods, test hypothesis…etc. We need a system which can help us to track these experiments and manage our ML workflows such that we can return back and check our progress. MLflow is one of the common tools used to track and log ML models and experiments.</p><p>Assume we have the following code snippet for our ML modeling <code>short_ml.py</code>:</p><pre><code class="python hljs">
-<span class="hljs-comment"># Iris data sets consists of 3 different types of irises’ </span>
+<li>List all runs of the specified experiment whose id is “868669161979377932” in the configured tracking server.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span> <span class="hljs-string">list</span> <span class="hljs-bullet">--experiment-id</span> <span class="hljs-string">"868669161979377932"</span>
+</code></pre><ul>
+<li>Print all of run details to the stdout as JSON format.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span> <span class="hljs-string">describe</span> <span class="hljs-bullet">--run-id</span> <span class="hljs-string">"583005f6b9a847c4ac7448990d54df09"</span>
+</code></pre><ul>
+<li>Mark a run whose id “583005f6b9a847c4ac7448990d54df09” is  for deletion.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span> <span class="hljs-string">delete</span> <span class="hljs-bullet">--run-id</span> <span class="hljs-string">"583005f6b9a847c4ac7448990d54df09"</span>
+</code></pre><ul>
+<li>Restore a deleted run whose id “583005f6b9a847c4ac7448990d54df09” is  from trash.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">runs</span> <span class="hljs-string">restore</span> <span class="hljs-bullet">--run-id</span> <span class="hljs-string">"583005f6b9a847c4ac7448990d54df09"</span>
+</code></pre><h2 id="Artifacts"><a class="anchor hidden-xs" href="#Artifacts" title="Artifacts"><i class="fa fa-link"></i></a>Artifacts</h2><ul>
+<li>List all artifacts of the run id “583005f6b9a847c4ac7448990d54df09”</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">artifacts</span> <span class="hljs-string">list</span> <span class="hljs-bullet">--run-id</span> <span class="hljs-string">"583005f6b9a847c4ac7448990d54df09"</span>
+</code></pre><ul>
+<li>Download the artifact associated with the run whose is is “583005f6b9a847c4ac7448990d54df09” and store the artifact in a local folder <code>/tmp/my-artifact</code></li>
+</ul><pre><code class="wrap yaml hljs">
+<span class="hljs-comment"># using run-id</span>
+<span class="hljs-string">mlflow</span> <span class="hljs-string">artifacts</span> <span class="hljs-string">download</span> <span class="hljs-bullet">--run-id</span> <span class="hljs-string">'583005f6b9a847c4ac7448990d54df09'</span> <span class="hljs-bullet">-d</span> <span class="hljs-string">'/tmp/my-artifact'</span>
+
+<span class="hljs-comment"># using artifact-uri</span>
+<span class="hljs-string">mlflow</span> <span class="hljs-string">artifacts</span> <span class="hljs-string">download</span> <span class="hljs-bullet">--artifact-uri</span> <span class="hljs-string">'runs:/583005f6b9a847c4ac7448990d54df09/iris_model'</span> <span class="hljs-bullet">-d</span> <span class="hljs-string">'/tmp/my-artifact'</span>
+</code></pre><ul>
+<li>Log a local file as an artifact of a run</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">artifacts</span> <span class="hljs-string">log-artifact</span> <span class="hljs-bullet">-l</span> <span class="hljs-string">requirements.txt</span> <span class="hljs-bullet">--run-id</span> <span class="hljs-string">'583005f6b9a847c4ac7448990d54df09'</span>
+</code></pre><h2 id="Others"><a class="anchor hidden-xs" href="#Others" title="Others"><i class="fa fa-link"></i></a>Others</h2><ul>
+<li>Prints out useful information for debugging issues with MLflow.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">doctor</span>
+</code></pre><ul>
+<li>Delete all runs in the trash.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">gc</span>
+</code></pre><div class="alert alert-warning">
+<p>When you delete an experiment/run, its models are not deleted. If you want to delete its models too, you need to delete them manually.</p>
+</div><h1 id="Tracking-ML-experiments"><a class="anchor hidden-xs" href="#Tracking-ML-experiments" title="Tracking-ML-experiments"><i class="fa fa-link"></i></a>Tracking ML experiments</h1><p>ML experimentation is one of the core practices in Model engineering phase. ML experiments are usually done to optimize ML models, try new methods, test hypothesis…etc. We need a system which can help us to track these experiments and manage our ML workflows such that we can return back and check our progress. MLflow is one of the common tools used to track and log ML models and experiments.</p><p>Assume we have the following code snippet for our ML modeling <code>short_ml.py</code>:</p><pre><code class="python hljs"><span class="hljs-comment"># Iris data sets consists of 3 different types of irises’ </span>
 <span class="hljs-comment"># (Setosa, Versicolour, and Virginica) petal and sepal </span>
 <span class="hljs-comment"># length, stored in a 150x4 numpy.ndarray</span>
 
@@ -118,8 +236,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 <span class="hljs-comment"># Define the model hyperparameters</span>
 params = {
   <span class="hljs-string">"solver"</span>: <span class="hljs-string">"lbfgs"</span>,
-  <span class="hljs-string">"max_iter"</span>: <span class="hljs-number">1000</span>,
-  <span class="hljs-string">"multi_class"</span>: <span class="hljs-string">"auto"</span>,
+  <span class="hljs-string">"penalty"</span>: <span class="hljs-string">"l1"</span>,
   <span class="hljs-string">"random_state"</span>: <span class="hljs-number">8888</span>,
 }
 
@@ -138,14 +255,10 @@ f1 = f1_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
 
 print(accuracy, precision, recall, f1)
 
-</code></pre><h2 id="Concepts"><a class="anchor hidden-xs" href="#Concepts" title="Concepts"><i class="fa fa-link"></i></a>Concepts</h2><blockquote>
-<p><strong>Runs</strong><br>
-are executions of some piece of data science code, for example, a single python <code>train.py</code> execution. Each run records <strong>metadata</strong> (various information about your run such as metrics, parameters, start and end times) and <strong>artifacts</strong> (output files from the run such as model weights, images, etc).</p>
-</blockquote><blockquote>
-<p><strong>Experiments</strong><br>
-An experiment groups together runs for a specific task.  They are logical containers for your runs. You can create an experiment using the CLI, API, or UI.</p>
-</blockquote><h2 id="Demo0"><a class="anchor hidden-xs" href="#Demo0" title="Demo0"><i class="fa fa-link"></i></a>Demo</h2><p>We can track experiments in MLflow as follows:</p><h3 id="1-Run-Tracking-server-locally"><a class="anchor hidden-xs" href="#1-Run-Tracking-server-locally" title="1-Run-Tracking-server-locally"><i class="fa fa-link"></i></a>1. Run Tracking server (locally)</h3><pre><code class="bash hljs"><span class="hljs-comment"># mlflow server --host localhost --port 5000</span>
-mlflow server
+</code></pre><h2 id="Tracking-models-demo"><a class="anchor hidden-xs" href="#Tracking-models-demo" title="Tracking-models-demo"><i class="fa fa-link"></i></a>Tracking models demo</h2><p>We can track experiments in MLflow for the previous code snippet as follows:</p><h3 id="1-Run-Tracking-server-locally"><a class="anchor hidden-xs" href="#1-Run-Tracking-server-locally" title="1-Run-Tracking-server-locally"><i class="fa fa-link"></i></a>1. Run Tracking server (locally)</h3><pre><code class="yaml hljs"><span class="hljs-comment"># mlflow server --host localhost --port 5000</span>
+<span class="hljs-string">mlflow</span> <span class="hljs-string">server</span>
+
+<span class="hljs-comment"># mlflow ui</span>
 
 </code></pre><p><img src="https://i.imgur.com/iMniksq.png" alt="" class="md-image md-image"></p><p>This will open the MLflow tracking web server on the port 5000 of the local host by default.</p><h3 id="2-Set-the-Tracking-Server-URI"><a class="anchor hidden-xs" href="#2-Set-the-Tracking-Server-URI" title="2-Set-the-Tracking-Server-URI"><i class="fa fa-link"></i></a>2. Set the Tracking Server URI</h3><div class="alert alert-warning">
 <p>We do not need it unless you are using different values than default port and hostname.</p>
@@ -163,16 +276,17 @@ mlflow server
 <span class="hljs-comment"># Load the Iris dataset</span>
 X, y = datasets.load_iris(return_X_y=<span class="hljs-literal">True</span>)
 
+
 <span class="hljs-comment"># Split the data into training and test sets</span>
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">42</span>
+  X, y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">42</span>
 )
 
 <span class="hljs-comment"># Define the model hyperparameters</span>
 params = {
-    <span class="hljs-string">"solver"</span>: <span class="hljs-string">"lbfgs"</span>,
-    <span class="hljs-string">"max_iter"</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment"># Use hydra for configuration management    </span>
-    <span class="hljs-string">"random_state"</span>: <span class="hljs-number">8888</span>,
+  <span class="hljs-string">"solver"</span>: <span class="hljs-string">"lbfgs"</span>,
+  <span class="hljs-string">"penalty"</span>: <span class="hljs-string">"l1"</span>,
+  <span class="hljs-string">"random_state"</span>: <span class="hljs-number">8888</span>,
 }
 
 <span class="hljs-comment"># Train the model</span>
@@ -187,18 +301,19 @@ accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
 recall = recall_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
 f1 = f1_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+
 print(accuracy, precision, recall, f1)
 
 </code></pre><h3 id="4-Log-the-model-and-its-metadata-to-MLflow"><a class="anchor hidden-xs" href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4-Log-the-model-and-its-metadata-to-MLflow"><i class="fa fa-link"></i></a>4. Log the model and its metadata to MLflow</h3><p>The steps are as follows:</p><ol>
 <li>Set the tracking server Uri</li>
-<li>Create an experiment</li>
+<li>Create/Retrieve an experiment</li>
 <li>Start a run</li>
 <li>Log metadata (params, metrics) and artifacts (model)</li>
 <li>Run the code</li>
 <li>Track the run and results in Tracking UI.</li>
-</ol><pre><code class="python hljs">
-
-<span class="hljs-keyword">import</span> mlflow
+</ol><div class="alert alert-warning">
+<p>We log the model and metadata after we finish training the model. So, do not include logging code inside training code.</p>
+</div><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
 <span class="hljs-keyword">from</span> mlflow.models <span class="hljs-keyword">import</span> infer_signature
 <span class="hljs-keyword">import</span> mlflow.sklearn
 <span class="hljs-keyword">import</span> mlflow.exceptions
@@ -206,19 +321,19 @@ print(accuracy, precision, recall, f1)
 <span class="hljs-comment"># Set our tracking server uri for logging</span>
 <span class="hljs-comment"># mlflow.set_tracking_uri(uri = "http://localhost:5000")</span>
 
-experiment_name = <span class="hljs-string">"MLflow experiment 01"</span>
+experiment_name = <span class="hljs-string">"MLflow-experiment-01"</span>
 
 <span class="hljs-keyword">try</span>:
     <span class="hljs-comment"># Create a new MLflow Experiment</span>
     experiment_id = mlflow.create_experiment(name=experiment_name)
 <span class="hljs-keyword">except</span> mlflow.exceptions.MlflowException <span class="hljs-keyword">as</span> e:
-    experiment_id = mlflow.get_experiment_by_name(<span class="hljs-string">"MLflow experiment 01"</span>).experiment_id
+    experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
 
 print(experiment_id)
 
 
 <span class="hljs-comment"># Start an MLflow run</span>
-<span class="hljs-keyword">with</span> mlflow.start_run(run_name=<span class="hljs-string">"run 01"</span>, experiment_id=experiment_id) <span class="hljs-keyword">as</span> run:
+<span class="hljs-keyword">with</span> mlflow.start_run(run_name=<span class="hljs-string">"run-01"</span>, experiment_id=experiment_id) <span class="hljs-keyword">as</span> run:
 
     <span class="hljs-comment"># Log the hyperparameters</span>
     mlflow.log_params(params=params)
@@ -232,7 +347,7 @@ print(experiment_id)
     })
 
     <span class="hljs-comment"># Set a tag that we can use to remind ourselves what this run was for</span>
-    mlflow.set_tag(<span class="hljs-string">"Training Info"</span>, <span class="hljs-string">"Basic LR model for iris data"</span>)
+    mlflow.set_tag(<span class="hljs-string">"Training Info"</span>, <span class="hljs-string">"Basic LR model for my data"</span>)
 
     <span class="hljs-comment"># Infer the model signature</span>
     signature = infer_signature(X_test, y_test)
@@ -241,7 +356,7 @@ print(experiment_id)
     <span class="hljs-comment"># Log the model</span>
     model_info = mlflow.sklearn.log_model(
         sk_model=lr,
-        artifact_path=<span class="hljs-string">"iris_model"</span>,
+        artifact_path=<span class="hljs-string">"LR_model"</span>,
         signature=signature,
         input_example=X_test,
         registered_model_name=<span class="hljs-string">"first_model"</span>
@@ -249,27 +364,19 @@ print(experiment_id)
 </code></pre><div class="alert alert-info">
 <p>In MLflow, a <strong>model signature</strong> precisely defines the schema for model inputs, outputs, and any additional parameters required for effective model operation.</p>
 </div><div class="alert alert-warning">
-<p>You can create an experiment via CLI as follows:</p>
-<pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">create</span> <span class="hljs-bullet">--experiment-name</span> <span class="hljs-string">fraud-detection</span>
-</code></pre>
-</div><div class="alert alert-info">
-<p>You can also create multiple runs inside a single run. This is useful for scenario like hyperparameter tuning, cross-validation folds, where you need another level of organization within an experiment. You can create child runs by passing <code>parent_run_id</code> to <code>mlflow.start_run()</code> function.</p>
-<pre><code class="python hljs"><span class="hljs-comment"># Start parent run</span>
-<span class="hljs-keyword">with</span> mlflow.start_run() <span class="hljs-keyword">as</span> parent_run:
-    param = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>]
-
-    <span class="hljs-comment"># Create a child run for each parameter setting</span>
-    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> param:
-        <span class="hljs-keyword">with</span> mlflow.start_run(nested=<span class="hljs-literal">True</span>) <span class="hljs-keyword">as</span> child_run:
-            mlflow.log_param(<span class="hljs-string">"p"</span>, p)
-            ...
-            mlflow.log_metric(<span class="hljs-string">"val_loss"</span>, val_loss)
-
-</code></pre>
-<p>You can fetch all child runs under a parent run using tags. The <code>MlflowClient.set_tag()</code> function lets you add custom tags to runs. A tag can only have a single unique value mapped to it at a time. For example:</p>
-<pre><code class="python hljs">client.set_tag(run.info.run_id, <span class="hljs-string">"tag_key"</span>, <span class="hljs-string">"tag_value"</span>)
-</code></pre>
-</div><h3 id="5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference"><a class="anchor hidden-xs" href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference"><i class="fa fa-link"></i></a>5. Load the model as a Python Function (<code>pyfunc</code>) and use it for inference</h3><p><strong>pyfunc</strong> is a common flavor for packaging models in MLflow. It provides a uniform interface to save and load any model type supported by Mlflow.</p><pre><code class="python hljs">
+<p><strong>Notes:</strong></p>
+<!-- - You should create a new run name whenever you changed configurations in your ML code, for instance, you changed one of the hyperparameters, you added a new metric...etc.  -->
+<!-- - It is enough to create one experiment in the project. -->
+<!-- - You should create a new experiment whenever you changed ML methods, for instance, you changed from testing Logistic regression to Random forest...etc.  -->
+<ul>
+<li>You can log the source code of the experiments in MLflow as an artifact using <code> mlflow.log_artifact(local_path, artifact_path, run_id)</code> function. Generally, you can use this function to log any standalone files you prefer like images, text files…etc.</li>
+<li>After starting/running a new experiment, push commit to github with tags, where the tag name and commit message contains the experiment name such that checking out such experiments later will be easy.</li>
+<li>Always work on a new branch for training ML models, and merge to the <code>main</code> branch whenever you are ready to deploy your model, since pushing a commit to <code>main</code> branch will trigger the CI/CD workflows which will be built in Phase 6 of this project.</li>
+</ul>
+</div><h3 id="5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference"><a class="anchor hidden-xs" href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference"><i class="fa fa-link"></i></a>5. Load the model as a Python Function (<code>pyfunc</code>) and use it for inference</h3><div class="alert alert-info">
+<p>The <strong>python_function (pyfunc)</strong> model flavor serves as a default model interface for MLflow Python models. Any MLflow Python model is expected to be loadable as a <code>python_function</code> model. This enables other MLflow tools to work with any python model regardless of which persistence module or framework was used to produce the model.</p>
+<!-- **pyfunc** is a common flavor for packaging models in MLflow. It provides a uniform interface to save and load any model type supported by Mlflow. -->
+</div><pre><code class="python hljs">
 <span class="hljs-comment"># Load the model back for predictions as a generic Python Function model flavor</span>
 loaded_model = mlflow.pyfunc.load_model(model_info.model_uri)
 
@@ -285,7 +392,35 @@ result[<span class="hljs-string">"predicted_class"</span>] = predictions
 
 result[:<span class="hljs-number">4</span>]
 
-</code></pre><h3 id="6-View-the-Run-in-the-MLflow-UI"><a class="anchor hidden-xs" href="#6-View-the-Run-in-the-MLflow-UI" title="6-View-the-Run-in-the-MLflow-UI"><i class="fa fa-link"></i></a>6. View the Run in the MLflow UI</h3><p>order to see the results of our run, we can navigate to the MLflow UI. Since we have already started the Tracking Server at <a href="http://localhost:5000" target="_blank" rel="noopener">http://localhost:5000</a>, we can simply navigate to that URL in our browser. When opening the site, you will see a screen similar to the following:<br>
+</code></pre><p>You can run the file as a normal python file using <code>python</code> command.</p><div class="alert alert-info">
+<p>After you run the file, you will notice two experiments, one is the one we created in the code and another one is <code>Default</code> experiment.</p>
+</div><div class="alert alert-info">
+<p>MLflow locally uses <code>mlruns</code> folder as a backend store and model registry. It will store all artifacts there.</p>
+</div><div class="alert alert-warning">
+<p>If you are getting an error like this.</p>
+<pre><code>RESOURCE_DOES_NOT_EXIST: Could not find experiment with ID 0
+</code></pre>
+<p>That means you deleted the <code>Default</code> experiment whose id is <code>0</code> and used to hold any runs executed without a specific experiment. In order to fix this issue, you have to create a new experiment with <code>Default</code> and set its id as <code>0</code> manually.</p>
+<ol>
+<li>Create a new experiment.</li>
+</ol>
+<pre><code class="yaml hljs"><span class="hljs-string">(.venv)</span> <span class="hljs-string">firasj@Lenovo:~/project$</span> <span class="hljs-string">mlflow</span> <span class="hljs-string">experiments</span> <span class="hljs-string">create</span> <span class="hljs-bullet">-n</span> <span class="hljs-string">Default</span>
+
+<span class="hljs-string">Created</span> <span class="hljs-string">experiment</span> <span class="hljs-string">'Default'</span> <span class="hljs-string">with</span> <span class="hljs-string">id</span> <span class="hljs-number">529278589677091129</span>
+</code></pre>
+<ol start="2">
+<li>Rename the folder <code>mlruns/529278589677091129</code> to  <code>mlruns/0</code> and change its metadata as follos:</li>
+</ol>
+<pre><code class="yaml hljs"><span class="hljs-comment"># The path is different in your machine but it should end with `mlruns/0`</span>
+<span class="hljs-attr">artifact_location:</span> <span class="hljs-attr">file:///home/firasj/project/mlruns/0</span>
+<span class="hljs-attr">creation_time:</span> <span class="hljs-number">1720372282876</span> <span class="hljs-comment"># Do not change this</span>
+<span class="hljs-attr">experiment_id:</span> <span class="hljs-string">'0'</span> <span class="hljs-comment"># Change this</span>
+<span class="hljs-attr">last_update_time:</span> <span class="hljs-number">1720372282876</span> <span class="hljs-comment"># Do not change this</span>
+<span class="hljs-attr">lifecycle_stage:</span> <span class="hljs-string">active</span> <span class="hljs-comment"># Do not change this</span>
+<span class="hljs-comment"># Lifecycle stage of the experiment. Can either be ‘active’ or ‘deleted’.</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Default</span> <span class="hljs-comment"># Do not change this</span>
+</code></pre>
+</div><h3 id="6-View-the-Run-in-the-MLflow-UI"><a class="anchor hidden-xs" href="#6-View-the-Run-in-the-MLflow-UI" title="6-View-the-Run-in-the-MLflow-UI"><i class="fa fa-link"></i></a>6. View the Run in the MLflow UI</h3><p>In order to see the results of our run, we can navigate to the MLflow UI. Since we have already started the Tracking Server at <a href="http://localhost:5000" target="_blank" rel="noopener">http://localhost:5000</a>, we can simply navigate to that URL in our browser. When opening the site, you will see a screen similar to the following:<br>
 <img src="https://mlflow.org/docs/latest/_images/quickstart-our-experiment.png" alt="" class="md-image md-image"></p><p>Clicking on the name of the Experiment that we created (“MLflow experiment 01”) will give us a list of runs associated with the Experiment. You should see a random name that has been generated for the run and nothing else show up in the Table list view to the right.</p><p>Clicking on the name of the run will take you to the Run page, where the details of what we’ve logged will be shown. The elements have been highlighted below to show how and where this data is recorded within the UI.</p><p><img src="https://mlflow.org/docs/latest/_images/quickstart-our-run.png" alt="" class="md-image md-image"></p><div class="alert alert-info">
 <p>You can also access all of the functions in the Tracking UI programmatically with <code>MlflowClient</code>. For example, the following code snippet search for runs that has the best validation loss among all runs in the experiment.</p>
 <pre><code class="python hljs">client = mlflow.tracking.MlflowClient()
@@ -297,7 +432,78 @@ print(best_run.info)
 <span class="hljs-comment"># {'run_id': '...', 'metrics': {'val_loss': 0.123}, ...}</span>
 
 </code></pre>
-</div><h3 id="Launching-Multiple-Runs-in-One-Program"><a class="anchor hidden-xs" href="#Launching-Multiple-Runs-in-One-Program" title="Launching-Multiple-Runs-in-One-Program"><i class="fa fa-link"></i></a>Launching Multiple Runs in One Program</h3><p>Sometimes you want to launch multiple MLflow runs in the same program: for example, maybe you are performing a hyperparameter search locally or your experiments are just very fast to run. The way to do this depends on whether you want to run them <strong>sequentially</strong> or in <strong>parallel</strong>.</p><h4 id="Sequential-Runs"><a class="anchor hidden-xs" href="#Sequential-Runs" title="Sequential-Runs"><i class="fa fa-link"></i></a>Sequential Runs</h4><pre><code class="python hljs"><span class="hljs-comment"># First run</span>
+</div><h1 id="MLflow-APIs"><a class="anchor hidden-xs" href="#MLflow-APIs" title="MLflow-APIs"><i class="fa fa-link"></i></a>MLflow APIs</h1><h2 id="1-Fluent-tracking-mlflow-API"><a class="anchor hidden-xs" href="#1-Fluent-tracking-mlflow-API" title="1-Fluent-tracking-mlflow-API"><i class="fa fa-link"></i></a>1. Fluent tracking <code>mlflow</code> API</h2><p>The <code>mlflow</code> module provides a high-level “fluent” API for starting and managing MLflow runs. For example:</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+
+<span class="hljs-comment"># Start the run</span>
+mlflow.start_run()
+mlflow.log_param(<span class="hljs-string">"my"</span>, <span class="hljs-string">"param"</span>)
+mlflow.log_metric(<span class="hljs-string">"score"</span>, <span class="hljs-number">100</span>)
+mlflow.end_run()
+</code></pre><p>You can also use the context manager syntax like this:</p><pre><code class="python hljs"><span class="hljs-keyword">with</span> mlflow.start_run() <span class="hljs-keyword">as</span> run:
+    mlflow.log_param(<span class="hljs-string">"my"</span>, <span class="hljs-string">"param"</span>)
+    mlflow.log_metric(<span class="hljs-string">"score"</span>, <span class="hljs-number">100</span>)
+</code></pre><p>which automatically terminates the run at the end of the <code>with</code> block.</p><div class="alert alert-danger">
+<p>The fluent tracking API is not currently <code>threadsafe</code>. Any concurrent callers to the tracking API must implement mutual exclusion manually.</p>
+</div><h2 id="2-Lower-level-mlflowclient-API"><a class="anchor hidden-xs" href="#2-Lower-level-mlflowclient-API" title="2-Lower-level-mlflowclient-API"><i class="fa fa-link"></i></a>2. Lower-level <code>mlflow.client</code> API</h2><p>The <code>mlflow.client</code> module provides a Python CRUD interface to MLflow Experiments, Runs, Model Versions, and Registered Models. This is a lower level API that directly translates to MLflow REST API calls. Some of the key functions of this API are demonstrated as follows:</p><pre><code class="wrap python hljs"><span class="hljs-keyword">from</span> mlflow <span class="hljs-keyword">import</span> MlflowClient
+<span class="hljs-keyword">import</span> mlflow
+
+<span class="hljs-comment"># Client of an MLflow Tracking Server that creates and manages experiments and runs, and of an MLflow Registry Server that creates and manages registered models and model versions.</span>
+client = MlflowClient()
+
+experiment_name = <span class="hljs-string">"my experiment"</span>
+<span class="hljs-comment"># Create an experiment</span>
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-comment"># Create a new MLflow Experiment</span>
+    experiment_id = mlflow.create_experiment(name=experiment_name)
+<span class="hljs-keyword">except</span> mlflow.exceptions.MlflowException <span class="hljs-keyword">as</span> e:
+    experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
+
+
+<span class="hljs-comment"># Create a mlflow.entities.Run object that can be associated with metrics, parameters, artifacts, etc. Unlike mlflow.projects.run(), creates objects but does not run code. Unlike mlflow.start_run(), does not change the “active run” used by mlflow.log_param().</span>
+run = client.create_run(experiment_id =experiment_id, run_name = <span class="hljs-string">"basic run"</span>)
+
+run_id = run.info.run_id
+
+model_name = <span class="hljs-string">"LR model"</span>
+
+model_path = model_name
+
+
+<span class="hljs-comment"># Create a new registered model in backend store.</span>
+rm = client.create_registered_model(name = model_name, description = <span class="hljs-string">"First LR model"</span>)
+
+print(<span class="hljs-string">f"name: <span class="hljs-subst">{rm.name}</span>"</span>)
+print(<span class="hljs-string">f"tags: <span class="hljs-subst">{rm.tags}</span>"</span>)
+print(<span class="hljs-string">f"description: <span class="hljs-subst">{rm.description}</span>"</span>)
+
+
+
+
+model_uri = <span class="hljs-string">f"runs:/<span class="hljs-subst">{run_id}</span>/<span class="hljs-subst">{model_path}</span>"</span>
+
+mv = client.create_model_version(name = model_name, source=model_uri, run_id = run_id)
+
+
+print(<span class="hljs-string">f"Name: <span class="hljs-subst">{mv.name}</span>"</span>)
+print(<span class="hljs-string">f"Version: <span class="hljs-subst">{mv.version}</span>"</span>)
+print(<span class="hljs-string">f"Description: <span class="hljs-subst">{mv.description}</span>"</span>)
+print(<span class="hljs-string">f"Status: <span class="hljs-subst">{mv.status}</span>"</span>)
+print(<span class="hljs-string">f"Stage: <span class="hljs-subst">{mv.current_stage}</span>"</span>)
+
+
+<span class="hljs-comment"># Delete model version in backend.</span>
+client.delete_model_version(name = mv.name, version = mv.version)
+
+<span class="hljs-comment"># Delete registered model. Backend raises exception if a registered model with given name does not exist.</span>
+client.delete_registered_model(name = rm.name)
+
+
+<span class="hljs-comment"># Deletes a run with the given ID.</span>
+client.delete_run(run_id = run_id)
+
+<span class="hljs-comment"># Delete an experiment from the backend store. This deletion is a soft-delete, not a permanent deletion.</span>
+client.delete_experiment(experiment_id = experiment_id)
+</code></pre><h3 id="Launching-Multiple-Runs-in-One-Program"><a class="anchor hidden-xs" href="#Launching-Multiple-Runs-in-One-Program" title="Launching-Multiple-Runs-in-One-Program"><i class="fa fa-link"></i></a>Launching Multiple Runs in One Program</h3><p>Sometimes you want to launch multiple MLflow runs in the same program: for example, maybe you are performing a hyperparameter search locally or your experiments are just very fast to run. The way to do this depends on whether you want to run them <strong>sequentially</strong> or in <strong>parallel</strong>.</p><h4 id="Sequential-Runs"><a class="anchor hidden-xs" href="#Sequential-Runs" title="Sequential-Runs"><i class="fa fa-link"></i></a>Sequential Runs</h4><pre><code class="python hljs"><span class="hljs-comment"># First run</span>
 <span class="hljs-keyword">with</span> mlflow.start_run():
     mlflow.log_param(<span class="hljs-string">"x"</span>, <span class="hljs-number">1</span>)
     mlflow.log_metric(<span class="hljs-string">"y"</span>, <span class="hljs-number">2</span>)
@@ -306,8 +512,8 @@ print(best_run.info)
 <span class="hljs-comment"># Another run</span>
 <span class="hljs-keyword">with</span> mlflow.start_run():
     ...
-
-</code></pre><h4 id="Parallel-Runs"><a class="anchor hidden-xs" href="#Parallel-Runs" title="Parallel-Runs"><i class="fa fa-link"></i></a>Parallel Runs</h4><p>MLflow also supports running multiple runs in parallel using <code>multiprocessing</code> or <code>multi threading</code>.</p><ul>
+    
+</code></pre><h4 id="Parallel-Runs-Extra-section"><a class="anchor hidden-xs" href="#Parallel-Runs-Extra-section" title="Parallel-Runs-Extra-section"><i class="fa fa-link"></i></a>Parallel Runs [Extra section]</h4><p>MLflow also supports running multiple runs in parallel using <code>multiprocessing</code> or <code>multi threading</code>.</p><ul>
 <li>Multiprocessing</li>
 </ul><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
 <span class="hljs-keyword">import</span> multiprocessing <span class="hljs-keyword">as</span> mp
@@ -347,7 +553,20 @@ print(best_run.info)
 
     <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> threads:
         t.join()
-</code></pre><h2 id="Autlogging"><a class="anchor hidden-xs" href="#Autlogging" title="Autlogging"><i class="fa fa-link"></i></a>Autlogging</h2><p>Autologging automatically logs your model, metrics, examples, signature, and parameters with only a single line of code for many of the most popular ML libraries in the Python ecosystem.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+</code></pre><h4 id="Nested-Runs"><a class="anchor hidden-xs" href="#Nested-Runs" title="Nested-Runs"><i class="fa fa-link"></i></a>Nested Runs</h4><p>You can also create multiple runs inside a single run. This is useful for scenario like hyperparameter tuning, cross-validation folds, where you need another level of organization within an experiment. You can create child runs by passing <code>parent_run_id</code> to <code>mlflow.start_run()</code> function.</p><pre><code class="python hljs"><span class="hljs-comment"># Start parent run</span>
+<span class="hljs-keyword">with</span> mlflow.start_run() <span class="hljs-keyword">as</span> parent_run:
+    param = [<span class="hljs-number">0.01</span>, <span class="hljs-number">0.02</span>, <span class="hljs-number">0.03</span>]
+
+    <span class="hljs-comment"># Create a child run for each parameter setting</span>
+    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> param:
+        <span class="hljs-keyword">with</span> mlflow.start_run(nested=<span class="hljs-literal">True</span>) <span class="hljs-keyword">as</span> child_run:
+            mlflow.log_param(<span class="hljs-string">"p"</span>, p)
+            ...
+            mlflow.log_metric(<span class="hljs-string">"val_loss"</span>, val_loss)
+
+</code></pre><p>You can fetch all child runs under a parent run using tags. The <code>MlflowClient.set_tag()</code> function lets you add custom tags to runs. A tag can only have a single unique value mapped to it at a time. For example:</p><pre><code class="python hljs">
+client.set_tag(run.info.run_id, <span class="hljs-string">"tag_key"</span>, <span class="hljs-string">"tag_value"</span>)
+</code></pre><h2 id="Autlogging-Extra-section"><a class="anchor hidden-xs" href="#Autlogging-Extra-section" title="Autlogging-Extra-section"><i class="fa fa-link"></i></a>Autlogging [Extra section]</h2><p>Autologging automatically logs your model, metrics, examples, signature, and parameters with only a single line of code for many of the most popular ML libraries in the Python ecosystem.</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
 
 <span class="hljs-comment"># Enable autlogging</span>
 mlflow.autolog()
@@ -375,8 +594,726 @@ rf.fit(X_train, y_train)
 predictions = rf.predict(X_test)
 autolog_run = mlflow.last_active_run()
 print(autolog_run)
-</code></pre><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><p>TODO</p><h2 id="B-Report-Only-for-Master’s-students"><a class="anchor hidden-xs" href="#B-Report-Only-for-Master’s-students" title="B-Report-Only-for-Master’s-students"><i class="fa fa-link"></i></a>B. Report <strong>[Only for Master’s students]</strong></h2><p>TODO</p><h1 id="References"><a class="anchor hidden-xs" href="#References" title="References"><i class="fa fa-link"></i></a>References</h1><ul>
+</code></pre><h2 id="Tracking-datasets"><a class="anchor hidden-xs" href="#Tracking-datasets" title="Tracking-datasets"><i class="fa fa-link"></i></a>Tracking datasets</h2><p>There are two main abstract components associated with the <code>mlflow.data</code> module, <code>Dataset</code> and <code>DatasetSource</code>. The <code>Dataset</code> abstraction is a metadata tracking object that holds the information about a given logged dataset. It can be <code>mlflow.data.pandas_dataset.PandasDataset</code>, <code>mlflow.data.tensorflow_dataset.TensorFlowDataset</code>. The <code>DatasetSource</code> component of a <code>Dataset</code> represents the source of a dataset, such as a directory in S3, a Delta Table, or a URL.</p><h2 id="Create-a-Pandas-dataset"><a class="anchor hidden-xs" href="#Create-a-Pandas-dataset" title="Create-a-Pandas-dataset"><i class="fa fa-link"></i></a>Create a Pandas dataset</h2><p>The following example demonstrates how to construct a mlflow.data.pandas_dataset.PandasDataset object from a Pandas DataFrame:</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow.data
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> mlflow.data.pandas_dataset <span class="hljs-keyword">import</span> PandasDataset
+
+
+dataset_source_url = <span class="hljs-string">"https://raw.githubusercontent.com/mlflow/mlflow/master/tests/datasets/winequality-white.csv"</span>
+raw_data = pd.read_csv(dataset_source_url, delimiter=<span class="hljs-string">";"</span>)
+
+<span class="hljs-comment"># Create an instance of a PandasDataset</span>
+dataset = mlflow.data.from_pandas(
+    raw_data, source=dataset_source_url, name=<span class="hljs-string">"wine quality - white"</span>, targets=<span class="hljs-string">"quality"</span>
+)
+
+</code></pre><h2 id="Log-and-load-MLflow-dataset"><a class="anchor hidden-xs" href="#Log-and-load-MLflow-dataset" title="Log-and-load-MLflow-dataset"><i class="fa fa-link"></i></a>Log, and load MLflow dataset</h2><div class="alert alert-info">
+<p>For this example, you need to install <code>xgboost</code> package as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">xgboost</span>
+</code></pre>
+</div><pre><code class="python hljs"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> LabelEncoder
+<span class="hljs-keyword">import</span> xgboost
+
+<span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">from</span> mlflow.data.pandas_dataset <span class="hljs-keyword">import</span> PandasDataset
+
+
+dataset_source_url = <span class="hljs-string">"https://raw.githubusercontent.com/mlflow/mlflow/master/tests/datasets/winequality-white.csv"</span>
+raw_data = pd.read_csv(dataset_source_url, delimiter=<span class="hljs-string">";"</span>)
+
+<span class="hljs-comment"># Extract the features and target data separately</span>
+y = raw_data[<span class="hljs-string">"quality"</span>]
+X = raw_data.drop(<span class="hljs-string">"quality"</span>, axis=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># Split the data into training and test sets</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=<span class="hljs-number">0.33</span>, random_state=<span class="hljs-number">17</span>
+)
+
+<span class="hljs-comment"># Create a label encoder object</span>
+le = LabelEncoder()
+
+<span class="hljs-comment"># Fit and transform the target variable</span>
+y_train_encoded = le.fit_transform(y_train)
+y_test_encoded = le.transform(y_test)
+
+<span class="hljs-comment"># Fit an XGBoost binary classifier on the training data split</span>
+model = xgboost.XGBClassifier().fit(X_train, y_train_encoded)
+
+<span class="hljs-comment"># Build the Evaluation Dataset from the test set</span>
+y_test_pred = model.predict(X=X_test)
+
+eval_data = X_test
+eval_data[<span class="hljs-string">"label"</span>] = y_test
+
+<span class="hljs-comment"># Assign the decoded predictions to the Evaluation Dataset</span>
+eval_data[<span class="hljs-string">"predictions"</span>] = le.inverse_transform(y_test_pred)
+
+<span class="hljs-comment"># Create the PandasDataset for use in mlflow evaluate</span>
+pd_dataset = mlflow.data.from_pandas(
+    eval_data, predictions=<span class="hljs-string">"predictions"</span>, targets=<span class="hljs-string">"label"</span>
+)
+
+mlflow.set_experiment(<span class="hljs-string">"White Wine Quality"</span>)
+
+<span class="hljs-comment"># Log the Dataset, model, and execute an evaluation run using the configured Dataset</span>
+<span class="hljs-keyword">with</span> mlflow.start_run() <span class="hljs-keyword">as</span> run:
+    mlflow.log_input(pd_dataset, context=<span class="hljs-string">"training"</span>)
+
+    mlflow.xgboost.log_model(
+        artifact_path=<span class="hljs-string">"white-wine-xgb"</span>, xgb_model=model, input_example=X_test
+    )
+
+    result = mlflow.evaluate(data=pd_dataset, predictions=<span class="hljs-literal">None</span>, model_type=<span class="hljs-string">"classifier"</span>)
+
+
+<span class="hljs-comment"># Retrieve the run information</span>
+logged_run = mlflow.get_run(run.info.run_id)
+
+<span class="hljs-comment"># Retrieve the Dataset object</span>
+logged_dataset = logged_run.inputs.dataset_inputs[<span class="hljs-number">0</span>].dataset
+
+<span class="hljs-comment"># View some of the recorded Dataset information</span>
+print(<span class="hljs-string">f"Dataset name: <span class="hljs-subst">{logged_dataset.name}</span>"</span>)
+print(<span class="hljs-string">f"Dataset digest: <span class="hljs-subst">{logged_dataset.digest}</span>"</span>)
+print(<span class="hljs-string">f"Dataset profile: <span class="hljs-subst">{logged_dataset.profile}</span>"</span>)
+print(<span class="hljs-string">f"Dataset schema: <span class="hljs-subst">{logged_dataset.schema}</span>"</span>)
+
+</code></pre><h2 id="Explore-Tracking-server-UI"><a class="anchor hidden-xs" href="#Explore-Tracking-server-UI" title="Explore-Tracking-server-UI"><i class="fa fa-link"></i></a>Explore Tracking server UI</h2><p>The Tracking UI lets you visually explore your experiments and runs. It allows:</p><ul>
+<li>Experiment-based run listing and comparison (including run comparison across multiple experiments)</li>
+<li>Searching for runs by parameter or metric value</li>
+<li>Visualizing run metrics</li>
+<li>Downloading run results (artifacts and metadata)</li>
+</ul><h3 id="Experiments-view"><a class="anchor hidden-xs" href="#Experiments-view" title="Experiments-view"><i class="fa fa-link"></i></a>Experiments view</h3><p><img src="https://i.imgur.com/oXy8H6v.png" alt="" class="md-image md-image"></p><h3 id="Models-view"><a class="anchor hidden-xs" href="#Models-view" title="Models-view"><i class="fa fa-link"></i></a>Models view</h3><p><img src="https://i.imgur.com/UFXsakI.png" alt="" class="md-image md-image"></p><p><img src="https://i.imgur.com/Tw787Wo.png" alt="" class="md-image md-image"></p><div class="alert alert-info">
+<p><strong>Artifact store</strong> persists (typicaly large) artifacts for each run, such as model weights (e.g. a pickled scikit-learn model), images (e.g. PNGs), model and data files (e.g. Parquet file). MLflow stores artifacts in a local directory (<code>mlruns</code>) by default, but also supports different storage options such as Amazon S3 and Azure Blob Storage.</p>
+<p><img src="https://mlflow.org/docs/latest/_images/tracking-setup-overview.png" alt="" class="md-image md-image"></p>
+</div><h1 id="MLflow-models"><a class="anchor hidden-xs" href="#MLflow-models" title="MLflow-models"><i class="fa fa-link"></i></a>MLflow models</h1><p>An <em>MLflow Model</em> is a standard format for packaging machine learning models that can be used in a variety of downstream tools—for example, real-time serving through a REST API. The format defines a convention that lets you save a model in different <strong>“flavors”</strong> that can be understood by different downstream tools.</p><h2 id="How-MLflow-models-are-stored"><a class="anchor hidden-xs" href="#How-MLflow-models-are-stored" title="How-MLflow-models-are-stored"><i class="fa fa-link"></i></a>How MLflow models are stored?</h2><p>Each MLflow Model is a directory containing arbitrary files, together with an <code>MLmodel</code> file in the root of the directory that can define multiple flavors that the model can be viewed in.</p><h2 id="Logging-ML-models"><a class="anchor hidden-xs" href="#Logging-ML-models" title="Logging-ML-models"><i class="fa fa-link"></i></a>Logging ML models</h2><h3 id="sklearn-models"><a class="anchor hidden-xs" href="#sklearn-models" title="sklearn-models"><i class="fa fa-link"></i></a>sklearn models</h3><pre><code class="python hljs"><span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> accuracy_score, precision_score, recall_score, f1_score
+<span class="hljs-keyword">from</span> mlflow.models <span class="hljs-keyword">import</span> infer_signature
+<span class="hljs-keyword">import</span> mlflow.sklearn
+<span class="hljs-keyword">import</span> mlflow.exceptions
+
+<span class="hljs-comment"># Load the Iris dataset</span>
+X, y = datasets.load_iris(return_X_y=<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># Split the data into training and test sets</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">42</span>
+)
+
+<span class="hljs-comment"># Define the model hyperparameters</span>
+params = {
+    <span class="hljs-string">"solver"</span>: <span class="hljs-string">"lbfgs"</span>,
+    <span class="hljs-string">"max_iter"</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment"># Use hydra for configuration management    </span>
+    <span class="hljs-string">"random_state"</span>: <span class="hljs-number">8888</span>,
+}
+
+<span class="hljs-comment"># Train the model</span>
+lr = LogisticRegression(**params)
+lr.fit(X_train, y_train)
+
+<span class="hljs-comment"># Predict on the test set</span>
+y_pred = lr.predict(X_test)
+
+<span class="hljs-comment"># Calculate metrics</span>
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+recall = recall_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+f1 = f1_score(y_test, y_pred, average=<span class="hljs-string">"macro"</span>)
+print(accuracy, precision, recall, f1)
+
+
+experiment_name = <span class="hljs-string">"MLflow experiment 01"</span>
+run_name = <span class="hljs-string">"run 01"</span>
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-comment"># Create a new MLflow Experiment</span>
+    experiment_id = mlflow.create_experiment(name=experiment_name)
+<span class="hljs-keyword">except</span> mlflow.exceptions.MlflowException <span class="hljs-keyword">as</span> e:
+    experiment_id = mlflow.get_experiment_by_name(experiment_name).experiment_id
+
+print(experiment_id)
+
+<span class="hljs-keyword">with</span> mlflow.start_run(run_name=run_name, experiment_id=experiment_id) <span class="hljs-keyword">as</span> run:
+
+    <span class="hljs-comment"># Log the hyperparameters</span>
+    mlflow.log_params(params=params)
+
+    <span class="hljs-comment"># Log the performance metrics</span>
+    mlflow.log_metric(<span class="hljs-string">"accuracy"</span>, accuracy)
+    mlflow.log_metric(<span class="hljs-string">"f1"</span>, f1)
+    mlflow.log_metrics({
+        <span class="hljs-string">"accuracy"</span>: accuracy,
+        <span class="hljs-string">"f1"</span>: f1
+    })
+
+    <span class="hljs-comment"># Set a tag that we can use to remind ourselves what this run was for</span>
+    mlflow.set_tag(<span class="hljs-string">"Training Info"</span>, <span class="hljs-string">"Basic LR model for iris data"</span>)
+
+        <span class="hljs-comment"># Infer the model signature</span>
+    signature = infer_signature(X_test, y_test)
+
+
+    <span class="hljs-comment"># Log the model</span>
+    model_info = mlflow.sklearn.log_model(
+        sk_model=lr,
+        artifact_path=<span class="hljs-string">"iris_model"</span>,
+        signature=signature,
+        input_example=X_test,
+        registered_model_name=<span class="hljs-string">"LR_model_01"</span>,
+        pyfunc_predict_fn = <span class="hljs-string">"predict_proba"</span>
+    )
+
+    sk_pyfunc = mlflow.sklearn.load_model(model_uri=model_info.model_uri)
+
+    predictions = sk_pyfunc.predict(X_test)
+    print(predictions)
+
+    
+
+    eval_data = pd.DataFrame(y_test)
+    eval_data.columns = [<span class="hljs-string">"label"</span>]
+    eval_data[<span class="hljs-string">"predictions"</span>] = predictions
+    
+    results = mlflow.evaluate(
+        data=eval_data,
+        model_type=<span class="hljs-string">"classifier"</span>,
+        targets= <span class="hljs-string">"label"</span>,
+        predictions=<span class="hljs-string">"predictions"</span>,
+        evaluators = [<span class="hljs-string">"default"</span>]
+    )
+
+print(<span class="hljs-string">f"metrics:\n<span class="hljs-subst">{results.metrics}</span>"</span>)
+print(<span class="hljs-string">f"artifacts:\n<span class="hljs-subst">{results.artifacts}</span>"</span>)
+</code></pre><h3 id="Pytorch-models"><a class="anchor hidden-xs" href="#Pytorch-models" title="Pytorch-models"><i class="fa fa-link"></i></a>Pytorch models</h3><pre><code class="python hljs"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">from</span> mlflow.models <span class="hljs-keyword">import</span> infer_signature
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span>  pd
+
+net = nn.Linear(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>)
+loss_function = nn.L1Loss()
+optimizer = torch.optim.Adam(net.parameters(), lr=<span class="hljs-number">1e-4</span>)
+
+X = torch.randn(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>)
+y = torch.randn(<span class="hljs-number">100</span>, <span class="hljs-number">1</span>)
+
+print(X.shape, y.shape)
+
+epochs = <span class="hljs-number">5</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(epochs):
+    optimizer.zero_grad()
+    outputs = net(X)
+
+    loss = loss_function(outputs, y)
+    loss.backward()
+
+    optimizer.step()
+
+<span class="hljs-keyword">with</span> mlflow.start_run() <span class="hljs-keyword">as</span> run:
+    signature = infer_signature(X.numpy(), net(X).detach().numpy())
+    model_info = mlflow.pytorch.log_model(
+        pytorch_model = net, 
+        artifact_path = <span class="hljs-string">"pytorch model"</span>, 
+        signature=signature, 
+        input_example=X.numpy(),
+        registered_model_name=<span class="hljs-string">"pytorch_model"</span>
+        )
+
+    pytorch_pyfunc = mlflow.pyfunc.load_model(model_uri=model_info.model_uri)
+
+    X_test = torch.randn(<span class="hljs-number">20</span>, <span class="hljs-number">10</span>).numpy()
+    predictions = pytorch_pyfunc.predict(X_test)
+    print(predictions)
+
+    
+
+    eval_data = pd.DataFrame(X.numpy())
+    eval_data = pd.DataFrame(y.numpy())
+    print(eval_data)
+    eval_data.columns = [<span class="hljs-string">"label"</span>]
+    eval_data[<span class="hljs-string">"predictions"</span>] = net(X).detach().numpy()
+    print(eval_data.shape)
+    <span class="hljs-comment"># print(X.numpy().shape, y.numpy().shape)</span>
+    
+    results = mlflow.evaluate(
+        <span class="hljs-comment"># model=pytorch_pyfunc,</span>
+        data=eval_data, <span class="hljs-comment">#X.numpy()[0,:], #X.numpy().T,</span>
+        model_type=<span class="hljs-string">"regressor"</span>,
+        targets= <span class="hljs-string">"label"</span>, <span class="hljs-comment"># y.numpy()[0, :], #y.numpy().T,</span>
+        predictions=<span class="hljs-string">"predictions"</span>,
+        evaluators = [<span class="hljs-string">"default"</span>]
+    )
+
+print(<span class="hljs-string">f"metrics:\n<span class="hljs-subst">{results.metrics}</span>"</span>)
+print(<span class="hljs-string">f"artifacts:\n<span class="hljs-subst">{results.artifacts}</span>"</span>)
+</code></pre><h2 id="Fetch-models-from-model-registry"><a class="anchor hidden-xs" href="#Fetch-models-from-model-registry" title="Fetch-models-from-model-registry"><i class="fa fa-link"></i></a>Fetch models from model registry</h2><p>We have two schemas of model uris to retrieve models as follows:</p><ol>
+<li><code>runs</code> scheme</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-attr">runs:</span><span class="hljs-string">/&lt;run_id&gt;/&lt;model_artifact_path&gt;</span>
+</code></pre><ol start="2">
+<li><code>models</code> scheme</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-comment"># Fetch a specific model version</span>
+<span class="hljs-attr">models:</span><span class="hljs-string">/&lt;model_name&gt;/&lt;version&gt;</span>
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># Fetch a model version by alias</span>
+<span class="hljs-attr">models:</span><span class="hljs-string">/&lt;model_name&gt;@alias</span>
+</code></pre><p>We can use <code>mlflow.pyfunc.load_model</code> to load any model who has <code>pyfunc</code> flavor from the model registry as follows:</p><pre><code class="wrap python hljs"><span class="hljs-keyword">import</span> mlflow.pyfunc
+<span class="hljs-keyword">from</span> mlflow <span class="hljs-keyword">import</span> MlflowClient
+
+run_id = <span class="hljs-string">"e389609f9f1b44678ea7fea020453f94"</span>
+model_artifact_path = <span class="hljs-string">"pytorch model"</span>
+
+model = mlflow.pyfunc.load_model(model_uri=<span class="hljs-string">f"runs:/<span class="hljs-subst">{run_id}</span>/<span class="hljs-subst">{model_artifact_path}</span>"</span>)
+
+print(model.metadata)
+
+<span class="hljs-comment"># OR</span>
+
+model_name = <span class="hljs-string">"pytorch_model"</span>
+model_version = <span class="hljs-number">1</span>
+
+model = mlflow.pyfunc.load_model(model_uri=<span class="hljs-string">f"models:/<span class="hljs-subst">{model_name}</span>/<span class="hljs-subst">{model_version}</span>"</span>)
+
+print(model.metadata)
+
+<span class="hljs-comment"># OR</span>
+
+client = MlflowClient()
+client.set_registered_model_alias(name = model_name, alias = <span class="hljs-string">"staging"</span>, version = <span class="hljs-string">"1"</span>)
+
+model_name = <span class="hljs-string">"pytorch_model"</span>
+model_alias = <span class="hljs-string">"staging"</span>
+
+model = mlflow.pyfunc.load_model(model_uri=<span class="hljs-string">f"models:/<span class="hljs-subst">{model_name}</span>@<span class="hljs-subst">{model_alias}</span>"</span>)
+
+print(model.metadata)
+
+
+</code></pre><h1 id="MLflow-projects"><a class="anchor hidden-xs" href="#MLflow-projects" title="MLflow-projects"><i class="fa fa-link"></i></a>MLflow projects</h1><p>An MLflow Project is a format for packaging data science code in a reusable and reproducible way, based primarily on conventions. In addition, the Projects component includes an API and command-line tools for running projects, making it possible to chain together projects into workflows.</p><p>Each project is simply a <strong>directory</strong> of files, or a Git repository, containing your code. Each project can specify several properties:</p><ul>
+<li><em>Name</em>
+<ul>
+<li>A human-readable name for the project.</li>
+</ul>
+</li>
+<li><em>Entry Points</em>
+<ul>
+<li><strong>Commands</strong> that can be run within the project, and information about their <strong>parameters</strong>.</li>
+<li>You can also call any <code>.py</code> or <code>.sh</code> file in the project as an entry point.</li>
+<li>You can also specify <em>parameters</em> for entry points, including data types and default values.</li>
+</ul>
+</li>
+<li><em>Environment</em>
+<ul>
+<li>The software environment that should be used to execute project entry points.</li>
+<li>This includes all library dependencies required by the project code.</li>
+<li>Such environments includes Conda environments, Virtualenv environments, System environment (<code>--env_manager=local</code>) and Docker containers.</li>
+</ul>
+</li>
+</ul><h2 id="MLproject-file"><a class="anchor hidden-xs" href="#MLproject-file" title="MLproject-file"><i class="fa fa-link"></i></a><code>MLproject</code> file</h2><p>You can get more control over an MLflow Project by adding an <code>MLproject</code> file, which is a text file in YAML syntax, to the project’s root directory.  The following is an example of an <code>MLproject</code> file:</p><pre><code class="yaml hljs"><span class="hljs-comment"># MLproject</span>
+
+<span class="hljs-attr">name:</span> <span class="hljs-string">Predicting</span> <span class="hljs-string">customer</span> <span class="hljs-string">satisfaction</span>
+
+<span class="hljs-attr">python_env:</span> <span class="hljs-string">python_env.yaml</span>
+<span class="hljs-comment"># or</span>
+<span class="hljs-comment"># conda_env: my_env.yaml</span>
+<span class="hljs-comment"># or</span>
+<span class="hljs-comment"># docker_env:</span>
+<span class="hljs-comment">#    image:  mlflow-docker-example</span>
+
+<span class="hljs-attr">entry_points:</span>
+<span class="hljs-attr">  main:</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">"python src/main.py"</span>
+
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># python_env.yaml</span>
+
+<span class="hljs-comment"># Python version required to run the project.</span>
+<span class="hljs-attr">python:</span> <span class="hljs-string">"3.11"</span>
+
+<span class="hljs-comment"># Dependencies required to build packages. This field is optional.</span>
+<span class="hljs-attr">build_dependencies:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">pip</span>
+
+<span class="hljs-comment"># Dependencies required to run the project.</span>
+<span class="hljs-attr">dependencies:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">mlflow==2.7.3</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">scikit-learn</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">pandas</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">zenml</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">dvc</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">giskard</span>
+<span class="hljs-bullet">  -</span> 
+  <span class="hljs-comment"># Add your dependencies here</span>
+</code></pre><div class="alert alert-info">
+<p>For the project, you either:</p>
+<ol>
+<li>Use the current virtual environment<br>
+Here, you just add the option <code>--env-manager=local</code> to every <code>mlflow run</code> command.</li>
+<li>Create a new virtual environment via MLflow<br>
+You need to install <code>pyenv</code> to let mlflow create a virtul environment as follows:<pre><code class="bash hljs">pip install pyenv --upgrade
+</code></pre>
+After that, add <code>pyenv</code> binaries to <code>PATH</code> env variable as follows:<pre><code class="bash hljs"><span class="hljs-comment"># Add the line</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'export PATH="$HOME/.pyenv/bin:$PATH"'</span> &gt;&gt; ~/.bashrc
+
+<span class="hljs-comment"># load the file</span>
+<span class="hljs-built_in">source</span> ~/.bashrc
+
+<span class="hljs-comment"># activate the virtual environment again</span>
+<span class="hljs-built_in">source</span> .venv/bin/activate
+</code></pre>
+Check that the file <code>~/.bashrc</code> contains the line:<pre><code>export PATH="$PATH:$HOME/.pyenv/bin"
+</code></pre>
+</li>
+</ol>
+</div><div class="alert alert-warning">
+<p>When you do not want to run the MLflow project in a virtual environment, rather using the virtual environment of the local repository then you need to add the option <code>--env-manager=local</code></p>
+</div><h3 id="Specifying-Parameters-and-Entrypoints"><a class="anchor hidden-xs" href="#Specifying-Parameters-and-Entrypoints" title="Specifying-Parameters-and-Entrypoints"><i class="fa fa-link"></i></a>Specifying Parameters and Entrypoints</h3><ul>
+<li>Entrypoints
+<ul>
+<li>When specifying an entry point in an <code>MLproject file</code>, the command can be any string in Python format string syntax. MLflow allows specifying a data type and default value for each parameter.</li>
+</ul>
+</li>
+<li>MLflow allows specifying a data type and default value for each parameter. You can specify just the data type by writing:<pre><code class="yaml hljs"><span class="hljs-attr">parameter_name:</span> <span class="hljs-string">data_type</span> <span class="hljs-comment"># Without default </span>
+
+<span class="hljs-attr">parameter_name:</span> <span class="hljs-string">{type:</span> <span class="hljs-string">data_type,</span> <span class="hljs-attr">default:</span> <span class="hljs-string">value}</span>  <span class="hljs-comment"># Short syntax</span>
+
+<span class="hljs-attr">parameter_name:</span>     <span class="hljs-comment"># Long syntax</span>
+<span class="hljs-attr">  type:</span> <span class="hljs-string">data_type</span>
+<span class="hljs-attr">  default:</span> <span class="hljs-string">value</span>
+
+</code></pre>
+</li>
+<li>MLflow supports <strong>four</strong> parameter types, some of which it treats specially (for example, downloading data to local files). Any undeclared parameters are treated as string. The parameter types are:
+<ul>
+<li>string
+<ul>
+<li>A text string.</li>
+</ul>
+</li>
+<li>float
+<ul>
+<li>A real number. MLflow validates that the parameter is a number.</li>
+</ul>
+</li>
+<li>path
+<ul>
+<li>A path on the local file system. MLflow converts any relative path parameters to absolute paths. MLflow also downloads any paths passed as distributed storage URIs (s3://, dbfs://, gs://, etc.) to local files. Use this type for programs that can only read local files.</li>
+</ul>
+</li>
+<li>uri
+<ul>
+<li>A URI for data either in a local or distributed storage system. MLflow converts relative paths to absolute paths, as in the path type. Use this type for programs that know how to read from distributed storage (e.g., programs that use Spark).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h2 id="Running-MLflow-projects"><a class="anchor hidden-xs" href="#Running-MLflow-projects" title="Running-MLflow-projects"><i class="fa fa-link"></i></a>Running MLflow projects</h2><p>You can run any MLflow project from a Git URI or from a local directory using the <code>mlflow run</code> command-line tool (Method 1), or the <code>mlflow.projects.run()</code> Python API (Method 2).</p><p>Both tools take the following parameters:</p><ul>
+<li>Project URI
+<ul>
+<li>A directory on the local file system or a Git repository path, specified as a URI of the form <code>https://&lt;repo&gt;</code> (to use HTTPS) or <code>user@host:path</code> (to use Git over SSH). To run against an MLproject file located in a subdirectory of the project, add a ‘#’ to the end of the URI argument, followed by the relative path from the project’s root directory to the subdirectory containing the desired project.</li>
+</ul>
+</li>
+<li>Project Version
+<ul>
+<li>For Git-based projects, the commit hash or branch name in the Git repository.</li>
+</ul>
+</li>
+<li>Entry Point
+<ul>
+<li>The name of the entry point, which defaults to <code>main</code>.</li>
+</ul>
+</li>
+<li>Parameters
+<ul>
+<li>Key-value parameters.</li>
+</ul>
+</li>
+<li>Environment
+<ul>
+<li>By default, MLflow Projects are run in the environment specified by the project directory or the MLproject file.</li>
+<li>You can override a project’s specified environment and run the project in the current system environment by supplying the <code>--env-manager=local</code> flag, but this can lead to <strong>unexpected results</strong> if there are dependency mismatches between the project environment and the current system environment.</li>
+</ul>
+</li>
+</ul><h3 id="Examples"><a class="anchor hidden-xs" href="#Examples" title="Examples"><i class="fa fa-link"></i></a>Examples</h3><ul>
+<li>Run the project from a local filesystem
+<ul>
+<li>using CLI<pre><code class="wrap yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">run</span> <span class="hljs-string">$PROJECTPATH</span> <span class="hljs-bullet">-P</span> <span class="hljs-string">alpha=0.5</span> <span class="hljs-bullet">-e</span> <span class="hljs-string">main</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span>
+</code></pre>
+</li>
+<li>using Python API<pre><code class="wrap python hljs"><span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">import</span> os
+
+project_path = os.path.expandvars(<span class="hljs-string">"$PROJECTPATH"</span>)
+
+project_uri = project_path
+params = {<span class="hljs-string">"alpha"</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">"l1_ratio"</span>: <span class="hljs-number">0.01</span>}
+entry_point = <span class="hljs-string">"main"</span>
+env_manager = <span class="hljs-string">"local"</span>
+
+<span class="hljs-comment"># Run MLflow project and create a reproducible conda environment</span>
+<span class="hljs-comment"># on a local host</span>
+mlflow.projects.run(project_uri,
+                    parameters=params,
+                    entry_point=entry_point,
+                    env_manager=env_manager)
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Run the project from a Github repository
+<ul>
+<li>using CLI<pre><code class="wrap yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">run</span> <span class="hljs-string">git@github.com:mlflow/mlflow-example.git</span> <span class="hljs-bullet">-P</span> <span class="hljs-string">alpha=0.5</span> <span class="hljs-bullet">-e</span> <span class="hljs-string">main</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span>
+</code></pre>
+</li>
+<li>using Python API<pre><code class="wrap python hljs"><span class="hljs-keyword">import</span> mlflow
+
+project_uri = <span class="hljs-string">"https://github.com/mlflow/mlflow-example"</span>
+params = {<span class="hljs-string">"alpha"</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">"l1_ratio"</span>: <span class="hljs-number">0.01</span>}
+entry_point = <span class="hljs-string">"main"</span>
+env_manager = <span class="hljs-string">"local"</span>
+
+<span class="hljs-comment"># Run MLflow project and create a reproducible conda environment</span>
+<span class="hljs-comment"># on a local host</span>
+mlflow.projects.run(project_uri,
+                    parameters=params,
+                    entry_point=entry_point,
+                    env_manager=env_manager)
+</code></pre>
+</li>
+</ul>
+</li>
+</ul><div class="alert alert-warning">
+<p>By default, MLflow uses a new, temporary working directory for Git projects. This means that you should generally pass any file arguments to MLflow project using <strong>absolute</strong>, not relative, paths. If your project declares its parameters, MLflow automatically makes paths absolute for parameters of type <code>path</code>.</p>
+</div><div class="alert alert-info">
+<p>When running an MLflow Project directory or repository that <strong>does not</strong> contain an <code>MLproject</code> file, MLflow uses the project’s name as the name of the directory, and a Conda environment containing only latest version of Python.</p>
+</div><div class="alert alert-info">
+<p>Runtime parameters are passed to the entry point on the command line using <code>--key value</code> syntax.</p>
+</div><h2 id="Run-multiple-experiments-using-Hydra"><a class="anchor hidden-xs" href="#Run-multiple-experiments-using-Hydra" title="Run-multiple-experiments-using-Hydra"><i class="fa fa-link"></i></a>Run multiple experiments using Hydra</h2><p>When we use Hydra for configuration management, it will be easy to run multiple experiments with single command line using <code>--multirun</code> option.</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/main.py</span> <span class="hljs-bullet">--multirun</span>
+</code></pre><div class="alert alert-info">
+<p>You can also activate the multirun mode of Hydra in config files rather than using <code>--multirun</code> option as follows:</p>
+<pre><code class="yaml hljs">
+<span class="hljs-comment"># Add this to `configs/main.yaml`</span>
+<span class="hljs-attr">hydra:</span>
+<span class="hljs-attr">  mode:</span> <span class="hljs-string">MULTIRUN</span>
+</code></pre>
+</div><div class="alert alert-info">
+<p>Hydra will store the config results for multi run experiments under <code>multirun</code> folder.</p>
+</div><h3 id="-Joblib-launcher-plugin-Extra-section"><a class="anchor hidden-xs" href="#-Joblib-launcher-plugin-Extra-section" title="-Joblib-launcher-plugin-Extra-section"><i class="fa fa-link"></i></a><img src="https://joblib.readthedocs.io/en/latest/_static/joblib_logo.svg" alt="" width="100" height="100" class="md-image md-image"> Joblib launcher plugin [Extra section]</h3><p>By default, Hydra runs your multi-run jobs locally and serially. You can use the <a href="https://hydra.cc/docs/1.2/plugins/joblib_launcher/" target="_blank" rel="noopener">Joblib Launcher plugin</a> which provides a launcher for parallel tasks based on <code>Joblib.Parallel</code>. It can be installed as a separate package as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">hydra-joblib-launcher</span> <span class="hljs-bullet">--upgrade</span>
+</code></pre><p>Add the following to your <code>configs/main.yaml</code> file:</p><pre><code class="yaml hljs"><span class="hljs-comment"># Override the default launcher</span>
+<span class="hljs-attr">defaults:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">override</span> <span class="hljs-string">hydra/launcher:</span> <span class="hljs-string">joblib</span>
+  
+
+<span class="hljs-comment"># Set the number of parallel jobs</span>
+<span class="hljs-attr">hydra:</span>
+<span class="hljs-attr">  launcher:</span>
+    <span class="hljs-comment"># override the number of jobs for joblib</span>
+<span class="hljs-attr">    n_jobs:</span> <span class="hljs-number">10</span> <span class="hljs-comment"># it is 10 jobs in parallel now</span>
+</code></pre><p>After this change, Hydra will use joblib launcher whenever you use <code>--multirun</code> as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span>
+</code></pre><h3 id="-Optuna-sweeper-plugin-Extra-section"><a class="anchor hidden-xs" href="#-Optuna-sweeper-plugin-Extra-section" title="-Optuna-sweeper-plugin-Extra-section"><i class="fa fa-link"></i></a><img src="https://www.preferred.jp/wp-content/themes/preferred/assets/img/projects/optuna/pict01.jpg" alt="" width="100" height="70" class="md-image md-image"> Optuna sweeper plugin  [Extra section]</h3><p>An open source hyperparameter optimization framework to automate hyperparameter search. It can be installed as a separate package as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">hydra-optuna-sweeper</span> <span class="hljs-bullet">--upgrade</span>
+</code></pre><p>Add the following to your <code>configs/main.yaml</code> file:</p><pre><code class="yaml hljs"><span class="hljs-comment"># Override the default launcher</span>
+<span class="hljs-attr">defaults:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">override</span> <span class="hljs-string">hydra/sweeper:</span> <span class="hljs-string">optuna</span>
+  
+
+<span class="hljs-comment"># Set the number of parallel jobs</span>
+<span class="hljs-attr">hydra:</span>
+<span class="hljs-attr">  sweeper:</span>
+<span class="hljs-attr">    sampler:</span>
+<span class="hljs-attr">      seed:</span> <span class="hljs-number">8888</span>
+<span class="hljs-attr">    direction:</span> <span class="hljs-string">maximize</span> <span class="hljs-comment"># minimize</span>
+<span class="hljs-attr">    study_name:</span> <span class="hljs-string">LR_optimization</span>
+<span class="hljs-attr">    n_trials:</span> <span class="hljs-number">20</span> <span class="hljs-comment"># number of times to try to optimize the search space</span>
+<span class="hljs-attr">    n_jobs:</span> <span class="hljs-number">1</span> <span class="hljs-comment"># parallelism</span>
+<span class="hljs-attr">    params:</span>
+<span class="hljs-attr">      x:</span> <span class="hljs-string">range(-5.5,</span> <span class="hljs-number">5.5</span><span class="hljs-string">,</span> <span class="hljs-string">step=0.5)</span>
+<span class="hljs-attr">      y:</span> <span class="hljs-string">choice(-5</span> <span class="hljs-string">,0</span> <span class="hljs-string">,5)</span>
+</code></pre><div class="alert alert-info">
+<p><strong>Optuna concepts</strong></p>
+<ul>
+<li><strong>Objective function:</strong> is the function to be optimized (minimized/maximized).</li>
+<li><strong>Trial:</strong> A single call of the objective function.</li>
+<li><strong>Study:</strong> An optimization session, which is a set of trials.</li>
+<li><strong>Parameter:</strong> A variable whose value is to be optimized, such as x in the above example.</li>
+</ul>
+<br>
+<p><strong>Simple example:</strong></p>
+<pre><code class="python hljs"><span class="hljs-string">"""
+let's optimize a simple quadratic function: (x - 2)^2
+"""</span>
+
+<span class="hljs-keyword">import</span> optuna
+
+
+<span class="hljs-comment"># Objective function</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">objective</span><span class="hljs-params">(trial)</span>:</span>
+    x = trial.suggest_float(<span class="hljs-string">"x"</span>, <span class="hljs-number">-10</span>, <span class="hljs-number">10</span>)
+    <span class="hljs-keyword">return</span> (x - <span class="hljs-number">2</span>) ** <span class="hljs-number">2</span>
+
+
+study = optuna.create_study(study_name = <span class="hljs-string">"simple optimization example"</span>, direction=<span class="hljs-string">"maximize"</span>)
+study.optimize(objective, n_trials=<span class="hljs-number">100</span>)
+
+
+best_params = study.best_params
+found_x = best_params[<span class="hljs-string">"x"</span>]
+print(<span class="hljs-string">"Found x: {}, (x - 2)^2: {}"</span>.format(found_x, (found_x - <span class="hljs-number">2</span>) ** <span class="hljs-number">2</span>))
+
+
+study.best_params
+
+study.best_value
+
+study.best_trial
+
+</code></pre>
+</div><p>After this change, Hydra will use optuna sweeper whenever you use <code>--multirun</code> as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span> 
+</code></pre><div class="alert alert-warning">
+<p><strong>Note:</strong><br>
+The function in <code>src/app.py</code> decorated with <code>@hydra.main()</code> should return a <code>float</code> which we want to <code>minimize</code>/<code>maximize</code>.</p>
+</div><p>After you run the optimization, you might find the <code>optimization_results.yaml</code> file (i.e. best params and best value) under <code>multirun</code> logs folder.</p><h4 id="Search-space-configuration"><a class="anchor hidden-xs" href="#Search-space-configuration" title="Search-space-configuration"><i class="fa fa-link"></i></a>Search space configuration</h4><p>Hydra provides an override parser that support rich syntax.</p><ol>
+<li>Interval override<br>
+By default, <code>interval</code> is converted to <code>UniformDistribution</code>. You can use <code>IntUniformDistribution</code>, <code>LogUniformDistribution</code> or <code>IntLogUniformDistribution</code> by casting the interval to <code>int</code> and tagging it with <code>log</code>.</li>
+</ol><pre><code class="wrap yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span> <span class="hljs-string">'x=int(interval(-5.0, 5.0))'</span> <span class="hljs-string">'y=tag(log, interval(1, 10))'</span>
+</code></pre><ol start="2">
+<li>Range override<br>
+<code>range</code> is converted to <code>IntUniformDistribution</code>. If you apply <code>shuffle</code> to <code>range</code>, <code>CategoricalDistribution</code> is used instead. If any of range’s <code>start</code>, <code>stop</code> or <code>step</code> is of type <code>float</code>, it will be converted to <code>DiscreteUniformDistribution</code>.</li>
+</ol><pre><code class="wrap yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span> <span class="hljs-string">'x=range(-5.0, 5.0)'</span> <span class="hljs-string">'y=shuffle(range(-5, 5))'</span>
+</code></pre><ol start="3">
+<li>Choice override<br>
+<code>choice</code> is converted to <code>CategoricalDistribution</code>.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span> <span class="hljs-string">'x=choice(-5.0, 0.0, 5.0)'</span> <span class="hljs-string">'y=choice(0, 1, 2, 3, 4, 5)'</span>
+</code></pre><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-warning">
+<p>Here use only one (e.g. first) version of your data samples for training your model.</p>
+</div><div class="alert alert-success">
+<ol>
+<li>Create <code>MLproject</code> file with one entry point <code>main</code> to run <code>src/main.py</code> with <code>--multirun</code> option. You should decorate its <code>main</code> function with <code>@hydra.main</code>. We are using multirun to run multiple experiments by overriding parameters at runtime. The overriden parameters will be added to the <code>configs/main.yml</code> file as explained in the demo above. You can also add overriden parameteres in <code>MLproject</code> file when you run the script but I prefer the former approach.</li>
+<li>The function <code>main</code> in <code>src/main.py</code> will extract the features from ZenML artifact store, train a model, evaluate it via cross validtion and log the metadata. Keep your code clean and organize your project in different modules such that it is easy to maintain. For instance, you can create a function <code>extract_data</code> for the first task, another function <code>train</code> for the second task, <code>evaluate</code> for the third task, <code>log_metadata</code> for the fourth task. Then you call them inside <code>main</code> function. Try to put the functions which deal with data in <code>src/data.py</code> module and functions which deal with models in <code>src/model.py</code>.</li>
+<li>Read the features from the ZenML artifact store. Select the appropriate version of the artifact based on the version of the data sample you are tracking in config files.</li>
+<li>Split the data sample into training, validation and test sets. Select a specific split ratio. Use one data sample for training the model (80% of the data sample for training and 20% for validation) and next data sample (50%-100% of the next data sample) for testing/evaluating the model performance. For instance, data sample <code>v1</code> is used for training and validation, and <code>v2</code> is used for testing the models.</li>
+<li>Create an MLflow experiment, a data source, a dataset and use MLflow to log the important metrics, datasets, models and their metadata. <strong>Do not use autologging</strong>. It is ok if you do not log the data since we have it in dvc store and ZenML artifact store. Use the default metrics provided in <code>mlflow.evaluate</code> to log the metrics. Log all hyperparameters you optimized.</li>
+<li>Build at least two different model architectures. For each model architecture, optimize three of its hyperparameters and create a search space consisting of at least three different values per hyperparameter. So, you need to create at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27018-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99220" style="width: 3.774em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.235em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.35em, 1003.24em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99221"><span class="msubsup" id="MathJax-Span-99222"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.182em, 1000.43em, 4.151em, -999.997em); top: -3.984em; left: 0em;"><span class="mn" id="MathJax-Span-99223" style="font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; top: -4.362em; left: 0.488em;"><span class="mn" id="MathJax-Span-99224" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span></span></span><span class="mo" id="MathJax-Span-99225" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99226" style="font-family: MathJax_Main; padding-left: 0.272em;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27018">3^3=27</script></span> runs (Grid search) with different values for the hyperparams. In total, you should train at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27019-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn><mo>&amp;#x00D7;</mo><mn>2</mn><mo>=</mo><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99227" style="width: 5.822em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.013em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1004.96em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99228"><span class="mn" id="MathJax-Span-99229" style="font-family: MathJax_Main;">27</span><span class="mo" id="MathJax-Span-99230" style="font-family: MathJax_Main; padding-left: 0.218em;">×</span><span class="mn" id="MathJax-Span-99231" style="font-family: MathJax_Main; padding-left: 0.218em;">2</span><span class="mo" id="MathJax-Span-99232" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99233" style="font-family: MathJax_Main; padding-left: 0.272em;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-27019">27\times2=54</script></span> models (<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27020-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99234" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99235"><span class="mn" id="MathJax-Span-99236" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-27020">54</script></span> model versions) with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27021-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99237" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99238"><span class="mn" id="MathJax-Span-99239" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27021">27</script></span> runs per model. In the MLflow tracking server, you would get <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27022-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>2</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99240" style="width: 0.595em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.488em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.565em, 1000.43em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99241"><span class="mn" id="MathJax-Span-99242" style="font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn></math></span></span><script type="math/tex" id="MathJax-Element-27022">2</script></span> models with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27023-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99243" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99244"><span class="mn" id="MathJax-Span-99245" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27023">27</script></span> versions per model (a new model version per run). Notice that number of child runs with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27024-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>k</mi><mo>=</mo><mn>3</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99246" style="width: 2.697em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.32em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1002.27em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99247"><span class="mi" id="MathJax-Span-99248" style="font-family: MathJax_Math-italic;">k</span><span class="mo" id="MathJax-Span-99249" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99250" style="font-family: MathJax_Main; padding-left: 0.272em;">3</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>=</mo><mn>3</mn></math></span></span><script type="math/tex" id="MathJax-Element-27024">k=3</script></span> folds will be <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27025-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn><mo>&amp;#x2217;</mo><mn>3</mn><mo>=</mo><mn>162</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99251" style="width: 6.145em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.283em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1005.23em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99252"><span class="mn" id="MathJax-Span-99253" style="font-family: MathJax_Main;">54</span><span class="mo" id="MathJax-Span-99254" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mn" id="MathJax-Span-99255" style="font-family: MathJax_Main; padding-left: 0.218em;">3</span><span class="mo" id="MathJax-Span-99256" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99257" style="font-family: MathJax_Main; padding-left: 0.272em;">162</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn><mo>∗</mo><mn>3</mn><mo>=</mo><mn>162</mn></math></span></span><script type="math/tex" id="MathJax-Element-27025">54*3=162</script></span> (with cross validation).<br>
+<strong>Notes:</strong>
+<ul>
+<li>It is enough to have only one experiment with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27026-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99258" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99259"><span class="mn" id="MathJax-Span-99260" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-27026">54</script></span> runs or you can create two experiments with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27027-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99261" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99262"><span class="mn" id="MathJax-Span-99263" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27027">27</script></span> runs per experiment. It is good practice to name the experiments and runs with different and meaningful names. For example, you can create a new experiment per model architecture, and the run name includes the value of optimization metric for that run such that <code>acc_0.78322932</code>. Use the same model name for registering all models and let the version increment.</li>
+<li>Use Hydra for sweeping over hypereparameter values. You can use advanced sweepers like Optuna (optional). You can use advanced launchers like Joblib but it is only optional and as long as it does not create issues with multiprocecssing.</li>
+<li>Keep the settings of search space for the hyperparams in Hydra config files.</li>
+<li>When you change source code of experimentation or the settings of search space in config files, you should commit the change to Github since MLflow does not track source code changes (or you should log the source code and config files as artifacts everytime).</li>
+<li>You should push all of these logged artifacts and models to github.</li>
+<li>Use cross validation to evaluate the performance of the models with at least <code>k=3</code> folds. You can use such following function.<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> cross_val_score
+</code></pre>
+</li>
+<li>Use child runs for logging the metric values per fold (<code>nested=True</code>). The parent run will run for a single combination of the selected hyperparameters.</li>
+</ul>
+</li>
+<li>Plot performance charts for each model and log them as images (figures or artifacts) with other metadata and artifacts. Download all of these charts from backend store to the folder <code>results</code> in your repository.</li>
+<li><strong>[Method reproducibility]</strong> Check that the ML model is reproducible. Fix the random state of model weights and generators and ensure that you are not getting different results.</li>
+<li><strong>[Result reproducibility]</strong> Check that the ML results are reproducible. Use different random seeds (e.g. 100 different seeds) and calculate the average and variance of the model performance. Add the results to <code>results</code> folder as a text file.</li>
+<li>Compare the runs and results on MLflow UI for both model architectures. <!-- Add comparison results to `results` folder in your Github repo. --></li>
+<li>In MLflow UI, track the performance of the models, and select the best ones per model architecture which can be promoted to <code>staging</code>. You can select more than one model per architecture. Assign an alias <code>champion</code> for the best model among all of these models and another alias <code>challenger1</code>, <code>challenger2</code>, <code>challenger3</code>, …etc to the other models (The alias cannot be used more than once per registered model). It is enough to have one model as <code>champion</code> and one model as <code>challenger</code>.</li>
+</ol>
+<center>
+<p><img src="https://i.imgur.com/ZpKjCrs.png" alt="" class="md-image md-image"></p>
+<!-- ![](https://i.imgur.com/hl0Yy0G.png =300x200)  -->
+<!--     ![](https://i.imgur.com/ZhVaYLS.png =300x150) -->
+</center>
+<ol start="11">
+<li>Download all of these best models (ccampions and challengers) per architecture to <code>models</code> folder.</li>
+<li><strong>[Only Master’s students]</strong> The built model should be a deep neural network using Tensorflow or PyTroch  or any deep learning packages. In MLflow, you have <a href="https://mlflow.org/docs/latest/models.html#pytorch-pytorch" target="_blank" rel="noopener">example in the documentation</a> for Pytorch framework.</li>
+<li>Add another entry point <code>evaluate</code> to <code>MLproject</code> file to evaluate the selected model given the data sample version and model alias. By default, we assume that we evaluate the first sample on the <code>champion</code> model. These arguments can be passed to the function <code>evaluate</code> in <code>src/evaluate.py</code> using config files or directly in <code>MLproject</code> file.</li>
+</ol>
+</div><div class="alert alert-info">
+<p>In production, the model that is currently deployed is called the <strong>Champion</strong> model, whereas the model(s) that are being tested in production is/are called the <strong>Challenger</strong> models. Here we do not have models in production but we aim to deploy the champion model. For the next iterations of the project, we use shadow testing to test the champion model (already in production) with challenger models (candidates to replace the champion model) on the same input data.</p>
+</div><div class="alert alert-warning">
+<p>You should use Hydra for configuration management and running multiple experiments.</p>
+</div><h2 id="B-Report-Only-for-Master’s-students"><a class="anchor hidden-xs" href="#B-Report-Only-for-Master’s-students" title="B-Report-Only-for-Master’s-students"><i class="fa fa-link"></i></a>B. Report <strong>[Only for Master’s students]</strong></h2><div class="alert alert-success">
+<p>Complete the following chapters:</p>
+<ul>
+<li><strong>Chapter 4: Model engineering</strong>
+<ul>
+<li>The choice of modeling techniques depends on the ML and the business objectives, the data and the boundary conditions of the project the ML application is contributing to. The requirements and constraints that have been defined in Chapter 1 are used as inputs to guide the model selection to a subset of appropriate models. The goal of the modeling phase is to craft one or multiple models that satisfy the given constraints and requirements.</li>
+<li><strong>Section 4.1. Literature research on similar problems</strong>
+<ul>
+<li>It is best practice to screen the literature (e.g., publications, patents, internal reports) for a comprehensive overview on similar ML tasks, since ML has become an established tool for a wide number of applications. New models can be based on published insights, and previous results can serve as performance baselines.</li>
+<li><strong>Tasks:</strong>
+<ul>
+<li>Try to find two or three studies which applied ML in a business problem similar to your business problem.</li>
+<li>Summarize the results of the selected studies.</li>
+<li>Explain how this research practice can help you in the next sections.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Section 4.2. Define quality measures of the model</strong>
+<ul>
+<li>The modeling strategy is required to have multiple objectives in mind. Besides a performance metric, soft measures such as robustness, explainability, scalability, resource demand, and model complexity need to be evaluated. In practical application, explainability or robustness might be valued more than accuracy. In such cases, the measures can be weighted differently depending on the application. The models could be ranked either by summing up the weighted quality measures to a scalar or finding Pareto optimal models in a multi-objective optimization process. Additionally, the model’s fairness or trust might have to be assessed and mitigated.</li>
+<li><strong>Tasks:</strong>
+<ul>
+<li>Define the quality measures of ML models you use in the project.</li>
+<li>Check the success criteria of ML you defined in phase 1.</li>
+<li>Explain the quality measures and why you used these metrics.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Section 4.3. Model Selection</strong>
+<ul>
+<li>There are plenty of ML models and introductory books on classical methods, and Deep Learning can be used to compare and understand their characteristics. The model selection depends on the data and has to be tailored to the problem. There is no such model that performs the best on all problem classes (No Free Lunch Theorem for ML). It is best practice to start with models of lower capacity, which can serve as baseline, and gradually increase the capacity. Validating each step assures its benefit and avoid unnecessary complexity of the model.</li>
+<li><strong>Tasks:</strong>
+<ul>
+<li>Describe the models you selected for building ML system.</li>
+<li>Define the input and output dimensions of the models (model signature).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Section 4.4. Incorporate domain knowledge</strong>
+<ul>
+<li>In practice, a specialized model for a specific task performs better than a general model for all possible tasks. However, adapting the model to a specific problem involves the risk of incorporating false assumptions and could reduce the solution space to a non-optimal subset. Therefore, it is best practice to validate the incorporated domain knowledge in isolation against a baseline. Adding domain knowledge should always increase the quality of the model, otherwise, it should be removed to avoid false bias.</li>
+<li><strong>Tasks:</strong>
+<ul>
+<li>Assure that the selection of quality metrics and models is relevant to the business problem.</li>
+<li>Include domain knowledge in this selection and summarize your explanations.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Section 4.5. Model training</strong>
+<ul>
+<li>The trained model depends on the learning problem, and as such, they are tightly coupled. The learning problem contains an objective, optimizer, regularization, and cross-validation. The objective of the learning problem depends on the application. Different applications value different aspects and need to be tweaked in alignment with the business success criteria. The objective is a proxy to evaluate the performance of the model. The optimizer defines the learning strategy and how to adapt the parameters of the model to improve the objective. Regularization, which can be incorporated in the objective, optimizer, and in the model itself, is needed to reduce the risk of overfitting and can help to find unique solutions. Cross-validation is performed for feature selection, to optimize the hyperparameters of the model and to test its generalization property to unseen data. Crossvalidation is based on a splitting of historical data in training, validation, and testing data, where the latter is used as a proxy for the target environment.</li>
+<li><strong>Tasks:</strong>
+<ul>
+<li>Specify the test datasets you created. Explain your train test split strategy.</li>
+<li>Add the modeling results including the comparison of the experiments and runs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Section 4.6 Assure reproducibility</strong>
+<ul>
+<li>A major principle of scientific methods and the characteristics of robust ML applications is reproducibility. However, ML models are difficult to reproduce due to the mostly non-convex and stochastic training procedures and randomized data splits. It has been proposed to distinguish reproducibility on two different levels. First, one has to assure that the <strong>method</strong> itself is reproducible and secondly its <strong>results</strong>.</li>
+<li><strong>Tasks:</strong>
+<ul>
+<li><strong>Method reproducibility:</strong> This task aims at reproducing the model from an extensive description or sharing of the used algorithm, data set, hyper-parameters, and run-time environment (e.g., software versions, hardware, and random seeds). The algorithm should be described in detail, i.e., with (pseudo) code and on the meta-level including the assumptions.</li>
+<li><strong>Result reproducibility:</strong> It is best practice to validate the mean performance and assess the variance of the model on different random seeds. Reporting only the top performance of the model is common but dubious practice. Large performance variances indicate the sensitivity of the algorithm and question the robustness of the model.</li>
+<li><strong>Experimental Documentation:</strong> Keeping track of the changed model’s performance and its causes by precedent model modifications allows model comprehension by addressing which modifications were beneficial and improve the overall model quality. The documentation should contain the listed properties in the method reproducibility task. Tool-based approaches on version control and meta-data handling while experimenting on ML models and hyper-parameters exist.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h1 id="References"><a class="anchor hidden-xs" href="#References" title="References"><i class="fa fa-link"></i></a>References</h1><ul>
 <li><a href="https://ml-ops.org/content/crisp-ml" target="_blank" rel="noopener">CRISP-ML</a></li>
+<li><a href="https://optuna.org/" target="_blank" rel="noopener">Optuna</a></li>
+<li><a href="https://www.mlflow.org/docs/latest" target="_blank" rel="noopener">MLflow docs</a></li>
+<li><a href="https://deeplearninguniversity.com/mlops/mlops-model-testing/#google_vignette" target="_blank" rel="noopener">MLOps: Model Testing</a></li>
 </ul></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -392,30 +1329,80 @@ print(autolog_run)
 <li class=""><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a></li>
-<li class=""><a href="#Get-MLflow0" title="Get MLflow">Get MLflow</a></li>
-<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a></li>
-<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
 <li class=""><a href="#Concepts" title="Concepts">Concepts</a></li>
-<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+</ul>
+</li>
+<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li class=""><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
+<li class=""><a href="#Experiments" title="Experiments">Experiments</a></li>
+<li class=""><a href="#Runs" title="Runs">Runs</a></li>
+<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li class=""><a href="#Others" title="Others">Others</a></li>
+</ul>
+</li>
+<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
 <li class=""><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li class=""><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
 <li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li class=""><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
-<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
-<li class=""><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
-<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
-<li class=""><a href="#Autlogging" title="Autlogging">Autlogging</a><ul class="nav">
+</ul>
+</li>
+<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li class=""><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
+<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
+<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+</ul>
+</li>
+<li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul class="nav">
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
+<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
+<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
+<li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
+<li><a href="#Models-view" title="Models view">Models view</a></li>
 </ul>
 </li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
+<li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
+<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
+<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+</ul>
+</li>
+<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+</ul>
+</li>
+<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
+</ul>
+</li>
+<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
+<li><a href="#Examples" title="Examples">Examples</a></li>
+</ul>
+</li>
+<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li class=""><a href="#References" title="References">References</a></li>
@@ -438,30 +1425,80 @@ print(autolog_run)
 <li class=""><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a></li>
-<li class=""><a href="#Get-MLflow0" title="Get MLflow">Get MLflow</a></li>
-<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a></li>
-<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
 <li class=""><a href="#Concepts" title="Concepts">Concepts</a></li>
-<li class=""><a href="#Demo0" title="Demo">Demo</a><ul class="nav">
+</ul>
+</li>
+<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li class=""><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
+<li class=""><a href="#Experiments" title="Experiments">Experiments</a></li>
+<li class=""><a href="#Runs" title="Runs">Runs</a></li>
+<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li class=""><a href="#Others" title="Others">Others</a></li>
+</ul>
+</li>
+<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
 <li class=""><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li class=""><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
 <li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li class=""><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
-<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
-<li class=""><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
-<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
-<li class=""><a href="#Autlogging" title="Autlogging">Autlogging</a><ul class="nav">
+</ul>
+</li>
+<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li class=""><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
+<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
+<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+</ul>
+</li>
+<li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul class="nav">
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
+<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
+<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
+<li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
+<li><a href="#Models-view" title="Models view">Models view</a></li>
 </ul>
 </li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
+<li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
+<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
+<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+</ul>
+</li>
+<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+</ul>
+</li>
+<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
+</ul>
+</li>
+<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
+<li><a href="#Examples" title="Examples">Examples</a></li>
+</ul>
+</li>
+<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li class=""><a href="#References" title="References">References</a></li>
