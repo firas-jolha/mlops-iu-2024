@@ -39,7 +39,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-
 <li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
 <li><a href="#Agenda" title="Agenda">Agenda</a></li>
 <li><a href="#Description" title="Description">Description</a></li>
-<li><a href="#MLflow0" title="MLflow">MLflow</a><ul>
+<li><a href="#MLflow" title="MLflow">MLflow</a><ul>
 <li><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
@@ -112,6 +112,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-
 <li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
+<li><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
 </ul>
 </li>
 <li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
@@ -121,7 +122,7 @@ Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-
 </li>
 <li><a href="#References" title="References">References</a></li>
 </ul>
-</div><p></p><h1 id="Description"><a class="anchor hidden-xs" href="#Description" title="Description"><i class="fa fa-link"></i></a>Description</h1><p>The modeling phase is the ML-specific part of the process. This phase aims to specify one or several machine learning models to be deployed in the production. The translation to the ML task depends on the business problem that we are trying to solve. Constraints and requirements from the Business and Data Understanding phase will shape this phase. For example, the application domain’s model assessment metrics might include performance metrics, robustness, fairness, scalability, interpretability, model complexity degree, and model resource demand. We should adjust the importance of each of these metrics according to the use case.</p><p>Generally, the modeling phase includes model selection, model specialization, and model training tasks. Additionally, depending on the application, we might use a pre-trained model, compress the model, or apply ensemble learning methods to get the final ML model.</p><p>One main complaint about machine learning projects is the lack of reproducibility. Therefore we should ensure that the method and the results of the modeling phase are reproducible by collecting the model training method’s metadata. Typically we collect the following metadata: algorithm, training, validation and testing data set, hyper-parameters, and runtime environment description. The result reproducibility assumes the validation of the model’s mean performance on different random seeds. Following best practices, documenting trained models increases the transparency and explainability in ML projects. A helpful framework here is the “Model Cards Toolkit”.</p><p><img src="https://i.imgur.com/fcrEVEX.jpeg" alt="" class="md-image md-image"></p><p>Many phases in ML development are iterative. Sometimes, we might need to review the business goals, KPIs, and available data from the previous steps to adjust the outcomes of the ML model results. Finally, we package the ML workflow in a pipeline to create repeatable model training during the modeling phase.</p><h1 id="MLflow0"><a class="anchor hidden-xs" href="#MLflow0" title="MLflow0"><i class="fa fa-link"></i></a>MLflow</h1><p>MLflow, at its core, provides a suite of tools aimed at simplifying the ML workflow. It is tailored to assist ML practitioners throughout the various stages of ML development and deployment.</p><h2 id="Components"><a class="anchor hidden-xs" href="#Components" title="Components"><i class="fa fa-link"></i></a>Components</h2><p>MLflow’s functionalities are rooted in several foundational components:</p><ul>
+</div><p></p><h1 id="Description"><a class="anchor hidden-xs" href="#Description" title="Description"><i class="fa fa-link"></i></a>Description</h1><p>The modeling phase is the ML-specific part of the process. This phase aims to specify one or several machine learning models to be deployed in the production. The translation to the ML task depends on the business problem that we are trying to solve. Constraints and requirements from the Business and Data Understanding phase will shape this phase. For example, the application domain’s model assessment metrics might include performance metrics, robustness, fairness, scalability, interpretability, model complexity degree, and model resource demand. We should adjust the importance of each of these metrics according to the use case.</p><p>Generally, the modeling phase includes model selection, model specialization, and model training tasks. Additionally, depending on the application, we might use a pre-trained model, compress the model, or apply ensemble learning methods to get the final ML model.</p><p>One main complaint about machine learning projects is the lack of reproducibility. Therefore we should ensure that the method and the results of the modeling phase are reproducible by collecting the model training method’s metadata. Typically we collect the following metadata: algorithm, training, validation and testing data set, hyper-parameters, and runtime environment description. The result reproducibility assumes the validation of the model’s mean performance on different random seeds. Following best practices, documenting trained models increases the transparency and explainability in ML projects. A helpful framework here is the “Model Cards Toolkit”.</p><p><img src="https://i.imgur.com/fcrEVEX.jpeg" alt="" class="md-image md-image"></p><p>Many phases in ML development are iterative. Sometimes, we might need to review the business goals, KPIs, and available data from the previous steps to adjust the outcomes of the ML model results. Finally, we package the ML workflow in a pipeline to create repeatable model training during the modeling phase.</p><h1 id="MLflow"><a class="anchor hidden-xs" href="#MLflow" title="MLflow"><i class="fa fa-link"></i></a>MLflow</h1><p>MLflow, at its core, provides a suite of tools aimed at simplifying the ML workflow. It is tailored to assist ML practitioners throughout the various stages of ML development and deployment.</p><h2 id="Components"><a class="anchor hidden-xs" href="#Components" title="Components"><i class="fa fa-link"></i></a>Components</h2><p>MLflow’s functionalities are rooted in several foundational components:</p><ul>
 <li><strong>Tracking:</strong> MLflow Tracking provides both an API and UI dedicated to the logging of parameters, code versions, metrics, and artifacts during the ML process. This centralized repository captures details such as parameters, metrics, artifacts, data, and environment configurations, giving teams insight into their models’ evolution over time. Whether working in standalone scripts, notebooks, or other environments, Tracking facilitates the logging of results either to local files or a server, making it easier to compare multiple runs across different users.</li>
 <li><strong>Model Registry:</strong> A systematic approach to model management, the Model Registry assists in handling different versions of models, discerning their current state, and ensuring smooth productionization. It offers a centralized model store, APIs, and UI to collaboratively manage an MLflow Model’s full lifecycle, including model lineage, versioning, aliasing, tagging, and annotations.</li>
 <li><strong>Projects:</strong> MLflow Projects standardize the packaging of ML code, workflows, and artifacts, akin to an executable. Each project, be it a directory with code or a Git repository, employs a descriptor or convention to define its dependencies and execution method.</li>
@@ -1187,7 +1188,409 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li>Choice override<br>
 <code>choice</code> is converted to <code>CategoricalDistribution</code>.</li>
 </ol><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">src/app.py</span> <span class="hljs-bullet">--multirun</span> <span class="hljs-string">'x=choice(-5.0, 0.0, 5.0)'</span> <span class="hljs-string">'y=choice(0, 1, 2, 3, 4, 5)'</span>
-</code></pre><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-warning">
+</code></pre><h2 id="ML-model-optimization-demo-MLflow--Hydra"><a class="anchor hidden-xs" href="#ML-model-optimization-demo-MLflow--Hydra" title="ML-model-optimization-demo-MLflow--Hydra"><i class="fa fa-link"></i></a>ML model optimization demo (MLflow + Hydra)</h2><p>Here I will show a demo on how we can use such tools in the project.</p><div class="alert alert-warning">
+<p>In the project, you need to use Hydra config files to store/retrieve the hyperparameters and settings of models and data. You also <em>can</em> use <code>joblib</code> and <code>optuna</code> plugins to speed up the hyperparameter optimization but be careful of race conditions on logging on the same run.</p>
+</div><h4 id="Step-1-Setup-config-files"><a class="anchor hidden-xs" href="#Step-1-Setup-config-files" title="Step-1-Setup-config-files"><i class="fa fa-link"></i></a>Step 1. Setup config files</h4><pre><code class="yaml hljs"><span class="hljs-comment"># The line below is the filename and should be stored in the root directory of the repository.</span>
+<span class="hljs-comment"># MLproject</span>
+
+
+<span class="hljs-attr">name:</span> <span class="hljs-string">&lt;Project</span> <span class="hljs-string">Title&gt;</span> 
+
+<span class="hljs-comment"># python_env: python_env.yaml</span>
+
+<span class="hljs-attr">entry_points:</span>
+
+<span class="hljs-attr">  main:</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">"python src/main.py"</span> <span class="hljs-comment"># --multirun"</span>
+  
+<span class="hljs-attr">  evaluate:</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">"python src/evaluate.py"</span>
+
+
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># configs/main.yaml</span>
+
+<span class="hljs-attr">defaults:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">_self_</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">data/sample</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">data_version</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">model/model</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">experiment</span>
+  <span class="hljs-comment"># - override hydra/launcher: joblib # submitit_local #joblib</span>
+  <span class="hljs-comment"># - override hydra/sweeper: optuna</span>
+  <span class="hljs-comment"># - override hydra/sweeper/sampler: grid</span>
+
+<span class="hljs-attr">hydra:</span>
+<span class="hljs-attr">  mode:</span> <span class="hljs-string">MULTIRUN</span>
+  <span class="hljs-comment"># launcher:</span>
+  <span class="hljs-comment">#   n_jobs: -1</span>
+<span class="hljs-attr">  sweeper:</span>
+<span class="hljs-attr">    params:</span>
+      <span class="hljs-string">+model:</span> <span class="hljs-string">"rf, lr"</span>
+      <span class="hljs-comment"># +model: "rf"</span>
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># configs/experiment.yaml</span>
+
+<span class="hljs-attr">experiment_name:</span> <span class="hljs-string">"mlops_experiment"</span>
+<span class="hljs-attr">run_name:</span> <span class="hljs-string">"multi_run"</span>
+
+<span class="hljs-attr">test_size:</span> <span class="hljs-number">0.2</span>
+<span class="hljs-attr">random_state:</span> <span class="hljs-number">88</span>
+<span class="hljs-attr">cv_n_jobs:</span> <span class="hljs-bullet">-1</span>
+
+<span class="hljs-attr">train_data_version:</span> <span class="hljs-string">"v4"</span>
+<span class="hljs-attr">test_data_version:</span> <span class="hljs-string">"v5"</span>
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># configs/data_version.yaml</span>
+
+<span class="hljs-attr">data_version:</span> <span class="hljs-string">v4</span>
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># configs/model/model.yaml</span>
+
+<span class="hljs-attr">defaults:</span>
+<span class="hljs-bullet">  -</span> <span class="hljs-string">_self_</span>
+
+<span class="hljs-attr">folds:</span> <span class="hljs-number">3</span>
+
+<span class="hljs-attr">evaluation_metric:</span> <span class="hljs-string">"f1"</span>
+<span class="hljs-attr">cv_evaluation_metric:</span> <span class="hljs-string">"mean_test_f1"</span>
+
+<span class="hljs-attr">pyfunc_predict_fn:</span> <span class="hljs-string">"predict_proba"</span>
+
+<span class="hljs-attr">metrics:</span>
+<span class="hljs-attr">  accuracy:</span> <span class="hljs-string">"accuracy"</span>
+<span class="hljs-attr">  f1:</span> <span class="hljs-string">"f1"</span>
+
+
+<span class="hljs-comment"># hydra:</span>
+<span class="hljs-comment">#   sweeper:</span>
+<span class="hljs-comment">#       sampler:</span>
+<span class="hljs-comment">#         seed: 8888</span>
+<span class="hljs-comment">#       # n_trials: 20 # number of times to try to optimize the search space</span>
+<span class="hljs-comment">#       direction: maximize # minimize</span>
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># configs/model/lr.yaml</span>
+
+<span class="hljs-attr">model_name:</span> <span class="hljs-string">logistic_regression</span>
+<span class="hljs-attr">artifact_path:</span> <span class="hljs-string">basic_lr</span>
+
+<span class="hljs-attr">tag_key:</span> <span class="hljs-string">"model"</span>
+<span class="hljs-attr">tag_value:</span> <span class="hljs-string">"basic LR"</span>
+
+<span class="hljs-attr">module_name:</span> <span class="hljs-string">"sklearn.linear_model"</span>
+<span class="hljs-attr">class_name:</span> <span class="hljs-string">"LogisticRegression"</span>
+
+<span class="hljs-attr">params:</span>
+  <span class="hljs-comment"># penalty: ['l1', 'l2']</span>
+<span class="hljs-attr">  solver:</span> <span class="hljs-string">["saga",</span> <span class="hljs-string">"lbfgs"</span><span class="hljs-string">,</span> <span class="hljs-string">"liblinear"</span><span class="hljs-string">]</span>
+<span class="hljs-attr">  max_iter:</span> <span class="hljs-string">[100,</span> <span class="hljs-number">200</span><span class="hljs-string">,</span> <span class="hljs-number">1000</span><span class="hljs-string">]</span>
+<span class="hljs-attr">  random_state:</span> <span class="hljs-string">[88]</span> <span class="hljs-comment">#, 100, 44]</span>
+<span class="hljs-attr">  C:</span> <span class="hljs-string">[0.1,</span> <span class="hljs-number">0.5</span><span class="hljs-string">,</span> <span class="hljs-number">0.9</span><span class="hljs-string">]</span>
+  <span class="hljs-comment"># C: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]</span>
+  <span class="hljs-comment"># C: np.arange(0.1, 1, 0.1)</span>
+
+<span class="hljs-comment"># hydra:</span>
+<span class="hljs-comment">#   sweeper:</span>
+<span class="hljs-comment">#     params:</span>
+<span class="hljs-comment">#       +params.penalty: "'l1', 'l2'"</span>
+<span class="hljs-comment">#       +params.solver: "'saga'"</span>
+<span class="hljs-comment">#       +params.max_iter: "100, 200, 1000"</span>
+<span class="hljs-comment">#       +params.random_state: 88</span>
+<span class="hljs-comment">#       +params.C: range(start=0.1, stop=1, step=0.1)</span>
+</code></pre><pre><code class="yaml hljs"><span class="hljs-comment"># configs/model/rf.yaml</span>
+
+<span class="hljs-attr">model_name:</span> <span class="hljs-string">random_forest</span>
+<span class="hljs-attr">artifact_path:</span> <span class="hljs-string">basic_rf</span>
+
+<span class="hljs-attr">tag_key:</span> <span class="hljs-string">"model"</span>
+<span class="hljs-attr">tag_value:</span> <span class="hljs-string">"basic RF"</span>
+
+<span class="hljs-attr">module_name:</span> <span class="hljs-string">"sklearn.ensemble"</span>
+<span class="hljs-attr">class_name:</span> <span class="hljs-string">"RandomForestClassifier"</span>
+
+<span class="hljs-attr">params:</span>
+<span class="hljs-attr">  n_estimators:</span> <span class="hljs-string">[100,</span> <span class="hljs-number">200</span><span class="hljs-string">,</span> <span class="hljs-number">500</span><span class="hljs-string">]</span>
+<span class="hljs-attr">  criterion:</span> <span class="hljs-string">['gini',</span> <span class="hljs-string">'entropy'</span><span class="hljs-string">,</span> <span class="hljs-string">'log_loss'</span><span class="hljs-string">]</span>
+<span class="hljs-attr">  random_state:</span> <span class="hljs-string">[88]</span> <span class="hljs-comment">#, 100, 44]</span>
+
+
+<span class="hljs-comment"># hydra:</span>
+<span class="hljs-comment">#   sweeper:</span>
+<span class="hljs-comment">#       params:</span>
+<span class="hljs-comment">#         +params.n_estimators: "100, 200, 500"</span>
+<span class="hljs-comment">#         +params.criterion: "'gini', 'entropy', 'log_loss'"</span>
+<span class="hljs-comment">#         +params.random_state: 88</span>
+
+
+</code></pre><h4 id="Step-2-Write-code-to-load-the-data-train-the-model-log-the-artifacts-and-metadata"><a class="anchor hidden-xs" href="#Step-2-Write-code-to-load-the-data-train-the-model-log-the-artifacts-and-metadata" title="Step-2-Write-code-to-load-the-data-train-the-model-log-the-artifacts-and-metadata"><i class="fa fa-link"></i></a>Step 2. Write code to load the data, train the model, log the artifacts and metadata.</h4><pre><code class="python hljs"><span class="hljs-comment"># src/model.py</span>
+
+<span class="hljs-keyword">import</span> warnings
+warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV
+<span class="hljs-keyword">from</span> zenml.client <span class="hljs-keyword">import</span> Client
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">import</span> mlflow.sklearn
+<span class="hljs-keyword">import</span> importlib
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load_features</span><span class="hljs-params">(name, version, size = <span class="hljs-number">1</span>)</span>:</span>
+    client = Client()
+    l = client.list_artifact_versions(name = name, tag = version, sort_by=<span class="hljs-string">"version"</span>).items
+    l.reverse
+
+    df = l[<span class="hljs-number">0</span>].load()
+    df = df.sample(frac = size, random_state = <span class="hljs-number">88</span>)
+
+    print(<span class="hljs-string">"size of df is "</span>, df.shape)
+    print(<span class="hljs-string">"df columns: "</span>, df.columns)
+
+    X = df[df.columns[:<span class="hljs-number">-1</span>]]
+    y = df.y
+
+    print(<span class="hljs-string">"shapes of X,y = "</span>, X.shape, y.shape)
+
+    <span class="hljs-keyword">return</span> X, y
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">log_metadata</span><span class="hljs-params">(cfg, gs, X_train, y_train, X_test, y_test)</span>:</span>
+
+    cv_results = pd.DataFrame(gs.cv_results_).filter(regex=<span class="hljs-string">r'std_|mean_|param_'</span>).sort_index(axis=<span class="hljs-number">1</span>)
+    best_metrics_values = [result[<span class="hljs-number">1</span>][gs.best_index_] <span class="hljs-keyword">for</span> result <span class="hljs-keyword">in</span> gs.cv_results_.items()]
+    best_metrics_keys = [metric <span class="hljs-keyword">for</span> metric <span class="hljs-keyword">in</span> gs.cv_results_]
+    best_metrics_dict = {k:v <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> zip(best_metrics_keys, best_metrics_values) <span class="hljs-keyword">if</span> <span class="hljs-string">'mean'</span> <span class="hljs-keyword">in</span> k <span class="hljs-keyword">or</span> <span class="hljs-string">'std'</span> <span class="hljs-keyword">in</span> k}
+
+    <span class="hljs-comment"># print(cv_results, cv_results.columns)</span>
+
+    params = best_metrics_dict
+
+    df_train = pd.concat([X_train, y_train], axis = <span class="hljs-number">1</span>)
+    df_test = pd.concat([X_test, y_test], axis = <span class="hljs-number">1</span>)
+
+    experiment_name = cfg.model.model_name + <span class="hljs-string">"_"</span> + cfg.experiment_name 
+
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># Create a new MLflow Experiment</span>
+        experiment_id = mlflow.create_experiment(name=experiment_name)
+    <span class="hljs-keyword">except</span> mlflow.exceptions.MlflowException <span class="hljs-keyword">as</span> e:
+        experiment_id = mlflow.get_experiment_by_name(name=experiment_name).experiment_id <span class="hljs-comment"># type: ignore</span>
+    
+    print(<span class="hljs-string">"experiment-id : "</span>, experiment_id)
+
+    cv_evaluation_metric = cfg.model.cv_evaluation_metric
+    run_name = <span class="hljs-string">"_"</span>.join([cfg.run_name, cfg.model.model_name, cfg.model.evaluation_metric, str(params[cv_evaluation_metric]).replace(<span class="hljs-string">"."</span>, <span class="hljs-string">"_"</span>)]) <span class="hljs-comment"># type: ignore</span>
+    print(<span class="hljs-string">"run name: "</span>, run_name)
+
+    <span class="hljs-keyword">if</span> (mlflow.active_run()):
+        mlflow.end_run()
+
+    <span class="hljs-comment"># Fake run</span>
+    <span class="hljs-keyword">with</span> mlflow.start_run():
+        <span class="hljs-keyword">pass</span>
+
+    <span class="hljs-comment"># Parent run</span>
+    <span class="hljs-keyword">with</span> mlflow.start_run(run_name = run_name, experiment_id = experiment_id) <span class="hljs-keyword">as</span> run:
+
+        df_train_dataset = mlflow.data.pandas_dataset.from_pandas(df = df_train, targets = cfg.data.target_cols[<span class="hljs-number">0</span>]) <span class="hljs-comment"># type: ignore</span>
+        df_test_dataset = mlflow.data.pandas_dataset.from_pandas(df = df_test, targets = cfg.data.target_cols[<span class="hljs-number">0</span>]) <span class="hljs-comment"># type: ignore</span>
+        mlflow.log_input(df_train_dataset, <span class="hljs-string">"training"</span>)
+        mlflow.log_input(df_test_dataset, <span class="hljs-string">"testing"</span>)
+
+        <span class="hljs-comment"># Log the hyperparameters</span>
+        mlflow.log_params(gs.best_params_)
+
+        <span class="hljs-comment"># Log the performance metrics</span>
+        mlflow.log_metrics(best_metrics_dict)
+
+        <span class="hljs-comment"># Set a tag that we can use to remind ourselves what this run was for</span>
+        mlflow.set_tag(cfg.model.tag_key, cfg.model.tag_value)
+
+        <span class="hljs-comment"># Infer the model signature</span>
+        signature = mlflow.models.infer_signature(X_train, gs.predict(X_train))
+
+        <span class="hljs-comment"># Log the model</span>
+        model_info = mlflow.sklearn.log_model(
+            sk_model = gs.best_estimator_,
+            artifact_path = cfg.model.artifact_path,
+            signature = signature,
+            input_example = X_train.iloc[<span class="hljs-number">0</span>].to_numpy(),
+            registered_model_name = cfg.model.model_name,
+            pyfunc_predict_fn = cfg.model.pyfunc_predict_fn
+        )
+
+        client = mlflow.client.MlflowClient()
+        client.set_model_version_tag(name = cfg.model.model_name, version=model_info.registered_model_version, key=<span class="hljs-string">"source"</span>, value=<span class="hljs-string">"best_Grid_search_model"</span>)
+
+
+        <span class="hljs-keyword">for</span> index, result <span class="hljs-keyword">in</span> cv_results.iterrows():
+
+            child_run_name = <span class="hljs-string">"_"</span>.join([<span class="hljs-string">'child'</span>, run_name, str(index)]) <span class="hljs-comment"># type: ignore</span>
+            <span class="hljs-keyword">with</span> mlflow.start_run(run_name = child_run_name, experiment_id= experiment_id, nested=<span class="hljs-literal">True</span>): <span class="hljs-comment">#, tags=best_metrics_dict):</span>
+                ps = result.filter(regex=<span class="hljs-string">'param_'</span>).to_dict()
+                ms = result.filter(regex=<span class="hljs-string">'mean_'</span>).to_dict()
+                stds = result.filter(regex=<span class="hljs-string">'std_'</span>).to_dict()
+
+                <span class="hljs-comment"># Remove param_ from the beginning of the keys</span>
+                ps = {k.replace(<span class="hljs-string">"param_"</span>,<span class="hljs-string">""</span>):v <span class="hljs-keyword">for</span> (k,v) <span class="hljs-keyword">in</span> ps.items()}
+
+                mlflow.log_params(ps)
+                mlflow.log_metrics(ms)
+                mlflow.log_metrics(stds)
+
+                <span class="hljs-comment"># We will create the estimator at runtime</span>
+                module_name = cfg.model.module_name <span class="hljs-comment"># e.g. "sklearn.linear_model"</span>
+                class_name  = cfg.model.class_name <span class="hljs-comment"># e.g. "LogisticRegression"</span>
+
+                <span class="hljs-comment"># Load "module.submodule.MyClass"</span>
+                class_instance = getattr(importlib.import_module(module_name), class_name)
+                
+                estimator = class_instance(**ps)
+                estimator.fit(X_train, y_train)
+
+                <span class="hljs-comment"># from sklearn.model_selection import cross_val_score</span>
+                <span class="hljs-comment"># scores = cross_val_score(estimator=estimator, </span>
+                <span class="hljs-comment">#                          X_train, </span>
+                <span class="hljs-comment">#                          y_train, </span>
+                <span class="hljs-comment">#                          cv = cfg.model.folds, </span>
+                <span class="hljs-comment">#                          n_jobs=cfg.cv_n_jobs,</span>
+                <span class="hljs-comment">#                          scoring=cfg.model.cv_evaluation_metric)</span>
+                <span class="hljs-comment"># cv_evaluation_metric = scores.mean()</span>
+                
+                signature = mlflow.models.infer_signature(X_train, estimator.predict(X_train))
+
+                model_info = mlflow.sklearn.log_model(
+                    sk_model = estimator,
+                    artifact_path = cfg.model.artifact_path,
+                    signature = signature,
+                    input_example = X_train.iloc[<span class="hljs-number">0</span>].to_numpy(),
+                    registered_model_name = cfg.model.model_name,
+                    pyfunc_predict_fn = cfg.model.pyfunc_predict_fn
+                )
+
+                model_uri = model_info.model_uri
+                loaded_model = mlflow.sklearn.load_model(model_uri=model_uri)
+
+                predictions = loaded_model.predict(X_test) <span class="hljs-comment"># type: ignore</span>
+        
+                eval_data = pd.DataFrame(y_test)
+                eval_data.columns = [<span class="hljs-string">"label"</span>]
+                eval_data[<span class="hljs-string">"predictions"</span>] = predictions
+
+                results = mlflow.evaluate(
+                    data=eval_data,
+                    model_type=<span class="hljs-string">"classifier"</span>,
+                    targets=<span class="hljs-string">"label"</span>,
+                    predictions=<span class="hljs-string">"predictions"</span>,
+                    evaluators=[<span class="hljs-string">"default"</span>]
+                )
+
+                print(<span class="hljs-string">f"metrics:\n<span class="hljs-subst">{results.metrics}</span>"</span>)
+            
+            <span class="hljs-comment"># mlflow.end_run()  </span>
+    
+    <span class="hljs-comment"># mlflow.end_run()  </span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">(X_train, y_train, cfg)</span>:</span>
+
+    <span class="hljs-comment"># Define the model hyperparameters</span>
+    params = cfg.model.params
+
+    <span class="hljs-comment"># Train the model</span>
+    module_name = cfg.model.module_name <span class="hljs-comment"># e.g. "sklearn.linear_model"</span>
+    class_name  = cfg.model.class_name <span class="hljs-comment"># e.g. "LogisticRegression"</span>
+
+    <span class="hljs-comment"># We will create the estimator at runtime</span>
+    <span class="hljs-keyword">import</span> importlib
+
+    <span class="hljs-comment"># Load "module.submodule.MyClass"</span>
+    class_instance = getattr(importlib.import_module(module_name), class_name)
+
+    estimator = class_instance(**params)
+
+    <span class="hljs-comment"># Grid search with cross validation</span>
+    <span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> StratifiedKFold
+    cv = StratifiedKFold(n_splits=cfg.model.folds, random_state=cfg.random_state, shuffle=<span class="hljs-literal">True</span>)
+
+    param_grid = dict(params)
+
+    scoring = list(cfg.model.metrics.values()) <span class="hljs-comment"># ['balanced_accuracy', 'f1_weighted', 'precision', 'recall', 'roc_auc']</span>
+
+    evaluation_metric = cfg.model.evaluation_metric
+
+    gs = GridSearchCV(
+        estimator = estimator,
+        param_grid = param_grid,
+        scoring = scoring,
+        n_jobs = cfg.cv_n_jobs,
+        refit = evaluation_metric,
+        cv = cv,
+        verbose = <span class="hljs-number">1</span>,
+        return_train_score = <span class="hljs-literal">True</span>
+    )
+
+    gs.fit(X_train, y_train)
+
+    <span class="hljs-keyword">return</span> gs
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">retrieve_model_with_alias</span><span class="hljs-params">(model_name, model_alias = <span class="hljs-string">"champion"</span>)</span> -&gt; mlflow.pyfunc.PyFuncModel:</span>
+
+    best_model:mlflow.pyfunc.PyFuncModel = mlflow.pyfunc.load_model(model_uri=<span class="hljs-string">f"models:/<span class="hljs-subst">{model_name}</span>@<span class="hljs-subst">{model_alias}</span>"</span>)
+
+    <span class="hljs-comment"># best_model</span>
+    <span class="hljs-keyword">return</span> best_model
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">retrieve_model_with_version</span><span class="hljs-params">(model_name, model_version = <span class="hljs-string">"v1"</span>)</span> -&gt; mlflow.pyfunc.PyFuncModel:</span>
+
+    best_model:mlflow.pyfunc.PyFuncModel = mlflow.pyfunc.load_model(model_uri=<span class="hljs-string">f"models:/<span class="hljs-subst">{model_name}</span>/<span class="hljs-subst">{model_version}</span>"</span>)
+
+    <span class="hljs-comment"># best_model</span>
+    <span class="hljs-keyword">return</span> best_model
+
+</code></pre><pre><code class="python hljs"><span class="hljs-comment"># src/main.py</span>
+
+
+<span class="hljs-keyword">import</span> hydra
+<span class="hljs-keyword">from</span> model <span class="hljs-keyword">import</span> train, load_features, log_metadata
+<span class="hljs-keyword">from</span> omegaconf <span class="hljs-keyword">import</span> OmegaConf
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(args)</span>:</span>
+    cfg = args
+
+    train_data_version = cfg.train_data_version
+
+    X_train, y_train = load_features(name = <span class="hljs-string">"features_target"</span>, version=train_data_version)
+
+    test_data_version = cfg.test_data_version
+
+    X_test, y_test = load_features(name = <span class="hljs-string">"features_target"</span>, version=test_data_version)
+
+    <span class="hljs-comment"># print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)</span>
+
+    gs = train(X_train, y_train, cfg=cfg)
+
+    log_metadata(cfg, gs, X_train, y_train, X_test, y_test)
+
+    
+<span class="hljs-meta">@hydra.main(config_path="../configs", config_name="main", version_base=None) # type: ignore</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">(cfg=None)</span>:</span>
+
+    <span class="hljs-comment"># print(OmegaConf.to_yaml(cfg))</span>
+
+    run(cfg)
+
+
+
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">"__main__"</span>:
+    main()
+
+
+</code></pre><h4 id="Step-3-Run-mlflow-run-command"><a class="anchor hidden-xs" href="#Step-3-Run-mlflow-run-command" title="Step-3-Run-mlflow-run-command"><i class="fa fa-link"></i></a>Step 3. Run <code>mlflow run</code> command.</h4><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">run</span> <span class="hljs-string">.</span> <span class="hljs-bullet">--env-manager=local</span>
+</code></pre><div class="alert alert-warning">
+<p>Here I am using the current virtual environment (<code>--env-manager=local</code>) for running the MLflow project and it is enough for now.</p>
+</div><div class="alert alert-info">
+<p>Master’s students who will probably work with Pytorch, can use <code>skorch</code> package to wrap deep networks and get benefit from GridSearch functionality in sklearn. Check the links below for more info.</p>
+<ol>
+<li><a href="https://pypi.org/project/skorch/" target="_blank" rel="noopener">https://pypi.org/project/skorch/</a></li>
+<li><a href="https://machinelearningmastery.com/how-to-grid-search-hyperparameters-for-pytorch-models/" target="_blank" rel="noopener">https://machinelearningmastery.com/how-to-grid-search-hyperparameters-for-pytorch-models/</a></li>
+</ol>
+</div><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-warning">
 <p>Here use only one (e.g. first) version of your data samples for training your model.</p>
 </div><div class="alert alert-success">
 <ol>
@@ -1196,10 +1599,10 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li>Read the features from the ZenML artifact store. Select the appropriate version of the artifact based on the version of the data sample you are tracking in config files.</li>
 <li>Split the data sample into training, validation and test sets. Select a specific split ratio. Use one data sample for training the model (80% of the data sample for training and 20% for validation) and next data sample (50%-100% of the next data sample) for testing/evaluating the model performance. For instance, data sample <code>v1</code> is used for training and validation, and <code>v2</code> is used for testing the models.</li>
 <li>Create an MLflow experiment, a data source, a dataset and use MLflow to log the important metrics, datasets, models and their metadata. <strong>Do not use autologging</strong>. It is ok if you do not log the data since we have it in dvc store and ZenML artifact store. Use the default metrics provided in <code>mlflow.evaluate</code> to log the metrics. Log all hyperparameters you optimized.</li>
-<li>Build at least two different model architectures. For each model architecture, optimize three of its hyperparameters and create a search space consisting of at least three different values per hyperparameter. So, you need to create at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27018-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99220" style="width: 3.774em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.235em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.35em, 1003.24em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99221"><span class="msubsup" id="MathJax-Span-99222"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.182em, 1000.43em, 4.151em, -999.997em); top: -3.984em; left: 0em;"><span class="mn" id="MathJax-Span-99223" style="font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; top: -4.362em; left: 0.488em;"><span class="mn" id="MathJax-Span-99224" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span></span></span><span class="mo" id="MathJax-Span-99225" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99226" style="font-family: MathJax_Main; padding-left: 0.272em;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27018">3^3=27</script></span> runs (Grid search) with different values for the hyperparams. In total, you should train at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27019-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn><mo>&amp;#x00D7;</mo><mn>2</mn><mo>=</mo><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99227" style="width: 5.822em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.013em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1004.96em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99228"><span class="mn" id="MathJax-Span-99229" style="font-family: MathJax_Main;">27</span><span class="mo" id="MathJax-Span-99230" style="font-family: MathJax_Main; padding-left: 0.218em;">×</span><span class="mn" id="MathJax-Span-99231" style="font-family: MathJax_Main; padding-left: 0.218em;">2</span><span class="mo" id="MathJax-Span-99232" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99233" style="font-family: MathJax_Main; padding-left: 0.272em;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-27019">27\times2=54</script></span> models (<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27020-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99234" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99235"><span class="mn" id="MathJax-Span-99236" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-27020">54</script></span> model versions) with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27021-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99237" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99238"><span class="mn" id="MathJax-Span-99239" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27021">27</script></span> runs per model. In the MLflow tracking server, you would get <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27022-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>2</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99240" style="width: 0.595em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.488em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.565em, 1000.43em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99241"><span class="mn" id="MathJax-Span-99242" style="font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn></math></span></span><script type="math/tex" id="MathJax-Element-27022">2</script></span> models with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27023-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99243" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99244"><span class="mn" id="MathJax-Span-99245" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27023">27</script></span> versions per model (a new model version per run). Notice that number of child runs with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27024-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>k</mi><mo>=</mo><mn>3</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99246" style="width: 2.697em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.32em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1002.27em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99247"><span class="mi" id="MathJax-Span-99248" style="font-family: MathJax_Math-italic;">k</span><span class="mo" id="MathJax-Span-99249" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99250" style="font-family: MathJax_Main; padding-left: 0.272em;">3</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>=</mo><mn>3</mn></math></span></span><script type="math/tex" id="MathJax-Element-27024">k=3</script></span> folds will be <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27025-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn><mo>&amp;#x2217;</mo><mn>3</mn><mo>=</mo><mn>162</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99251" style="width: 6.145em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.283em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1005.23em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99252"><span class="mn" id="MathJax-Span-99253" style="font-family: MathJax_Main;">54</span><span class="mo" id="MathJax-Span-99254" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mn" id="MathJax-Span-99255" style="font-family: MathJax_Main; padding-left: 0.218em;">3</span><span class="mo" id="MathJax-Span-99256" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-99257" style="font-family: MathJax_Main; padding-left: 0.272em;">162</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn><mo>∗</mo><mn>3</mn><mo>=</mo><mn>162</mn></math></span></span><script type="math/tex" id="MathJax-Element-27025">54*3=162</script></span> (with cross validation).<br>
+<li>Build at least two different model architectures. For each model architecture, optimize three of its hyperparameters and create a search space consisting of at least three different values per hyperparameter. So, you need to create at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-11-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-45" style="width: 3.774em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.235em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.35em, 1003.24em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-46"><span class="msubsup" id="MathJax-Span-47"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.182em, 1000.43em, 4.151em, -999.997em); top: -3.984em; left: 0em;"><span class="mn" id="MathJax-Span-48" style="font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; top: -4.362em; left: 0.488em;"><span class="mn" id="MathJax-Span-49" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span></span></span><span class="mo" id="MathJax-Span-50" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-51" style="font-family: MathJax_Main; padding-left: 0.272em;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-11">3^3=27</script></span> runs (Grid search) with different values for the hyperparams. In total, you should train at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-12-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn><mo>&amp;#x00D7;</mo><mn>2</mn><mo>=</mo><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-52" style="width: 5.822em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.013em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1004.96em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-53"><span class="mn" id="MathJax-Span-54" style="font-family: MathJax_Main;">27</span><span class="mo" id="MathJax-Span-55" style="font-family: MathJax_Main; padding-left: 0.218em;">×</span><span class="mn" id="MathJax-Span-56" style="font-family: MathJax_Main; padding-left: 0.218em;">2</span><span class="mo" id="MathJax-Span-57" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-58" style="font-family: MathJax_Main; padding-left: 0.272em;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-12">27\times2=54</script></span> models (<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-13-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-59" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-60"><span class="mn" id="MathJax-Span-61" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-13">54</script></span> model versions) with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-14-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-62" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-63"><span class="mn" id="MathJax-Span-64" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-14">27</script></span> runs per model. In the MLflow tracking server, you would get <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-15-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>2</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-65" style="width: 0.595em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.488em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.565em, 1000.43em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-66"><span class="mn" id="MathJax-Span-67" style="font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn></math></span></span><script type="math/tex" id="MathJax-Element-15">2</script></span> models with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-16-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-68" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-69"><span class="mn" id="MathJax-Span-70" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-16">27</script></span> versions per model (a new model version per run). Notice that number of child runs with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-17-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>k</mi><mo>=</mo><mn>3</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-71" style="width: 2.697em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.32em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1002.27em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-72"><span class="mi" id="MathJax-Span-73" style="font-family: MathJax_Math-italic;">k</span><span class="mo" id="MathJax-Span-74" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-75" style="font-family: MathJax_Main; padding-left: 0.272em;">3</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>=</mo><mn>3</mn></math></span></span><script type="math/tex" id="MathJax-Element-17">k=3</script></span> folds will be <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-18-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn><mo>&amp;#x2217;</mo><mn>3</mn><mo>=</mo><mn>162</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-76" style="width: 6.145em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.283em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1005.23em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-77"><span class="mn" id="MathJax-Span-78" style="font-family: MathJax_Main;">54</span><span class="mo" id="MathJax-Span-79" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mn" id="MathJax-Span-80" style="font-family: MathJax_Main; padding-left: 0.218em;">3</span><span class="mo" id="MathJax-Span-81" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-82" style="font-family: MathJax_Main; padding-left: 0.272em;">162</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn><mo>∗</mo><mn>3</mn><mo>=</mo><mn>162</mn></math></span></span><script type="math/tex" id="MathJax-Element-18">54*3=162</script></span> (with cross validation).<br>
 <strong>Notes:</strong>
 <ul>
-<li>It is enough to have only one experiment with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27026-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99258" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99259"><span class="mn" id="MathJax-Span-99260" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-27026">54</script></span> runs or you can create two experiments with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27027-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-99261" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-99262"><span class="mn" id="MathJax-Span-99263" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-27027">27</script></span> runs per experiment. It is good practice to name the experiments and runs with different and meaningful names. For example, you can create a new experiment per model architecture, and the run name includes the value of optimization metric for that run such that <code>acc_0.78322932</code>. Use the same model name for registering all models and let the version increment.</li>
+<li>It is enough to have only one experiment with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-19-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-83" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-84"><span class="mn" id="MathJax-Span-85" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-19">54</script></span> runs or you can create two experiments with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-20-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-86" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-87"><span class="mn" id="MathJax-Span-88" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-20">27</script></span> runs per experiment. It is good practice to name the experiments and runs with different and meaningful names. For example, you can create a new experiment per model architecture, and the run name includes the value of optimization metric for that run such that <code>acc_0.78322932</code>. Use the same model name for registering all models and let the version increment.</li>
 <li>Use Hydra for sweeping over hypereparameter values. You can use advanced sweepers like Optuna (optional). You can use advanced launchers like Joblib but it is only optional and as long as it does not create issues with multiprocecssing.</li>
 <li>Keep the settings of search space for the hyperparams in Hydra config files.</li>
 <li>When you change source code of experimentation or the settings of search space in config files, you should commit the change to Github since MLflow does not track source code changes (or you should log the source code and config files as artifacts everytime).</li>
@@ -1212,7 +1615,7 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 </li>
 <li>Plot performance charts for each model and log them as images (figures or artifacts) with other metadata and artifacts. Download all of these charts from backend store to the folder <code>results</code> in your repository.</li>
 <li><strong>[Method reproducibility]</strong> Check that the ML model is reproducible. Fix the random state of model weights and generators and ensure that you are not getting different results.</li>
-<li><strong>[Result reproducibility]</strong> Check that the ML results are reproducible. Use different random seeds (e.g. 100 different seeds) and calculate the average and variance of the model performance. Add the results to <code>results</code> folder as a text file.</li>
+<li><strong>[Result reproducibility]</strong> Check that the ML results are reproducible. Use different random seeds (e.g. 10 different seeds) and calculate the average and variance of the model performance. Add the results to <code>results</code> folder as a text file.</li>
 <li>Compare the runs and results on MLflow UI for both model architectures. <!-- Add comparison results to `results` folder in your Github repo. --></li>
 <li>In MLflow UI, track the performance of the models, and select the best ones per model architecture which can be promoted to <code>staging</code>. You can select more than one model per architecture. Assign an alias <code>champion</code> for the best model among all of these models and another alias <code>challenger1</code>, <code>challenger2</code>, <code>challenger3</code>, …etc to the other models (The alias cannot be used more than once per registered model). It is enough to have one model as <code>champion</code> and one model as <code>challenger</code>.</li>
 </ol>
@@ -1322,50 +1725,50 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Description" title="Description">Description</a></li>
-<li><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
-<li><a href="#Components" title="Components">Components</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Description" title="Description">Description</a></li>
+<li class=""><a href="#MLflow" title="MLflow">MLflow</a><ul class="nav">
+<li class=""><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
+<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
 <li><a href="#Concepts" title="Concepts">Concepts</a></li>
 </ul>
 </li>
-<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
-<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
 <li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
 <li><a href="#Experiments" title="Experiments">Experiments</a></li>
 <li><a href="#Runs" title="Runs">Runs</a></li>
-<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
 <li><a href="#Others" title="Others">Others</a></li>
 </ul>
 </li>
-<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
-<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
+<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
 <li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
-<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
-<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
 <li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
-<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
-<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+<li class=""><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
+<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
 </li>
 <li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul class="nav">
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
-<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
 <li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
-<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li class=""><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
 <li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
 <li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
 <li><a href="#Models-view" title="Models view">Models view</a></li>
@@ -1380,28 +1783,29 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li class=""><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
 </ul>
 </li>
-<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
 </ul>
 </li>
-<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
-<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
 <li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
 </ul>
 </li>
-<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
-<li><a href="#Examples" title="Examples">Examples</a></li>
+<li class=""><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
+<li class=""><a href="#Examples" title="Examples">Examples</a></li>
 </ul>
 </li>
-<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
-<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
-<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li class=""><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
+<li class=""><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
 </ul>
 </li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
@@ -1418,50 +1822,50 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
 <li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
-<li><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li><a href="#Description" title="Description">Description</a></li>
-<li><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
-<li><a href="#Components" title="Components">Components</a></li>
+<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li class=""><a href="#Description" title="Description">Description</a></li>
+<li class=""><a href="#MLflow" title="MLflow">MLflow</a><ul class="nav">
+<li class=""><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
+<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
 <li><a href="#Concepts" title="Concepts">Concepts</a></li>
 </ul>
 </li>
-<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
-<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
 <li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
 <li><a href="#Experiments" title="Experiments">Experiments</a></li>
 <li><a href="#Runs" title="Runs">Runs</a></li>
-<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
 <li><a href="#Others" title="Others">Others</a></li>
 </ul>
 </li>
-<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
-<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
+<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
 <li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
-<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
-<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
 <li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
-<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
-<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+<li class=""><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
+<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
 </li>
 <li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul class="nav">
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
-<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
 <li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
-<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li class=""><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
 <li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
 <li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
 <li><a href="#Models-view" title="Models view">Models view</a></li>
@@ -1476,28 +1880,29 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li class=""><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
 </ul>
 </li>
-<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
 </ul>
 </li>
-<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
-<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
 <li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
 </ul>
 </li>
-<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
-<li><a href="#Examples" title="Examples">Examples</a></li>
+<li class=""><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
+<li class=""><a href="#Examples" title="Examples">Examples</a></li>
 </ul>
 </li>
-<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
-<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
-<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li class=""><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
+<li class=""><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
 </ul>
 </li>
-<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
