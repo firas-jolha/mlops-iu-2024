@@ -841,13 +841,12 @@ epochs = <span class="hljs-number">5</span>
     eval_data.columns = [<span class="hljs-string">"label"</span>]
     eval_data[<span class="hljs-string">"predictions"</span>] = net(X).detach().numpy()
     print(eval_data.shape)
-    <span class="hljs-comment"># print(X.numpy().shape, y.numpy().shape)</span>
+    
     
     results = mlflow.evaluate(
-        <span class="hljs-comment"># model=pytorch_pyfunc,</span>
-        data=eval_data, <span class="hljs-comment">#X.numpy()[0,:], #X.numpy().T,</span>
+        data=eval_data,
         model_type=<span class="hljs-string">"regressor"</span>,
-        targets= <span class="hljs-string">"label"</span>, <span class="hljs-comment"># y.numpy()[0, :], #y.numpy().T,</span>
+        targets= <span class="hljs-string">"label"</span>,
         predictions=<span class="hljs-string">"predictions"</span>,
         evaluators = [<span class="hljs-string">"default"</span>]
     )
@@ -1322,40 +1321,40 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li class=""><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
-<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li class=""><a href="#Description" title="Description">Description</a></li>
-<li class=""><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
-<li class=""><a href="#Components" title="Components">Components</a></li>
+<li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
+<li><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
-<li class=""><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
+<li><a href="#Concepts" title="Concepts">Concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
-<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
-<li class=""><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
-<li class=""><a href="#Experiments" title="Experiments">Experiments</a></li>
-<li class=""><a href="#Runs" title="Runs">Runs</a></li>
-<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
-<li class=""><a href="#Others" title="Others">Others</a></li>
+<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
+<li><a href="#Experiments" title="Experiments">Experiments</a></li>
+<li><a href="#Runs" title="Runs">Runs</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Others" title="Others">Others</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
-<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
-<li class=""><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
-<li class=""><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
-<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
-<li class=""><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
+<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
+<li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
+<li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
+<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
 <li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
-<li class=""><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
+<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
 <li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
 <li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
@@ -1364,7 +1363,7 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
 <li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
 <li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
 <li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
@@ -1376,16 +1375,16 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 </li>
 <li class=""><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
 <li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
-<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
-<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
-<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+<li class=""><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
+<li class=""><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li class=""><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
 </ul>
 </li>
-<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
-<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
 <li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
 </ul>
 </li>
@@ -1393,19 +1392,19 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li><a href="#Examples" title="Examples">Examples</a></li>
 </ul>
 </li>
-<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
 <li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
-<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li class=""><a href="#References" title="References">References</a></li>
+<li><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
@@ -1418,40 +1417,40 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
-<li class=""><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
-<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li class=""><a href="#Description" title="Description">Description</a></li>
-<li class=""><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
-<li class=""><a href="#Components" title="Components">Components</a></li>
+<li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#MLflow0" title="MLflow">MLflow</a><ul class="nav">
+<li><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
-<li class=""><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
+<li><a href="#Concepts" title="Concepts">Concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
-<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
-<li class=""><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
-<li class=""><a href="#Experiments" title="Experiments">Experiments</a></li>
-<li class=""><a href="#Runs" title="Runs">Runs</a></li>
-<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
-<li class=""><a href="#Others" title="Others">Others</a></li>
+<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
+<li><a href="#Experiments" title="Experiments">Experiments</a></li>
+<li><a href="#Runs" title="Runs">Runs</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Others" title="Others">Others</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
-<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
-<li class=""><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
-<li class=""><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
-<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
-<li class=""><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
+<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
+<li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
+<li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
+<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
 <li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
-<li class=""><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
+<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
 <li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
 <li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
@@ -1460,7 +1459,7 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
 <li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
 <li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
 <li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
@@ -1472,16 +1471,16 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 </li>
 <li class=""><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
 <li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
-<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
-<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
-<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+<li class=""><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
+<li class=""><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li class=""><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
 </ul>
 </li>
-<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
-<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
 <li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
 </ul>
 </li>
@@ -1489,19 +1488,19 @@ By default, <code>interval</code> is converted to <code>UniformDistribution</cod
 <li><a href="#Examples" title="Examples">Examples</a></li>
 </ul>
 </li>
-<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
 <li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
-<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
-<li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
-<li class=""><a href="#References" title="References">References</a></li>
+<li><a href="#References" title="References">References</a></li>
 </ul>
 </div><div class="toc-menu" style="">
     <a class="expand-toggle expand-all" href="#">Expand all</a>
