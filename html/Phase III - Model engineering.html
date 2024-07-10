@@ -1599,23 +1599,29 @@ warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
 <li>Read the features from the ZenML artifact store. Select the appropriate version of the artifact based on the version of the data sample you are tracking in config files.</li>
 <li>Split the data sample into training, validation and test sets. Select a specific split ratio. Use one data sample for training the model (80% of the data sample for training and 20% for validation) and next data sample (50%-100% of the next data sample) for testing/evaluating the model performance. For instance, data sample <code>v1</code> is used for training and validation, and <code>v2</code> is used for testing the models.</li>
 <li>Create an MLflow experiment, a data source, a dataset and use MLflow to log the important metrics, datasets, models and their metadata. <strong>Do not use autologging</strong>. It is ok if you do not log the data since we have it in dvc store and ZenML artifact store. Use the default metrics provided in <code>mlflow.evaluate</code> to log the metrics. Log all hyperparameters you optimized.</li>
-<li>Build at least two different model architectures. For each model architecture, optimize three of its hyperparameters and create a search space consisting of at least three different values per hyperparameter. So, you need to create at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-11-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-45" style="width: 3.774em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.235em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.35em, 1003.24em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-46"><span class="msubsup" id="MathJax-Span-47"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.182em, 1000.43em, 4.151em, -999.997em); top: -3.984em; left: 0em;"><span class="mn" id="MathJax-Span-48" style="font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; top: -4.362em; left: 0.488em;"><span class="mn" id="MathJax-Span-49" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span></span></span><span class="mo" id="MathJax-Span-50" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-51" style="font-family: MathJax_Main; padding-left: 0.272em;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-11">3^3=27</script></span> runs (Grid search) with different values for the hyperparams. In total, you should train at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-12-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn><mo>&amp;#x00D7;</mo><mn>2</mn><mo>=</mo><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-52" style="width: 5.822em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.013em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1004.96em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-53"><span class="mn" id="MathJax-Span-54" style="font-family: MathJax_Main;">27</span><span class="mo" id="MathJax-Span-55" style="font-family: MathJax_Main; padding-left: 0.218em;">×</span><span class="mn" id="MathJax-Span-56" style="font-family: MathJax_Main; padding-left: 0.218em;">2</span><span class="mo" id="MathJax-Span-57" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-58" style="font-family: MathJax_Main; padding-left: 0.272em;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-12">27\times2=54</script></span> models (<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-13-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-59" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-60"><span class="mn" id="MathJax-Span-61" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-13">54</script></span> model versions) with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-14-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-62" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-63"><span class="mn" id="MathJax-Span-64" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-14">27</script></span> runs per model. In the MLflow tracking server, you would get <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-15-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>2</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-65" style="width: 0.595em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.488em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.565em, 1000.43em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-66"><span class="mn" id="MathJax-Span-67" style="font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn></math></span></span><script type="math/tex" id="MathJax-Element-15">2</script></span> models with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-16-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-68" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-69"><span class="mn" id="MathJax-Span-70" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-16">27</script></span> versions per model (a new model version per run). Notice that number of child runs with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-17-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>k</mi><mo>=</mo><mn>3</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-71" style="width: 2.697em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.32em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1002.27em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-72"><span class="mi" id="MathJax-Span-73" style="font-family: MathJax_Math-italic;">k</span><span class="mo" id="MathJax-Span-74" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-75" style="font-family: MathJax_Main; padding-left: 0.272em;">3</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>=</mo><mn>3</mn></math></span></span><script type="math/tex" id="MathJax-Element-17">k=3</script></span> folds will be <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-18-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn><mo>&amp;#x2217;</mo><mn>3</mn><mo>=</mo><mn>162</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-76" style="width: 6.145em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.283em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1005.23em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-77"><span class="mn" id="MathJax-Span-78" style="font-family: MathJax_Main;">54</span><span class="mo" id="MathJax-Span-79" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mn" id="MathJax-Span-80" style="font-family: MathJax_Main; padding-left: 0.218em;">3</span><span class="mo" id="MathJax-Span-81" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-82" style="font-family: MathJax_Main; padding-left: 0.272em;">162</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn><mo>∗</mo><mn>3</mn><mo>=</mo><mn>162</mn></math></span></span><script type="math/tex" id="MathJax-Element-18">54*3=162</script></span> (with cross validation).<br>
+<li>Build at least two different model architectures. For each model architecture, optimize three of its hyperparameters and create a search space consisting of at least three different values per hyperparameter. So, you need to create at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3881-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15885" style="width: 3.774em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.235em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.35em, 1003.24em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15886"><span class="msubsup" id="MathJax-Span-15887"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.182em, 1000.43em, 4.151em, -999.997em); top: -3.984em; left: 0em;"><span class="mn" id="MathJax-Span-15888" style="font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; top: -4.362em; left: 0.488em;"><span class="mn" id="MathJax-Span-15889" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span></span></span><span class="mo" id="MathJax-Span-15890" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-15891" style="font-family: MathJax_Main; padding-left: 0.272em;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 1.128em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-3881">3^3=27</script></span> runs (Grid search) with different values for the hyperparams. In total, you should train at least <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3882-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn><mo>&amp;#x00D7;</mo><mn>2</mn><mo>=</mo><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15892" style="width: 5.822em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.013em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1004.96em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15893"><span class="mn" id="MathJax-Span-15894" style="font-family: MathJax_Main;">27</span><span class="mo" id="MathJax-Span-15895" style="font-family: MathJax_Main; padding-left: 0.218em;">×</span><span class="mn" id="MathJax-Span-15896" style="font-family: MathJax_Main; padding-left: 0.218em;">2</span><span class="mo" id="MathJax-Span-15897" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-15898" style="font-family: MathJax_Main; padding-left: 0.272em;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-3882">27\times2=54</script></span> models (<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3883-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15899" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15900"><span class="mn" id="MathJax-Span-15901" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-3883">54</script></span> model versions) with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3884-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15902" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15903"><span class="mn" id="MathJax-Span-15904" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-3884">27</script></span> runs per model. In the MLflow tracking server, you would get <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3885-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>2</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15905" style="width: 0.595em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.488em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.565em, 1000.43em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15906"><span class="mn" id="MathJax-Span-15907" style="font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn></math></span></span><script type="math/tex" id="MathJax-Element-3885">2</script></span> models with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3886-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15908" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15909"><span class="mn" id="MathJax-Span-15910" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-3886">27</script></span> versions per model (a new model version per run). Notice that number of child runs with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3887-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>k</mi><mo>=</mo><mn>3</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15911" style="width: 2.697em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.32em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1002.27em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15912"><span class="mi" id="MathJax-Span-15913" style="font-family: MathJax_Math-italic;">k</span><span class="mo" id="MathJax-Span-15914" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-15915" style="font-family: MathJax_Main; padding-left: 0.272em;">3</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>k</mi><mo>=</mo><mn>3</mn></math></span></span><script type="math/tex" id="MathJax-Element-3887">k=3</script></span> folds will be <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3888-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn><mo>&amp;#x2217;</mo><mn>3</mn><mo>=</mo><mn>162</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15916" style="width: 6.145em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.283em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1005.23em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15917"><span class="mn" id="MathJax-Span-15918" style="font-family: MathJax_Main;">54</span><span class="mo" id="MathJax-Span-15919" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mn" id="MathJax-Span-15920" style="font-family: MathJax_Main; padding-left: 0.218em;">3</span><span class="mo" id="MathJax-Span-15921" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-15922" style="font-family: MathJax_Main; padding-left: 0.272em;">162</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn><mo>∗</mo><mn>3</mn><mo>=</mo><mn>162</mn></math></span></span><script type="math/tex" id="MathJax-Element-3888">54*3=162</script></span> (with cross validation).<br>
 <strong>Notes:</strong>
 <ul>
-<li>It is enough to have only one experiment with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-19-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-83" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-84"><span class="mn" id="MathJax-Span-85" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-19">54</script></span> runs or you can create two experiments with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-20-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-86" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-87"><span class="mn" id="MathJax-Span-88" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-20">27</script></span> runs per experiment. It is good practice to name the experiments and runs with different and meaningful names. For example, you can create a new experiment per model architecture, and the run name includes the value of optimization metric for that run such that <code>acc_0.78322932</code>. Use the same model name for registering all models and let the version increment.</li>
+<li>It is enough to have only one experiment with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3889-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>54</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15923" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1000.97em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15924"><span class="mn" id="MathJax-Span-15925" style="font-family: MathJax_Main;">54</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>54</mn></math></span></span><script type="math/tex" id="MathJax-Element-3889">54</script></span> runs or you can create two experiments with <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3890-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>27</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15926" style="width: 1.188em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.026em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.511em, 1001.03em, 2.535em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-15927"><span class="mn" id="MathJax-Span-15928" style="font-family: MathJax_Main;">27</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>27</mn></math></span></span><script type="math/tex" id="MathJax-Element-3890">27</script></span> runs per experiment. It is good practice to name the experiments and runs with different and meaningful names. For example, you can create a new experiment per model architecture, and the run name includes the value of optimization metric for that run such that <code>acc_0.78322932</code>. Use the same model name for registering all models and let the version increment.</li>
 <li>Use Hydra for sweeping over hypereparameter values. You can use advanced sweepers like Optuna (optional). You can use advanced launchers like Joblib but it is only optional and as long as it does not create issues with multiprocecssing.</li>
 <li>Keep the settings of search space for the hyperparams in Hydra config files.</li>
 <li>When you change source code of experimentation or the settings of search space in config files, you should commit the change to Github since MLflow does not track source code changes (or you should log the source code and config files as artifacts everytime).</li>
 <li>You should push all of these logged artifacts and models to github.</li>
-<li>Use cross validation to evaluate the performance of the models with at least <code>k=3</code> folds. You can use such following function.<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> cross_val_score
-</code></pre>
-</li>
-<li>Use child runs for logging the metric values per fold (<code>nested=True</code>). The parent run will run for a single combination of the selected hyperparameters.</li>
+<li>Use Grid search with cross validation to evaluate the performance of the models with at least <code>k=3</code> folds.</li>
+<li>Use child runs for logging the metric values per single combniation of the selected hyperparameters (<code>nested=True</code>).</li>
 </ul>
 </li>
-<li>Plot performance charts for each model and log them as images (figures or artifacts) with other metadata and artifacts. Download all of these charts from backend store to the folder <code>results</code> in your repository.</li>
+<li>Plot performance charts for each model and log them as images (figures or artifacts) with other metadata and artifacts. Download all of these charts from backend store to the folder <code>results</code> in your repository. You can <a href="https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.download_artifacts" target="_blank" rel="noopener">download artifacts</a> (images, models, …etc) from MLflow store as follows:<pre><code class="python hljs">mlflow.artifacts.download_artifacts(artifact_uri, dst_path)
+
+<span class="hljs-comment"># OR</span>
+
+mlflow.artifacts.download_artifacts(run_id, artifact_path, dst_path)
+
+<span class="hljs-comment"># artifact_uri is usually starts with runs://run_id/path/to/artifact</span>
+</code></pre>
+</li>
 <li><strong>[Method reproducibility]</strong> Check that the ML model is reproducible. Fix the random state of model weights and generators and ensure that you are not getting different results.</li>
-<li><strong>[Result reproducibility]</strong> Check that the ML results are reproducible. Use different random seeds (e.g. 10 different seeds) and calculate the average and variance of the model performance. Add the results to <code>results</code> folder as a text file.</li>
+<li><strong>[Only for Master’s students]</strong> <strong>[Result reproducibility]</strong> Check that the ML results are reproducible. Use different random seeds (e.g. 10 different seeds) and calculate the average and variance of the model performance. Add the results to <code>results</code> folder as a text file.</li>
 <li>Compare the runs and results on MLflow UI for both model architectures. <!-- Add comparison results to `results` folder in your Github repo. --></li>
 <li>In MLflow UI, track the performance of the models, and select the best ones per model architecture which can be promoted to <code>staging</code>. You can select more than one model per architecture. Assign an alias <code>champion</code> for the best model among all of these models and another alias <code>challenger1</code>, <code>challenger2</code>, <code>challenger3</code>, …etc to the other models (The alias cannot be used more than once per registered model). It is enough to have one model as <code>champion</code> and one model as <code>challenger</code>.</li>
 </ol>
@@ -1625,7 +1631,7 @@ warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
 <!--     ![](https://i.imgur.com/ZhVaYLS.png =300x150) -->
 </center>
 <ol start="11">
-<li>Download all of these best models (ccampions and challengers) per architecture to <code>models</code> folder.</li>
+<li>Download all of these best models (champions and challengers) per architecture to <code>models</code> folder.</li>
 <li><strong>[Only Master’s students]</strong> The built model should be a deep neural network using Tensorflow or PyTroch  or any deep learning packages. In MLflow, you have <a href="https://mlflow.org/docs/latest/models.html#pytorch-pytorch" target="_blank" rel="noopener">example in the documentation</a> for Pytorch framework.</li>
 <li>Add another entry point <code>evaluate</code> to <code>MLproject</code> file to evaluate the selected model given the data sample version and model alias. By default, we assume that we evaluate the first sample on the <code>champion</code> model. These arguments can be passed to the function <code>evaluate</code> in <code>src/evaluate.py</code> using config files or directly in <code>MLproject</code> file.</li>
 </ol>
@@ -1725,50 +1731,50 @@ warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
-<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li class=""><a href="#Description" title="Description">Description</a></li>
-<li class=""><a href="#MLflow" title="MLflow">MLflow</a><ul class="nav">
-<li class=""><a href="#Components" title="Components">Components</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#MLflow" title="MLflow">MLflow</a><ul class="nav">
+<li><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
+<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
 <li><a href="#Concepts" title="Concepts">Concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
-<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
 <li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
 <li><a href="#Experiments" title="Experiments">Experiments</a></li>
 <li><a href="#Runs" title="Runs">Runs</a></li>
-<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
 <li><a href="#Others" title="Others">Others</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
-<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
+<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
 <li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
-<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
-<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
 <li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
-<li class=""><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
-<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
+<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
 </li>
 <li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul class="nav">
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
 <li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
-<li class=""><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
 <li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
 <li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
 <li><a href="#Models-view" title="Models view">Models view</a></li>
@@ -1776,36 +1782,36 @@ warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
 </li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
+<li><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
 <li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
-<li class=""><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
-<li class=""><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
-<li class=""><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
+<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
 </ul>
 </li>
-<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
-<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
 <li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
 </ul>
 </li>
-<li class=""><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
-<li class=""><a href="#Examples" title="Examples">Examples</a></li>
+<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
+<li><a href="#Examples" title="Examples">Examples</a></li>
 </ul>
 </li>
-<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
-<li class=""><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
-<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
-<li class=""><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
+<li><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
 </ul>
 </li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
@@ -1822,50 +1828,50 @@ warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
         <div class="toc"><ul class="nav">
 <li><a href="#Phase-III---Model-engineering" title="Phase III - Model engineering">Phase III - Model engineering</a></li>
-<li class=""><a href="#Agenda" title="Agenda">Agenda</a></li>
-<li class=""><a href="#Description" title="Description">Description</a></li>
-<li class=""><a href="#MLflow" title="MLflow">MLflow</a><ul class="nav">
-<li class=""><a href="#Components" title="Components">Components</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#MLflow" title="MLflow">MLflow</a><ul class="nav">
+<li><a href="#Components" title="Components">Components</a></li>
 </ul>
 </li>
-<li class=""><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
+<li><a href="#Use-Cases-of-MLflow" title="Use Cases of MLflow">Use Cases of MLflow</a><ul class="nav">
 <li><a href="#Concepts" title="Concepts">Concepts</a></li>
 </ul>
 </li>
-<li class=""><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
-<li class=""><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
+<li><a href="#Get-MLflow" title="Get MLflow">Get MLflow</a></li>
+<li><a href="#MLflow-CLI" title="MLflow CLI">MLflow CLI</a><ul class="nav">
 <li><a href="#Tracking-server" title="Tracking server">Tracking server</a></li>
 <li><a href="#Experiments" title="Experiments">Experiments</a></li>
 <li><a href="#Runs" title="Runs">Runs</a></li>
-<li class=""><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
+<li><a href="#Artifacts" title="Artifacts">Artifacts</a></li>
 <li><a href="#Others" title="Others">Others</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
-<li class=""><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
+<li><a href="#Tracking-ML-experiments" title="Tracking ML experiments">Tracking ML experiments</a><ul class="nav">
+<li><a href="#Tracking-models-demo" title="Tracking models demo">Tracking models demo</a><ul class="nav">
 <li><a href="#1-Run-Tracking-server-locally" title="1. Run Tracking server (locally)">1. Run Tracking server (locally)</a></li>
 <li><a href="#2-Set-the-Tracking-Server-URI" title="2. Set the Tracking Server URI">2. Set the Tracking Server URI</a></li>
-<li class=""><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
+<li><a href="#3-Build-a-model-and-prepare-metadata-for-logging" title="3. Build a model and prepare metadata for logging">3. Build a model and prepare metadata for logging</a></li>
 <li><a href="#4-Log-the-model-and-its-metadata-to-MLflow" title="4. Log the model and its metadata to MLflow">4. Log the model and its metadata to MLflow</a></li>
-<li class=""><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
+<li><a href="#5-Load-the-model-as-a-Python-Function-pyfunc-and-use-it-for-inference" title="5. Load the model as a Python Function (pyfunc) and use it for inference">5. Load the model as a Python Function (pyfunc) and use it for inference</a></li>
 <li><a href="#6-View-the-Run-in-the-MLflow-UI" title="6. View the Run in the MLflow UI">6. View the Run in the MLflow UI</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
+<li><a href="#MLflow-APIs" title="MLflow APIs">MLflow APIs</a><ul class="nav">
 <li><a href="#1-Fluent-tracking-mlflow-API" title="1. Fluent tracking mlflow API">1. Fluent tracking mlflow API</a></li>
-<li class=""><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
-<li class=""><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
+<li><a href="#2-Lower-level-mlflowclient-API" title="2. Lower-level mlflow.client API">2. Lower-level mlflow.client API</a><ul class="nav">
+<li><a href="#Launching-Multiple-Runs-in-One-Program" title="Launching Multiple Runs in One Program">Launching Multiple Runs in One Program</a></li>
 </ul>
 </li>
 <li><a href="#Autlogging-Extra-section" title="Autlogging [Extra section]">Autlogging [Extra section]</a><ul class="nav">
 <li><a href="#Get-MLflow-Run-instance-from-autologged-results" title="Get MLflow Run instance from autologged results">Get MLflow Run instance from autologged results</a></li>
 </ul>
 </li>
-<li class=""><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
+<li><a href="#Tracking-datasets" title="Tracking datasets">Tracking datasets</a></li>
 <li><a href="#Create-a-Pandas-dataset" title="Create a Pandas dataset">Create a Pandas dataset</a></li>
-<li class=""><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
+<li><a href="#Log-and-load-MLflow-dataset" title="Log, and load MLflow dataset">Log, and load MLflow dataset</a></li>
 <li><a href="#Explore-Tracking-server-UI" title="Explore Tracking server UI">Explore Tracking server UI</a><ul class="nav">
 <li><a href="#Experiments-view" title="Experiments view">Experiments view</a></li>
 <li><a href="#Models-view" title="Models view">Models view</a></li>
@@ -1873,36 +1879,36 @@ warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
 </li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
+<li><a href="#MLflow-models" title="MLflow models">MLflow models</a><ul class="nav">
 <li><a href="#How-MLflow-models-are-stored" title="How MLflow models are stored?">How MLflow models are stored?</a></li>
-<li class=""><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
-<li class=""><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
-<li class=""><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
+<li><a href="#Logging-ML-models" title="Logging ML models">Logging ML models</a><ul class="nav">
+<li><a href="#sklearn-models" title="sklearn models">sklearn models</a></li>
+<li><a href="#Pytorch-models" title="Pytorch models">Pytorch models</a></li>
 </ul>
 </li>
-<li class=""><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
+<li><a href="#Fetch-models-from-model-registry" title="Fetch models from model registry">Fetch models from model registry</a></li>
 </ul>
 </li>
-<li class=""><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
-<li class=""><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
+<li><a href="#MLflow-projects" title="MLflow projects">MLflow projects</a><ul class="nav">
+<li><a href="#MLproject-file" title="MLproject file">MLproject file</a><ul class="nav">
 <li><a href="#Specifying-Parameters-and-Entrypoints" title="Specifying Parameters and Entrypoints">Specifying Parameters and Entrypoints</a></li>
 </ul>
 </li>
-<li class=""><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
-<li class=""><a href="#Examples" title="Examples">Examples</a></li>
+<li><a href="#Running-MLflow-projects" title="Running MLflow projects">Running MLflow projects</a><ul class="nav">
+<li><a href="#Examples" title="Examples">Examples</a></li>
 </ul>
 </li>
-<li class=""><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
-<li class=""><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
-<li class=""><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
+<li><a href="#Run-multiple-experiments-using-Hydra" title="Run multiple experiments using Hydra">Run multiple experiments using Hydra</a><ul class="nav">
+<li><a href="#-Joblib-launcher-plugin-Extra-section" title=" Joblib launcher plugin [Extra section]"> Joblib launcher plugin [Extra section]</a></li>
+<li><a href="#-Optuna-sweeper-plugin-Extra-section" title=" Optuna sweeper plugin  [Extra section]"> Optuna sweeper plugin  [Extra section]</a></li>
 </ul>
 </li>
-<li class=""><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
+<li><a href="#ML-model-optimization-demo-MLflow--Hydra" title="ML model optimization demo (MLflow + Hydra)">ML model optimization demo (MLflow + Hydra)</a></li>
 </ul>
 </li>
 <li class=""><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
 <li class=""><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
-<li class=""><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
 </ul>
 </li>
 <li><a href="#References" title="References">References</a></li>
