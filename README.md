@@ -10,8 +10,8 @@ The aim of this project is to apply the CRISP-ML process on a machine learning p
 
 ### [Phase III - Model engineering](html/Phase III - Model engineering.html)
 
-### [Phase IV - Model validation](html/.html)
+### [Phase IV - Model validation](html/Phase IV - Model testing and validation.html)
 
-### [Phase V - Model deployment](html/.html)
+### [Phase V - Model deployment](html/Phase V - Model deployment.html)
 
-### [Phase VI - Model monitoring and maintenance](html/.html)
+### [Phase VI - Model monitoring and maintenance](html/Phase VI - Model monitoring and maintenance.html)
