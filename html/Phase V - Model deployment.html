@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Phase V - Model deployment - CodiMD
+    </title>
+    <link rel="icon" type="image/png" href="http://localhost:3000/favicon.png">
+    <link rel="apple-touch-icon" href="http://localhost:3000/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha256-H0KfTigpUV+0/5tn2HXC0CPwhhDhWgSawJdnFd0CGCo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.1.3/css/fork-awesome.min.css" integrity="sha256-ZhApazu+kejqTYhMF+1DzNKjIzP7KXu6AzyXcC1gMus=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,300italic,300|Source+Serif+Pro|Source+Code+Pro:400,300,500&subset=latin,latin-ext);.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{padding:0 1em;color:#777;border-left:.25em solid #ddd}.night .markdown-body blockquote{color:#bcbcbc}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.night .markdown-body h1,.night .markdown-body h2,.night .markdown-body h3,.night .markdown-body h4,.night .markdown-body h5,.night .markdown-body h6{color:#ddd}.markdown-body h1 .fa-link,.markdown-body h2 .fa-link,.markdown-body h3 .fa-link,.markdown-body h4 .fa-link,.markdown-body h5 .fa-link,.markdown-body h6 .fa-link{color:#000;vertical-align:middle;visibility:hidden;font-size:16px}.night .markdown-body h1 .fa-link,.night .markdown-body h2 .fa-link,.night .markdown-body h3 .fa-link,.night .markdown-body h4 .fa-link,.night .markdown-body h5 .fa-link,.night .markdown-body h6 .fa-link{color:#fff}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .fa-link,.markdown-body h2:hover .anchor .fa-link,.markdown-body h3:hover .anchor .fa-link,.markdown-body h4:hover .anchor .fa-link,.markdown-body h5:hover .anchor .fa-link,.markdown-body h6:hover .anchor .fa-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.night .markdown-body table tr{background-color:#5f5f5f}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.night .markdown-body table tr:nth-child(2n){background-color:#4f4f4f}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.night .markdown-body code,.night .markdown-body tt{color:#eee;background-color:hsla(0,0%,90.2%,.36)}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\A0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.markdown-body kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important}.markdown-body pre{border:inherit!important}.night .markdown-body pre{filter:invert(100%)}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-webkit-inline-flex;display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.night .markdown-body .gist table tr:nth-child(2n){background-color:#ddd}.markdown-body code[data-gist-id]{background:none;padding:0;filter:invert(100%)}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.geo,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit}.night .markdown-body pre.graphviz .graph>polygon{fill:#333}.night .markdown-body pre.mermaid .sectionTitle,.night .markdown-body pre.mermaid .titleText,.night .markdown-body pre.mermaid text{fill:#fff}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.night .markdown-body .abc path{fill:#eee}.night .markdown-body .abc path.note_selected{fill:##4DD0E1}.night tspan{fill:#fefefe}.night pre rect{fill:transparent}.night pre.flow-chart path,.night pre.flow-chart rect{stroke:#fff}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body img{background-color:transparent}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;-webkit-transition:opacity .2s;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;-webkit-transition:opacity .2s;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.geo-map{width:100%;height:250px}.markmap-container{height:300px}.markmap-container>svg{width:100%;height:100%}.MJX_Assistive_MathML{display:none}.ui-infobar{position:relative;z-index:2;max-width:758px;margin-top:25px;margin-bottom:-25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:10000}.ui-toc-label{opacity:.9;background-color:#ccc;border:none}.ui-toc-label,.ui-toc .open .ui-toc-label{-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#5f5f5f}.ui-toc-label:focus{opacity:1;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc-dropdown{margin-top:23px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.night .ui-toc-dropdown .nav>li>a:focus,.night .ui-toc-dropdown .nav>li>a:hover{color:#fff;border-left-color:#fff}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.night .ui-toc-dropdown .nav>.active:focus>a,.night .ui-toc-dropdown .nav>.active:hover>a,.night .ui-toc-dropdown .nav>.active>a{color:#fff;border-left:2px solid #fff}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.night .ui-toc-dropdown .nav>li>a{color:#aaa}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:50px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a{padding-right:50px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:60px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a{padding-right:60px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>a:hover{padding-left:49px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>a:hover{padding-right:49px}.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>ul>li>ul>li>a:hover{padding-left:59px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>ul>li>ul>li>a:hover{padding-right:59px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>a{padding-left:48px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.active>.nav>.nav>.active>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active:hover>a{padding-right:48px}.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active>a{padding-left:58px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.active>.nav>.nav>.active>.nav>.active>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>.nav>.active>.nav>.active:hover>a{padding-right:58px}.markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,"\30D2\30E9\30AE\30CE\89D2\30B4   Pro W3",Osaka,Meiryo,"\30E1\30A4\30EA\30AA",MS Gothic,"\FF2D\FF33   \30B4\30B7\30C3\30AF",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,"\FF2D\FF33   \FF30\30B4\30B7\30C3\30AF",sans-serif}.markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang TC,Microsoft JhengHei,"\5FAE\8EDF\6B63\9ED1",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,"\5FAE\8EDF\6B63\9ED1UI",sans-serif}.markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang SC,Microsoft YaHei,"\5FAE\8F6F\96C5\9ED1",sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}.ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,"\5FAE\8F6F\96C5\9ED1UI",sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:rgba(0,0,0,.85)}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:3px;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:contain}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}small span{line-height:22px}small .dropdown{display:inline-block}small .dropdown a:focus,small .dropdown a:hover{text-decoration:none}.unselectable{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-o-user-select:none;user-select:none}.night .navbar{background:#333;border-bottom-color:#333;color:#eee}.night .navbar a{color:#eee}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}.focus,:focus{outline:none!important}::-moz-focus-inner{border:0!important}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid" lang="en"><h1 id="Phase-V---Model-deployment"><a class="anchor hidden-xs" href="#Phase-V---Model-deployment" title="Phase-V---Model-deployment"><i class="fa fa-link"></i></a>Phase V - Model deployment</h1><p>Course: <strong>MLOps engineering</strong><br>
+Author: <strong>Firas Jolha</strong></p><h1 id="Agenda"><a class="anchor hidden-xs" href="#Agenda" title="Agenda"><i class="fa fa-link"></i></a>Agenda</h1><p></p><div class="toc"><ul>
+<li><a href="#Phase-V---Model-deployment" title="Phase V - Model deployment">Phase V - Model deployment</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#Local-deployment" title="[Local] deployment">[Local] deployment</a></li>
+<li><a href="#Local-Serving-MLflow-model-in-Docker" title="[Local] Serving MLflow model in Docker">[Local] Serving MLflow model in Docker</a></li>
+<li><a href="#Flask" title="Flask">Flask</a><ul>
+<li><a href="#Install-Flask" title="Install Flask">Install Flask</a></li>
+<li><a href="#Demo" title="Demo">Demo</a></li>
+</ul>
+</li>
+<li><a href="#Web-UI" title="Web UI">Web UI</a><ul>
+<li><a href="#Install-Gradio" title="Install Gradio">Install Gradio</a></li>
+<li><a href="#Demo1" title="Demo">Demo</a></li>
+</ul>
+</li>
+<li><a href="#CICD-pipelines-using-Github-Actions" title="CI/CD pipelines using Github Actions">CI/CD pipelines using Github Actions</a><ul>
+<li><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li><a href="#Example" title="Example">Example</a></li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul>
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li><a href="#Final-thoughtstasks" title="Final thoughts/tasks">Final thoughts/tasks</a></li>
+<li><a href="#Review" title="Review">Review</a><ul>
+<li><a href="#Docker-and-Docker-compose" title="Docker and Docker compose">Docker and Docker compose</a></li>
+<li><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
+<li><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
+<li><a href="#Demo2" title="Demo">Demo</a></li>
+<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+</ul>
+</li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</div><p></p><h1 id="Description"><a class="anchor hidden-xs" href="#Description" title="Description"><i class="fa fa-link"></i></a>Description</h1><p>After training your machine learning model and ensuring its performance, the next step is deploying it to a production environment. The deployment phase of a ML model is characterized by its practical use in the designated field of application.</p><p>This process can be complex, but MLflow simplifies it by offering an easy toolset for deploying your ML models to various targets, including local environments, cloud services, and Kubernetes clusters.</p><p>An MLflow Model already packages your model and its dependencies, hence MLflow can create either a <strong>1. virtual environment</strong> (for local deployment) or a <strong>2. Docker container</strong> image containing everything needed to run your model.</p><h1 id="Local-deployment"><a class="anchor hidden-xs" href="#Local-deployment" title="Local-deployment"><i class="fa fa-link"></i></a>[Local] deployment</h1><div class="alert alert-warning">
+<p>Before deploying the model, make sure that you have created a model and logged it as an MLflow model and registered in MLflow Model registry. In addition, you need to have only one model whose alias is <code>champion</code>. You should deploy only this model.</p>
+</div><p>MLflow launches an <strong>inference server</strong> with <strong>REST endpoints</strong> using frameworks like Flask, preparing it for deployment to various destinations to handle inference requests. MLflow provides CLI commands and Python APIs to facilitate the deployment process. Deployment-related commands are primarily categorized under two modules:</p><ul>
+<li><strong><code>mlflow models</code></strong> - typically used for local deployment.</li>
+<li><strong><code>mlflow deployments</code></strong> - typically used for deploying to custom targets.</li>
+</ul><p>Here we will use only the first option. You can deploy your champion MLflow model <code>random_forest@champion</code> locally and run it in the local virtual environment on the <code>localhost</code> port <code>5151</code> as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">models</span> <span class="hljs-string">serve</span> <span class="hljs-bullet">--model-uri</span> <span class="hljs-attr">models:/random_forest@champion</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span> <span class="hljs-bullet">-h</span> <span class="hljs-string">localhost</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5151</span>
+</code></pre><p>This will deploy a local inference server which runs a Flask app and allows to make predictions. The inference server provides 4 REST endpoints which are:</p><ul>
+<li><code>/invocations</code>: An inference endpoint that accepts POST requests with input data and returns predictions.</li>
+<li><code>/ping</code>: Used for health checks.</li>
+<li><code>/health</code>: Same as <code>/ping</code>.</li>
+<li><code>/version</code>: Returns the MLflow version.</li>
+</ul><div class="alert alert-info">
+<p>By default, MLflow uses <code>Flask</code>, a lightweight WSGI web application framework for Python, to serve the inference endpoint.</p>
+</div><p>You can make predictions by sending POST requests with the features data to the endpoint <code>/invocations</code> as follows:</p><pre><code class="wrap yaml hljs"><span class="hljs-string">curl</span> <span class="hljs-bullet">-X</span> <span class="hljs-string">POST</span> <span class="hljs-attr">localhost:5151/invocations</span> <span class="hljs-bullet">-H</span> <span class="hljs-string">'Content-Type: application/json'</span> <span class="hljs-bullet">--data</span> <span class="hljs-string">'{"inputs":{"0":1.0692827453,"1":0.8284868806,"2":-0.2393840854,"3":0.8518639213,"4":-0.7616964257,"5":-0.6128551918,"6":0.0,"7":0.0,"8":0.0,"9":0.0,"10":0.0,"11":1.0,"12":0.0,"13":0.0,"14":0.0,"15":0.0,"16":0.0,"17":0.0,"18":0.0,"19":1.0,"20":0.0,"21":0.0,"22":0.0,"23":1.0,"24":0.0,"25":1.0,"26":0.0,"27":0.0,"28":0.0,"29":0.0,"30":0.0,"31":1.0,"32":1.0,"33":0.0,"34":1.0,"35":0.0,"36":1.0,"37":0.0,"38":0.7907757369,"39":-0.6121059825,"40":0.5,"41":0.8660254038}}'</span>
+</code></pre><p>You should pass data with the same schema as defined in model signature. You can find the signature and an input example in <code>MLmodel</code> and<code>input_example.json</code> files.</p><p>You can do the same in Python API as follows:</p><pre><code class="python hljs"><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> hydra
+<span class="hljs-keyword">from</span> model <span class="hljs-keyword">import</span> load_features
+
+<span class="hljs-meta">@hydra.main(config_path="../configs", config_name="main", version_base=None) # type: ignore</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(cfg = None)</span>:</span>
+
+    X, y = load_features(name = <span class="hljs-string">"features_target"</span>, 
+                        version = cfg.example_version, 
+                        random_state=cfg.random_state
+                        )
+
+    example = X.iloc[<span class="hljs-number">0</span>,:]
+    example_target = y[<span class="hljs-number">0</span>]
+
+    example = json.dumps( 
+    { <span class="hljs-string">"inputs"</span>: example.to_dict() }
+    )
+
+    payload = example
+
+    response = requests.post(
+        url=<span class="hljs-string">f"http://localhost:<span class="hljs-subst">{cfg.port}</span>/invocations"</span>,
+        data=payload,
+        headers={<span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"application/json"</span>},
+    )
+
+    print(response.json())
+    print(<span class="hljs-string">"encoded target labels: "</span>, example_target)
+    print(<span class="hljs-string">"target labels: "</span>, list(cfg.data.labels)[example_target])
+
+
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">"__main__"</span>:
+    predict()
+</code></pre><p>Add this as an entry point <code>predict</code> to <code>MLproject</code>. You can run this entry point as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">run</span> <span class="hljs-string">.</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span> <span class="hljs-bullet">-e</span> <span class="hljs-string">predict</span> <span class="hljs-bullet">-P</span> <span class="hljs-string">example_version=v4</span> <span class="hljs-bullet">-P</span> <span class="hljs-string">port=5151</span> <span class="hljs-bullet">-P</span> <span class="hljs-string">random_state=12</span>
+</code></pre><p>This entry point will take a random sample of features and predict it using the deployed API. It looks like as follows in <code>MLproject</code> file.</p><pre><code class="yaml hljs"><span class="hljs-attr">entry_points:</span>
+
+<span class="hljs-string">...</span>
+
+<span class="hljs-attr">    predict:</span>
+<span class="hljs-attr">    parameters:</span>
+<span class="hljs-attr">      example_version:</span> 
+<span class="hljs-attr">        type:</span> <span class="hljs-string">string</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-string">"v5"</span>
+<span class="hljs-attr">      port:</span>
+<span class="hljs-attr">        type:</span> <span class="hljs-string">float</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-number">5151</span>
+<span class="hljs-attr">      random_state:</span>
+<span class="hljs-attr">        type:</span> <span class="hljs-string">float</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">"python src/predict.py ++example_version={example_version} ++port={port} ++random_state={random_state}"</span>
+<span class="hljs-comment"># mlflow run . --env-manager local -e predict -P example_version=v4 -P port=5151</span>
+</code></pre><h1 id="Local-Serving-MLflow-model-in-Docker"><a class="anchor hidden-xs" href="#Local-Serving-MLflow-model-in-Docker" title="Local-Serving-MLflow-model-in-Docker"><i class="fa fa-link"></i></a>[Local] Serving MLflow model in Docker</h1><p>The essential step to deploy an MLflow model to Kubernetes is to build a Docker image that contains the MLflow model and the inference server. This can be done via <code>build-docker</code> CLI command or Python API. The steps for deploying our MLflow model in a Docker container are:</p><ol>
+<li>Generate the <code>Dockerfile</code> for deploying MLflow model.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">models</span> <span class="hljs-string">generate-dockerfile</span> <span class="hljs-bullet">--model-uri</span> <span class="hljs-attr">models:/random_forest@champion</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span> <span class="hljs-bullet">-d</span> <span class="hljs-string">api</span>
+</code></pre><p>This generates a directory with <code>Dockerfile</code> whose default entrypoint serves an MLflow model at port <code>8080</code> using the <code>python_function</code> flavor. The generated Dockerfile is written to the specified output directory <code>api</code>, along with the model. This Dockerfile defines an image that is equivalent to the one produced by <code>mlflow models build-docker</code>.</p><p><img src="https://i.imgur.com/4tHJ1WL.png" alt="" class="md-image md-image"></p><ol start="2">
+<li>Build the docker image.</li>
+</ol><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">build</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">my_ml_service</span> <span class="hljs-string">.</span>
+</code></pre><div class="alert alert-info">
+<p>You can actually build a docker image in MLflow without creating a <code>Dockerfile</code> with a single command line as follows:</p>
+<pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">models</span> <span class="hljs-string">build-docker</span> <span class="hljs-bullet">-m</span> <span class="hljs-string">&lt;model-uri&gt;</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span> <span class="hljs-bullet">-n</span> <span class="hljs-string">&lt;image_name&gt;</span>
+<span class="hljs-comment"># Example:</span>
+<span class="hljs-comment"># &lt;model-uri&gt;: models:/random_forest@champion</span>
+<span class="hljs-comment"># --env-manager local: will use the current local virtual environment for building the image</span>
+<span class="hljs-comment"># &lt;image_name&gt;: only a name given to the image </span>
+</code></pre>
+</div><ol start="3">
+<li>Run the container</li>
+</ol><pre><code class="yaml hljs"> <span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">--rm</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5152</span><span class="hljs-string">:8080</span> <span class="hljs-string">my_ml_service</span>
+ <span class="hljs-comment"># --rm will remove the container after we stop the container.</span>
+ <span class="hljs-comment"># -p is used to map the port 8080 inside the container to the port 5152 on the local machine. </span>
+ <span class="hljs-comment"># Feel free to change 5152 to another port number but do not change the port 8080 (default port)</span>
+ <span class="hljs-comment"># my_prediction_service: is image name</span>
+</code></pre><ol start="4">
+<li>Push the image to your dockerhub registry.
+<ul>
+<li>Create an account on Dockerhub.</li>
+<li>Login to your account in your local machine<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">login</span>
+</code></pre>
+Enter the username and password.</li>
+<li>Tag the image.<pre><code class="yaml hljs"><span class="hljs-comment"># latest is default version</span>
+<span class="hljs-string">docker</span> <span class="hljs-string">tag</span> <span class="hljs-string">my_ml_service</span> <span class="hljs-string">&lt;username-on-dockerhub&gt;/my_ml_service</span>
+
+<span class="hljs-comment"># specific version</span>
+<span class="hljs-string">docker</span> <span class="hljs-string">tag</span> <span class="hljs-string">my_ml_service</span> <span class="hljs-string">&lt;username-on-dockerhub&gt;/my_ml_service:v1.0</span>
+</code></pre>
+</li>
+<li>Push the image to dockerhub.<pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">push</span> <span class="hljs-string">&lt;username-on-dockerhub&gt;/my_ml_service:latest</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ol><h1 id="Flask"><a class="anchor hidden-xs" href="#Flask" title="Flask"><i class="fa fa-link"></i></a>Flask</h1><p><strong>Flask</strong> is a powerful and flexible micro web framework for Python, ideal for both small and large web projects. It provides a straightforward way to get a web application up and running, with all the features that you need to get started. Here we will use Flask to build an API for our model. We can define endpoints as functions decorated with <code>@app.route</code>. Each function decorated as an endpoint should return some response to the requests made to these endpoints.</p><h2 id="Install-Flask"><a class="anchor hidden-xs" href="#Install-Flask" title="Install-Flask"><i class="fa fa-link"></i></a>Install Flask</h2><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">Flask==2.2.5</span>
+</code></pre><h2 id="Demo"><a class="anchor hidden-xs" href="#Demo" title="Demo"><i class="fa fa-link"></i></a>Demo</h2><pre><code class="python hljs"><span class="hljs-comment"># api/app.py</span>
+
+<span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, request, jsonify, abort, make_response
+
+<span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">import</span> mlflow.pyfunc
+<span class="hljs-keyword">import</span> os
+
+BASE_PATH = os.path.expandvars(<span class="hljs-string">"$PROJECTPATH"</span>)
+
+model = mlflow.pyfunc.load_model(os.path.join(BASE_PATH, <span class="hljs-string">"api"</span>, <span class="hljs-string">"model_dir"</span>))
+
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route("/info", methods = ["GET"])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">info</span><span class="hljs-params">()</span>:</span>
+
+	response = make_response(str(model.metadata), <span class="hljs-number">200</span>)
+	response.content_type = <span class="hljs-string">"text/plain"</span>
+	<span class="hljs-keyword">return</span> response
+
+<span class="hljs-meta">@app.route("/", methods = ["GET"])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">home</span><span class="hljs-params">()</span>:</span>
+	msg = <span class="hljs-string">"""
+	Welcome to our ML service to predict Customer satisfaction\n\n
+
+	This API has two main endpoints:\n
+	1. /info: to get info about the deployed model.\n
+	2. /predict: to send predict requests to our deployed model.\n
+
+	"""</span>
+
+	response = make_response(msg, <span class="hljs-number">200</span>)
+	response.content_type = <span class="hljs-string">"text/plain"</span>
+	<span class="hljs-keyword">return</span> response
+
+<span class="hljs-comment"># /predict endpoint</span>
+<span class="hljs-meta">@app.route("/predict", methods = ["POST"])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">()</span>:</span>
+	
+    <span class="hljs-comment"># EDIT THIS ENDPOINT</span>
+    
+    <span class="hljs-comment"># EXAMPLE</span>
+	content = str(request.data)
+	response = make_response(content, <span class="hljs-number">200</span>)
+	response.headers[<span class="hljs-string">"content-type"</span>] = <span class="hljs-string">"application/json"</span>
+	<span class="hljs-keyword">return</span> jsonify({<span class="hljs-string">'result'</span>: <span class="hljs-string">'yes'</span>, <span class="hljs-string">'prob'</span>: <span class="hljs-string">'0.7'</span>})
+
+<span class="hljs-comment"># This will run a local server to accept requests to the API.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    port = int(os.environ.get(<span class="hljs-string">'PORT'</span>, <span class="hljs-number">5001</span>))
+    app.run(debug=<span class="hljs-literal">True</span>, host=<span class="hljs-string">'0.0.0.0'</span>, port=port)
+</code></pre><h1 id="Web-UI"><a class="anchor hidden-xs" href="#Web-UI" title="Web-UI"><i class="fa fa-link"></i></a>Web UI</h1><p>After we publish the prediction service as an API. We need to build a cool UI to let users submit requests to the API via the UI. Here we will use <strong>Gradio</strong> to build one interface for our ML service.</p><h2 id="Install-Gradio"><a class="anchor hidden-xs" href="#Install-Gradio" title="Install-Gradio"><i class="fa fa-link"></i></a>Install Gradio</h2><p>You can install this tools as a Python package. I do not suggest to install latest version. For Python 3.11, the Gradio version 3.50.2 does not introduce conflicts.</p><pre><code class="yaml hljs"><span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">gradio==3.50.2</span>
+</code></pre><p>You can check other versions if this will create conflicts.</p><div class="alert alert-warning">
+<p>Gradio is a tool to easily interact with deployed machine learning models. For the project, you can use Gradio or other tools like Streamlit if you prefer.</p>
+</div><h2 id="Demo1"><a class="anchor hidden-xs" href="#Demo1" title="Demo1"><i class="fa fa-link"></i></a>Demo</h2><pre><code class="python hljs"><span class="hljs-comment"># src/app.py</span>
+
+<span class="hljs-keyword">import</span> gradio <span class="hljs-keyword">as</span> gr
+<span class="hljs-keyword">import</span> mlflow
+<span class="hljs-keyword">from</span> utils <span class="hljs-keyword">import</span> init_hydra
+<span class="hljs-keyword">from</span> model <span class="hljs-keyword">import</span> load_features
+<span class="hljs-keyword">from</span> transform_data <span class="hljs-keyword">import</span> transform_data
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+cfg = init_hydra()
+
+<span class="hljs-comment"># You need to define a parameter for each column in your raw dataset</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(age = None,
+            job = None,
+            marital = None,
+            education = None,
+            default = None,
+            balance = None,
+            housing = None,
+            loan = None,
+            contact = None,
+            day_of_week = None,
+            month = None,
+            duration = None,
+            campaign = None,
+            pdays = None,
+            previous = None,
+            poutcome = None)</span>:</span>
+    
+    <span class="hljs-comment"># This will be a dict of column values for input data sample</span>
+    features = {<span class="hljs-string">"age"</span>: age, 
+        <span class="hljs-string">"balance"</span>: balance, 
+        <span class="hljs-string">"duration"</span>: duration, 
+        <span class="hljs-string">"campaign"</span>: campaign, 
+        <span class="hljs-string">"pdays"</span>: pdays, 
+        <span class="hljs-string">"previous"</span>: previous,
+        <span class="hljs-string">"default"</span>: default, 
+        <span class="hljs-string">"housing"</span>: housing, 
+        <span class="hljs-string">"loan"</span>: loan,
+        <span class="hljs-string">"day_of_week"</span> : day_of_week,
+        <span class="hljs-string">"month"</span>: month,
+        <span class="hljs-string">"job"</span>: job,
+        <span class="hljs-string">"marital"</span>: marital,
+        <span class="hljs-string">"education"</span>: education,
+        <span class="hljs-string">"contact"</span>: contact,
+        <span class="hljs-string">"poutcome"</span>: poutcome
+    }
+    
+    <span class="hljs-comment"># print(features)</span>
+    
+    <span class="hljs-comment"># Build a dataframe of one row</span>
+    raw_df = pd.DataFrame(features, index=[<span class="hljs-number">0</span>])
+    
+    <span class="hljs-comment"># This will read the saved transformers "v4" from ZenML artifact store</span>
+    <span class="hljs-comment"># And only transform the input data (no fit here).</span>
+    X = transform_data(
+                        df = raw_df, 
+                        cfg = cfg, 
+                        return_df = <span class="hljs-literal">False</span>, 
+                        only_transform = <span class="hljs-literal">True</span>, 
+                        transformer_version = <span class="hljs-string">"v4"</span>, 
+                        only_X = <span class="hljs-literal">True</span>
+                      )
+    
+    <span class="hljs-comment"># Convert it into JSON</span>
+    example = X.iloc[<span class="hljs-number">0</span>,:]
+
+    example = json.dumps( 
+        { <span class="hljs-string">"inputs"</span>: example.to_dict() }
+    )
+
+    payload = example
+
+    <span class="hljs-comment"># Send POST request with the payload to the deployed Model API</span>
+    <span class="hljs-comment"># Here you can pass the port number at runtime using Hydra</span>
+    response = requests.post(
+        url=<span class="hljs-string">f"http://localhost:<span class="hljs-subst">{port_number}</span>/invocations"</span>,
+        data=payload,
+        headers={<span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"application/json"</span>},
+    )
+    
+    <span class="hljs-comment"># Change this to some meaningful output for your model</span>
+    <span class="hljs-comment"># For classification, it returns the predicted label</span>
+    <span class="hljs-comment"># For regression, it returns the predicted value</span>
+    <span class="hljs-keyword">return</span> response.json()
+
+<span class="hljs-comment"># Only one interface is enough</span>
+demo = gr.Interface(
+    <span class="hljs-comment"># The predict function will accept inputs as arguments and return output</span>
+    fn=predict,
+    
+    <span class="hljs-comment"># Here, the arguments in `predict` function</span>
+    <span class="hljs-comment"># will populated from the values of these input components</span>
+    inputs = [
+        <span class="hljs-comment"># Select proper components for data types of the columns in your raw dataset</span>
+        gr.Number(label = <span class="hljs-string">"age"</span>), 
+        gr.Text(label=<span class="hljs-string">"job"</span>),
+        gr.Text(label=<span class="hljs-string">"marital"</span>),
+        gr.Text(label=<span class="hljs-string">"education"</span>),
+        gr.Dropdown(label=<span class="hljs-string">"default"</span>, choices=[<span class="hljs-string">"no"</span>, <span class="hljs-string">"yes"</span>]),   
+        gr.Number(label = <span class="hljs-string">"balance"</span>), 
+        gr.Dropdown(label=<span class="hljs-string">"housing"</span>, choices=[<span class="hljs-string">"no"</span>, <span class="hljs-string">"yes"</span>]),   
+        gr.Dropdown(label=<span class="hljs-string">"loan"</span>, choices=[<span class="hljs-string">"no"</span>, <span class="hljs-string">"yes"</span>]),   
+        gr.Text(label=<span class="hljs-string">"contact"</span>),
+        gr.Text(label=<span class="hljs-string">"day_of_week"</span>),
+        gr.Text(label=<span class="hljs-string">"month"</span>),
+        gr.Number(label = <span class="hljs-string">"duration"</span>), 
+        gr.Number(label = <span class="hljs-string">"campaign"</span>), 
+        gr.Number(label = <span class="hljs-string">"pdays"</span>), 
+        gr.Number(label = <span class="hljs-string">"previous"</span>),
+        gr.Text(label=<span class="hljs-string">"poutcome"</span>),
+    ],
+    
+    <span class="hljs-comment"># The outputs here will get the returned value from `predict` function</span>
+    outputs = gr.Text(label=<span class="hljs-string">"prediction result"</span>),
+    
+    <span class="hljs-comment"># This will provide the user with examples to test the API</span>
+    examples=<span class="hljs-string">"data/examples"</span>
+    <span class="hljs-comment"># data/examples is a folder contains a file `log.csv` </span>
+    <span class="hljs-comment"># which contains data samples as examples to enter by user </span>
+    <span class="hljs-comment"># when needed. </span>
+)
+
+<span class="hljs-comment"># Launch the web UI locally on port 5155</span>
+demo.launch(server_port = <span class="hljs-number">5155</span>)
+
+<span class="hljs-comment"># Launch the web UI in Gradio cloud on port 5155</span>
+<span class="hljs-comment"># demo.launch(share=True, server_port = 5155)</span>
+</code></pre><h1 id="CICD-pipelines-using-Github-Actions"><a class="anchor hidden-xs" href="#CICD-pipelines-using-Github-Actions" title="CICD-pipelines-using-Github-Actions"><i class="fa fa-link"></i></a>CI/CD pipelines using Github Actions</h1><p>In 2019, GitHub released its own CI tool called GitHub Actions. According to GitHub, Actions make it easy for developers to automate tasks within the software development life cycle (SDLC). The native ecosystem integration enables projects to be automated from the moment developers commit code for deployment into production.</p><h2 id="Concepts"><a class="anchor hidden-xs" href="#Concepts" title="Concepts"><i class="fa fa-link"></i></a>Concepts</h2><ul>
+<li><strong>Workflow:</strong> A configurable automated process that will run one or more jobs. Workflows are defined by a YAML file within your repo and will run when triggered by an event in your repo. They can also be triggered manually, or with a defined schedule. Workflows are defined in the .github/workflows directory in a repo, and we can have multiple workflows per repo, each of which can perform a different set of tasks.</li>
+<li><strong>Event:</strong> An activity that triggers a workflow; these can be based on events such as push or pull requests, but they can also be scheduled using the crontab syntax.</li>
+<li><strong>Job:</strong> A task in a single workflow. A workflow may consist of one or more jobs, and all jobs need to execute without any errors in order for a workflow to be successful.</li>
+<li><strong>Step:</strong> A smaller task that is executed within a job. All steps must be completed in order to complete a job.</li>
+<li><strong>Action:</strong> A standalone command performed in a step. You can write your own Actions, or you can find Actions to use in your workflows in the GitHub Marketplace.</li>
+<li><strong>Runner:</strong> A server that runs your workflows when they’re triggered. Each runner can run a single job at a time. GitHub provides Ubuntu Linux, Microsoft Windows, and macOS runners for workflows; each workflow run executes in a fresh, newly-provisioned virtual machine.</li>
+</ul><p><img src="https://shipyard.build/images/blog/python-github-action/overview-actions-simple.png" alt="" class="md-image md-image"></p><p>We define the workflows as <code>.yaml</code> or <code>.yml</code> files in <code>.github/workflows</code> folder of the Github project repository.</p><h2 id="Example"><a class="anchor hidden-xs" href="#Example" title="Example"><i class="fa fa-link"></i></a>Example</h2><pre><code class="wrap yaml hljs"><span class="hljs-comment"># .github/workflows/test-code.yaml</span>
+
+<span class="hljs-comment"># Name of the workflow</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Example</span> <span class="hljs-string">testing</span>
+
+<span class="hljs-comment"># Trigger when?</span>
+<span class="hljs-attr">on:</span> <span class="hljs-comment"># Event</span>
+<span class="hljs-attr">  push:</span> <span class="hljs-comment"># this will trigger the workflow/pipeline only if there is push on `main` branch</span>
+<span class="hljs-attr">    branches:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">main</span>
+<span class="hljs-attr">    paths:</span> <span class="hljs-comment"># the push should be specifically to the folders `src` or `scripts` to trigger this workflow, otherwise, the workflow will not be triggered</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'src'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'scripts'</span>
+<span class="hljs-attr">   schedule:</span> <span class="hljs-comment"># Run this workflow on a scheduled manner given the cron expression (This is a second event to trigger the workflow)</span>
+<span class="hljs-attr">     - cron:</span> <span class="hljs-string">'*/5 * * * *'</span>
+
+<span class="hljs-comment"># Allows to only read the contents of the repository</span>
+<span class="hljs-comment"># `contents: read` permits an action to list the commits</span>
+<span class="hljs-comment"># `contents: write` allows the action to create a release</span>
+<span class="hljs-attr">permissions:</span>
+<span class="hljs-attr">  contents:</span> <span class="hljs-string">read</span>
+
+<span class="hljs-comment"># Decalre environment variables to be used in this workflow file</span>
+<span class="hljs-attr">env:</span>
+<span class="hljs-attr">  message:</span> <span class="hljs-string">"Testing code!"</span>
+
+<span class="hljs-comment"># Tasks</span>
+<span class="hljs-attr">jobs:</span>
+
+  <span class="hljs-comment"># Task name</span>
+<span class="hljs-attr">  test-code:</span>
+
+    <span class="hljs-comment"># OS to run the task</span>
+<span class="hljs-attr">    runs-on:</span> <span class="hljs-string">ubuntu-latest</span> <span class="hljs-comment"># The ubuntu-latest label currently uses the Ubuntu 22.04 runner image</span>
+    <span class="hljs-comment"># for more info about the given resources, check this link below</span>
+    <span class="hljs-comment"># https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories</span>
+    
+<span class="hljs-attr">    defaults:</span> <span class="hljs-comment"># Set working directory of the job</span>
+<span class="hljs-attr">      run:</span>
+<span class="hljs-attr">        shell:</span> <span class="hljs-string">bash</span> <span class="hljs-comment"># Set the default shell</span>
+<span class="hljs-attr">        working-directory:</span> <span class="hljs-string">.</span>
+
+    <span class="hljs-comment"># The steps of the task/job</span>
+<span class="hljs-attr">    steps:</span>
+    
+        <span class="hljs-comment"># Task name</span>
+<span class="hljs-attr">      - name:</span> <span class="hljs-string">Checking</span> <span class="hljs-string">out</span> <span class="hljs-string">our</span> <span class="hljs-string">code</span>
+        <span class="hljs-comment"># Action type</span>
+        <span class="hljs-comment"># This action check out the repository in the runner.</span>
+<span class="hljs-attr">        uses:</span> <span class="hljs-string">actions/checkout@v4</span>
+        <span class="hljs-comment"># for more info, check the link below</span>
+        <span class="hljs-comment"># https://github.com/actions/checkout</span>
+        
+        <span class="hljs-comment"># Install a version of Python</span>
+<span class="hljs-attr">      - name:</span> <span class="hljs-string">setup</span> <span class="hljs-string">python</span>
+<span class="hljs-attr">        uses:</span> <span class="hljs-string">actions/setup-python@v5</span>
+        <span class="hljs-comment"># for more info, check the link below</span>
+        <span class="hljs-comment"># https://github.com/actions/setup-python</span>
+        
+        <span class="hljs-comment"># Install this specific version 3.11.0 of Python</span>
+<span class="hljs-attr">        with:</span>
+<span class="hljs-attr">          python-version:</span> <span class="hljs-string">'3.11.0'</span>
+<span class="hljs-attr">          cache:</span> <span class="hljs-string">'pip'</span> <span class="hljs-comment"># caching pip dependencies</span>
+          
+        <span class="hljs-comment"># Install Python packages  </span>
+<span class="hljs-attr">      - name:</span> <span class="hljs-string">install</span> <span class="hljs-string">python</span> <span class="hljs-string">packages</span>
+      
+        <span class="hljs-comment"># `run` allows to run shell commands</span>
+        <span class="hljs-comment"># We can use operator `|` for a multi-line command</span>
+<span class="hljs-attr">        run:</span> <span class="hljs-string">|
+            python3.11 -m pip install --upgrade pip 
+            pip3.11 install -r installed_requirements.txt 
+        
+        # You do not need to create a virtual environment here, just use the global installation of Python
+        # Check if requirements.txt file is there
+        #    if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      # Task name
+</span><span class="hljs-attr">      - name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">your</span> <span class="hljs-string">app</span>
+      
+      <span class="hljs-comment"># A one-line shell command</span>
+      <span class="hljs-comment"># This will run the application in the background </span>
+      <span class="hljs-comment"># It is useful for apps which block the shell</span>
+      <span class="hljs-comment"># to allow next commands to run</span>
+<span class="hljs-attr">        run:</span> <span class="hljs-string">python3.11</span> <span class="hljs-string">src/app.py</span> <span class="hljs-string">&amp;</span>
+      
+<span class="hljs-attr">      - name:</span> <span class="hljs-string">Export</span> <span class="hljs-string">variables</span>
+<span class="hljs-attr">        run:</span> <span class="hljs-string">| 
+          echo $PWD
+          export ZENML_CONFIG_PATH=$PWD/services/zenml
+          export PROJECTPATH=$PWD
+          export AIRFLOW_HOME=$PWD/services/airflow
+          export PYTHONPATH=$PWD/src
+
+</span><span class="hljs-attr">      - name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">ZenML</span> <span class="hljs-string">server</span>  
+<span class="hljs-attr">        run:</span> <span class="hljs-string">zenml</span> <span class="hljs-string">down</span> <span class="hljs-string">&amp;&amp;</span> <span class="hljs-string">zenml</span> <span class="hljs-string">up</span>
+        
+      <span class="hljs-comment"># Run pytest on tests folder</span>
+<span class="hljs-attr">      - name:</span> <span class="hljs-string">Test</span> <span class="hljs-string">with</span> <span class="hljs-string">pytest</span>
+<span class="hljs-attr">        run:</span> <span class="hljs-string">pytest</span> <span class="hljs-string">tests</span>
+      
+
+  
+  <span class="hljs-comment"># Another job</span>
+<span class="hljs-attr">  print_info:</span>
+
+<span class="hljs-attr">      runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+
+      <span class="hljs-comment"># Run this job after running the job `test-code`</span>
+      <span class="hljs-comment"># This allows to set dependency between the jobs</span>
+<span class="hljs-attr">      needs:</span> <span class="hljs-string">test-code</span>
+      
+
+<span class="hljs-attr">      steps:</span>
+          
+        <span class="hljs-comment"># Print passwords and some variables defined on Github website  </span>
+<span class="hljs-attr">        - name:</span> <span class="hljs-string">print</span> <span class="hljs-string">my</span> <span class="hljs-string">password</span>
+<span class="hljs-attr">          run:</span> <span class="hljs-string">| 
+            echo My password is $<span class="hljs-template-variable">{{ secrets.PASSWORD }}</span>
+            echo My name is '$<span class="hljs-template-variable">{{ vars.NAME }}</span>'
+
+        # Print some message defined as environment variable
+</span><span class="hljs-attr">        - name:</span> <span class="hljs-string">print</span> <span class="hljs-string">message</span>
+<span class="hljs-attr">          run:</span> <span class="hljs-string">echo</span> <span class="hljs-string">$message</span>
+        
+      
+</code></pre><h1 id="Project-tasks"><a class="anchor hidden-xs" href="#Project-tasks" title="Project-tasks"><i class="fa fa-link"></i></a>Project tasks</h1><p><strong>Note:</strong> The project tasks are graded, and they form the practice part of the course. We have tasks for repository and as well as for report (for Master’s student).</p><div class="alert alert-warning">
+<p>Here we deploy only the <code>champion</code> model from phase 4.</p>
+</div><h2 id="A-Repository"><a class="anchor hidden-xs" href="#A-Repository" title="A-Repository"><i class="fa fa-link"></i></a>A. Repository</h2><div class="alert alert-success">
+<ol>
+<li>Create a folder <code>api</code> and add a file <code>api/app.py</code>.</li>
+<li>Generate <code>api/Dockerfile</code> for deploying your model locally in a docker container using <code>mlflow models</code> command.</li>
+<li>Build the docker image and run the docker container. Check the health of the service using <code>/ping</code> endpoint. Push the image to your dockerhub. The deployed API now should accept requests for prediction. Add the commands to build the image, deploy the container and push to Dockerhub in a script file <code>scripts/deploy_docker.sh</code>. Add an entry point <code>deploy</code> to <code>MLproject</code> file to run this script. You can run this entry point as:</li>
+</ol>
+<pre><code class="yaml hljs"><span class="hljs-string">mlflow</span> <span class="hljs-string">run</span> <span class="hljs-string">.</span> <span class="hljs-bullet">--env-manager</span> <span class="hljs-string">local</span> <span class="hljs-bullet">-e</span> <span class="hljs-string">deploy</span>
+</code></pre>
+<ol start="4">
+<li>Add an entry point <code>predict</code> to <code>MLproject</code> file to fetch a random <em>feature</em> sample of version <code>example_version</code> and run predictions on the deployed API hosted on a specific port <code>port</code> in <code>hostname=localhost</code>. This will call a function <code>predict</code> from a module <code>src/predict.py</code>. The entry point <code>predict</code> is defined as follows:</li>
+</ol>
+<pre><code class="wrap yaml hljs"><span class="hljs-comment"># MLproject</span>
+
+<span class="hljs-attr">entry_points:</span>
+
+<span class="hljs-string">...</span>
+
+<span class="hljs-attr">    predict:</span>
+<span class="hljs-attr">    parameters:</span>
+<span class="hljs-attr">      example_version:</span> 
+<span class="hljs-attr">        type:</span> <span class="hljs-string">string</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-string">"v5"</span>
+<span class="hljs-attr">      hostname:</span>
+<span class="hljs-attr">        type:</span> <span class="hljs-string">string</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-string">"hostname"</span>
+<span class="hljs-attr">      port:</span>
+<span class="hljs-attr">        type:</span> <span class="hljs-string">float</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-number">5151</span>
+<span class="hljs-attr">      random_state:</span>
+<span class="hljs-attr">        type:</span> <span class="hljs-string">float</span>
+<span class="hljs-attr">        default:</span> <span class="hljs-number">1</span>
+      
+    <span class="hljs-comment"># src/predict.py is decorated with @hydra.main to pass parameters at runtime</span>
+<span class="hljs-attr">    command:</span> <span class="hljs-string">"python src/predict.py ++example_version={example_version} ++hostname={hostname} ++port={port} ++random_state={random_state}"</span>
+
+<span class="hljs-comment"># The command to run is:</span>
+<span class="hljs-comment"># mlflow run . --env-manager local -e predict -P example_version=v4 -P port=5151 -P random_state=14</span>
+</code></pre>
+<ol start="5">
+<li>Take a sample from each version (out of 5) and test your prediction service. You should not get issues per sample version. Add these commands to a script <code>scripts/predict_samples.sh</code>.</li>
+<li>Create a <strong>Flask</strong> API of 2 endpoints in <code>api/app.py</code>. The endpoint <code>/predict</code> (HTTP request method is POST) accepts a json of feature values and returns a json of prediction result. The endpoint <code>/info</code> (HTTP request method is GET) takes no arguments and returns the model metadata (from MLflow model registry). You can also use FastAPI if you prefer. Run the App server on local host on a specific port.</li>
+<li><strong>[Optional]</strong> Deploy the Flask app to some cloud service like <a href="http://Vercel.com" target="_blank" rel="noopener">Vercel.com</a>, <a href="http://Fly.io" target="_blank" rel="noopener">Fly.io</a>,…etc.</li>
+<li>Test the Flask API by using <code>curl</code> command to send POST requests with data to <code>/predict</code> entry point.</li>
+<li>Build a UI using <strong>Gradio</strong> which allows users to enter raw input, then shows prediction results. The Gradio app should use the locally deployed Flask API to make predictions (Optionally use API deployed on the cloud). Deploy the Web UI on our local sever or to Gradio cloud (<code>share=True</code>).</li>
+<li>Build a CI/CD pipeline <code>.github/workflows/test-code.yaml</code> using Github actions to run all tests in <code>tests</code> folder. You can use <code>ubuntu-latest</code> (22.04) image from Github. Add the badge to your README file about the status of your pipeline. You can do that by adding such following markdown text to <code>README.md</code> file.</li>
+</ol>
+<pre><code class="yaml hljs"><span class="hljs-string">![Test</span> <span class="hljs-string">code</span> <span class="hljs-string">workflow](https://github.com/&lt;github-username&gt;/&lt;repo-name&gt;/actions/workflows/test-code.yaml/badge.svg)</span>
+
+<span class="hljs-comment"># Example    </span>
+<span class="hljs-comment"># https://github.com/firas-jolha/my-repo/actions/workflows/test-code.yaml/badge.svg</span>
+</code></pre>
+<ol start="11">
+<li>Build another CI/CD pipeline <code>.github/workflows/validate-model.yaml</code> using Github actions to validate the best champion model using Giskard.</li>
+<li><strong>[Optional]</strong> Build another CI/CD pipeline <code>.github/workflows/validate-data.yaml</code> using Github actions to test the dag <code>data_extract_dag</code> for one time/sample, then it tests the ZenML pipeline for one time/sample.</li>
+<li>All pipelines are set to be triggered with a <code>push</code> event to the <code>main</code> branch when any file in one of the directories <code>src, scripts, services/airflow/dags, tests, configs, .github</code> are changed in the repository. Make sure that you get such output as shown below.<br>
+<img src="https://i.imgur.com/rnrFDtd.png" alt="" class="md-image md-image"></li>
+</ol>
+</div><div class="alert alert-warning">
+<p>FINAL THOUGHT ARE BELOW <img class="emoji" alt=":arrow_down_small:" src="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/images/basic/arrow_down_small.png"></p>
+</div><div class="alert alert-warning">
+<p>You can deploy your Flask API in a docker container but this is an optional task.</p>
+</div><h2 id="B-Report-Only-for-Master’s-students"><a class="anchor hidden-xs" href="#B-Report-Only-for-Master’s-students" title="B-Report-Only-for-Master’s-students"><i class="fa fa-link"></i></a>B. Report <strong>[Only for Master’s students]</strong></h2><div class="alert alert-success">
+<p>Complete the following chapters:</p>
+<ul>
+<li><strong>Chapter 6: Model deployment</strong>
+<ul>
+<li>The deployment phase of a ML model is characterized by its practical use in the designated field of application.</li>
+<li>Define inference hardware.
+<ul>
+<li>Describe the resource you have to deploy your model.</li>
+</ul>
+</li>
+<li>Model evaluation under production condition: Check whether the business and economic success criteria are met.
+<ul>
+<li>Test your model on different samples of the data and check its performance.</li>
+<li>Compare the performance results and make a decision whether you succeeded in meeting the business succes criteria.</li>
+</ul>
+</li>
+<li>Deployment strategy: Describe your deployment methods and how you deployed your model.</li>
+</ul>
+</li>
+</ul>
+</div><h1 id="Final-thoughtstasks"><a class="anchor hidden-xs" href="#Final-thoughtstasks" title="Final-thoughtstasks"><i class="fa fa-link"></i></a>Final thoughts/tasks</h1><div class="alert alert-success">
+<ol>
+<li>Organize your repository in Github. Add documentation in README files. Keep your code clean and maintainable.</li>
+<li>Add instructions to the main readme file, on how to
+<ul>
+<li>Deploy your best model using your Flask API.</li>
+<li>Deploy your best model in a docker container.</li>
+<li>Run the <strong>Gradio</strong> web UI which sends HTTP requests.</li>
+</ul>
+</li>
+<li>Make sure that you merged your other branches with <code>main</code> branch since only <code>main</code> branch will be graded.</li>
+<li>Make sure that you pushed all required metadata, reports and files to Github fo grading purposes.</li>
+<li>Check that your CI/CD pipelines are <code>passing</code>.</li>
+</ol>
+</div><div class="alert alert-info">
+<p><strong>IMPORTANT:</strong> The Model monitoring phase will be skipped in this project for simplicity and only for the semester Summer 2024. The full points of this phase will be awarded to the teams who successfully finish all previous 5 phases. The full points are <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>60</mn><mo>&amp;#x2217;</mo><mfrac><mn>15</mn><mn>100</mn></mfrac><mo>=</mo><mn>9</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 6.037em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.175em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.296em, 1005.12em, 2.912em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mn" id="MathJax-Span-3" style="font-family: MathJax_Main;">60</span><span class="mo" id="MathJax-Span-4" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mfrac" id="MathJax-Span-5" style="padding-left: 0.218em;"><span style="display: inline-block; position: relative; width: 1.188em; height: 0px; margin-right: 0.11em; margin-left: 0.11em;"><span style="position: absolute; clip: rect(3.343em, 1000.65em, 4.151em, -999.997em); top: -4.415em; left: 50%; margin-left: -0.374em;"><span class="mn" id="MathJax-Span-6" style="font-size: 70.7%; font-family: MathJax_Main;">15</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; clip: rect(3.343em, 1001.03em, 4.151em, -999.997em); top: -3.607em; left: 50%; margin-left: -0.536em;"><span class="mn" id="MathJax-Span-7" style="font-size: 70.7%; font-family: MathJax_Main;">100</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; clip: rect(0.865em, 1001.19em, 1.242em, -999.997em); top: -1.29em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.3px solid; width: 1.188em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.08em;"></span></span></span></span><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-9" style="font-family: MathJax_Main; padding-left: 0.272em;">9</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.628em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>60</mn><mo>∗</mo><mfrac><mn>15</mn><mn>100</mn></mfrac><mo>=</mo><mn>9</mn></math></span></span><script type="math/tex" id="MathJax-Element-1">60*\frac{15}{100}=9</script></span> points for Bachelor’s students, and <span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>60</mn><mo>&amp;#x2217;</mo><mfrac><mn>10</mn><mn>100</mn></mfrac><mo>=</mo><mn>6</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-10" style="width: 6.037em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.175em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.296em, 1005.12em, 2.912em, -999.997em); top: -2.368em; left: 0em;"><span class="mrow" id="MathJax-Span-11"><span class="mn" id="MathJax-Span-12" style="font-family: MathJax_Main;">60</span><span class="mo" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.218em;">∗</span><span class="mfrac" id="MathJax-Span-14" style="padding-left: 0.218em;"><span style="display: inline-block; position: relative; width: 1.188em; height: 0px; margin-right: 0.11em; margin-left: 0.11em;"><span style="position: absolute; clip: rect(3.343em, 1000.7em, 4.151em, -999.997em); top: -4.415em; left: 50%; margin-left: -0.374em;"><span class="mn" id="MathJax-Span-15" style="font-size: 70.7%; font-family: MathJax_Main;">10</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; clip: rect(3.343em, 1001.03em, 4.151em, -999.997em); top: -3.607em; left: 50%; margin-left: -0.536em;"><span class="mn" id="MathJax-Span-16" style="font-size: 70.7%; font-family: MathJax_Main;">100</span><span style="display: inline-block; width: 0px; height: 3.99em;"></span></span><span style="position: absolute; clip: rect(0.865em, 1001.19em, 1.242em, -999.997em); top: -1.29em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.3px solid; width: 1.188em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.08em;"></span></span></span></span><span class="mo" id="MathJax-Span-17" style="font-family: MathJax_Main; padding-left: 0.272em;">=</span><span class="mn" id="MathJax-Span-18" style="font-family: MathJax_Main; padding-left: 0.272em;">6</span></span><span style="display: inline-block; width: 0px; height: 2.373em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.497em; border-left: 0px solid; width: 0px; height: 1.628em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>60</mn><mo>∗</mo><mfrac><mn>10</mn><mn>100</mn></mfrac><mo>=</mo><mn>6</mn></math></span></span><script type="math/tex" id="MathJax-Element-2">60*\frac{10}{100}=6</script></span> points for Master’s students.</p>
+</div><h1 id="Review"><a class="anchor hidden-xs" href="#Review" title="Review"><i class="fa fa-link"></i></a>Review</h1><h2 id="Docker-and-Docker-compose"><a class="anchor hidden-xs" href="#Docker-and-Docker-compose" title="Docker-and-Docker-compose"><i class="fa fa-link"></i></a>Docker and Docker compose</h2><p>Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called <strong>containers</strong>.</p><p>In simpler words, <strong>Docker</strong> is a tool that allows to easily deploy the applications in a <em>sandbox</em> (called <em>containers</em>) to run on the host operating system i.e. Linux.</p><p>The key benefit of Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development. Unlike virtual machines, containers do not have high <em>overhead</em> and hence enable more efficient usage of the underlying system and resources.</p><p>The industry standard today is to use <strong>Virtual Machines</strong> (VMs) to run software applications. VMs run applications inside a guest Operating System, which runs on virtual hardware powered by the server’s host OS.</p><p>VMs are great at providing full process isolation for applications: there are very few ways a problem in the host operating system can affect the software running in the guest operating system, and vice-versa. But this isolation comes at great cost — the computational overhead spent virtualizing hardware for a guest OS to use is substantial.</p><p><img src="https://www.eginnovations.com/blog/wp-content/uploads/2020/12/container-vms.jpg" alt="" class="md-image md-image"></p><p><strong>Containers</strong> take a different approach, by leveraging the low-level mechanics of the host operating system, containers provide most of the isolation of virtual machines at a fraction of the computing power.</p><ul>
+<li><strong>Dockerfile</strong> is a simple text file that contains a list of instructions that the Docker client calls while creating an image.</li>
+</ul><center>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230406105935/dockerfile-2.png" alt="" width="400" height="150" class="md-image md-image"></p>
+</center><ul>
+<li><strong>Docker image</strong> is an artifact with several layers and a lightweight, compact stand-alone executable package that contains all of the components required to run a piece of software, including the code, a runtime, libraries, environment variables, and configuration files.</li>
+<li><strong>Docker container</strong> is a runtime instance of an image.</li>
+</ul><h2 id="Install-docker-and-docker-compose"><a class="anchor hidden-xs" href="#Install-docker-and-docker-compose" title="Install-docker-and-docker-compose"><i class="fa fa-link"></i></a>Install docker and docker compose</h2><p>The official website has a good tutorial to download and install both tools. I share here some of the tutorials:</p><ul>
+<li><a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener">https://docs.docker.com/get-docker/</a></li>
+<li><a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">https://docs.docker.com/compose/</a></li>
+</ul><p>After you install the tools, use the docker command to run <code>hello-world</code> container as follows:</p><pre><code>docker run hello-world
+</code></pre><p>This command line will download the docker image <code>hello-world</code> for the first time and run a container.</p><div class="alert alert-danger">
+<p><strong>Note:</strong> If docker is not running due to restrictions in Russia, then add a mirror to the configuration of the docker daemon (<code>daemon.json</code>). The guide is in this link <a href="https://dockerhub.timeweb.cloud/" target="_blank" rel="noopener">https://dockerhub.timeweb.cloud/</a>.</p>
+<p><img src="https://i.imgur.com/ZB5kKZX.png" alt="" class="md-image md-image"></p>
+</div><h2 id="Dockerfile-definition-extra-section"><a class="anchor hidden-xs" href="#Dockerfile-definition-extra-section" title="Dockerfile-definition-extra-section"><i class="fa fa-link"></i></a>Dockerfile definition [extra section]</h2><p><code>Dockerfile</code> contains the instructions to build a Docker image. Here we show only some of these instructions.</p><pre><code class="wrap dockerfile hljs"><span class="hljs-comment"># Represents the base image, which is the command that is executed first before any other commands.</span>
+<span class="hljs-keyword">FROM</span> &lt;ImageName&gt;
+
+<span class="hljs-comment"># used to copy the file/folders to the image while building the image. </span>
+<span class="hljs-comment"># Source; is the location of the file/folders in the host  machine</span>
+<span class="hljs-comment"># Destination: is the location of the file/folders in the container</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> &lt;Source&gt; &lt;Destination&gt;</span>
+
+<span class="hljs-comment"># does the same as COPY. Additionally it lets you use URL location to download files and unzip files into the image</span>
+<span class="hljs-keyword">ADD</span><span class="bash"> &lt;URL&gt; &lt;Destination&gt;</span>
+
+<span class="hljs-comment"># Runs scripts and commands in the container. The execution of RUN commands will take place while you create an image on top of the prior layers (Image). It is used to install packages into container, create folders, etc</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> &lt;Command + ARGS&gt;</span>
+
+<span class="hljs-comment"># allows you to set a default command which will be executed only when you run a container without specifying a command. If a Docker container runs with a command, the default command will be ignored, so it can be overridden. There can be only one CMD in the dockerfile. </span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-built_in">command</span> + args]</span>
+
+<span class="hljs-comment"># A container that will function as an executable is configured by ENTRYPOINT. When you start the Docker container, a command or script called ENTRYPOINT is executed. It ca not be overridden.The only difference between CMD and ENTRYPOINT is CMD can be overridden and ENTRYPOINT can’t.</span>
+<span class="hljs-keyword">ENTRYPOINT</span><span class="bash"> [<span class="hljs-built_in">command</span> + args]</span>
+
+<span class="hljs-comment"># identifies the author/owner of the Dockerfile</span>
+<span class="hljs-keyword">MAINTAINER</span> &lt;NAME&gt;
+
+<span class="hljs-comment"># sets environment variables inside the container</span>
+<span class="hljs-keyword">ENV</span> VAR VALUE
+
+<span class="hljs-comment"># defines build-time variable.</span>
+<span class="hljs-keyword">ARG</span> VAR VALUE
+
+<span class="hljs-comment"># info to expose ports outside the container</span>
+<span class="hljs-keyword">EXPOSE</span> PORT
+
+<span class="hljs-comment"># info to create a directory mount point to access and store persistent data</span>
+<span class="hljs-comment"># PATH here is container path</span>
+<span class="hljs-keyword">VOLUME</span><span class="bash"> [PATH]</span>
+
+<span class="hljs-comment"># sets the working directory for the instructions that follow</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> SOME_CONTAINER_PATH </span>
+</code></pre><h2 id="Demo2"><a class="anchor hidden-xs" href="#Demo2" title="Demo2"><i class="fa fa-link"></i></a>Demo</h2><p>Here we will create a simple Flask app, dockerize it and push it to Docker hub.</p><ul>
+<li>Prepare the following files.
+<ul>
+<li>requirements.txt: contains the app dependencies.</li>
+<li><code>app.py</code>: contains the Flask app code.</li>
+<li>Dockerfile: contains the instructions to build a Docker image.</li>
+</ul>
+</li>
+</ul><pre><code class="yaml hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span></div><div class="code"><span class="hljs-comment"># requirements.txt</span>
+
+<span class="hljs-string">Flask</span>
+</div></div></code></pre><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span></div><div class="code"><span class="hljs-comment"># app.py</span>
+
+<span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+<span class="hljs-keyword">import</span> os
+
+app = Flask(__name__)
+ 
+<span class="hljs-meta">@app.route("/")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello World!"</span>
+ 
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    port = int(os.environ.get(<span class="hljs-string">'PORT'</span>, <span class="hljs-number">5000</span>))
+    app.run(debug=<span class="hljs-literal">True</span>, host=<span class="hljs-string">'0.0.0.0'</span>, port=port)
+</div></div></code></pre><pre><code class="dockerfile hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span>
+<span data-linenumber="10"></span>
+<span data-linenumber="11"></span>
+<span data-linenumber="12"></span>
+<span data-linenumber="13"></span>
+<span data-linenumber="14"></span>
+<span data-linenumber="15"></span>
+<span data-linenumber="16"></span>
+<span data-linenumber="17"></span>
+<span data-linenumber="18"></span>
+<span data-linenumber="19"></span>
+<span data-linenumber="20"></span>
+<span data-linenumber="21"></span>
+<span data-linenumber="22"></span>
+<span data-linenumber="23"></span>
+<span data-linenumber="24"></span>
+<span data-linenumber="25"></span>
+<span data-linenumber="26"></span></div><div class="code"><span class="hljs-comment"># Dockerfile</span>
+
+<span class="hljs-comment"># Base image</span>
+<span class="hljs-keyword">FROM</span> python:<span class="hljs-number">3.8</span>-alpine
+
+<span class="hljs-comment"># Switch to another directory</span>
+<span class="hljs-comment"># CWD is /usr/src/app</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /usr/src/app</span>
+
+<span class="hljs-comment"># Copy the requirements.txt to CWD</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> requirements.txt ./</span>
+
+<span class="hljs-comment"># Install the dependencies in requirements.txt</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> pip install --no-cache-dir -r requirements.txt</span>
+
+<span class="hljs-comment"># Copy the code and everything in CWD of the host to CWD of the container</span>
+<span class="hljs-keyword">COPY</span><span class="bash"> . .</span>
+
+<span class="hljs-comment"># Make the Docker container executable</span>
+<span class="hljs-keyword">ENTRYPOINT</span><span class="bash"> [<span class="hljs-string">"python"</span>]</span>
+
+<span class="hljs-comment"># Specify the default command line argument for the entrypoint</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"app.py"</span>]</span>
+
+<span class="hljs-comment"># This will be based to the default entry point</span>
+<span class="hljs-comment"># CMD [ "python", "./app.py" ]</span>
+</div></div></code></pre><ul>
+<li>Build the image with tag <code>flask_webservice</code>.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">build</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">flask_webservice</span> <span class="hljs-string">.</span>
+</code></pre><ul>
+<li>Run the container on port 5000. Add a name to the container <code>flask_webservice</code>.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">-d</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span><span class="hljs-string">:5000</span> <span class="hljs-bullet">--name</span> <span class="hljs-string">test_webservice</span> <span class="hljs-string">flask_webservice</span> 
+</code></pre><p>The option <code>-p</code> is used to map ports between the host and the container. The option <code>-d</code> is used to detach the shell from the container such that it will run in the background and will not block the shell.</p><ul>
+<li>Some other commands.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-comment"># Stops the container</span>
+<span class="hljs-string">docker</span> <span class="hljs-string">stop</span> <span class="hljs-string">&lt;container-id-name&gt;</span>
+
+<span class="hljs-comment"># Stops the container</span>
+<span class="hljs-string">docker</span> <span class="hljs-string">rm</span> <span class="hljs-string">&lt;container-id-name&gt;</span>
+
+<span class="hljs-comment"># shows all running containers</span>
+<span class="hljs-string">docker</span> <span class="hljs-string">ps</span>
+</code></pre><ul>
+<li>Add a volume if you are debugging the application.</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-bullet">-p</span> <span class="hljs-number">5000</span><span class="hljs-string">:5000</span> <span class="hljs-bullet">--name</span> <span class="hljs-string">test_service</span> <span class="hljs-bullet">-v</span> <span class="hljs-string">.:/usr/src/app</span> <span class="hljs-bullet">--rm</span> <span class="hljs-string">flask_webservice</span>
+</code></pre><p>A Docker volume is an independent file system entirely managed by Docker and exists as a normal file or directory on the host, where data is persisted.</p><ul>
+<li>Create a repository on Docker hub<br>
+<img src="https://i.imgur.com/DQNJGPd.png" alt="" class="md-image md-image"></li>
+<li>Log in on your local machine</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">login</span>
+</code></pre><p>Enter the username and password.</p><ul>
+<li>Add a tag to the docker image before pushing</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">tag</span> <span class="hljs-string">flask_webservice</span> <span class="hljs-string">firasj/dummy_flask_service:v1.0</span>
+</code></pre><ul>
+<li>Push to Docker Hub</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">push</span> <span class="hljs-string">firasj/dummy_flask_service:v1.0</span>
+</code></pre><p>Whenever you made changes, you can build then push another version/tag to Docker hub.</p><ul>
+<li>Access the container via terminal</li>
+</ul><pre><code class="yaml hljs"><span class="hljs-string">docker</span> <span class="hljs-string">exec</span> <span class="hljs-bullet">-i</span> <span class="hljs-bullet">-t</span> <span class="hljs-string">test_service</span> <span class="hljs-string">bash</span>
+</code></pre><p>If you pass to the previous command <code>app.py</code> instead of <code>bash</code>, then the container will run the python as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">app.py</span>
+</code></pre><p>If we pass a different application <code>app2.py</code>, the container will run the python as follows:</p><pre><code class="yaml hljs"><span class="hljs-string">python</span> <span class="hljs-string">app2.py</span>
+</code></pre><p>If the <code>docker</code> command asks for <code>sudo</code> permission everytime you use it, run the following:</p><pre><code class="yaml hljs"><span class="hljs-string">sudo</span> <span class="hljs-string">chmod</span> <span class="hljs-number">777</span> <span class="hljs-string">/var/run/docker.sock</span>
+</code></pre><p>This will give permissions to everyone to run docker (could be risky for multi-user environments).</p><h2 id="Docker-Compose"><a class="anchor hidden-xs" href="#Docker-Compose" title="Docker-Compose"><i class="fa fa-link"></i></a>Docker Compose</h2><p>Docker Compose is a tool for defining and running multi-container applications.</p><div class="alert alert-info">
+<p>You can find below some tutorials to learn Docker and Docker compose.</p>
+<blockquote>
+<p><a href="https://learnxinyminutes.com/docs/docker/" target="_blank" rel="noopener">https://learnxinyminutes.com/docs/docker/</a><br>
+A tutorial to learn Docker<br>
+<a href="https://docker-curriculum.com/#docker-compose" target="_blank" rel="noopener">https://docker-curriculum.com/#docker-compose</a><br>
+A tutorial to learn Docker compose</p>
+</blockquote>
+</div><h1 id="References"><a class="anchor hidden-xs" href="#References" title="References"><i class="fa fa-link"></i></a>References</h1><ul>
+<li><a href="https://ml-ops.org/content/crisp-ml" target="_blank" rel="noopener">CRISP-ML(Q)</a></li>
+<li><a href="https://docs.docker.com/" target="_blank" rel="noopener">Docker docs</a></li>
+<li><a href="https://mlflow.org/docs/latest/deployment/index.html" target="_blank" rel="noopener">MLflow deployment docs</a></li>
+<li><a href="https://shipyard.build/blog/your-first-python-github-action/" target="_blank" rel="noopener">Github actions tutorial</a></li>
+</ul></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Phase-V---Model-deployment" title="Phase V - Model deployment">Phase V - Model deployment</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#Local-deployment" title="[Local] deployment">[Local] deployment</a></li>
+<li><a href="#Local-Serving-MLflow-model-in-Docker" title="[Local] Serving MLflow model in Docker">[Local] Serving MLflow model in Docker</a></li>
+<li><a href="#Flask" title="Flask">Flask</a><ul class="nav">
+<li><a href="#Install-Flask" title="Install Flask">Install Flask</a></li>
+<li><a href="#Demo" title="Demo">Demo</a></li>
+</ul>
+</li>
+<li><a href="#Web-UI" title="Web UI">Web UI</a><ul class="nav">
+<li><a href="#Install-Gradio" title="Install Gradio">Install Gradio</a></li>
+<li><a href="#Demo1" title="Demo">Demo</a></li>
+</ul>
+</li>
+<li><a href="#CICD-pipelines-using-Github-Actions" title="CI/CD pipelines using Github Actions">CI/CD pipelines using Github Actions</a><ul class="nav">
+<li><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li><a href="#Example" title="Example">Example</a></li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#Final-thoughtstasks" title="Final thoughts/tasks">Final thoughts/tasks</a></li>
+<li class=""><a href="#Review" title="Review">Review</a><ul class="nav">
+<li class=""><a href="#Docker-and-Docker-compose" title="Docker and Docker compose">Docker and Docker compose</a></li>
+<li class=""><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
+<li><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
+<li><a href="#Demo2" title="Demo">Demo</a></li>
+<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+</ul>
+</li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</div><div class="toc-menu" style="">
+    <a class="expand-toggle expand-all" href="#">Expand all</a>
+    <a class="expand-toggle collapse-all" href="#" style="display: none;">Collapse all</a>
+    <a class="back-to-top" href="#">Back to top</a>
+    <a class="go-to-bottom" href="#">Go to bottom</a>
+</div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
+        <div class="toc"><ul class="nav">
+<li><a href="#Phase-V---Model-deployment" title="Phase V - Model deployment">Phase V - Model deployment</a></li>
+<li><a href="#Agenda" title="Agenda">Agenda</a></li>
+<li><a href="#Description" title="Description">Description</a></li>
+<li><a href="#Local-deployment" title="[Local] deployment">[Local] deployment</a></li>
+<li><a href="#Local-Serving-MLflow-model-in-Docker" title="[Local] Serving MLflow model in Docker">[Local] Serving MLflow model in Docker</a></li>
+<li><a href="#Flask" title="Flask">Flask</a><ul class="nav">
+<li><a href="#Install-Flask" title="Install Flask">Install Flask</a></li>
+<li><a href="#Demo" title="Demo">Demo</a></li>
+</ul>
+</li>
+<li><a href="#Web-UI" title="Web UI">Web UI</a><ul class="nav">
+<li><a href="#Install-Gradio" title="Install Gradio">Install Gradio</a></li>
+<li><a href="#Demo1" title="Demo">Demo</a></li>
+</ul>
+</li>
+<li><a href="#CICD-pipelines-using-Github-Actions" title="CI/CD pipelines using Github Actions">CI/CD pipelines using Github Actions</a><ul class="nav">
+<li><a href="#Concepts" title="Concepts">Concepts</a></li>
+<li><a href="#Example" title="Example">Example</a></li>
+</ul>
+</li>
+<li><a href="#Project-tasks" title="Project tasks">Project tasks</a><ul class="nav">
+<li><a href="#A-Repository" title="A. Repository">A. Repository</a></li>
+<li><a href="#B-Report-Only-for-Master’s-students" title="B. Report [Only for Master’s students]">B. Report [Only for Master’s students]</a></li>
+</ul>
+</li>
+<li class=""><a href="#Final-thoughtstasks" title="Final thoughts/tasks">Final thoughts/tasks</a></li>
+<li class=""><a href="#Review" title="Review">Review</a><ul class="nav">
+<li class=""><a href="#Docker-and-Docker-compose" title="Docker and Docker compose">Docker and Docker compose</a></li>
+<li class=""><a href="#Install-docker-and-docker-compose" title="Install docker and docker compose">Install docker and docker compose</a></li>
+<li><a href="#Dockerfile-definition-extra-section" title="Dockerfile definition [extra section]">Dockerfile definition [extra section]</a></li>
+<li><a href="#Demo2" title="Demo">Demo</a></li>
+<li><a href="#Docker-Compose" title="Docker Compose">Docker Compose</a></li>
+</ul>
+</li>
+<li><a href="#References" title="References">References</a></li>
+</ul>
+</div><div class="toc-menu" style="">
+    <a class="expand-toggle expand-all" href="#">Expand all</a>
+    <a class="expand-toggle collapse-all" href="#" style="display: none;">Collapse all</a>
+    <a class="back-to-top" href="#">Back to top</a>
+    <a class="go-to-bottom" href="#">Go to bottom</a>
+</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha256-kJrlY+s09+QoWjpkOrXXwhxeaoDz9FW5SaxF8I0DibQ=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
